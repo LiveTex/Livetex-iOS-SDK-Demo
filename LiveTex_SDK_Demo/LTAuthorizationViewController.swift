@@ -27,7 +27,7 @@ class LTAuthorizationViewController: UIViewController {
     @IBAction func applicationIdConfirm(sender: AnyObject) {
         
         let initParam  = LTMobileSDKInitializationParams()
-        //initParam.token = "token"
+        //initParam.token = "token1"
         initParam.sdkKey = "dev_key_test"
         initParam.applicationId = applicationIdField.text
         initParam.livetexUrl = "http://192.168.78.14:10010"

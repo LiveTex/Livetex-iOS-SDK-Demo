@@ -47,6 +47,9 @@ class LTChatViewController: UIViewController {
             
         }) { (error:NSException!) -> Void in
             
+            self.messages = []
+            self.tableView.reloadData()
+            
             view.animateRemove()
             let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
             alert.show()
@@ -83,7 +86,9 @@ class LTChatViewController: UIViewController {
             self.messages.append(msg)
             self.messageInputField.text = ""
             self.tableView.reloadData()
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+            if (self.messages.count != 0) {
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+            }
             
             }, failure: { (error:NSException!) -> Void in
                 
@@ -116,14 +121,20 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
         
         self.messages.append(message)
         self.tableView.reloadData()
-        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+        if (self.messages.count != 0) {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+        }
+        
     }
     
     func receiveFileMessage(message: LTSFileMessage!) {
         
         self.messages.append(message)
         self.tableView.reloadData()
-        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+        if (self.messages.count != 0) {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+        }
+        
     }
     
     func confirmTextMessage(message: String!) {
@@ -183,8 +194,10 @@ extension LTChatViewController {
             self.view.layoutIfNeeded()
             
         }, completion:{(complete:Bool) -> Void in
-                
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+            
+            if (self.messages.count != 0) {
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+            }
         })
     }
     
@@ -208,7 +221,6 @@ extension LTChatViewController: UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
-        //sendMessage(messageInputField.text)
         return true
     }
 }

@@ -326,7 +326,7 @@
                                     <outlet property="delegate" destination="bFf-3s-Qds" id="kDi-0Y-yw9"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" alpha="0.74999999999999978" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URR-uz-MN8" userLabel="modeSelection">
+                            <button opaque="NO" userInteractionEnabled="NO" alpha="0.74999999999999978" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URR-uz-MN8" userLabel="modeSelection">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="224" id="4pV-LD-VIk">
@@ -779,7 +779,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9IK-zv-EqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="450" y="123.75"/>
+            <point key="canvasLocation" x="429" y="119.25"/>
         </scene>
         <!--Claiming View Controller-->
         <scene sceneID="WfH-ls-EL6">
@@ -1591,13 +1591,6 @@
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="Ta0-y6-nVg"/>
-                                        <exclude reference="0Yu-it-TpH"/>
-                                        <exclude reference="4Rf-gL-4V7"/>
-                                        <exclude reference="aew-Ed-dMp"/>
-                                        <exclude reference="e8S-Xs-SQE"/>
-                                        <exclude reference="g2k-9E-3mP"/>
-                                        <exclude reference="45T-wt-WeO"/>
-                                        <exclude reference="NUG-iA-kjA"/>
                                         <exclude reference="0TP-6b-IFS"/>
                                         <exclude reference="1lz-Sa-nlK"/>
                                         <exclude reference="7V6-iy-yTk"/>
@@ -1606,6 +1599,13 @@
                                         <exclude reference="hhV-Rx-rws"/>
                                         <exclude reference="sNn-qy-l4y"/>
                                         <exclude reference="yn2-W4-g1m"/>
+                                        <exclude reference="0Yu-it-TpH"/>
+                                        <exclude reference="4Rf-gL-4V7"/>
+                                        <exclude reference="aew-Ed-dMp"/>
+                                        <exclude reference="e8S-Xs-SQE"/>
+                                        <exclude reference="g2k-9E-3mP"/>
+                                        <exclude reference="45T-wt-WeO"/>
+                                        <exclude reference="NUG-iA-kjA"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=compact">
@@ -1617,13 +1617,6 @@
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="Ta0-y6-nVg"/>
-                                        <exclude reference="0Yu-it-TpH"/>
-                                        <include reference="4Rf-gL-4V7"/>
-                                        <include reference="aew-Ed-dMp"/>
-                                        <include reference="e8S-Xs-SQE"/>
-                                        <include reference="g2k-9E-3mP"/>
-                                        <include reference="45T-wt-WeO"/>
-                                        <include reference="NUG-iA-kjA"/>
                                         <include reference="0TP-6b-IFS"/>
                                         <include reference="1lz-Sa-nlK"/>
                                         <exclude reference="7V6-iy-yTk"/>
@@ -1632,6 +1625,13 @@
                                         <include reference="hhV-Rx-rws"/>
                                         <exclude reference="sNn-qy-l4y"/>
                                         <include reference="yn2-W4-g1m"/>
+                                        <exclude reference="0Yu-it-TpH"/>
+                                        <include reference="4Rf-gL-4V7"/>
+                                        <include reference="aew-Ed-dMp"/>
+                                        <include reference="e8S-Xs-SQE"/>
+                                        <include reference="g2k-9E-3mP"/>
+                                        <include reference="45T-wt-WeO"/>
+                                        <include reference="NUG-iA-kjA"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -2236,7 +2236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8Q-RQ-xEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1167" y="123.75"/>
+            <point key="canvasLocation" x="1170" y="119.25"/>
         </scene>
     </scenes>
     <resources>
