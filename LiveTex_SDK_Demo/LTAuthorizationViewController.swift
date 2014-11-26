@@ -26,6 +26,9 @@ class LTAuthorizationViewController: UIViewController {
 
     @IBAction func applicationIdConfirm(sender: AnyObject) {
         
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(kLivetexPersistStorage)
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
         let initParam  = LTMobileSDKInitializationParams()
         //initParam.token = "token1"
         initParam.sdkKey = "dev_key_test"

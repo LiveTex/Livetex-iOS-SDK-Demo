@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		55383F9C1A26334800C1AB6E /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55383F9B1A26334800C1AB6E /* libLTMobileSDK.a */; };
 		553859561A138E510067A33F /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 553859551A138E510067A33F /* DejalActivityView.m */; };
 		553859581A13AFCA0067A33F /* LTChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553859571A13AFCA0067A33F /* LTChatViewController.swift */; };
 		55CB47791A1648EF002E2EE7 /* LTClaimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB47781A1648EF002E2EE7 /* LTClaimingViewController.swift */; };
-		55CCD8D71A24D19500C1CCA0 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CCD8D61A24D19500C1CCA0 /* libLTMobileSDK.a */; };
 		55D666061A135F2C001747B0 /* LTApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D666051A135F2C001747B0 /* LTApiManager.swift */; };
 		55D666081A1364CC001747B0 /* LTEnvolvingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D666071A1364CC001747B0 /* LTEnvolvingViewController.swift */; };
 		55D666131A136616001747B0 /* bad_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D6660A1A136616001747B0 /* bad_icon@2x.png */; };
@@ -49,12 +49,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		55383F9A1A262E7300C1AB6E /* LTMobileSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
+		55383F9B1A26334800C1AB6E /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
 		553859541A138E510067A33F /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
 		553859551A138E510067A33F /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
 		553859571A13AFCA0067A33F /* LTChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTChatViewController.swift; sourceTree = "<group>"; };
-		55723C4F1A249DCE00A95969 /* LTMobileSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
 		55CB47781A1648EF002E2EE7 /* LTClaimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTClaimingViewController.swift; path = ../LTClaimingViewController.swift; sourceTree = "<group>"; };
-		55CCD8D61A24D19500C1CCA0 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
 		55D6657F1A127AA5001747B0 /* LTObjcBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
 		55D666051A135F2C001747B0 /* LTApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTApiManager.swift; sourceTree = "<group>"; };
 		55D666071A1364CC001747B0 /* LTEnvolvingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTEnvolvingViewController.swift; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55CCD8D71A24D19500C1CCA0 /* libLTMobileSDK.a in Frameworks */,
+				55383F9C1A26334800C1AB6E /* libLTMobileSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,9 +119,9 @@
 		55D665751A1276FE001747B0 /* Livetex_SDK */ = {
 			isa = PBXGroup;
 			children = (
-				55CCD8D61A24D19500C1CCA0 /* libLTMobileSDK.a */,
+				55383F9B1A26334800C1AB6E /* libLTMobileSDK.a */,
+				55383F9A1A262E7300C1AB6E /* LTMobileSDK.h */,
 				55D90FDD1A1B9282007FCA56 /* LTSDKModel.h */,
-				55723C4F1A249DCE00A95969 /* LTMobileSDK.h */,
 				55D6657F1A127AA5001747B0 /* LTObjcBridging.h */,
 			);
 			path = Livetex_SDK;

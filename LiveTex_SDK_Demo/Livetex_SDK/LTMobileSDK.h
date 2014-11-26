@@ -82,7 +82,7 @@
  */
 @property(nonatomic, strong) NSMutableArray *capabilities;
 /*!
- GCD-очередь в которой будет выполняться callback-блокида запросов
+ GCD-очередь в которой будет выполняться callback-блоки для запросов
  SDK отностительно параллельного потока рабочей очереди SDK.
  По умолчанию - это последовательная очередь, ассоциированая с главным 
  потоком и подготавливается вызовом функции библиотеки
@@ -251,6 +251,7 @@
 - (void)voteWithVote:(LTSVoteType)vote
              success:(void(^)())success
              failure:(void(^)(NSException *ChatException))failure;
+
 
 /*!
  Жалоба на диалог с собеседником.
@@ -421,6 +422,25 @@
 - (void)setVisitorName:(NSString *)name
              success:(void(^)())success
              failure:(void(^)(NSException *error))failure;
+
+
+/*!
+ Подтверждение получения сообщения.
+ 
+ @param textMessageId индетификатор полученного сообщеиня.
+ 
+ @result Вызов колбек-блока соответствующего результату. При успешном выполнении запроса вызывается
+ колбек-блок success, в противном случае вызывается failure, параметром у которого явлется объект типа NSExeption
+ пойманый при выполнии операции в параллельном потоке очереди SDK.
+ 
+ @result ChatException ошибка сервиса чата.
+ 
+ */
+
+- (void)confirmTextMessageWithId:(LTSTextMessageId)textMessageId
+               success:(void(^)())success
+               failure:(void(^)(NSException *error))failure;
+
 
 
 /*!

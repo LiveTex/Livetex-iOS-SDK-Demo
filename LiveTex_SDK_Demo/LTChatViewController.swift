@@ -20,6 +20,7 @@ class LTChatViewController: UIViewController {
     
     @IBOutlet weak var waitngPlaceHolder: UILabel!
     @IBOutlet weak var operatorView: UIView!
+    @IBOutlet weak var typingLabel: UILabel!
     
     var messages:Array<AnyObject>! = []
     
@@ -37,7 +38,19 @@ class LTChatViewController: UIViewController {
     
     func loadMessagesAndShow() {
         
-         var view = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
+        var view = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
+        
+        LTApiManager.sharedInstance.sdk!.getStateWithSuccess({ (state:LTSDialogState!) -> Void in
+            
+            self.processDialogState(state)
+            
+        }, failure: { (error:NSException!) -> Void in
+            
+            view.animateRemove()
+            let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
+            alert.show()
+        })
+        
         
         LTApiManager.sharedInstance.sdk!.messageHistory(0, offset: 99, success: { (messages:[AnyObject]!) -> Void in
             
@@ -90,7 +103,7 @@ class LTChatViewController: UIViewController {
                 self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
             }
             
-            }, failure: { (error:NSException!) -> Void in
+        }, failure: { (error:NSException!) -> Void in
                 
                 view.animateRemove()
                 let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
@@ -98,7 +111,16 @@ class LTChatViewController: UIViewController {
         })
     }
     
-
+    
+    func processDialogState(state:LTSDialogState) {
+        
+        if state.employeeIsSet() {
+            
+            waitngPlaceHolder.hidden = true
+            operatorView.hidden = false
+            operatorName.text = state.employee.firstname
+        }
+    }
 }
 
 extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
@@ -109,12 +131,7 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     
     func updateDialogState(state: LTSDialogState!) {
         
-        if state.employeeIsSet() {
-            
-            waitngPlaceHolder.hidden = true
-            operatorView.hidden = false
-            operatorName.text = state.employee.firstname
-        }
+        processDialogState(state)
     }
     
     func receiveTextMessage(message: LTSTextMessage!) {
@@ -124,6 +141,15 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
         if (self.messages.count != 0) {
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
         }
+        
+        LTApiManager.sharedInstance.sdk?.confirmTextMessageWithId(message.messageId, success: { () -> Void in
+            
+            
+            }, failure: { (error:NSException!) -> Void in
+                
+                let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
+                alert.show()
+        })
         
     }
     
@@ -144,6 +170,11 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     
     func receiveTypingMessage(message: LTSTypingMessage!) {
         
+        typingLabel.hidden = false
+        
+        dispatch_after(dispatch_time_t(0.5), dispatch_get_main_queue(), {
+             self.typingLabel.hidden = true
+        })
     }
     
     func receiveHoldMessage(message: LTSHoldMessage!) {
@@ -152,6 +183,10 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     
     func notificationListenerErrorOccured(error: NSException!) {
         
+        let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
+        alert.show()
+        println(error.description)
+
     }
 }
 
@@ -205,6 +240,7 @@ extension LTChatViewController {
         
         waitngPlaceHolder.hidden = false
         operatorView.hidden = true
+        typingLabel.hidden = true
         
         operatorIco.layer.borderWidth = 2.0
         operatorIco.layer.borderColor = UIColor.whiteColor().CGColor
