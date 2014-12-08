@@ -24,10 +24,13 @@ class LTAuthorizationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func applicationIdConfirm(sender: AnyObject) {
+    @IBAction func clean(sender: AnyObject) {
         
         NSUserDefaults.standardUserDefaults().removeObjectForKey(kLivetexPersistStorage)
         NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
+    @IBAction func applicationIdConfirm(sender: AnyObject) {
         
         let initParam  = LTMobileSDKInitializationParams()
         //initParam.token = "token1"

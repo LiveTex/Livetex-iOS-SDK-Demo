@@ -448,4 +448,6 @@
  */
 
 - (void)stop;
+
+- (NSString *)getNotificationLogs;
 @end

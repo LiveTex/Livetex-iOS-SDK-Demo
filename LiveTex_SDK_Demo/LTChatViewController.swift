@@ -111,6 +111,47 @@ class LTChatViewController: UIViewController {
         })
     }
     
+    @IBAction func close(sender: AnyObject) {
+        
+        var view = DejalBezelActivityView(forView: self.view, withLabel: "Выход", width:100)
+        
+        LTApiManager.sharedInstance.sdk?.getStateWithSuccess({ (state:LTSDialogState!) -> Void in
+            
+            if (state.conversationIsSet()) {
+                
+                 LTApiManager.sharedInstance.sdk?.closeWithSuccess({ (state:LTSDialogState!) -> Void in
+                    
+                    let newstate:LTSDialogState = state
+                    LTApiManager.sharedInstance.sdk?.stop()
+                    view.animateRemove()
+                    LTApiManager.sharedInstance.sdk = nil
+                    self.performSegueWithIdentifier("authorizathon", sender: nil)
+
+                 }, failure: { (error:NSException!) -> Void in
+                    
+                    view.animateRemove()
+                    let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
+                    alert.show()
+
+                 })
+                
+            } else {
+                
+                LTApiManager.sharedInstance.sdk?.stop()
+                view.animateRemove()
+                LTApiManager.sharedInstance.sdk = nil
+                self.performSegueWithIdentifier("authorizathon", sender: nil)
+            }
+            
+        }, failure: { (error:NSException!) -> Void in
+            
+            view.animateRemove()
+            let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
+            alert.show()
+        })
+        
+
+    }
     
     func processDialogState(state:LTSDialogState) {
         
@@ -172,7 +213,7 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
         
         typingLabel.hidden = false
         
-        dispatch_after(dispatch_time_t(0.5), dispatch_get_main_queue(), {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
              self.typingLabel.hidden = true
         })
     }
@@ -258,6 +299,19 @@ extension LTChatViewController: UITextFieldDelegate {
         
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        let typingMessage:LTSTypingMessage = LTSTypingMessage()
+        typingMessage.text = textField.text
+        
+        LTApiManager.sharedInstance.sdk!.typingWithTypingMessage(typingMessage, success: nil) { (error:NSException!) -> Void in
+            
+            let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
+            alert.show()
+        }
+        return  true
     }
 }
 

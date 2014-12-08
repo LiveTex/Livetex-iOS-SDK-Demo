@@ -35,11 +35,11 @@ typedef NSMutableDictionary * LTSOptions;
 
 
 @interface LTSConversation : NSObject
-@property (nonatomic, retain) LTSEmployee *employee;
-@property (nonatomic, retain) LTSDepartment *department;
+@property (nonatomic, retain) LTSEmployeeId employeeId;
+@property (nonatomic, retain) LTSDepartmentId departmentId;
 
-- (id)initWithDepartment:(LTSDepartment *) department
-                  employee:(LTSEmployee *) employee;
+- (id)initWithDepartment:(LTSDepartmentId) departmentId
+                  employee:(LTSEmployeeId) employeeId;
 
 - (BOOL)departmentIsSet;
 - (BOOL)employeeIsSet;
