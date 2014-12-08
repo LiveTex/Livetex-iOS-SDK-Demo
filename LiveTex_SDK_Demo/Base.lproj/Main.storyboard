@@ -40,27 +40,6 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Введите Application ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wED-Hg-tpY" userLabel="input">
-                                <rect key="frame" x="202" y="214" width="198" height="17"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="198" id="Kwm-Lh-1OK">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="190"/>
-                                    </constraint>
-                                    <constraint firstAttribute="height" constant="31" id="zg2-Kt-aj9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="zg2-Kt-aj9"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="zg2-Kt-aj9"/>
-                                    </mask>
-                                </variation>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXY-E8-xqt" userLabel="authorize">
                                 <rect key="frame" x="249" y="321" width="103" height="24"/>
                                 <constraints>
@@ -105,6 +84,28 @@
                                     <action selector="clean:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="DQH-UU-Owb"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1000" placeholder="Введите Application ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wED-Hg-tpY" userLabel="input">
+                                <rect key="frame" x="202" y="214" width="198" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="198" id="Kwm-Lh-1OK">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="190"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="31" id="zg2-Kt-aj9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="zg2-Kt-aj9"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="106" y="214" width="190" height="31"/>
+                                    <mask key="constraints">
+                                        <include reference="zg2-Kt-aj9"/>
+                                    </mask>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -1783,7 +1784,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="Ae0-NA-dua"/>
                                             <constraint firstAttribute="width" constant="67" id="Dhw-iN-PaX">
-                                                <variation key="heightClass=regular-widthClass=compact" constant="61"/>
+                                                <variation key="heightClass=regular-widthClass=compact" constant="62"/>
                                             </constraint>
                                             <constraint firstAttribute="height" constant="24" id="LsR-ze-6Gh"/>
                                             <constraint firstAttribute="height" constant="24" id="Mzz-Kt-Kcu"/>
@@ -1793,7 +1794,7 @@
                                             <constraint firstAttribute="width" constant="24" id="YHC-U8-yEv"/>
                                             <constraint firstAttribute="width" constant="24" id="sTs-BM-EvM"/>
                                         </constraints>
-                                        <state key="normal" title="Зкр">
+                                        <state key="normal" title="Закрыть">
                                             <color key="titleColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <variation key="default">
@@ -1830,9 +1831,11 @@
                                     <constraint firstItem="y0i-PR-bhD" firstAttribute="top" secondItem="vpx-kK-UJP" secondAttribute="top" constant="33" id="1lz-Sa-nlK"/>
                                     <constraint firstItem="qCW-6I-3EE" firstAttribute="leading" secondItem="vpx-kK-UJP" secondAttribute="leading" id="45T-wt-WeO"/>
                                     <constraint firstAttribute="trailing" secondItem="lT6-dt-chO" secondAttribute="trailing" id="4Rf-gL-4V7"/>
-                                    <constraint firstItem="yWY-Oe-zHG" firstAttribute="trailing" secondItem="vpx-kK-UJP" secondAttribute="trailingMargin" id="9kJ-Ai-dM2"/>
+                                    <constraint firstItem="yWY-Oe-zHG" firstAttribute="trailing" secondItem="vpx-kK-UJP" secondAttribute="trailingMargin" id="9kJ-Ai-dM2">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="-5"/>
+                                    </constraint>
                                     <constraint firstAttribute="trailing" secondItem="KYN-6k-aO5" secondAttribute="trailing" constant="8" id="Cvo-8L-sWY">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="81"/>
+                                        <variation key="heightClass=regular-widthClass=compact" constant="83"/>
                                     </constraint>
                                     <constraint firstItem="yWY-Oe-zHG" firstAttribute="baseline" secondItem="KYN-6k-aO5" secondAttribute="baseline" id="FZd-7F-TOY"/>
                                     <constraint firstItem="qCW-6I-3EE" firstAttribute="top" secondItem="vpx-kK-UJP" secondAttribute="top" constant="16" id="NUG-iA-kjA">

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		553859561A138E510067A33F /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 553859551A138E510067A33F /* DejalActivityView.m */; };
 		553859581A13AFCA0067A33F /* LTChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553859571A13AFCA0067A33F /* LTChatViewController.swift */; };
-		55CB47791A1648EF002E2EE7 /* LTClaimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB47781A1648EF002E2EE7 /* LTClaimingViewController.swift */; };
 		55CCD8D71A24D19500C1CCA0 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CCD8D61A24D19500C1CCA0 /* libLTMobileSDK.a */; };
 		55D666061A135F2C001747B0 /* LTApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D666051A135F2C001747B0 /* LTApiManager.swift */; };
 		55D666081A1364CC001747B0 /* LTEnvolvingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D666071A1364CC001747B0 /* LTEnvolvingViewController.swift */; };
@@ -22,7 +21,9 @@
 		55D666191A136616001747B0 /* next_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D666101A136616001747B0 /* next_arrow@2x.png */; };
 		55D6661A1A136616001747B0 /* Rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D666111A136616001747B0 /* Rectangle@2x.png */; };
 		55D6661B1A136616001747B0 /* send_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D666121A136616001747B0 /* send_btn@2x.png */; };
-		55DBF9B71A13CBF8004C65DD /* LTChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DBF9B61A13CBF8004C65DD /* LTChatMessageTableViewCell.swift */; };
+		55DEA8E81A35D635006ED45A /* LTChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8E51A35D635006ED45A /* LTChatMessageTableViewCell.swift */; };
+		55DEA8E91A35D635006ED45A /* LTClaimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8E61A35D635006ED45A /* LTClaimingViewController.swift */; };
+		55DEA8EA1A35D635006ED45A /* LTSDKNotificationLogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8E71A35D635006ED45A /* LTSDKNotificationLogsViewController.swift */; };
 		55DF2E331A14C93700C4DDD9 /* baloon_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55DF2E2E1A14C93700C4DDD9 /* baloon_blue@2x.png */; };
 		55DF2E341A14C93700C4DDD9 /* baloon_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55DF2E2F1A14C93700C4DDD9 /* baloon_gray@2x.png */; };
 		55DF2E351A14C93700C4DDD9 /* bot_backgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = 55DF2E301A14C93700C4DDD9 /* bot_backgroud.png */; };
@@ -30,7 +31,6 @@
 		55DF2E371A14C93700C4DDD9 /* Ваш вопрос 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 55DF2E321A14C93700C4DDD9 /* Ваш вопрос 2.png */; };
 		55DF2E391A14FA9200C4DDD9 /* ava@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 55DF2E381A14FA9200C4DDD9 /* ava@2x.jpg */; };
 		55F73B011A0A6EB800C28B0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73B001A0A6EB800C28B0A /* AppDelegate.swift */; };
-		55F73B041A0A6EB900C28B0A /* LiveTex_SDK_Demo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55F73B021A0A6EB900C28B0A /* LiveTex_SDK_Demo.xcdatamodeld */; };
 		55F73B061A0A6EB900C28B0A /* LTAuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73B051A0A6EB900C28B0A /* LTAuthorizationViewController.swift */; };
 		55F73B091A0A6EB900C28B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B071A0A6EB900C28B0A /* Main.storyboard */; };
 		55F73B0B1A0A6EB900C28B0A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0A1A0A6EB900C28B0A /* Images.xcassets */; };
@@ -42,7 +42,6 @@
 		553859551A138E510067A33F /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
 		553859571A13AFCA0067A33F /* LTChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTChatViewController.swift; sourceTree = "<group>"; };
 		55723C4F1A249DCE00A95969 /* LTMobileSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
-		55CB47781A1648EF002E2EE7 /* LTClaimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTClaimingViewController.swift; path = ../LTClaimingViewController.swift; sourceTree = "<group>"; };
 		55CCD8D61A24D19500C1CCA0 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
 		55D6657F1A127AA5001747B0 /* LTObjcBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
 		55D666051A135F2C001747B0 /* LTApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTApiManager.swift; sourceTree = "<group>"; };
@@ -57,7 +56,9 @@
 		55D666111A136616001747B0 /* Rectangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle@2x.png"; sourceTree = "<group>"; };
 		55D666121A136616001747B0 /* send_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_btn@2x.png"; sourceTree = "<group>"; };
 		55D90FDD1A1B9282007FCA56 /* LTSDKModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
-		55DBF9B61A13CBF8004C65DD /* LTChatMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTChatMessageTableViewCell.swift; path = ../LTChatMessageTableViewCell.swift; sourceTree = "<group>"; };
+		55DEA8E51A35D635006ED45A /* LTChatMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTChatMessageTableViewCell.swift; path = Livetex_SDK/LTChatMessageTableViewCell.swift; sourceTree = "<group>"; };
+		55DEA8E61A35D635006ED45A /* LTClaimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTClaimingViewController.swift; path = Livetex_SDK/LTClaimingViewController.swift; sourceTree = "<group>"; };
+		55DEA8E71A35D635006ED45A /* LTSDKNotificationLogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTSDKNotificationLogsViewController.swift; path = Livetex_SDK/LTSDKNotificationLogsViewController.swift; sourceTree = "<group>"; };
 		55DF2E2E1A14C93700C4DDD9 /* baloon_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baloon_blue@2x.png"; sourceTree = "<group>"; };
 		55DF2E2F1A14C93700C4DDD9 /* baloon_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baloon_gray@2x.png"; sourceTree = "<group>"; };
 		55DF2E301A14C93700C4DDD9 /* bot_backgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bot_backgroud.png; sourceTree = "<group>"; };
@@ -67,7 +68,6 @@
 		55F73AFB1A0A6EB800C28B0A /* LiveTex_SDK_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveTex_SDK_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55F73AFF1A0A6EB800C28B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55F73B001A0A6EB800C28B0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		55F73B031A0A6EB900C28B0A /* LiveTex_SDK_Demo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LiveTex_SDK_Demo.xcdatamodel; sourceTree = "<group>"; };
 		55F73B051A0A6EB900C28B0A /* LTAuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTAuthorizationViewController.swift; sourceTree = "<group>"; };
 		55F73B081A0A6EB900C28B0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55F73B0A1A0A6EB900C28B0A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -155,12 +155,12 @@
 				55F73B051A0A6EB900C28B0A /* LTAuthorizationViewController.swift */,
 				55D666071A1364CC001747B0 /* LTEnvolvingViewController.swift */,
 				553859571A13AFCA0067A33F /* LTChatViewController.swift */,
-				55DBF9B61A13CBF8004C65DD /* LTChatMessageTableViewCell.swift */,
-				55CB47781A1648EF002E2EE7 /* LTClaimingViewController.swift */,
+				55DEA8E51A35D635006ED45A /* LTChatMessageTableViewCell.swift */,
+				55DEA8E61A35D635006ED45A /* LTClaimingViewController.swift */,
+				55DEA8E71A35D635006ED45A /* LTSDKNotificationLogsViewController.swift */,
 				55F73B071A0A6EB900C28B0A /* Main.storyboard */,
 				55F73B0A1A0A6EB900C28B0A /* Images.xcassets */,
 				55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */,
-				55F73B021A0A6EB900C28B0A /* LiveTex_SDK_Demo.xcdatamodeld */,
 				55F73AFE1A0A6EB800C28B0A /* Supporting Files */,
 			);
 			path = LiveTex_SDK_Demo;
@@ -205,7 +205,6 @@
 				TargetAttributes = {
 					55F73AFA1A0A6EB800C28B0A = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = FJE97HEJ7P;
 					};
 				};
 			};
@@ -260,15 +259,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55DEA8EA1A35D635006ED45A /* LTSDKNotificationLogsViewController.swift in Sources */,
 				55D666081A1364CC001747B0 /* LTEnvolvingViewController.swift in Sources */,
 				553859581A13AFCA0067A33F /* LTChatViewController.swift in Sources */,
+				55DEA8E81A35D635006ED45A /* LTChatMessageTableViewCell.swift in Sources */,
 				553859561A138E510067A33F /* DejalActivityView.m in Sources */,
+				55DEA8E91A35D635006ED45A /* LTClaimingViewController.swift in Sources */,
 				55F73B061A0A6EB900C28B0A /* LTAuthorizationViewController.swift in Sources */,
 				55F73B011A0A6EB800C28B0A /* AppDelegate.swift in Sources */,
-				55DBF9B71A13CBF8004C65DD /* LTChatMessageTableViewCell.swift in Sources */,
-				55F73B041A0A6EB900C28B0A /* LiveTex_SDK_Demo.xcdatamodeld in Sources */,
 				55D666061A135F2C001747B0 /* LTApiManager.swift in Sources */,
-				55CB47791A1648EF002E2EE7 /* LTClaimingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,19 +433,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		55F73B021A0A6EB900C28B0A /* LiveTex_SDK_Demo.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				55F73B031A0A6EB900C28B0A /* LiveTex_SDK_Demo.xcdatamodel */,
-			);
-			currentVersion = 55F73B031A0A6EB900C28B0A /* LiveTex_SDK_Demo.xcdatamodel */;
-			path = LiveTex_SDK_Demo.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 55F73AF31A0A6EB800C28B0A /* Project object */;
 }
