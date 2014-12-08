@@ -220,6 +220,11 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     
     func receiveHoldMessage(message: LTSHoldMessage!) {
         
+        self.messages.append(message)
+        self.tableView.reloadData()
+        if (self.messages.count != 0) {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+        }
     }
     
     func notificationListenerErrorOccured(error: NSException!) {
@@ -333,41 +338,57 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
             return CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.url))
         }
         
+        if let currentMessage = messages[indexPath.row] as? LTSHoldMessage {
+            
+            return 56
+        }
+        
         return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell:LTChatMessageTableViewCell
-        
-        var senderIsSet:Bool!
-        
         if let currentMessage = messages[indexPath.row] as? LTSTextMessage {
-            senderIsSet = currentMessage.senderIsSet()
+
+            var cell:LTChatMessageTableViewCell!
+            
+            if currentMessage.senderIsSet() == true {
+                
+                cell = self.tableView.dequeueReusableCellWithIdentifier("cellIn") as LTChatMessageTableViewCell
+                
+            } else {
+                
+                cell = self.tableView.dequeueReusableCellWithIdentifier("cellOut") as LTChatMessageTableViewCell
+            }
+            
+            cell.messageSet = self.messages[indexPath.row]
+            return cell
         }
         
         if let currentMessage = messages[indexPath.row] as? LTSFileMessage {
-            senderIsSet = currentMessage.senderIsSet()
-        }
-        
-        if senderIsSet == true {
+            
+            var cell:LTChatMessageTableViewCell!
             
             cell = self.tableView.dequeueReusableCellWithIdentifier("cellIn") as LTChatMessageTableViewCell
-            
-        } else {
-            
-            cell = self.tableView.dequeueReusableCellWithIdentifier("cellOut") as LTChatMessageTableViewCell
+            cell.messageSet = self.messages[indexPath.row]
+            return cell
         }
         
-        cell.messageSet = self.messages[indexPath.row]
+        if let currentMessage = messages[indexPath.row] as? LTSHoldMessage {
+            
+            var cell:LTSystemMessageTableViewCell!
+            cell = self.tableView.dequeueReusableCellWithIdentifier("cellSystem") as LTSystemMessageTableViewCell
+            cell.messageTextLabel.text = currentMessage.text
+            return cell
+        }
         
-        return cell
+        return UITableViewCell()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if let message = messages[indexPath.row] as? LTSFileMessage {
-            UIApplication.sharedApplication().openURL(NSURL(string: message.url)!)
+            UIApplication.sharedApplication().openURL(NSURL(string: ("http:" + message.url))!)
         }
     }
 }

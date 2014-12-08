@@ -2072,7 +2072,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="77" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vNP-m7-c0C" userLabel="messages">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="77" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vNP-m7-c0C" userLabel="messages">
                                 <rect key="frame" x="0.0" y="117" width="600" height="410"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2202,7 +2202,7 @@
                                             <outlet property="timeText" destination="fBQ-zC-vW3" id="6yL-YX-frs"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellIn" rowHeight="65" id="f4C-n9-X8q" customClass="LTChatMessageTableViewCell" customModule="LiveTex_SDK_Demo" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellIn" rowHeight="78" id="f4C-n9-X8q" customClass="LTChatMessageTableViewCell" customModule="LiveTex_SDK_Demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f4C-n9-X8q" id="0q8-Dx-jmD">
@@ -2359,6 +2359,83 @@
                                             <outlet property="backgoundImage2" destination="3ni-OW-t0E" id="3dh-2n-tcV"/>
                                             <outlet property="messageText" destination="q6r-aG-0Sm" id="haQ-DL-YDa"/>
                                             <outlet property="timeText" destination="Ycb-Zl-ujz" id="hhG-kw-qph"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellSystem" rowHeight="56" id="uAi-XU-6AM" userLabel="systemMessage" customClass="LTSystemMessageTableViewCell" customModule="LiveTex_SDK_Demo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uAi-XU-6AM" id="JsU-wB-C1h">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sa sdf asdf asdf asdf asdf asdf asdf asdf asdf asdf asdf " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="99" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="298" translatesAutoresizingMaskIntoConstraints="NO" id="eJL-14-WQJ" userLabel="messageText">
+                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="qlu-Qx-TRx"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="qlu-Qx-TRx"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="qlu-Qx-TRx"/>
+                                                        </mask>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eJL-14-WQJ" firstAttribute="leading" secondItem="JsU-wB-C1h" secondAttribute="leading" constant="23" id="7n1-rM-8Kf"/>
+                                                <constraint firstAttribute="centerX" secondItem="eJL-14-WQJ" secondAttribute="centerX" id="Zsi-Cu-Gdq"/>
+                                                <constraint firstAttribute="centerY" secondItem="eJL-14-WQJ" secondAttribute="centerY" id="a7b-dQ-SC3">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="1"/>
+                                                </constraint>
+                                                <constraint firstItem="eJL-14-WQJ" firstAttribute="top" secondItem="JsU-wB-C1h" secondAttribute="topMargin" constant="1" id="aof-W0-Umb"/>
+                                                <constraint firstItem="eJL-14-WQJ" firstAttribute="leading" secondItem="JsU-wB-C1h" secondAttribute="leadingMargin" id="dEj-1U-opR">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="23"/>
+                                                </constraint>
+                                                <constraint firstItem="eJL-14-WQJ" firstAttribute="top" secondItem="JsU-wB-C1h" secondAttribute="top" constant="13" id="gq9-Lp-EoY">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="6"/>
+                                                </constraint>
+                                                <constraint firstAttribute="bottom" secondItem="eJL-14-WQJ" secondAttribute="bottom" constant="10" id="wAX-aw-Kk9">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="8"/>
+                                                </constraint>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="eJL-14-WQJ"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="7n1-rM-8Kf"/>
+                                                    <exclude reference="Zsi-Cu-Gdq"/>
+                                                    <exclude reference="a7b-dQ-SC3"/>
+                                                    <exclude reference="aof-W0-Umb"/>
+                                                    <exclude reference="dEj-1U-opR"/>
+                                                    <exclude reference="gq9-Lp-EoY"/>
+                                                    <exclude reference="wAX-aw-Kk9"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="eJL-14-WQJ"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="7n1-rM-8Kf"/>
+                                                    <include reference="Zsi-Cu-Gdq"/>
+                                                    <include reference="a7b-dQ-SC3"/>
+                                                    <exclude reference="aof-W0-Umb"/>
+                                                    <exclude reference="dEj-1U-opR"/>
+                                                    <exclude reference="gq9-Lp-EoY"/>
+                                                    <exclude reference="wAX-aw-Kk9"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageTextLabel" destination="eJL-14-WQJ" id="JhA-sp-9kP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
