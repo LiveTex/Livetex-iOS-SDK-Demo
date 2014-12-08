@@ -82,7 +82,7 @@ extension LTEnvolvingViewController {
         
         if currentMode == mods.departmentsMode {
             createDepartmentConversationWithAttributes(attributes)
-        } else if currentMode == mods.departmentsMode {
+        } else if currentMode == mods.epmloyeesMode {
             createEmployeeConversationWithAttributes(attributes)
         } else {
             createConversationWithAttributes(attributes)
@@ -104,9 +104,9 @@ extension LTEnvolvingViewController {
     
     func createDepartmentConversationWithAttributes(attributes:LTSDialogAttributes) {
 
-        let department = self.selectedSubSelectionItem as LTSDepartment
+        let department = self.selectedSubSelectionItem as LTSDepartment?
         
-        LTApiManager.sharedInstance.sdk!.requestWithDepartment(department.departmentId,
+        LTApiManager.sharedInstance.sdk!.requestWithDepartment(department?.departmentId,
             dialodAttributes: attributes,
             success: { (dilogState:LTSDialogState!) -> Void in
             
@@ -120,9 +120,9 @@ extension LTEnvolvingViewController {
     
     func createEmployeeConversationWithAttributes(attributes:LTSDialogAttributes) {
         
-        let employee = self.selectedSubSelectionItem as LTSEmployee
+        let employee = self.selectedSubSelectionItem as LTSEmployee?
         
-         LTApiManager.sharedInstance.sdk!.requestWithEmployee(employee.employeeId,
+         LTApiManager.sharedInstance.sdk!.requestWithEmployee(employee?.employeeId,
             dialodAttributes: attributes,
             success: { (dilogState:LTSDialogState!) -> Void in
                 
