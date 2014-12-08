@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		55383F9C1A26334800C1AB6E /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55383F9B1A26334800C1AB6E /* libLTMobileSDK.a */; };
 		553859561A138E510067A33F /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 553859551A138E510067A33F /* DejalActivityView.m */; };
 		553859581A13AFCA0067A33F /* LTChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553859571A13AFCA0067A33F /* LTChatViewController.swift */; };
 		55CB47791A1648EF002E2EE7 /* LTClaimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CB47781A1648EF002E2EE7 /* LTClaimingViewController.swift */; };
+		55CCD8D71A24D19500C1CCA0 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CCD8D61A24D19500C1CCA0 /* libLTMobileSDK.a */; };
 		55D666061A135F2C001747B0 /* LTApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D666051A135F2C001747B0 /* LTApiManager.swift */; };
 		55D666081A1364CC001747B0 /* LTEnvolvingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D666071A1364CC001747B0 /* LTEnvolvingViewController.swift */; };
 		55D666131A136616001747B0 /* bad_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D6660A1A136616001747B0 /* bad_icon@2x.png */; };
@@ -35,26 +35,15 @@
 		55F73B091A0A6EB900C28B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B071A0A6EB900C28B0A /* Main.storyboard */; };
 		55F73B0B1A0A6EB900C28B0A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0A1A0A6EB900C28B0A /* Images.xcassets */; };
 		55F73B0E1A0A6EB900C28B0A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */; };
-		55F73B1A1A0A6EB900C28B0A /* LiveTex_SDK_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73B191A0A6EB900C28B0A /* LiveTex_SDK_DemoTests.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		55F73B141A0A6EB900C28B0A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 55F73AF31A0A6EB800C28B0A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 55F73AFA1A0A6EB800C28B0A;
-			remoteInfo = LiveTex_SDK_Demo;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		55383F9A1A262E7300C1AB6E /* LTMobileSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
-		55383F9B1A26334800C1AB6E /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
 		553859541A138E510067A33F /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
 		553859551A138E510067A33F /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
 		553859571A13AFCA0067A33F /* LTChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTChatViewController.swift; sourceTree = "<group>"; };
+		55723C4F1A249DCE00A95969 /* LTMobileSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
 		55CB47781A1648EF002E2EE7 /* LTClaimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTClaimingViewController.swift; path = ../LTClaimingViewController.swift; sourceTree = "<group>"; };
+		55CCD8D61A24D19500C1CCA0 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
 		55D6657F1A127AA5001747B0 /* LTObjcBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
 		55D666051A135F2C001747B0 /* LTApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTApiManager.swift; sourceTree = "<group>"; };
 		55D666071A1364CC001747B0 /* LTEnvolvingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTEnvolvingViewController.swift; sourceTree = "<group>"; };
@@ -83,9 +72,6 @@
 		55F73B081A0A6EB900C28B0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55F73B0A1A0A6EB900C28B0A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		55F73B0D1A0A6EB900C28B0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		55F73B131A0A6EB900C28B0A /* LiveTex_SDK_DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiveTex_SDK_DemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		55F73B181A0A6EB900C28B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		55F73B191A0A6EB900C28B0A /* LiveTex_SDK_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTex_SDK_DemoTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,14 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55383F9C1A26334800C1AB6E /* libLTMobileSDK.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		55F73B101A0A6EB900C28B0A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				55CCD8D71A24D19500C1CCA0 /* libLTMobileSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,9 +98,9 @@
 		55D665751A1276FE001747B0 /* Livetex_SDK */ = {
 			isa = PBXGroup;
 			children = (
-				55383F9B1A26334800C1AB6E /* libLTMobileSDK.a */,
-				55383F9A1A262E7300C1AB6E /* LTMobileSDK.h */,
+				55CCD8D61A24D19500C1CCA0 /* libLTMobileSDK.a */,
 				55D90FDD1A1B9282007FCA56 /* LTSDKModel.h */,
+				55723C4F1A249DCE00A95969 /* LTMobileSDK.h */,
 				55D6657F1A127AA5001747B0 /* LTObjcBridging.h */,
 			);
 			path = Livetex_SDK;
@@ -153,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				55F73AFD1A0A6EB800C28B0A /* LiveTex_SDK_Demo */,
-				55F73B161A0A6EB900C28B0A /* LiveTex_SDK_DemoTests */,
 				55F73AFC1A0A6EB800C28B0A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -162,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				55F73AFB1A0A6EB800C28B0A /* LiveTex_SDK_Demo.app */,
-				55F73B131A0A6EB900C28B0A /* LiveTex_SDK_DemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,23 +174,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		55F73B161A0A6EB900C28B0A /* LiveTex_SDK_DemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				55F73B191A0A6EB900C28B0A /* LiveTex_SDK_DemoTests.swift */,
-				55F73B171A0A6EB900C28B0A /* Supporting Files */,
-			);
-			path = LiveTex_SDK_DemoTests;
-			sourceTree = "<group>";
-		};
-		55F73B171A0A6EB900C28B0A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				55F73B181A0A6EB900C28B0A /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -234,24 +194,6 @@
 			productReference = 55F73AFB1A0A6EB800C28B0A /* LiveTex_SDK_Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		55F73B121A0A6EB900C28B0A /* LiveTex_SDK_DemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 55F73B201A0A6EB900C28B0A /* Build configuration list for PBXNativeTarget "LiveTex_SDK_DemoTests" */;
-			buildPhases = (
-				55F73B0F1A0A6EB900C28B0A /* Sources */,
-				55F73B101A0A6EB900C28B0A /* Frameworks */,
-				55F73B111A0A6EB900C28B0A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				55F73B151A0A6EB900C28B0A /* PBXTargetDependency */,
-			);
-			name = LiveTex_SDK_DemoTests;
-			productName = LiveTex_SDK_DemoTests;
-			productReference = 55F73B131A0A6EB900C28B0A /* LiveTex_SDK_DemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -264,10 +206,6 @@
 					55F73AFA1A0A6EB800C28B0A = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = FJE97HEJ7P;
-					};
-					55F73B121A0A6EB900C28B0A = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = 55F73AFA1A0A6EB800C28B0A;
 					};
 				};
 			};
@@ -285,7 +223,6 @@
 			projectRoot = "";
 			targets = (
 				55F73AFA1A0A6EB800C28B0A /* LiveTex_SDK_Demo */,
-				55F73B121A0A6EB900C28B0A /* LiveTex_SDK_DemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -316,13 +253,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		55F73B111A0A6EB900C28B0A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -342,23 +272,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		55F73B0F1A0A6EB900C28B0A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				55F73B1A1A0A6EB900C28B0A /* LiveTex_SDK_DemoTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		55F73B151A0A6EB900C28B0A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 55F73AFA1A0A6EB800C28B0A /* LiveTex_SDK_Demo */;
-			targetProxy = 55F73B141A0A6EB900C28B0A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		55F73B071A0A6EB900C28B0A /* Main.storyboard */ = {
@@ -498,40 +412,6 @@
 			};
 			name = Release;
 		};
-		55F73B211A0A6EB900C28B0A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = LiveTex_SDK_DemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LiveTex_SDK_Demo.app/LiveTex_SDK_Demo";
-			};
-			name = Debug;
-		};
-		55F73B221A0A6EB900C28B0A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = LiveTex_SDK_DemoTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LiveTex_SDK_Demo.app/LiveTex_SDK_Demo";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -549,15 +429,6 @@
 			buildConfigurations = (
 				55F73B1E1A0A6EB900C28B0A /* Debug */,
 				55F73B1F1A0A6EB900C28B0A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		55F73B201A0A6EB900C28B0A /* Build configuration list for PBXNativeTarget "LiveTex_SDK_DemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				55F73B211A0A6EB900C28B0A /* Debug */,
-				55F73B221A0A6EB900C28B0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
