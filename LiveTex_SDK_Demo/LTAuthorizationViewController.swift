@@ -44,6 +44,8 @@ class LTAuthorizationViewController: UIViewController {
         
         LTApiManager.sharedInstance.sdk!.runWithSuccess({ (token:String!) -> Void in
             
+            LTApiManager.sharedInstance.aplicationId = self.applicationIdField.text
+            LTApiManager.sharedInstance.isSessionOpen = true
             view.animateRemove()
             println(token)
             self.performSegueWithIdentifier("showEnvolving", sender: nil)

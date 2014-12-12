@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		553859561A138E510067A33F /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 553859551A138E510067A33F /* DejalActivityView.m */; };
 		553859581A13AFCA0067A33F /* LTChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553859571A13AFCA0067A33F /* LTChatViewController.swift */; };
-		55CCD8D71A24D19500C1CCA0 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CCD8D61A24D19500C1CCA0 /* libLTMobileSDK.a */; };
+		55CC14FD1A3B2A9400C1456C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CC14FC1A3B2A9400C1456C /* Reachability.m */; };
+		55CC14FF1A3B2AB900C1456C /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55CC14FE1A3B2AB900C1456C /* libLTMobileSDK.a */; };
 		55D666061A135F2C001747B0 /* LTApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D666051A135F2C001747B0 /* LTApiManager.swift */; };
 		55D666081A1364CC001747B0 /* LTEnvolvingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D666071A1364CC001747B0 /* LTEnvolvingViewController.swift */; };
 		55D666131A136616001747B0 /* bad_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D6660A1A136616001747B0 /* bad_icon@2x.png */; };
@@ -23,7 +24,6 @@
 		55D6661B1A136616001747B0 /* send_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D666121A136616001747B0 /* send_btn@2x.png */; };
 		55DEA8EE1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8EB1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift */; };
 		55DEA8EF1A35D7DC006ED45A /* LTClaimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8EC1A35D7DC006ED45A /* LTClaimingViewController.swift */; };
-		55DEA8F01A35D7DC006ED45A /* LTSDKNotificationLogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8ED1A35D7DC006ED45A /* LTSDKNotificationLogsViewController.swift */; };
 		55DEA8F21A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8F11A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift */; };
 		55DF2E331A14C93700C4DDD9 /* baloon_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55DF2E2E1A14C93700C4DDD9 /* baloon_blue@2x.png */; };
 		55DF2E341A14C93700C4DDD9 /* baloon_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55DF2E2F1A14C93700C4DDD9 /* baloon_gray@2x.png */; };
@@ -43,7 +43,9 @@
 		553859551A138E510067A33F /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
 		553859571A13AFCA0067A33F /* LTChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTChatViewController.swift; sourceTree = "<group>"; };
 		55723C4F1A249DCE00A95969 /* LTMobileSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
-		55CCD8D61A24D19500C1CCA0 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
+		55CC14FB1A3B2A9400C1456C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		55CC14FC1A3B2A9400C1456C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		55CC14FE1A3B2AB900C1456C /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
 		55D6657F1A127AA5001747B0 /* LTObjcBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
 		55D666051A135F2C001747B0 /* LTApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTApiManager.swift; sourceTree = "<group>"; };
 		55D666071A1364CC001747B0 /* LTEnvolvingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTEnvolvingViewController.swift; sourceTree = "<group>"; };
@@ -59,7 +61,6 @@
 		55D90FDD1A1B9282007FCA56 /* LTSDKModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
 		55DEA8EB1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTChatMessageTableViewCell.swift; sourceTree = "<group>"; };
 		55DEA8EC1A35D7DC006ED45A /* LTClaimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTClaimingViewController.swift; sourceTree = "<group>"; };
-		55DEA8ED1A35D7DC006ED45A /* LTSDKNotificationLogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSDKNotificationLogsViewController.swift; sourceTree = "<group>"; };
 		55DEA8F11A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSystemMessageTableViewCell.swift; sourceTree = "<group>"; };
 		55DF2E2E1A14C93700C4DDD9 /* baloon_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baloon_blue@2x.png"; sourceTree = "<group>"; };
 		55DF2E2F1A14C93700C4DDD9 /* baloon_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baloon_gray@2x.png"; sourceTree = "<group>"; };
@@ -81,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55CCD8D71A24D19500C1CCA0 /* libLTMobileSDK.a in Frameworks */,
+				55CC14FF1A3B2AB900C1456C /* libLTMobileSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +101,7 @@
 		55D665751A1276FE001747B0 /* Livetex_SDK */ = {
 			isa = PBXGroup;
 			children = (
-				55CCD8D61A24D19500C1CCA0 /* libLTMobileSDK.a */,
+				55CC14FE1A3B2AB900C1456C /* libLTMobileSDK.a */,
 				55D90FDD1A1B9282007FCA56 /* LTSDKModel.h */,
 				55723C4F1A249DCE00A95969 /* LTMobileSDK.h */,
 				55D6657F1A127AA5001747B0 /* LTObjcBridging.h */,
@@ -160,7 +161,8 @@
 				55DEA8EB1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift */,
 				55DEA8F11A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift */,
 				55DEA8EC1A35D7DC006ED45A /* LTClaimingViewController.swift */,
-				55DEA8ED1A35D7DC006ED45A /* LTSDKNotificationLogsViewController.swift */,
+				55CC14FB1A3B2A9400C1456C /* Reachability.h */,
+				55CC14FC1A3B2A9400C1456C /* Reachability.m */,
 				55F73B071A0A6EB900C28B0A /* Main.storyboard */,
 				55F73B0A1A0A6EB900C28B0A /* Images.xcassets */,
 				55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */,
@@ -263,11 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55DEA8F01A35D7DC006ED45A /* LTSDKNotificationLogsViewController.swift in Sources */,
 				55D666081A1364CC001747B0 /* LTEnvolvingViewController.swift in Sources */,
 				553859581A13AFCA0067A33F /* LTChatViewController.swift in Sources */,
 				55DEA8EE1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift in Sources */,
 				553859561A138E510067A33F /* DejalActivityView.m in Sources */,
+				55CC14FD1A3B2A9400C1456C /* Reachability.m in Sources */,
 				55DEA8EF1A35D7DC006ED45A /* LTClaimingViewController.swift in Sources */,
 				55F73B061A0A6EB900C28B0A /* LTAuthorizationViewController.swift in Sources */,
 				55F73B011A0A6EB800C28B0A /* AppDelegate.swift in Sources */,
@@ -388,6 +390,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LiveTex_SDK_Demo/Livetex_SDK",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LTMobileSDK-gobsmgafmedlnthgewbmoplmtqum/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -409,6 +412,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LiveTex_SDK_Demo/Livetex_SDK",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LTMobileSDK-gobsmgafmedlnthgewbmoplmtqum/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

@@ -55,15 +55,14 @@ class LTChatMessageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-       self.backgoundImage2.image = self.backgoundImage2.image?.resizableImageWithCapInsets(UIEdgeInsetsMake(20, 20, 20, 20))
+        self.backgoundImage2.image = self.backgoundImage2.image?.resizableImageWithCapInsets(UIEdgeInsetsMake(15, 20, 15, 20))
     }
     
-    class func getSizeForText(text:String) -> Int {
+    class func getSizeForText(text:String) -> Double {
         
-        var spec = 24
-        var rect:CGRect = (text as NSString).boundingRectWithSize(CGSize(width: 280, height: Int.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes:[NSFontAttributeName : UIFont.systemFontOfSize(17.0)], context:nil)
+        var spec:Double = 24.0
+        var rect:CGRect = (text as NSString).boundingRectWithSize(CGSize(width: 280, height: 9999*100^100), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes:[NSFontAttributeName : UIFont.systemFontOfSize(17.0)], context:nil)
 
-        return Int(rect.size.height) + spec
+        return Double(rect.size.height) + spec
     }
 }

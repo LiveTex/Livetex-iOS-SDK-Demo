@@ -66,16 +66,16 @@ extension LTEnvolvingViewController {
         
         self.showActivityIndicator()
         
-//        LTApiManager.sharedInstance.sdk!.setVisitorName(nameField.text, success: { () -> Void in
-//            
+        LTApiManager.sharedInstance.sdk!.setVisitorName(nameField.text, success: { () -> Void in
+            
             var attr = LTSDialogAttributes()
             attr.visible = LTSOptions(dictionary: ["age":self.ageField.text])
             self.creatConversationForCurrentModeWithAtributes(attr)
             
-//        }) { (error:NSException!) -> Void in
-//                
-//            self.loadingErrorProcess(error)
-//        }
+        }) { (error:NSException!) -> Void in
+                
+            self.loadingErrorProcess(error)
+        }
     }
     
     func creatConversationForCurrentModeWithAtributes(attributes:LTSDialogAttributes) {

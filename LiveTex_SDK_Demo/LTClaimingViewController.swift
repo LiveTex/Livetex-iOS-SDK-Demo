@@ -10,6 +10,7 @@ import UIKit
 
 class LTClaimingViewController: UIViewController {
 
+    @IBOutlet weak var contact: UITextField!
     @IBOutlet weak var messageField: UITextView!
     @IBOutlet weak var messagePlaceHolder: UITextField!
     
@@ -25,7 +26,7 @@ class LTClaimingViewController: UIViewController {
     @IBAction func sendClaim(sender: AnyObject) {
         
         let abuse:LTSAbuse = LTSAbuse()
-        abuse.contact = ""
+        abuse.contact = self.contact.text
         abuse.message = messageField.text
         
         var view = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)

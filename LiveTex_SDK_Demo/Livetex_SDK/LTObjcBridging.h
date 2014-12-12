@@ -11,4 +11,5 @@
 
 #import "LTMobileSDK.h"
 #import "DejalActivityView.h"
+#import "Reachability.h"
 #endif

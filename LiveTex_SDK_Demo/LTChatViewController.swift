@@ -22,6 +22,8 @@ class LTChatViewController: UIViewController {
     @IBOutlet weak var operatorView: UIView!
     @IBOutlet weak var typingLabel: UILabel!
     
+    var activityView:DejalBezelActivityView?
+    
     var messages:Array<AnyObject>! = []
     
     required init(coder aDecoder: NSCoder) {
@@ -38,50 +40,80 @@ class LTChatViewController: UIViewController {
     
     func loadMessagesAndShow() {
         
-        var view = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
+        self.showActivityIndicator()
         
         LTApiManager.sharedInstance.sdk!.getStateWithSuccess({ (state:LTSDialogState!) -> Void in
             
-            self.processDialogState(state)
+            if state.employeeIsSet() {
+                
+                let url = NSURL(string: state.employee.avatar)
+                var err: NSError?
+                var imageData :NSData = NSData(contentsOfURL:url!, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: &err)!
+                var bgImage = UIImage(data:imageData)
+                self.operatorIco.image = bgImage
+            }
+            
+            LTApiManager.sharedInstance.sdk!.messageHistory(0, offset: 99, success: { (messages:[AnyObject]!) -> Void in
+                
+                self.removeActivityIndicator()
+                
+                let messagess:[AnyObject] = messages
+                self.messages = messagess
+                
+                if messages.count > 1 {
+                    
+                    self.messages.sort({ (s1:AnyObject, s2:AnyObject) -> Bool in
+                        
+                        var timestamp1:String = ""
+                        var timestamp2:String = ""
+                        
+                        if let c1 = s1 as? LTSTextMessage {
+                            timestamp1 = c1.timestamp
+                        }
+                        
+                        if let c2 = s2 as? LTSTextMessage {
+                            timestamp2 = c2.timestamp
+                        }
+                        
+                        if let c1 = s1 as? LTSHoldMessage {
+                            timestamp1 = c1.timestamp
+                        }
+                        
+                        if let c2 = s2 as? LTSHoldMessage {
+                            timestamp2 = c2.timestamp
+                        }
+                        
+                        return (timestamp1 as NSString).doubleValue < (timestamp2 as NSString).doubleValue
+                    })
+                }
+
+                self.processDialogState(state)
+                
+                }) { (error:NSException!) -> Void in
+                    
+                    self.messages = []
+                    self.tableView.reloadData()
+                    
+                    self.loadingErrorProcess(error)
+            }
             
         }, failure: { (error:NSException!) -> Void in
             
-            view.animateRemove()
-            let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
-            alert.show()
+            self.loadingErrorProcess(error)
         })
-        
-        
-        LTApiManager.sharedInstance.sdk!.messageHistory(0, offset: 99, success: { (messages:[AnyObject]!) -> Void in
-            
-            view.animateRemove()
-            self.messages = messages as [LTSTextMessage]
-            self.tableView.reloadData()
-            
-        }) { (error:NSException!) -> Void in
-            
-            self.messages = []
-            self.tableView.reloadData()
-            
-            view.animateRemove()
-            let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
-            alert.show()
-        }
     }
 
     func sendVote(vote:LTSVoteType!) {
         
-        var view = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
+        showActivityIndicator()
         
         LTApiManager.sharedInstance.sdk?.voteWithVote(vote, success: { () -> Void in
             
-            view.animateRemove()
+            self.removeActivityIndicator()
             
-            }, failure: { (error:NSException!) -> Void in
+        }, failure: { (error:NSException!) -> Void in
                 
-                view.animateRemove()
-                let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
-                alert.show()
+            self.loadingErrorProcess(error)
         })
     }
     
@@ -105,9 +137,7 @@ class LTChatViewController: UIViewController {
             
         }, failure: { (error:NSException!) -> Void in
                 
-                view.animateRemove()
-                let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
-                alert.show()
+            self.loadingErrorProcess(error)
         })
     }
     
@@ -117,9 +147,13 @@ class LTChatViewController: UIViewController {
         
         LTApiManager.sharedInstance.sdk?.getStateWithSuccess({ (state:LTSDialogState!) -> Void in
             
+            LTApiManager.sharedInstance.isSessionOpen = false
+            
             if (state.conversationIsSet()) {
                 
                  LTApiManager.sharedInstance.sdk?.closeWithSuccess({ (state:LTSDialogState!) -> Void in
+                    
+                    LTApiManager.sharedInstance.employeeId = nil
                     
                     let newstate:LTSDialogState = state
                     LTApiManager.sharedInstance.sdk?.stop()
@@ -129,10 +163,7 @@ class LTChatViewController: UIViewController {
 
                  }, failure: { (error:NSException!) -> Void in
                     
-                    view.animateRemove()
-                    let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
-                    alert.show()
-
+                    self.loadingErrorProcess(error)
                  })
                 
             } else {
@@ -145,22 +176,22 @@ class LTChatViewController: UIViewController {
             
         }, failure: { (error:NSException!) -> Void in
             
-            view.animateRemove()
-            let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
-            alert.show()
+            self.loadingErrorProcess(error)
         })
-        
-
     }
     
-    func processDialogState(state:LTSDialogState) {
+    @IBAction func voteDown(sender: AnyObject) {
         
-        if state.employeeIsSet() {
-            
-            waitngPlaceHolder.hidden = true
-            operatorView.hidden = false
-            operatorName.text = state.employee.firstname
-        }
+        sendVote(LTSVoteTypes.BAD())
+    }
+    
+    @IBAction func voteUp(sender: AnyObject) {
+        
+        sendVote(LTSVoteTypes.GOOD())
+    }
+    @IBAction func sendMessageAction(sender: AnyObject) {
+        
+        sendMessage(messageInputField.text)
     }
 }
 
@@ -183,15 +214,9 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
         }
         
-        LTApiManager.sharedInstance.sdk?.confirmTextMessageWithId(message.messageId, success: { () -> Void in
-            
-            
-            }, failure: { (error:NSException!) -> Void in
-                
-                let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
-                alert.show()
+        LTApiManager.sharedInstance.sdk?.confirmTextMessageWithId(message.messageId, success: nil, failure: { (error:NSException!) -> Void in
+            self.loadingErrorProcess(error)
         })
-        
     }
     
     func receiveFileMessage(message: LTSFileMessage!) {
@@ -229,32 +254,70 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     
     func notificationListenerErrorOccured(error: NSException!) {
         
-        let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
-        alert.show()
-        println(error.description)
-
+        self.loadingErrorProcess(error)
     }
 }
 
 
 extension LTChatViewController {
     
-    @IBAction func voteDown(sender: AnyObject) {
+    func processDialogState(state:LTSDialogState) {
         
-        sendVote(LTSVoteTypes.BAD())
+        if state.employeeIsSet() {
+            
+            LTApiManager.sharedInstance.employeeId = state.employee.employeeId
+            
+            waitngPlaceHolder.hidden = true
+            operatorView.hidden = false
+            operatorName.text = state.employee.firstname
+            
+            messageInputField?.enabled = true
+            
+            var systemMessage = LTSHoldMessage(text: "Оператор онлайн", timestamp: "")
+            self.messages.append(systemMessage)
+            
+        } else if state.conversationIsSet() {
+            
+            waitngPlaceHolder.hidden = false
+            operatorView.hidden = true
+            
+            var systemMessage = LTSHoldMessage(text: "Оператор не в сети. Диалог в очереди", timestamp: "")
+            self.messages.append(systemMessage)
+            
+        } else {
+            
+            LTApiManager.sharedInstance.employeeId = nil
+            
+            waitngPlaceHolder.hidden = true
+            operatorView.hidden = true
+            
+            messageInputField?.enabled = false
+            
+            var systemMessage = LTSHoldMessage(text: "Оператор не в сети. Диалог закрыт", timestamp: "")
+            self.messages.append(systemMessage)
+        }
+        
+        self.tableView.reloadData()
+        if (self.messages.count != 0) {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+        }
     }
     
-    @IBAction func voteUp(sender: AnyObject) {
+    func showActivityIndicator() {
         
-        sendVote(LTSVoteTypes.GOOD())
-    }
-    @IBAction func sendMessageAction(sender: AnyObject) {
-        
-        sendMessage(messageInputField.text)
+        activityView = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
     }
     
-    @IBAction func done(segue: UIStoryboardSegue) {
+    func removeActivityIndicator() {
         
+        activityView?.animateRemove()
+    }
+    
+    func loadingErrorProcess(error:NSException) {
+        
+        self.removeActivityIndicator()
+        let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
+        alert.show()
     }
     
     func setInputViewY(notification: NSNotification) {
@@ -280,6 +343,10 @@ extension LTChatViewController {
                 self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
             }
         })
+    }
+    
+    @IBAction func done(segue:UIStoryboardSegue) {
+        
     }
     
     func commonPreparation() {
@@ -313,8 +380,7 @@ extension LTChatViewController: UITextFieldDelegate {
         
         LTApiManager.sharedInstance.sdk!.typingWithTypingMessage(typingMessage, success: nil) { (error:NSException!) -> Void in
             
-            let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
-            alert.show()
+            self.loadingErrorProcess(error)
         }
         return  true
     }

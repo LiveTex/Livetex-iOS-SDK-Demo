@@ -10,37 +10,176 @@ import UIKit
 import CoreData
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var internetReachability:Reachability!
+    var reachabilityAlert:UIAlertView?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reachabilityChanged:"), name: kReachabilityChangedNotification, object: nil)
+            
+        internetReachability = Reachability.reachabilityForInternetConnection()
+        internetReachability.startNotifier();
         return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        
+
+    }
+    
+    func reachabilityChanged(note:NSNotification) {
+        
+        var curReach:Reachability = note.object as Reachability
+        processReachability(curReach)
+    }
+    
+    func processReachability(curReach:Reachability) {
+        
+        let status:NetworkStatus = curReach.currentReachabilityStatus()
+        
+        if status == NetworkStatus.NotReachable {
+            
+            LTApiManager.sharedInstance.sdk?.stop()
+            
+            if LTApiManager.sharedInstance.isSessionOpen == true {
+                
+                reachabilityAlert = UIAlertView(title: nil,
+                    message: "Интернет соединение потеряно, дождитесь когда система востановит соединение",
+                    delegate: nil,
+                    cancelButtonTitle: "Ok")
+                
+                reachabilityAlert?.show()
+            }
+            
+        } else {
+            
+            reachabilityAlert?.dismissWithClickedButtonIndex(0, animated: true)
+            self.processSDKState()
+        }
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        LTApiManager.sharedInstance.sdk?.stop()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
+        if internetReachability.currentReachabilityStatus() != NetworkStatus.NotReachable {
+                  self.processSDKState()
+        }
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        // Saves changes in the application's managed object context before the application terminates.
+        LTApiManager.sharedInstance.isSessionOpen = false
+    }
+    
+    var isResumingSDKWorkFlow = false
+    
+    func processSDKState() {
+        
+        if isResumingSDKWorkFlow == true {return}
+        
+        println("-----------------------processSDKState------------------")
+        isResumingSDKWorkFlow = true
+        
+        if LTApiManager.sharedInstance.isSessionOpen? == true {
+            
+            let initParam  = LTMobileSDKInitializationParams()
+            initParam.sdkKey = "dev_key_test"
+            initParam.livetexUrl = "http://192.168.78.14:10010"
+            initParam.applicationId = LTApiManager.sharedInstance.aplicationId
+            
+            LTApiManager.sharedInstance.sdk = LTMobileSDK(params: initParam)
+            
+            var view = DejalBezelActivityView(forView: window, withLabel: "Загрузка", width:100)
+            
+            LTApiManager.sharedInstance.sdk!.runWithSuccess({ (token:String!) -> Void in
+                
+                LTApiManager.sharedInstance.sdk!.getStateWithSuccess({ (state:LTSDialogState!) -> Void in
+                    
+                    view.animateRemove()
+                    self.processDialogState(state)
+                    self.isResumingSDKWorkFlow = false
+                    
+                    }, failure: { (error:NSException!) -> Void in
+                        
+                        view.animateRemove()
+                        
+                        let alert: UIAlertView = UIAlertView(title: "ошибка",
+                            message: error.description,
+                            delegate: nil,
+                            cancelButtonTitle: "ОК")
+                        
+                        alert.show()
+                        self.isResumingSDKWorkFlow = false
+                })
+                
+                
+                }, failure: { (error:NSException!) -> Void in
+                    
+                    view.animateRemove()
+                    
+                    let alert: UIAlertView = UIAlertView(title: "ошибка",
+                        message: error.description,
+                        delegate: nil,
+                        cancelButtonTitle: "ОК")
+                    
+                    alert.show()
+                    println(error.description)
+                    self.isResumingSDKWorkFlow = false
+            })
+        }
+    }
+    
+    func processDialogState(state:LTSDialogState) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if state.conversationIsSet() {
+            
+            let rootController = storyboard.instantiateViewControllerWithIdentifier("ChatVC") as UIViewController
+            
+            if self.window != nil {
+                self.window!.rootViewController = rootController
+            }
+            
+        } else if LTApiManager.sharedInstance.employeeId != nil {
+            
+            LTApiManager.sharedInstance.sdk!.requestWithEmployee(LTApiManager.sharedInstance.employeeId,
+                success: { (dilogState:LTSDialogState!) -> Void in
+                    
+                let rootController = storyboard.instantiateViewControllerWithIdentifier("ChatVC") as UIViewController
+                
+                if self.window != nil {
+                    self.window!.rootViewController = rootController
+                }
+                    
+            }, failure: { (error:NSException!) -> Void in
+                    
+                let rootController = storyboard.instantiateViewControllerWithIdentifier("EnvolvingVC") as UIViewController
+                
+                if self.window != nil {
+                    self.window!.rootViewController = rootController
+                }
+            })
+            
+        } else {
+            
+            let rootController = storyboard.instantiateViewControllerWithIdentifier("EnvolvingVC") as UIViewController
+            
+            if self.window != nil {
+                self.window!.rootViewController = rootController
+            }
+        }
     }
 }
 

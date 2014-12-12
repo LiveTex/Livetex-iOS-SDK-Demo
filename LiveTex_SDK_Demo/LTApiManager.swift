@@ -13,6 +13,12 @@ class LTApiManager {
     
     var sdk: LTMobileSDK?
     
+    var aplicationId: String?
+    
+    var isSessionOpen:Bool?
+    
+    var employeeId: LTSEmployeeId?
+    
     class var sharedInstance : LTApiManager {
         struct Static {
             static let instance : LTApiManager = LTApiManager()
