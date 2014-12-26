@@ -77,6 +77,12 @@
  Устанавливает token пользователя LiveTex. Опционально. По умолчанию используется токен уже находящийся в кеше SDK, если его нет, то система выдает новый токен.
  */
 @property(nonatomic, strong) NSString *token;
+
+/*!
+ Устанавливает APN deviceId пользователя LiveTex. Опционально. Используется для раоботы с сервисом APN
+ */
+
+@property(nonatomic, strong) NSString *APNDeviceId;
 /*!
  Реализуемые возможности чата. Передача фаилов, диалог, и тп.
  */
@@ -449,5 +455,4 @@
 
 - (void)stop;
 
-- (NSString *)getNotificationLogs;
 @end

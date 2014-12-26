@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 
+func SYSTEM_VERSION_LESS_THAN(v:String) -> Bool {
+    return UIDevice.currentDevice().systemVersion.compare(v, options: NSStringCompareOptions.NumericSearch) == .OrderedAscending
+}
+
 @UIApplicationMain
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,12 +28,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         internetReachability = Reachability.reachabilityForInternetConnection()
         internetReachability.startNotifier();
+        
+        if SYSTEM_VERSION_LESS_THAN("8.0.0") {
+            application.registerForRemoteNotificationTypes(UIRemoteNotificationType.Sound | UIRemoteNotificationType.Alert)
+        } else {
+           let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert, categories: nil)
+            application .registerUserNotificationSettings(settings)
+        }
+        
         return true
+    }
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        application.registerForRemoteNotifications()
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        
+    }
+    
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+        
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        
+        let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+        var tokenString = NSMutableString()
+        
+        for var i = 0; i < deviceToken.length; i++ {
+            tokenString.appendFormat("%02.2hhx", tokenChars[i])
+        }
+        
+        LTApiManager.sharedInstance.apnToken = tokenString
+        
+        println("tokenString: \(tokenString)")
     }
 
     func applicationWillResignActive(application: UIApplication) {
         
-
     }
     
     func reachabilityChanged(note:NSNotification) {
@@ -97,6 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             initParam.sdkKey = "dev_key_test"
             initParam.livetexUrl = "http://192.168.78.14:10010"
             initParam.applicationId = LTApiManager.sharedInstance.aplicationId
+            initParam.APNDeviceId = LTApiManager.sharedInstance.apnToken
             
             LTApiManager.sharedInstance.sdk = LTMobileSDK(params: initParam)
             
@@ -137,6 +175,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     println(error.description)
                     self.isResumingSDKWorkFlow = false
             })
+        } else {
+            isResumingSDKWorkFlow = false
         }
     }
     

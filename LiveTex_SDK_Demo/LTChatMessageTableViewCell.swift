@@ -13,6 +13,7 @@ class LTChatMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var messageText: UILabel!
     @IBOutlet weak var backgoundImage2: UIImageView!
     @IBOutlet weak var timeText: UILabel!
+    @IBOutlet weak var messgaeConfirmedIco: UIImageView?
     
     var message:AnyObject!
     
@@ -28,12 +29,14 @@ class LTChatMessageTableViewCell: UITableViewCell {
             self.message = messageNew
             handy.timeFormatter.dateFormat = "hh:mm"
             
-            if let massage = messageNew as? LTSTextMessage {
+            if let massage = messageNew as? LTSWTextMessage {
                 
                 self.messageText.text = massage.text
                 
                 let timestamp = (self.message.timestamp as NSString).doubleValue
                 self.timeText.text = handy.timeFormatter.stringFromDate(NSDate(timeIntervalSince1970: NSTimeInterval(timestamp)))
+                
+                self.messgaeConfirmedIco?.hidden = !massage.isConfirmed
             }
             
             if let massage = messageNew as? LTSFileMessage {
@@ -42,6 +45,7 @@ class LTChatMessageTableViewCell: UITableViewCell {
 
                 let timestamp = (self.message.timestamp as NSString).doubleValue
                 self.timeText.text = handy.timeFormatter.stringFromDate(NSDate(timeIntervalSince1970: NSTimeInterval(timestamp)))
+                self.messgaeConfirmedIco?.hidden = true
             }
 
             layoutSubviews()
@@ -58,10 +62,12 @@ class LTChatMessageTableViewCell: UITableViewCell {
         self.backgoundImage2.image = self.backgoundImage2.image?.resizableImageWithCapInsets(UIEdgeInsetsMake(15, 20, 15, 20))
     }
     
+    
     class func getSizeForText(text:String) -> Double {
         
         var spec:Double = 24.0
-        var rect:CGRect = (text as NSString).boundingRectWithSize(CGSize(width: 280, height: 9999*100^100), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes:[NSFontAttributeName : UIFont.systemFontOfSize(17.0)], context:nil)
+        
+        var rect:CGRect = (text as NSString).boundingRectWithSize(CGSize(width: 280, height: 999999*100^100), options: (NSStringDrawingOptions.UsesLineFragmentOrigin), attributes:[NSFontAttributeName : UIFont.systemFontOfSize(17.0)], context:nil)
 
         return Double(rect.size.height) + spec
     }

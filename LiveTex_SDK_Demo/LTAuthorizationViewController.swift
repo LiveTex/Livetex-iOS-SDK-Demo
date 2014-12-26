@@ -38,6 +38,8 @@ class LTAuthorizationViewController: UIViewController {
         initParam.applicationId = applicationIdField.text
         initParam.livetexUrl = "http://192.168.78.14:10010"
         
+        initParam.APNDeviceId = LTApiManager.sharedInstance.apnToken
+        
         LTApiManager.sharedInstance.sdk = LTMobileSDK(params: initParam)
         
         var view = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)

@@ -40,7 +40,12 @@ class LTEnvolvingViewController: UIViewController {
     
     @IBAction func createConversation(sender: AnyObject) {
         
-        createConversation()
+        if(self.isWhiteSpaceString(self.messageField.text)) {
+            let alert: UIAlertView = UIAlertView(title: "", message: "Введите первое сообщение", delegate: nil, cancelButtonTitle: "ОК")
+            alert.show()
+        } else {
+            createConversation()
+        }
     }
     
     @IBAction func modeSelection(sender: AnyObject) {
@@ -69,7 +74,7 @@ extension LTEnvolvingViewController {
         LTApiManager.sharedInstance.sdk!.setVisitorName(nameField.text, success: { () -> Void in
             
             var attr = LTSDialogAttributes()
-            attr.visible = LTSOptions(dictionary: ["age":self.ageField.text])
+            attr.visible = LTSOptions(dictionary: ["Возраст":self.ageField.text, "platform": "ios"])
             self.creatConversationForCurrentModeWithAtributes(attr)
             
         }) { (error:NSException!) -> Void in
@@ -158,7 +163,13 @@ extension LTEnvolvingViewController {
             
             LTApiManager.sharedInstance.sdk!.getDepartments(statusType.online, success: { (items:[AnyObject]!) -> Void in
                 
-                self.showSubSelectionItemsSheet(items)
+                if (items.count == 0) {
+                    let alert: UIAlertView = UIAlertView(title: "", message:"Нет департаментов онлайн", delegate: nil, cancelButtonTitle: "ОК")
+                    alert.show()
+                } else {
+                    
+                    self.showSubSelectionItemsSheet(items)
+                }
                 self.removeActivityIndicator()
                 
             }) { (error:NSException!) -> Void in
@@ -170,7 +181,14 @@ extension LTEnvolvingViewController {
             
             LTApiManager.sharedInstance.sdk!.getEmployees(statusType.online, success: { (items:[AnyObject]!) -> Void in
                 
-                self.showSubSelectionItemsSheet(items)
+                
+                if (items.count == 0) {
+                    let alert: UIAlertView = UIAlertView(title: "", message:"Нет операторов онлайн", delegate: nil, cancelButtonTitle: "ОК")
+                    alert.show()
+                } else {
+                    
+                    self.showSubSelectionItemsSheet(items)
+                }
                 self.removeActivityIndicator()
                 
             }) { (error:NSException!) -> Void in
@@ -275,7 +293,7 @@ extension LTEnvolvingViewController {
         case mods.departmentsMode :
             
             modeField.text = "По отделу"
-            subSelectionField.placeholder = "Выбирите отдел"
+            subSelectionField.placeholder = "Выберите отдел"
             
             for item:NSLayoutConstraint in subSelectionHidingConstraints {
                 item.constant = 59
@@ -284,7 +302,7 @@ extension LTEnvolvingViewController {
         case mods.epmloyeesMode :
             
             modeField.text = "По оператору"
-            subSelectionField.placeholder = "Выбирите оператора"
+            subSelectionField.placeholder = "Выберите оператора"
             
             for item:NSLayoutConstraint in subSelectionHidingConstraints {
                 item.constant = 59
@@ -311,6 +329,18 @@ extension LTEnvolvingViewController {
             let employee = selectedSubSelectionItem as LTSEmployee
             
             subSelectionField.text = employee.firstname
+        }
+    }
+    
+    func isWhiteSpaceString(str:String) -> Bool {
+        
+        (str as NSString).stringByReplacingOccurrencesOfString(" ", withString: "")
+       
+        if str == "" {
+            return true
+        }
+        else {
+            return false
         }
     }
     

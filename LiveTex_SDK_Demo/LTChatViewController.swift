@@ -22,8 +22,12 @@ class LTChatViewController: UIViewController {
     @IBOutlet weak var operatorView: UIView!
     @IBOutlet weak var typingLabel: UILabel!
     
-    var activityView:DejalBezelActivityView?
+    @IBOutlet weak var abuseBtn: UIButton!
+    @IBOutlet weak var voteDownBtn: UIButton!
+    @IBOutlet weak var voteUpBtn: UIButton!
     
+    var activityView:DejalBezelActivityView?
+
     var messages:Array<AnyObject>! = []
     
     required init(coder aDecoder: NSCoder) {
@@ -33,6 +37,9 @@ class LTChatViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        
+        tableView.estimatedRowHeight = 68.0
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         loadMessagesAndShow()
         commonPreparation()
@@ -57,21 +64,28 @@ class LTChatViewController: UIViewController {
                 
                 self.removeActivityIndicator()
                 
-                let messagess:[AnyObject] = messages
-                self.messages = messagess
+                var wrappedMessages:[AnyObject] = []
                 
-                if messages.count > 1 {
+                for msg:LTSTextMessage in messages as [LTSTextMessage] {
+                    
+                    wrappedMessages.append(LTSWTextMessage(sourceMessage:msg))
+                    (wrappedMessages.last as LTSWTextMessage).isConfirmed = true
+                }
+                
+                self.messages = wrappedMessages
+                
+                if self.messages.count > 1 {
                     
                     self.messages.sort({ (s1:AnyObject, s2:AnyObject) -> Bool in
                         
                         var timestamp1:String = ""
                         var timestamp2:String = ""
                         
-                        if let c1 = s1 as? LTSTextMessage {
+                        if let c1 = s1 as? LTSWTextMessage {
                             timestamp1 = c1.timestamp
                         }
                         
-                        if let c2 = s2 as? LTSTextMessage {
+                        if let c2 = s2 as? LTSWTextMessage {
                             timestamp2 = c2.timestamp
                         }
                         
@@ -123,12 +137,12 @@ class LTChatViewController: UIViewController {
             return
         }
         
-        var view = DejalBezelActivityView(forView: self.view, withLabel: "Отправка", width:100)
+       self.showActivityIndicator()
         
         LTApiManager.sharedInstance.sdk?.sendMessage(message, success: { (msg:LTSTextMessage!) -> Void in
             
-            view.animateRemove()
-            self.messages.append(msg)
+            self.removeActivityIndicator()
+            self.messages.append(LTSWTextMessage(sourceMessage:msg))
             self.messageInputField.text = ""
             self.tableView.reloadData()
             if (self.messages.count != 0) {
@@ -143,7 +157,7 @@ class LTChatViewController: UIViewController {
     
     @IBAction func close(sender: AnyObject) {
         
-        var view = DejalBezelActivityView(forView: self.view, withLabel: "Выход", width:100)
+        self.showActivityIndicator()
         
         LTApiManager.sharedInstance.sdk?.getStateWithSuccess({ (state:LTSDialogState!) -> Void in
             
@@ -157,19 +171,19 @@ class LTChatViewController: UIViewController {
                     
                     let newstate:LTSDialogState = state
                     LTApiManager.sharedInstance.sdk?.stop()
-                    view.animateRemove()
+                    self.removeActivityIndicator()
                     LTApiManager.sharedInstance.sdk = nil
                     self.performSegueWithIdentifier("authorizathon", sender: nil)
 
                  }, failure: { (error:NSException!) -> Void in
-                    
+                
                     self.loadingErrorProcess(error)
                  })
                 
             } else {
                 
                 LTApiManager.sharedInstance.sdk?.stop()
-                view.animateRemove()
+                self.removeActivityIndicator()
                 LTApiManager.sharedInstance.sdk = nil
                 self.performSegueWithIdentifier("authorizathon", sender: nil)
             }
@@ -208,7 +222,7 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     
     func receiveTextMessage(message: LTSTextMessage!) {
         
-        self.messages.append(message)
+        messages.append(LTSWTextMessage(sourceMessage:message))
         self.tableView.reloadData()
         if (self.messages.count != 0) {
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
@@ -229,9 +243,24 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
         
     }
     
-    func confirmTextMessage(message: String!) {
+    func confirmTextMessage(messageId: String!) {
         
-        
+        for msg:AnyObject in messages {
+         
+            if var message = msg as? LTSWTextMessage {
+                
+                if message.messageId == messageId {
+                    
+                    message.isConfirmed = true
+                    self.tableView.reloadData()
+                    if (self.messages.count != 0) {
+                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+                    }
+                    
+                    break
+                }
+            }
+        }
     }
     
     func receiveTypingMessage(message: LTSTypingMessage!) {
@@ -273,6 +302,10 @@ extension LTChatViewController {
             
             messageInputField?.enabled = true
             
+            voteDownBtn.enabled = true
+            voteUpBtn.enabled = true
+            abuseBtn.enabled = true
+            
             var systemMessage = LTSHoldMessage(text: "Оператор онлайн", timestamp: "")
             self.messages.append(systemMessage)
             
@@ -280,6 +313,10 @@ extension LTChatViewController {
             
             waitngPlaceHolder.hidden = false
             operatorView.hidden = true
+            
+            voteDownBtn.enabled = false
+            voteUpBtn.enabled = false
+            abuseBtn.enabled = false
             
             var systemMessage = LTSHoldMessage(text: "Оператор не в сети. Диалог в очереди", timestamp: "")
             self.messages.append(systemMessage)
@@ -290,6 +327,10 @@ extension LTChatViewController {
             
             waitngPlaceHolder.hidden = true
             operatorView.hidden = true
+            
+            voteDownBtn.enabled = false
+            voteUpBtn.enabled = false
+            abuseBtn.enabled = false
             
             messageInputField?.enabled = false
             
@@ -315,12 +356,19 @@ extension LTChatViewController {
     
     func loadingErrorProcess(error:NSException) {
         
+        var asd = error.userInfo!
+        var error:NSError = asd["error"] as NSError
+        
         self.removeActivityIndicator()
-        let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
+        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
         alert.show()
     }
     
     func setInputViewY(notification: NSNotification) {
+        
+        if tableViewBottomMargin.constant > 100 && notification.name == UIKeyboardWillShowNotification {
+            return
+        }
         
         self.view.layoutIfNeeded()
         
@@ -351,6 +399,8 @@ extension LTChatViewController {
     
     func commonPreparation() {
         
+        UIApplication.sharedApplication().keyWindow?.endEditing(true)
+        
         waitngPlaceHolder.hidden = false
         operatorView.hidden = true
         typingLabel.hidden = true
@@ -376,11 +426,11 @@ extension LTChatViewController: UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
         let typingMessage:LTSTypingMessage = LTSTypingMessage()
-        typingMessage.text = textField.text
+        typingMessage.text = textField.text + string
         
         LTApiManager.sharedInstance.sdk!.typingWithTypingMessage(typingMessage, success: nil) { (error:NSException!) -> Void in
-            
-            self.loadingErrorProcess(error)
+        
+            //self.loadingErrorProcess(error)
         }
         return  true
     }
@@ -392,29 +442,29 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
         return self.messages.count;
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        if let currentMessage = messages[indexPath.row] as? LTSTextMessage {
-            
-            return CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.text))
-        }
-        
-        if let currentMessage = messages[indexPath.row] as? LTSFileMessage {
-            
-            return CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.url))
-        }
-        
-        if let currentMessage = messages[indexPath.row] as? LTSHoldMessage {
-            
-            return 56
-        }
-        
-        return 0
-    }
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        
+//        if let currentMessage = messages[indexPath.row] as? LTSWTextMessage {
+//            
+//            return CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.text))
+//        }
+//        
+//        if let currentMessage = messages[indexPath.row] as? LTSFileMessage {
+//            
+//            return CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.url))
+//        }
+//        
+//        if let currentMessage = messages[indexPath.row] as? LTSHoldMessage {
+//            
+//            return 56
+//        }
+//        
+//        return 0
+//    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if let currentMessage = messages[indexPath.row] as? LTSTextMessage {
+        if let currentMessage = messages[indexPath.row] as? LTSWTextMessage {
 
             var cell:LTChatMessageTableViewCell!
             

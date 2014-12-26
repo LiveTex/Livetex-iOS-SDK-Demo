@@ -15,6 +15,8 @@ class LTApiManager {
     
     var aplicationId: String?
     
+    var apnToken: String?
+    
     var isSessionOpen:Bool?
     
     var employeeId: LTSEmployeeId?
