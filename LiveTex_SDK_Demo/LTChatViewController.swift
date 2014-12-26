@@ -38,9 +38,6 @@ class LTChatViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        tableView.estimatedRowHeight = 68.0
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
         loadMessagesAndShow()
         commonPreparation()
     }
@@ -442,25 +439,25 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
         return self.messages.count;
     }
     
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        
-//        if let currentMessage = messages[indexPath.row] as? LTSWTextMessage {
-//            
-//            return CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.text))
-//        }
-//        
-//        if let currentMessage = messages[indexPath.row] as? LTSFileMessage {
-//            
-//            return CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.url))
-//        }
-//        
-//        if let currentMessage = messages[indexPath.row] as? LTSHoldMessage {
-//            
-//            return 56
-//        }
-//        
-//        return 0
-//    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if let currentMessage = messages[indexPath.row] as? LTSWTextMessage {
+            
+            return CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.text))
+        }
+        
+        if let currentMessage = messages[indexPath.row] as? LTSFileMessage {
+            
+            return CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.url))
+        }
+        
+        if let currentMessage = messages[indexPath.row] as? LTSHoldMessage {
+            
+            return 56
+        }
+        
+        return 0
+    }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
