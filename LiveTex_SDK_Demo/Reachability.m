@@ -54,7 +54,6 @@
 
 #import "Reachability.h"
 
-
 NSString *kReachabilityChangedNotification = @"kNetworkReachabilityChangedNotification";
 
 

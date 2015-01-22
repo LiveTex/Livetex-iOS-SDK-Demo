@@ -9,19 +9,20 @@
 import UIKit
 
 
+var URL:String? = "http://authentication-service-sdk-production-1.livetex.ru"
+
+var key:String? = "demo"
+
 class LTAuthorizationViewController: UIViewController {
     
     @IBOutlet weak var applicationIdField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     @IBAction func clean(sender: AnyObject) {
@@ -33,10 +34,9 @@ class LTAuthorizationViewController: UIViewController {
     @IBAction func applicationIdConfirm(sender: AnyObject) {
         
         let initParam  = LTMobileSDKInitializationParams()
-        //initParam.token = "token1"
-        initParam.sdkKey = "dev_key_test"
+        initParam.sdkKey = key
+        initParam.livetexUrl = URL
         initParam.applicationId = applicationIdField.text
-        initParam.livetexUrl = "http://192.168.78.14:10010"
         
         initParam.APNDeviceId = LTApiManager.sharedInstance.apnToken
         

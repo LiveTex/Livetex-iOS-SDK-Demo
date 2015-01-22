@@ -53,11 +53,12 @@ class LTChatViewController: UIViewController {
                 let url = NSURL(string: state.employee.avatar)
                 var err: NSError?
                 var imageData :NSData = NSData(contentsOfURL:url!, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: &err)!
+                
                 var bgImage = UIImage(data:imageData)
                 self.operatorIco.image = bgImage
             }
             
-            LTApiManager.sharedInstance.sdk!.messageHistory(0, offset: 99, success: { (messages:[AnyObject]!) -> Void in
+            LTApiManager.sharedInstance.sdk!.messageHistory(20, offset: 0, success: { (messages:[AnyObject]!) -> Void in
                 
                 self.removeActivityIndicator()
                 
@@ -438,7 +439,7 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messages.count;
     }
-    
+
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         if let currentMessage = messages[indexPath.row] as? LTSWTextMessage {
@@ -501,7 +502,7 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if let message = messages[indexPath.row] as? LTSFileMessage {
-            UIApplication.sharedApplication().openURL(NSURL(string: ("http:" + message.url))!)
+            UIApplication.sharedApplication().openURL(NSURL(string: (message.url))!)
         }
     }
 }

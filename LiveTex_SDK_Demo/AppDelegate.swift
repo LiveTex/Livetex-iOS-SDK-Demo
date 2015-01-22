@@ -90,6 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     delegate: nil,
                     cancelButtonTitle: "Ok")
                 
+                LTApiManager.sharedInstance.sdk?.delegate?.updateDialogState(LTSDialogState(conversation: nil, employee: nil))
+                
                 reachabilityAlert?.show()
             }
             
@@ -107,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(application: UIApplication) {
         
         if internetReachability.currentReachabilityStatus() != NetworkStatus.NotReachable {
-                  self.processSDKState()
+            self.processSDKState()
         }
     }
 
@@ -130,9 +132,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if LTApiManager.sharedInstance.isSessionOpen? == true {
             
+            println("-----------------------initSDK------------------")
             let initParam  = LTMobileSDKInitializationParams()
-            initParam.sdkKey = "dev_key_test"
-            initParam.livetexUrl = "http://192.168.78.14:10010"
+            initParam.sdkKey = key
+            initParam.livetexUrl = URL
             initParam.applicationId = LTApiManager.sharedInstance.aplicationId
             initParam.APNDeviceId = LTApiManager.sharedInstance.apnToken
             
@@ -148,22 +151,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.processDialogState(state)
                     self.isResumingSDKWorkFlow = false
                     
-                    }, failure: { (error:NSException!) -> Void in
-                        
-                        view.animateRemove()
-                        
-                        let alert: UIAlertView = UIAlertView(title: "ошибка",
-                            message: error.description,
-                            delegate: nil,
-                            cancelButtonTitle: "ОК")
-                        
-                        alert.show()
-                        self.isResumingSDKWorkFlow = false
-                })
-                
-                
                 }, failure: { (error:NSException!) -> Void in
-                    
+                        
                     view.animateRemove()
                     
                     let alert: UIAlertView = UIAlertView(title: "ошибка",
@@ -172,9 +161,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         cancelButtonTitle: "ОК")
                     
                     alert.show()
-                    println(error.description)
                     self.isResumingSDKWorkFlow = false
+                })
+
+            }, failure: { (error:NSException!) -> Void in
+                    
+                view.animateRemove()
+                
+                let alert: UIAlertView = UIAlertView(title: "ошибка",
+                    message: error.description,
+                    delegate: nil,
+                    cancelButtonTitle: "ОК")
+                
+                alert.show()
+                println(error.description)
+                self.isResumingSDKWorkFlow = false
             })
+            
         } else {
             isResumingSDKWorkFlow = false
         }

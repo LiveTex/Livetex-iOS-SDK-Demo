@@ -69,6 +69,20 @@ static DejalActivityView *dejalActivityView = nil;
     return dejalActivityView;
 }
 
+
++ (int)getRectFromString:(NSString*)string
+{
+    CGRect rect = [string boundingRectWithSize:CGSizeMake(250, CGFLOAT_MAX)
+                                       options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin
+                                    attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17.0]}
+                                       context:nil];
+    rect.size.width = ceil(rect.size.width);
+    rect.size.height = ceil(rect.size.height);
+    
+    return rect.size.height;
+}
+
+
 /*
  activityViewForView:
  
@@ -555,6 +569,7 @@ static DejalActivityView *dejalActivityView = nil;
  Written by DJS 2009-07.
  Changed by Suleman Sidat 2011-07 to support a multi-line label.
 */
+
 
 - (void)layoutSubviews;
 {

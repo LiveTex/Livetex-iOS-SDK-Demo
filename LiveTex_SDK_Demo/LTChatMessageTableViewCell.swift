@@ -67,7 +67,7 @@ class LTChatMessageTableViewCell: UITableViewCell {
         
         var spec:Double = 24.0
         
-        var rect:CGRect = (text as NSString).boundingRectWithSize(CGSize(width: 280, height: 999999*100^100), options: (NSStringDrawingOptions.UsesLineFragmentOrigin), attributes:[NSFontAttributeName : UIFont.systemFontOfSize(17.0)], context:nil)
+        var rect:CGRect = (text as NSString).boundingRectWithSize(CGSize(width: 250, height: 999999*100), options: (NSStringDrawingOptions.UsesLineFragmentOrigin), attributes:[NSFontAttributeName : UIFont.systemFontOfSize(17.0)], context:nil)
 
         return Double(rect.size.height) + spec
     }

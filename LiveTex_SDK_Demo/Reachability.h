@@ -61,7 +61,6 @@ extern NSString *kReachabilityChangedNotification;
 
 
 @interface Reachability : NSObject
-
 /*!
  * Use to check the reachability of a given host name.
  */

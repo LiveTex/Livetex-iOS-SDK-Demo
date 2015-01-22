@@ -112,7 +112,7 @@
 
 @interface LTMobileSDK : NSObject
 
-@property(nonatomic, strong) id <LTMobileSDKNotificationHandlerProtocol> delegate;
+@property(nonatomic, weak) id <LTMobileSDKNotificationHandlerProtocol> delegate;
 #pragma mark starting
 
 - (instancetype)initWithParams:(LTMobileSDKInitializationParams*)params;

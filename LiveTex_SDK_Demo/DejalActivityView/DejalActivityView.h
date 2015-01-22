@@ -65,6 +65,10 @@
 // Immediately removes and releases the view without any animation:
 + (void)removeView;
 
+
++ (int)getRectFromString:(NSString*)string;
+
+
 @end
 
 

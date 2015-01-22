@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let mods = (siteMode:"site", departmentsMode:"departments", epmloyeesMode:"eployees")
+let mods = (siteMode:"Сайт", departmentsMode:"Департамент", epmloyeesMode:"Оператор")
 let actionSheetType = (actionSheetModeSelection:88, actionSheetSubSelection:87)
 let statusType = (online:"online", offline:"offline")
 
@@ -74,7 +74,8 @@ extension LTEnvolvingViewController {
         LTApiManager.sharedInstance.sdk!.setVisitorName(nameField.text, success: { () -> Void in
             
             var attr = LTSDialogAttributes()
-            attr.visible = LTSOptions(dictionary: ["Возраст":self.ageField.text, "platform": "ios"])
+            attr.visible = LTSOptions(dictionary: ["Возраст":self.ageField.text])
+            attr.hidden = LTSOptions(dictionary: ["platform": "ios"])
             self.creatConversationForCurrentModeWithAtributes(attr)
             
         }) { (error:NSException!) -> Void in
