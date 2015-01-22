@@ -21,6 +21,7 @@
 		55D666191A136616001747B0 /* next_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D666101A136616001747B0 /* next_arrow@2x.png */; };
 		55D6661A1A136616001747B0 /* Rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D666111A136616001747B0 /* Rectangle@2x.png */; };
 		55D6661B1A136616001747B0 /* send_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D666121A136616001747B0 /* send_btn@2x.png */; };
+		55DA155A1A6685C300357425 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55DA15591A6685C300357425 /* libLTMobileSDK.a */; };
 		55DEA8EE1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8EB1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift */; };
 		55DEA8EF1A35D7DC006ED45A /* LTClaimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8EC1A35D7DC006ED45A /* LTClaimingViewController.swift */; };
 		55DEA8F21A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8F11A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift */; };
@@ -32,7 +33,6 @@
 		55DF2E391A14FA9200C4DDD9 /* ava@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 55DF2E381A14FA9200C4DDD9 /* ava@2x.jpg */; };
 		55E17BB91A4972B000F503A1 /* chat_msg_double_checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E17BB81A4972B000F503A1 /* chat_msg_double_checked@2x.png */; };
 		55E17BBB1A4974EB00F503A1 /* LTSWTextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E17BBA1A4974EB00F503A1 /* LTSWTextMessage.swift */; };
-		55EC42A31A4AF81100C53419 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55EC42A21A4AF81100C53419 /* libLTMobileSDK.a */; };
 		55F73B011A0A6EB800C28B0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73B001A0A6EB800C28B0A /* AppDelegate.swift */; };
 		55F73B061A0A6EB900C28B0A /* LTAuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73B051A0A6EB900C28B0A /* LTAuthorizationViewController.swift */; };
 		55F73B091A0A6EB900C28B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B071A0A6EB900C28B0A /* Main.storyboard */; };
@@ -59,6 +59,8 @@
 		55D666111A136616001747B0 /* Rectangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle@2x.png"; sourceTree = "<group>"; };
 		55D666121A136616001747B0 /* send_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_btn@2x.png"; sourceTree = "<group>"; };
 		55D90FDD1A1B9282007FCA56 /* LTSDKModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
+		55DA15591A6685C300357425 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
+		55DA155B1A6685D800357425 /* LTMobileSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
 		55DEA8EB1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTChatMessageTableViewCell.swift; sourceTree = "<group>"; };
 		55DEA8EC1A35D7DC006ED45A /* LTClaimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTClaimingViewController.swift; sourceTree = "<group>"; };
 		55DEA8F11A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSystemMessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -70,11 +72,9 @@
 		55DF2E381A14FA9200C4DDD9 /* ava@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ava@2x.jpg"; sourceTree = "<group>"; };
 		55E17BB81A4972B000F503A1 /* chat_msg_double_checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_msg_double_checked@2x.png"; sourceTree = "<group>"; };
 		55E17BBA1A4974EB00F503A1 /* LTSWTextMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSWTextMessage.swift; sourceTree = "<group>"; };
-		55EC42A21A4AF81100C53419 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
-		55EC42AC1A4C256300C53419 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
 		55F73AFB1A0A6EB800C28B0A /* LiveTex_SDK_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveTex_SDK_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55F73AFF1A0A6EB800C28B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		55F73B001A0A6EB800C28B0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		55F73B001A0A6EB800C28B0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; };
 		55F73B051A0A6EB900C28B0A /* LTAuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTAuthorizationViewController.swift; sourceTree = "<group>"; };
 		55F73B081A0A6EB900C28B0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55F73B0A1A0A6EB900C28B0A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55EC42A31A4AF81100C53419 /* libLTMobileSDK.a in Frameworks */,
+				55DA155A1A6685C300357425 /* libLTMobileSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,8 +105,8 @@
 		55D665751A1276FE001747B0 /* Livetex_SDK */ = {
 			isa = PBXGroup;
 			children = (
-				55EC42A21A4AF81100C53419 /* libLTMobileSDK.a */,
-				55EC42AC1A4C256300C53419 /* LTMobileSDK.h */,
+				55DA15591A6685C300357425 /* libLTMobileSDK.a */,
+				55DA155B1A6685D800357425 /* LTMobileSDK.h */,
 				55D90FDD1A1B9282007FCA56 /* LTSDKModel.h */,
 				55D6657F1A127AA5001747B0 /* LTObjcBridging.h */,
 			);
@@ -431,7 +431,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LTMobileSDK-gobsmgafmedlnthgewbmoplmtqum/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "382cfd3c-77bd-4a45-9607-c0b9d78dccbe";
+				PROVISIONING_PROFILE = "e3d3fe6f-fa7b-4b70-ace9-36917ef2594c";
 				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/Livetex_SDK/LTObjcBridging.h;
 			};
 			name = Release;
