@@ -110,7 +110,7 @@ extension LTEnvolvingViewController {
     
     func createDepartmentConversationWithAttributes(attributes:LTSDialogAttributes) {
 
-        let department = self.selectedSubSelectionItem as LTSDepartment?
+        let department = self.selectedSubSelectionItem as! LTSDepartment?
         
         LTApiManager.sharedInstance.sdk!.requestWithDepartment(department?.departmentId,
             dialodAttributes: attributes,
@@ -126,7 +126,7 @@ extension LTEnvolvingViewController {
     
     func createEmployeeConversationWithAttributes(attributes:LTSDialogAttributes) {
         
-        let employee = self.selectedSubSelectionItem as LTSEmployee?
+        let employee = self.selectedSubSelectionItem as! LTSEmployee?
         
          LTApiManager.sharedInstance.sdk!.requestWithEmployee(employee?.employeeId,
             dialodAttributes: attributes,
@@ -213,12 +213,12 @@ extension LTEnvolvingViewController {
             
             if self.currentMode == mods.departmentsMode {
                 
-                let department = item as LTSDepartment
+                let department = item as! LTSDepartment
                 sheetTable.addButtonWithTitle(department.name)
                 
             } else {
                 
-                let employee = item as LTSEmployee
+                let employee = item as! LTSEmployee
                 sheetTable.addButtonWithTitle(employee.firstname)
             }
         }
@@ -256,7 +256,7 @@ extension LTEnvolvingViewController {
 
 extension LTEnvolvingViewController: UIActionSheetDelegate {
     
-    func actionSheet(actionSheet: UIActionSheet!, clickedButtonAtIndex buttonIndex: Int) {
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         
         if buttonIndex != actionSheet.cancelButtonIndex {
 
@@ -322,12 +322,12 @@ extension LTEnvolvingViewController {
         
         if currentMode == mods.departmentsMode {
             
-            let department = selectedSubSelectionItem as LTSDepartment
+            let department = selectedSubSelectionItem as! LTSDepartment
             subSelectionField.text = department.name
             
         } else if currentMode == mods.epmloyeesMode {
             
-            let employee = selectedSubSelectionItem as LTSEmployee
+            let employee = selectedSubSelectionItem as! LTSEmployee
             
             subSelectionField.text = employee.firstname
         }

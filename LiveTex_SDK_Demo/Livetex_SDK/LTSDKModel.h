@@ -1,6 +1,6 @@
 //
-//  w.h
-//  LTMobileSDK
+//  LTMobileSDKModel.h
+//  LTMobileSDKModel
 //
 //  Created by Sergey on 17/11/14.
 //  Copyright (c) 2014 LiveTex. All rights reserved.
@@ -10,9 +10,23 @@
 
 typedef int LTSVoteType;
 typedef int LTSCapabilityType;
+typedef int LTSOfflineConversationStatus;
+typedef int LTSOfflineDirection;
+
 typedef NSString * LTSEmployeeId;
 typedef NSString * LTSUrl;
 typedef NSString * LTSToken;
+
+/*!
+  Статус оператора.
+ 
+  Доступные значения:
+ 
+  'online' - находиться в сети.
+ 
+  'all' - любой статус.
+*/
+
 typedef NSString * LTSStatus;
 typedef NSString * LTSTimestamp;
 typedef NSString * LTSDepartmentId;
@@ -21,24 +35,57 @@ typedef NSMutableDictionary * LTSOptions;
 
 @class LTSEmployee, LTSDepartment;
 
-/////////////////////////LTSCapabilities
+/*!
+ Список доступных возможностей клиента.
+ 
+ CHAT: поддержка начала чата и обмена сообщениями.
+
+ FILES_RECEIVE: поддержка приема файлов.
+ */
 
 @interface LTSCapabilities : NSObject 
 + (LTSCapabilityType)CHAT;
 + (LTSCapabilityType)FILES_RECEIVE;
 @end
 
+/*!
+  Тип оценки диалога.
+
+  GOOD: диалог понравился.
+ 
+  BAD: диалог не понравился.
+ */
+
 @interface LTSVoteTypes : NSObject
 + (LTSVoteType)GOOD;
 + (LTSVoteType)BAD;
 @end
 
+/*!
+  Статус обращения
+ 
+  OPEN - Открыто (можно с ним работать)
+  CLOSE - Закрыто.
+ */
+
+@interface LTSOfflineConversationStatuses : NSObject
++ (LTSOfflineConversationStatus)CLOSE;
++ (LTSOfflineConversationStatus)OPEN;
+@end
+
+/*!
+ Обращение клиента.
+ 
+ employeeId: обращение с указанием конкретного оператора.
+
+ departmentId: обращение с указанием конкретного департамента.
+*/
 
 @interface LTSConversation : NSObject
 @property (nonatomic, retain) LTSEmployeeId employeeId;
 @property (nonatomic, retain) LTSDepartmentId departmentId;
 
-- (id)initWithDepartment:(LTSDepartmentId) departmentId
+- (instancetype)initWithDepartment:(LTSDepartmentId) departmentId
                   employee:(LTSEmployeeId) employeeId;
 
 - (BOOL)departmentIsSet;
@@ -47,7 +94,26 @@ typedef NSMutableDictionary * LTSOptions;
 
 
 
-/////////////////////////LTSEmployee
+/*!
+ Оператор.
+
+
+id: уникальный идентификатор оператора.
+
+status: актуальный статус оператора.
+
+firstname: имя оператора.
+
+lastname: фамилия оператора.
+
+avatar: URL аватара оператора.
+
+phone: телефон оператора.
+
+email: email оператора.
+
+options: опциональные аттрибуты оператора.
+*/
 
 @interface LTSEmployee : NSObject
 @property (nonatomic, retain) LTSEmployeeId employeeId;
@@ -59,7 +125,7 @@ typedef NSMutableDictionary * LTSOptions;
 @property (nonatomic, retain) NSString *email;
 @property (nonatomic, retain) LTSOptions options;
 
-- (id)initWithEmployeeId: (LTSEmployeeId) employeeId
+- (instancetype)initWithEmployeeId: (LTSEmployeeId) employeeId
                    status: (LTSStatus) status
                 firstname: (NSString *) firstname
                  lastname: (NSString *) lastname
@@ -79,15 +145,22 @@ typedef NSMutableDictionary * LTSOptions;
 @end
 
 
+/*!
+Департамент - множестов операторов.
 
-/////////////////////////LTSDepartment
+departmentId: уникальный идентификатор депертамента.
+
+name: имя департамента.
+
+options: опциональные аттрибуты департамента.
+ */
 
 @interface LTSDepartment : NSObject
 @property (nonatomic, retain) NSString *departmentId;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) LTSOptions options;
 
-- (id)initWithId:(NSString *) departmentId
+- (instancetype)initWithId:(NSString *) departmentId
             name:(NSString *) name
          options:(LTSOptions) options;
 
@@ -99,21 +172,42 @@ typedef NSMutableDictionary * LTSOptions;
 
 
 
-/////////////////////////LTSDialogState
+/*!
+Состояние интерфейса клиента сервиса диалога.
+ 
+conversation: обращение клиента. Если обращение отсутствует,
+  то интерфейс в состоянии NoConversation, если обращение присутствует,
+  то возможно одно из состояний: ConversationQueued или ConversationActive.
+ 
+employee: оператор назначенный диалогу. Если оператора есть,
+  то состояние ConversationActive, если оператора нет, то возможно
+  одно из состояний: NoConversation или ConversationQueued.
+ */
 
 @interface LTSDialogState : NSObject
 
 @property (nonatomic, retain) LTSConversation *conversation;
 @property (nonatomic, retain) LTSEmployee *employee;
 
-- (id)initWithConversation:(LTSConversation *) conversation
+- (instancetype)initWithConversation:(LTSConversation *) conversation
                   employee:(LTSEmployee *) employee;
 
 - (BOOL)conversationIsSet;
 - (BOOL)employeeIsSet;
 @end
 
-/////////////////////////LTSTextMessage
+/*!
+Текстовое сообещение.
+
+id: уникалный идентификатор сообщения.
+
+text: текст сообщения.
+
+timestamp: время создания удерживающего сообщения.
+
+sender: источник сообщения. Если поле присутствует, то сообщение
+  от оператора, в ином случае сообщение от посетителя.
+*/
 
 @interface LTSTextMessage : NSObject
 
@@ -122,7 +216,7 @@ typedef NSMutableDictionary * LTSOptions;
 @property (nonatomic, retain) LTSTimestamp timestamp;
 @property (nonatomic, retain) LTSEmployeeId senderId;
 
-- (id) initWithId: (NSString *) messageId
+- (instancetype) initWithId: (NSString *) messageId
              text: (NSString *) text
         timestamp: (LTSTimestamp) timestamp
            sender: (LTSEmployeeId) senderId;
@@ -134,8 +228,20 @@ typedef NSMutableDictionary * LTSOptions;
 @end
 
 
+/*!
+Сообещение передачи файла.
 
-/////////////////////////LTSFileMessage
+id: уникалный идентификатор сообщения.
+
+text: текст сообщения.
+ 
+timestamp: время создания удерживающего сообщения.
+ 
+url: URL переданного файла.
+ 
+sender: источник сообщения. Если поле присутствует, то сообщение
+  от оператора, в ином случае сообщение от посетителя.
+*/
 
 @interface LTSFileMessage : NSObject
 
@@ -145,7 +251,7 @@ typedef NSMutableDictionary * LTSOptions;
 @property (nonatomic, retain) LTSTimestamp timestamp;
 @property (nonatomic, retain) LTSEmployeeId senderId;
 
-- (id) initWithId: (NSString *) messageId
+- (instancetype) initWithId: (NSString *) messageId
              text: (NSString *) text
         timestamp: (LTSTimestamp) timestamp
               url: (LTSUrl) url
@@ -160,60 +266,140 @@ typedef NSMutableDictionary * LTSOptions;
 
 
 
-/////////////////////////LTSTypingMessage
+/*!
+Сообщение оповещения о наборе текста.
+
+text: набранный текст.
+ */
 
 @interface LTSTypingMessage : NSObject
 
 @property (nonatomic, retain) NSString *text;
 
-- (id) initWithText: (NSString *) text;
+- (instancetype) initWithText: (NSString *) text;
 
 - (BOOL)textIsSet;
 @end
 
 
 
-/////////////////////////LTSHoldMessageMessage
+/*!
+Удерживающее сообщение.
+
+text: текст удерживающего сообщения.
+ 
+timestamp: время создания удерживающего сообщения.
+ */
 
 @interface LTSHoldMessage : NSObject
 
 @property (nonatomic, retain) NSString *text;
 @property (nonatomic, retain) LTSTimestamp timestamp;
 
-- (id) initWithText: (NSString *) text timestamp: (LTSTimestamp) timestamp;
+- (instancetype) initWithText: (NSString *) text timestamp: (LTSTimestamp) timestamp;
 
 - (BOOL)textIsSet;
 - (BOOL)timestampIsSet;
 @end
 
-/////////////////////////LTSVote
+/*!
+Жалоба.
 
-//@interface LTSVote : NSObject
-//
-//@property (nonatomic) int voteType;
-//@property (nonatomic, retain) NSString * message;
-//
-//- (id) initWithVoteType: (LTSVoteType) voteType message: (NSString *) message;
-//- (BOOL) messageIsSet;
-//@end
+contact: контактные данные.
 
-/////////////////////////LTSDialogAttributes
+message: текст жалобы.
+ */
 
 @interface LTSAbuse: NSObject
 @property (nonatomic, retain) NSString * contact;
 @property (nonatomic, retain) NSString * message;
 
-- (id)initWithContact:(NSString *)contact message:(NSString *)message;
+- (instancetype)initWithContact:(NSString *)contact message:(NSString *)message;
 - (BOOL)contactIsSet;
 - (BOOL)messageIsSet;
 
 @end
+
+
+/*!
+Данные сопутствующие диалогу с собеседником.
+
+visible: данные доступные для отображения в пульте оператора.
+ 
+hidden: данные недоступные для отображения в пульте оператора.
+ */
 
 @interface LTSDialogAttributes : NSObject
 
 @property (nonatomic, retain) LTSOptions visible;
 @property (nonatomic, retain) LTSOptions hidden;
 
-- (id) initWithVisible: (LTSOptions) visible hidden: (LTSOptions) hidden;
+- (instancetype)initWithVisible: (LTSOptions) visible hidden: (LTSOptions) hidden;
+
+@end
+
+
+/*!
+ Структура обращения по оффлайн каналу
+ conversationId : идентификатор обращения
+ firstMessage : текст последнего сообщения
+ status : статус обращения типа LTSOfflineConversationStatus
+ visitorId : идентификатор пользователя
+ creationTime : время создания
+ currentOperatorId : идентификатор текущего оператора
+ */
+
+@interface LTSOfflineConversation : NSObject
+
+@property (nonatomic, retain) NSString * conversationId;
+@property (nonatomic, retain) NSString * lastMessage;
+@property (nonatomic, assign) LTSOfflineConversationStatus status;
+@property (nonatomic, retain) NSString * creationTime;
+@property (nonatomic, retain) NSString * updateTime;
+@property (nonatomic, retain) NSString * visitorId;
+@property (nonatomic, retain) NSString * currentOperatorId;
+
+- (instancetype) initWithId: (NSString *) conversetionId
+               firstMessage: (NSString *) firstMessage
+                     status: (LTSOfflineConversationStatus)status
+               creationTime: (NSString *) created
+                 updateTime: (NSString *) update
+                  visitorId: (NSString *) visitorId
+          currentOperatorId: (NSString *) currentOperatorId;
+
+@end
+
+/*!
+ Сообщение в оффлайн обращении
+ sender : тип данных LTSEmployeeId, если ноль, то сообщения от посетителя.
+ message : текст сообщения
+ creationTime : время создания
+ messageId : идентификатор сообщения
+ */
+
+@interface LTSOfflineMessage: NSObject
+
+@property (nonatomic, retain) NSString * messageId;
+@property (nonatomic, retain) NSString * message;
+@property (nonatomic, retain) NSString * creationTime;
+@property (nonatomic, retain) LTSEmployeeId sender;
+
+- (instancetype) initWithId: (NSString *) messageId
+                    message: (NSString *) message
+                 created_at: (NSString *) creationTime
+                     sender: (LTSEmployeeId) sender;
+@end
+
+/*!
+ Набор контактных данных для создания оффлайн обращения. Возможно частичное заполнение.
+ name : имя пользователя
+ phone : контактный телефон пользователя
+ email : почтовый адрес пользователя
+ */
+
+@interface LTSOfllineVisitorContacts : NSObject
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * phone;
+@property (nonatomic, retain) NSString * email;
 
 @end

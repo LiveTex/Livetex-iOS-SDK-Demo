@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment version="1808" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -37,6 +37,9 @@
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="170" y="278" width="77" height="24"/>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="349" y="321" width="103" height="24"/>
+                                </variation>
                                 <connections>
                                     <action selector="applicationIdConfirm:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="b19-mB-6Dc"/>
                                 </connections>
@@ -66,7 +69,7 @@
                                     <action selector="clean:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="DQH-UU-Owb"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите Application ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wED-Hg-tpY" userLabel="input">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10011885" borderStyle="roundedRect" placeholder="Введите Application ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wED-Hg-tpY" userLabel="input">
                                 <rect key="frame" x="202" y="214" width="198" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="198" id="Kwm-Lh-1OK">
@@ -86,6 +89,9 @@
                                     <mask key="constraints">
                                         <include reference="zg2-Kt-aj9"/>
                                     </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="302" y="214" width="198" height="30"/>
                                 </variation>
                             </textField>
                         </subviews>
@@ -586,6 +592,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="280" y="259" width="240" height="128"/>
+                                </variation>
                                 <connections>
                                     <outlet property="delegate" destination="bFf-3s-Qds" id="0pi-8z-9RT"/>
                                 </connections>
@@ -1444,6 +1453,9 @@
                                         <include reference="ywI-bn-5gh"/>
                                     </mask>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vpx-kK-UJP" userLabel="navigation bar">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
@@ -1813,6 +1825,9 @@
                                         <include reference="45T-wt-WeO"/>
                                         <include reference="NUG-iA-kjA"/>
                                     </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bui-zu-Rax" userLabel="inputView">
@@ -2409,6 +2424,9 @@
                                 <sections/>
                                 <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="0.0" y="117" width="400" height="410"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="C8k-7k-ZTW" id="WbW-Lh-6DR"/>

@@ -39,19 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+    func application(application: UIApplication, didRegisterUserNotificationSettings
+        notificationSettings: UIUserNotificationSettings) {
+            
         application.registerForRemoteNotifications()
     }
     
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        
-    }
-    
-    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
-        
-    }
-    
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    func application(application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
         let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
         var tokenString = NSMutableString()
@@ -60,19 +55,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tokenString.appendFormat("%02.2hhx", tokenChars[i])
         }
         
-        LTApiManager.sharedInstance.apnToken = tokenString
+        LTApiManager.sharedInstance.apnToken = tokenString as String
         
         println("tokenString: \(tokenString)")
-    }
-
-    func applicationWillResignActive(application: UIApplication) {
-        
     }
     
     func reachabilityChanged(note:NSNotification) {
         
-        var curReach:Reachability = note.object as Reachability
+        var curReach:Reachability = note.object as! Reachability
         processReachability(curReach)
+    }
+
+    func applicationDidEnterBackground(application: UIApplication) {
+        LTApiManager.sharedInstance.sdk?.stop()
+    }
+
+    func applicationWillEnterForeground(application: UIApplication) {
+        
+        if internetReachability.currentReachabilityStatus() != NetworkStatus.NotReachable {
+            self.processSDKState()
+        }
+    }
+
+    func applicationWillTerminate(application: UIApplication) {
+        LTApiManager.sharedInstance.isSessionOpen = false
     }
     
     func processReachability(curReach:Reachability) {
@@ -101,25 +107,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.processSDKState()
         }
     }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-        LTApiManager.sharedInstance.sdk?.stop()
-    }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        
-        if internetReachability.currentReachabilityStatus() != NetworkStatus.NotReachable {
-            self.processSDKState()
-        }
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        LTApiManager.sharedInstance.isSessionOpen = false
-    }
     
     var isResumingSDKWorkFlow = false
     
@@ -130,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         println("-----------------------processSDKState------------------")
         isResumingSDKWorkFlow = true
         
-        if LTApiManager.sharedInstance.isSessionOpen? == true {
+        if LTApiManager.sharedInstance.isSessionOpen == true {
             
             println("-----------------------initSDK------------------")
             let initParam  = LTMobileSDKInitializationParams()
@@ -189,7 +176,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if state.conversationIsSet() {
             
-            let rootController = storyboard.instantiateViewControllerWithIdentifier("ChatVC") as UIViewController
+            let rootController = storyboard.instantiateViewControllerWithIdentifier("ChatVC") as! UIViewController
             
             if self.window != nil {
                 self.window!.rootViewController = rootController
@@ -197,10 +184,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         } else if LTApiManager.sharedInstance.employeeId != nil {
             
-            LTApiManager.sharedInstance.sdk!.requestWithEmployee(LTApiManager.sharedInstance.employeeId,
+            LTApiManager.sharedInstance.sdk!.requestWithEmployee(LTApiManager.sharedInstance.employeeId as! String,
                 success: { (dilogState:LTSDialogState!) -> Void in
                     
-                let rootController = storyboard.instantiateViewControllerWithIdentifier("ChatVC") as UIViewController
+                let rootController = storyboard.instantiateViewControllerWithIdentifier("ChatVC") as! UIViewController
                 
                 if self.window != nil {
                     self.window!.rootViewController = rootController
@@ -208,7 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
             }, failure: { (error:NSException!) -> Void in
                     
-                let rootController = storyboard.instantiateViewControllerWithIdentifier("EnvolvingVC") as UIViewController
+                let rootController = storyboard.instantiateViewControllerWithIdentifier("EnvolvingVC") as! UIViewController
                 
                 if self.window != nil {
                     self.window!.rootViewController = rootController
@@ -217,7 +204,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         } else {
             
-            let rootController = storyboard.instantiateViewControllerWithIdentifier("EnvolvingVC") as UIViewController
+            let rootController = storyboard.instantiateViewControllerWithIdentifier("EnvolvingVC") as! UIViewController
             
             if self.window != nil {
                 self.window!.rootViewController = rootController
