@@ -38,6 +38,9 @@
 		55F73B0B1A0A6EB900C28B0A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0A1A0A6EB900C28B0A /* Images.xcassets */; };
 		55F73B0E1A0A6EB900C28B0A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */; };
 		7EDB52E41B2084D6005320B4 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDB52E31B2084D6005320B4 /* libLTMobileSDK.a */; };
+		7EDB52EB1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */; };
+		7EDB52ED1B232414005320B4 /* LTOfflineConversationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */; };
+		7EDB52EF1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +82,9 @@
 		7EDB52E31B2084D6005320B4 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
 		7EDB52E51B2084E3005320B4 /* LTSDKModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
 		7EDB52E61B2084E3005320B4 /* LTMobileSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
+		7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationTableViewCell.swift; sourceTree = "<group>"; };
+		7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationTableViewController.swift; sourceTree = "<group>"; };
+		7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationCreationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +173,7 @@
 				55DEA8F11A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift */,
 				55DEA8EC1A35D7DC006ED45A /* LTClaimingViewController.swift */,
 				55E17BBA1A4974EB00F503A1 /* LTSWTextMessage.swift */,
+				7EDB52E71B23236A005320B4 /* offline */,
 				55CC14FB1A3B2A9400C1456C /* Reachability.h */,
 				55CC14FC1A3B2A9400C1456C /* Reachability.m */,
 				55F73B071A0A6EB900C28B0A /* Main.storyboard */,
@@ -183,6 +190,16 @@
 				55F73AFF1A0A6EB800C28B0A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7EDB52E71B23236A005320B4 /* offline */ = {
+			isa = PBXGroup;
+			children = (
+				7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */,
+				7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */,
+				7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */,
+			);
+			name = offline;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,8 +297,11 @@
 				55DEA8EF1A35D7DC006ED45A /* LTClaimingViewController.swift in Sources */,
 				55F73B061A0A6EB900C28B0A /* LTAuthorizationViewController.swift in Sources */,
 				55F73B011A0A6EB800C28B0A /* AppDelegate.swift in Sources */,
+				7EDB52ED1B232414005320B4 /* LTOfflineConversationTableViewController.swift in Sources */,
 				55DEA8F21A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift in Sources */,
+				7EDB52EB1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift in Sources */,
 				55D666061A135F2C001747B0 /* LTApiManager.swift in Sources */,
+				7EDB52EF1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift in Sources */,
 				55E17BBB1A4974EB00F503A1 /* LTSWTextMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

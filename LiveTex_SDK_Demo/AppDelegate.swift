@@ -123,7 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let initParam  = LTMobileSDKInitializationParams()
             initParam.sdkKey = key
             initParam.livetexUrl = URL
-            initParam.applicationId = LTApiManager.sharedInstance.aplicationId
+            initParam.applicationId = siteId
             initParam.APNDeviceId = LTApiManager.sharedInstance.apnToken
             
             LTApiManager.sharedInstance.sdk = LTMobileSDK(params: initParam)

@@ -8,21 +8,24 @@
 
 import Foundation
 
+var URL:String? = "http://authentication-service.livetex.omnibuild:80/"
+
+var key:String? = "dev_key_test"
+
+var siteId:String? = "10011885"
+
 
 class LTApiManager {
     
     var sdk: LTMobileSDK?
-    
-    var aplicationId: String?
-    
     var apnToken: String?
-    
     var isSessionOpen:Bool?
-    
     var employeeId: LTSEmployeeId?
     
     class var sharedInstance : LTApiManager {
+        
         struct Static {
+            
             static let instance : LTApiManager = LTApiManager()
         }
         return Static.instance
