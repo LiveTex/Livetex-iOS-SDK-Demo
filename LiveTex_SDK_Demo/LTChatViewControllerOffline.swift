@@ -119,7 +119,7 @@ class LTChatViewControllerOffline: UIViewController {
                                 
                                 var bgImage = UIImage(data:imageData)
                                 self.operatorIco.image = bgImage
-                                //self.operatorName = Employee.firstname + "" + Employee.lastname
+                                self.operatorName.text = Employee.firstname! + "" + Employee.lastname!
                             }
                         }
                         
