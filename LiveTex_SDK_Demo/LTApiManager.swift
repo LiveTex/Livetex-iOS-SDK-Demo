@@ -19,8 +19,9 @@ class LTApiManager {
     
     var sdk: LTMobileSDK?
     var apnToken: String?
-    var isSessionOpen:Bool?
-    var employeeId: LTSEmployeeId?
+    var isSessionOnlineOpen:Bool?
+    var onlineEmployeeId: LTSEmployeeId?
+    var offlineConversationId: String?
     
     class var sharedInstance : LTApiManager {
         

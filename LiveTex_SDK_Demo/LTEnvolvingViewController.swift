@@ -11,7 +11,7 @@ import UIKit
 
 let mods = (siteMode:"Сайт", departmentsMode:"Департамент", epmloyeesMode:"Оператор")
 let actionSheetType = (actionSheetModeSelection:88, actionSheetSubSelection:87)
-let statusType = (online:"online", offline:"offline")
+let statusType = (online:"online", offline:"offline", all:"all")
 
 class LTEnvolvingViewController: UIViewController {
 
@@ -288,7 +288,7 @@ extension LTEnvolvingViewController {
             modeField.text = "По сайту"
             
             for item:NSLayoutConstraint in subSelectionHidingConstraints {
-                item.constant = 11
+                item.constant = 17
             }
             
         case mods.departmentsMode :
@@ -297,7 +297,7 @@ extension LTEnvolvingViewController {
             subSelectionField.placeholder = "Выберите отдел"
             
             for item:NSLayoutConstraint in subSelectionHidingConstraints {
-                item.constant = 59
+                item.constant = 65
             }
             
         case mods.epmloyeesMode :
@@ -306,7 +306,7 @@ extension LTEnvolvingViewController {
             subSelectionField.placeholder = "Выберите оператора"
             
             for item:NSLayoutConstraint in subSelectionHidingConstraints {
-                item.constant = 59
+                item.constant = 65
             }
             
         default:

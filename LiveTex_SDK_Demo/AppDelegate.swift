@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(application: UIApplication) {
-        LTApiManager.sharedInstance.isSessionOpen = false
+        LTApiManager.sharedInstance.isSessionOnlineOpen = false
     }
     
     func processReachability(curReach:Reachability) {
@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             LTApiManager.sharedInstance.sdk?.stop()
             
-            if LTApiManager.sharedInstance.isSessionOpen == true {
+            if LTApiManager.sharedInstance.isSessionOnlineOpen == true {
                 
                 reachabilityAlert = UIAlertView(title: nil,
                     message: "Интернет соединение потеряно, дождитесь когда система востановит соединение",
@@ -117,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         println("-----------------------processSDKState------------------")
         isResumingSDKWorkFlow = true
         
-        if LTApiManager.sharedInstance.isSessionOpen == true {
+        if LTApiManager.sharedInstance.isSessionOnlineOpen == true {
             
             println("-----------------------initSDK------------------")
             let initParam  = LTMobileSDKInitializationParams()
@@ -182,9 +182,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window!.rootViewController = rootController
             }
             
-        } else if LTApiManager.sharedInstance.employeeId != nil {
+        } else if LTApiManager.sharedInstance.onlineEmployeeId != nil {
             
-            LTApiManager.sharedInstance.sdk!.requestWithEmployee(LTApiManager.sharedInstance.employeeId as! String,
+            LTApiManager.sharedInstance.sdk!.requestWithEmployee(LTApiManager.sharedInstance.onlineEmployeeId as! String,
                 success: { (dilogState:LTSDialogState!) -> Void in
                     
                 let rootController = storyboard.instantiateViewControllerWithIdentifier("ChatVC") as! UIViewController

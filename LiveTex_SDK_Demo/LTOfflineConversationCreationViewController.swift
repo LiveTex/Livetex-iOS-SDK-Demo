@@ -10,12 +10,12 @@ import UIKit
 
 class LTOfflineConversationCreationViewController: UIViewController {
 
-    
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var message: UITextView!
     
+    var activityView:DejalBezelActivityView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,16 +27,54 @@ class LTOfflineConversationCreationViewController: UIViewController {
     
     @IBAction func send(sender: AnyObject) {
         
+        let  contacts = LTSOfllineVisitorContacts()
+        contacts.name = name.text
+        contacts.phone = phone.text
+        contacts.email = email.text
+        
+        self.showActivityIndicator()
+        
+        LTApiManager.sharedInstance.sdk?.createOfflineConversationForVisitor(contacts, success: { (convId:String!) -> Void in
+            
+            LTApiManager.sharedInstance.offlineConversationId = convId
+            
+            LTApiManager.sharedInstance.sdk?.sendOfflineMessageWithText(self.message.text, conversationId: convId, success: { () -> Void in
+                
+                self.removeActivityIndicator()
+                self.performSegueWithIdentifier("offlineChatStart", sender: nil)
+                
+            }, failure: { (exp:NSException!) -> Void in
+                    
+                self.loadingErrorProcess(exp)
+            })
+            
+        }, failure: { (exp:NSException!) -> Void in
+            
+            self.loadingErrorProcess(exp)
+        })
     }
+}
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension LTOfflineConversationCreationViewController {
+    
+    func showActivityIndicator() {
+        
+        activityView = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
     }
-    */
-
+    
+    func removeActivityIndicator() {
+        
+        activityView?.animateRemove()
+    }
+    
+    func loadingErrorProcess(error:NSException) {
+        
+        var asd = error.userInfo!
+        var error:NSError = (asd["error"] as? NSError)!
+        
+        self.removeActivityIndicator()
+        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
+        alert.show()
+    }
 }

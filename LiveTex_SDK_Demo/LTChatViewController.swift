@@ -159,13 +159,13 @@ class LTChatViewController: UIViewController {
         
         LTApiManager.sharedInstance.sdk?.getStateWithSuccess({ (state:LTSDialogState!) -> Void in
             
-            LTApiManager.sharedInstance.isSessionOpen = false
+            LTApiManager.sharedInstance.isSessionOnlineOpen = false
             
             if (state.conversationIsSet()) {
                 
                  LTApiManager.sharedInstance.sdk?.closeWithSuccess({ (state:LTSDialogState!) -> Void in
                     
-                    LTApiManager.sharedInstance.employeeId = nil
+                    LTApiManager.sharedInstance.onlineEmployeeId = nil
                     
                     let newstate:LTSDialogState = state
                     LTApiManager.sharedInstance.sdk?.stop()
@@ -296,7 +296,7 @@ extension LTChatViewController {
         
         if state.employeeIsSet() {
             
-            LTApiManager.sharedInstance.employeeId = state.employee.employeeId
+            LTApiManager.sharedInstance.onlineEmployeeId = state.employee.employeeId
             
             waitngPlaceHolder.hidden = true
             operatorView.hidden = false
@@ -325,7 +325,7 @@ extension LTChatViewController {
             
         } else {
             
-            LTApiManager.sharedInstance.employeeId = nil
+            LTApiManager.sharedInstance.onlineEmployeeId = nil
             
             waitngPlaceHolder.hidden = true
             operatorView.hidden = true

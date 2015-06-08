@@ -10,52 +10,93 @@ import UIKit
 
 class LTOfflineConversationTableViewController: UITableViewController {
 
+    var activityView:DejalBezelActivityView?
+    var convList:[LTSOfflineConversation]?
+    
     override func viewDidLoad() {
+        
+        convList = []
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-         self.clearsSelectionOnViewWillAppear = false
+        self.clearsSelectionOnViewWillAppear = false
+        loadConversationList()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
+        return convList!.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("LTOfflineConversationTableViewCell", forIndexPath: indexPath) as! LTOfflineConversationTableViewCell
 
+        cell.employeeId = self.convList?[indexPath.row].currentOperatorId
+        cell.date.text = self.convList?[indexPath.row].creationTime
+        
+        if self.convList?[indexPath.row].lastMessage != "" {
+            cell.conversationLabel.text = self.convList?[indexPath.row].lastMessage
+        } else {
+            cell.conversationLabel.text = "Нет текста сообщения"
+        }
+        
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        LTApiManager.sharedInstance.offlineConversationId = convList?[indexPath.row].conversationId
+        self.performSegueWithIdentifier("offlineChatStart2", sender: nil)
+    }
+    
+    @IBAction func creationDone(segue:UIStoryboardSegue) {
         
     }
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+extension LTOfflineConversationTableViewController {
+    
+    func loadConversationList() {
+        
+        LTApiManager.sharedInstance.sdk?.offlineConversationsListWithSuccess({ (array:[AnyObject]!) -> Void in
+            
+            self.convList = array as? [LTSOfflineConversation]
+            self.tableView.reloadData()
+            
+        }, failure: { (exeption) -> Void in
+            
+            self.loadingErrorProcess(exeption)
+        })
     }
-    */
+}
 
+extension LTOfflineConversationTableViewController {
+    
+    func showActivityIndicator() {
+        
+        activityView = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
+    }
+    
+    func removeActivityIndicator() {
+        
+        activityView?.animateRemove()
+    }
+    
+    func loadingErrorProcess(error:NSException) {
+        
+        var asd = error.userInfo!
+        var error:NSError = (asd["error"] as? NSError)!
+        
+        self.removeActivityIndicator()
+        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
+        alert.show()
+    }
 }

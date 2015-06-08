@@ -37,7 +37,7 @@ class LTAuthorizationViewController: UIViewController {
     
     func startWelcome() {
         
-        clean()
+        //clean()
         
         let initParam  = LTMobileSDKInitializationParams()
         initParam.sdkKey = key
@@ -80,13 +80,13 @@ class LTAuthorizationViewController: UIViewController {
     
     @IBAction func startOnlineMode(sender:AnyObject) {
         
-        LTApiManager.sharedInstance.isSessionOpen = true
+        LTApiManager.sharedInstance.isSessionOnlineOpen = true
         self.performSegueWithIdentifier("showEnvolving", sender: nil)
     }
     
     @IBAction func startOfflineMode(sender:AnyObject) {
         
-        self.performSegueWithIdentifier("showEnvolving", sender: nil)
+        self.performSegueWithIdentifier("showOffline", sender: nil)
     }
 }
 

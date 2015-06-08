@@ -57,6 +57,32 @@ class LTChatMessageTableViewCell: UITableViewCell {
         }
     }
     
+    var offlineMessageSet:AnyObject! {
+        
+        set (messageNew) {
+            
+            self.message = messageNew
+            handy.timeFormatter.dateFormat = "hh:mm"
+            
+            if let massage = messageNew as? LTSOfflineMessage {
+                
+                self.messageText.text = massage.message
+                
+//                let timestamp = (self.message.timestamp as NSString).doubleValue
+//                self.timeText.text = handy.timeFormatter.stringFromDate(NSDate(timeIntervalSince1970: NSTimeInterval(timestamp)))
+                
+                self.messgaeConfirmedIco?.hidden = true
+            }
+            
+            layoutSubviews()
+        }
+        
+        get {
+            
+            return self.message
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgoundImage2.image = self.backgoundImage2.image?.resizableImageWithCapInsets(UIEdgeInsetsMake(15, 20, 15, 20))
