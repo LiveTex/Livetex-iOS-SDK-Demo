@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-        LTApiManager.sharedInstance.sdk?.stop()
+       // LTApiManager.sharedInstance.sdk?.stop()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

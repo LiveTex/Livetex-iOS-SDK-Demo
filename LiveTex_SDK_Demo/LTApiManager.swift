@@ -29,6 +29,7 @@ class LTApiManager {
             
             static let instance : LTApiManager = LTApiManager()
         }
+        
         return Static.instance
     }
 }

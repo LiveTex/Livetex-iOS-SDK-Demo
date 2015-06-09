@@ -42,6 +42,8 @@ class LTOfflineConversationTableViewController: UITableViewController {
         cell.employeeId = self.convList?[indexPath.row].currentOperatorId
         cell.date.text = self.convList?[indexPath.row].creationTime
         
+        cell.date.text = cell.date.text?.stringByDeletingPathExtension
+        
         if self.convList?[indexPath.row].lastMessage != "" {
             cell.conversationLabel.text = self.convList?[indexPath.row].lastMessage
         } else {
