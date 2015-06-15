@@ -59,6 +59,12 @@ class LTOfflineConversationTableViewController: UITableViewController {
         self.performSegueWithIdentifier("offlineChatStart2", sender: nil)
     }
     
+    
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        return 0.01
+    }
+    
     @IBAction func creationDone(segue:UIStoryboardSegue) {
         
     }
@@ -71,6 +77,12 @@ extension LTOfflineConversationTableViewController {
         LTApiManager.sharedInstance.sdk?.offlineConversationsListWithSuccess({ (array:[AnyObject]!) -> Void in
             
             self.convList = array as? [LTSOfflineConversation]
+            
+            for item in self.convList! {
+                
+                println("  convId = " + item.conversationId + "  operId = " + item.currentOperatorId + "\n")
+            }
+            
             self.tableView.reloadData()
             
         }, failure: { (exeption) -> Void in

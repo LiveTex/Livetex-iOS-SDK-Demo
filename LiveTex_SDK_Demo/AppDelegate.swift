@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(application: UIApplication) {
         
         if internetReachability.currentReachabilityStatus() != NetworkStatus.NotReachable {
-            self.processSDKState()
+            //self.processSDKState()
         }
     }
 
@@ -104,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             
             reachabilityAlert?.dismissWithClickedButtonIndex(0, animated: true)
-            self.processSDKState()
+            //self.processSDKState()
         }
     }
     

@@ -37,7 +37,19 @@
 		55F73B091A0A6EB900C28B0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B071A0A6EB900C28B0A /* Main.storyboard */; };
 		55F73B0B1A0A6EB900C28B0A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0A1A0A6EB900C28B0A /* Images.xcassets */; };
 		55F73B0E1A0A6EB900C28B0A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */; };
-		7EDB52E41B2084D6005320B4 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDB52E31B2084D6005320B4 /* libLTMobileSDK.a */; };
+		7E0EF9621B29AA6A007C7CD4 /* 1376466473_manager1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E0EF9611B29AA6A007C7CD4 /* 1376466473_manager1.jpg */; };
+		7E0EF9661B2F1C82007C7CD4 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0EF9651B2F1C82007C7CD4 /* libLTMobileSDK.a */; };
+		7E4BF9DA1B26FF5700FF5C80 /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9CF1B26FF5700FF5C80 /* AppIcon29x29.png */; };
+		7E4BF9DB1B26FF5700FF5C80 /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D01B26FF5700FF5C80 /* AppIcon29x29@2x.png */; };
+		7E4BF9DC1B26FF5700FF5C80 /* AppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D11B26FF5700FF5C80 /* AppIcon40x40.png */; };
+		7E4BF9DD1B26FF5700FF5C80 /* AppIcon40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D21B26FF5700FF5C80 /* AppIcon40x40@2x.png */; };
+		7E4BF9DE1B26FF5700FF5C80 /* AppIcon60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D31B26FF5700FF5C80 /* AppIcon60x60.png */; };
+		7E4BF9DF1B26FF5700FF5C80 /* AppIcon60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D41B26FF5700FF5C80 /* AppIcon60x60@2x.png */; };
+		7E4BF9E01B26FF5700FF5C80 /* AppIcon60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D51B26FF5700FF5C80 /* AppIcon60x60@3x.png */; };
+		7E4BF9E11B26FF5700FF5C80 /* AppIcon76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D61B26FF5700FF5C80 /* AppIcon76x76.png */; };
+		7E4BF9E21B26FF5700FF5C80 /* AppIcon76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D71B26FF5700FF5C80 /* AppIcon76x76@2x.png */; };
+		7E4BF9E31B26FF5700FF5C80 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D81B26FF5700FF5C80 /* iTunesArtwork.png */; };
+		7E4BF9E41B26FF5700FF5C80 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D91B26FF5700FF5C80 /* iTunesArtwork@2x.png */; };
 		7EDB52EB1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */; };
 		7EDB52ED1B232414005320B4 /* LTOfflineConversationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */; };
 		7EDB52EF1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */; };
@@ -84,9 +96,23 @@
 		55F73B081A0A6EB900C28B0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		55F73B0A1A0A6EB900C28B0A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		55F73B0D1A0A6EB900C28B0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		7EDB52E31B2084D6005320B4 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
-		7EDB52E51B2084E3005320B4 /* LTSDKModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
-		7EDB52E61B2084E3005320B4 /* LTMobileSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
+		7E0EF9611B29AA6A007C7CD4 /* 1376466473_manager1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1376466473_manager1.jpg; sourceTree = "<group>"; };
+		7E0EF9631B2F1C70007C7CD4 /* LTSDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
+		7E0EF9641B2F1C7B007C7CD4 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
+		7E0EF9651B2F1C82007C7CD4 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
+		7E4BF9CF1B26FF5700FF5C80 /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
+		7E4BF9D01B26FF5700FF5C80 /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
+		7E4BF9D11B26FF5700FF5C80 /* AppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon40x40.png; sourceTree = "<group>"; };
+		7E4BF9D21B26FF5700FF5C80 /* AppIcon40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon40x40@2x.png"; sourceTree = "<group>"; };
+		7E4BF9D31B26FF5700FF5C80 /* AppIcon60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon60x60.png; sourceTree = "<group>"; };
+		7E4BF9D41B26FF5700FF5C80 /* AppIcon60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@2x.png"; sourceTree = "<group>"; };
+		7E4BF9D51B26FF5700FF5C80 /* AppIcon60x60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@3x.png"; sourceTree = "<group>"; };
+		7E4BF9D61B26FF5700FF5C80 /* AppIcon76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon76x76.png; sourceTree = "<group>"; };
+		7E4BF9D71B26FF5700FF5C80 /* AppIcon76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon76x76@2x.png"; sourceTree = "<group>"; };
+		7E4BF9D81B26FF5700FF5C80 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		7E4BF9D91B26FF5700FF5C80 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		7E4BF9E51B27023C00FF5C80 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		7E4BF9E61B27023C00FF5C80 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationTableViewCell.swift; sourceTree = "<group>"; };
 		7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationTableViewController.swift; sourceTree = "<group>"; };
 		7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationCreationViewController.swift; sourceTree = "<group>"; };
@@ -102,7 +128,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EDB52E41B2084D6005320B4 /* libLTMobileSDK.a in Frameworks */,
+				7E0EF9661B2F1C82007C7CD4 /* libLTMobileSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,10 +147,10 @@
 		55D665751A1276FE001747B0 /* Livetex_SDK */ = {
 			isa = PBXGroup;
 			children = (
-				7EDB52E31B2084D6005320B4 /* libLTMobileSDK.a */,
-				7EDB52E51B2084E3005320B4 /* LTSDKModel.h */,
-				7EDB52E61B2084E3005320B4 /* LTMobileSDK.h */,
 				55D6657F1A127AA5001747B0 /* LTObjcBridging.h */,
+				7E0EF9651B2F1C82007C7CD4 /* libLTMobileSDK.a */,
+				7E0EF9631B2F1C70007C7CD4 /* LTSDKModel.h */,
+				7E0EF9641B2F1C7B007C7CD4 /* LTMobileSDK.h */,
 			);
 			path = Livetex_SDK;
 			sourceTree = "<group>";
@@ -132,6 +158,8 @@
 		55D666091A13655A001747B0 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				7E0EF9611B29AA6A007C7CD4 /* 1376466473_manager1.jpg */,
+				7E4BF9CE1B26FF5700FF5C80 /* imagesSDK */,
 				7EDB52F41B26DA6A005320B4 /* button_online@2x.png */,
 				7EDB52F51B26DA6A005320B4 /* button_offline@2x.png */,
 				7EDB52F61B26DA6A005320B4 /* button_online_push@2x.png */,
@@ -206,6 +234,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7E4BF9CE1B26FF5700FF5C80 /* imagesSDK */ = {
+			isa = PBXGroup;
+			children = (
+				7E4BF9CF1B26FF5700FF5C80 /* AppIcon29x29.png */,
+				7E4BF9D01B26FF5700FF5C80 /* AppIcon29x29@2x.png */,
+				7E4BF9D11B26FF5700FF5C80 /* AppIcon40x40.png */,
+				7E4BF9D21B26FF5700FF5C80 /* AppIcon40x40@2x.png */,
+				7E4BF9D31B26FF5700FF5C80 /* AppIcon60x60.png */,
+				7E4BF9D41B26FF5700FF5C80 /* AppIcon60x60@2x.png */,
+				7E4BF9D51B26FF5700FF5C80 /* AppIcon60x60@3x.png */,
+				7E4BF9D61B26FF5700FF5C80 /* AppIcon76x76.png */,
+				7E4BF9D71B26FF5700FF5C80 /* AppIcon76x76@2x.png */,
+				7E4BF9D81B26FF5700FF5C80 /* iTunesArtwork.png */,
+				7E4BF9D91B26FF5700FF5C80 /* iTunesArtwork@2x.png */,
+			);
+			path = imagesSDK;
+			sourceTree = "<group>";
+		};
 		7EDB52E71B23236A005320B4 /* offline */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,18 +321,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E4BF9DD1B26FF5700FF5C80 /* AppIcon40x40@2x.png in Resources */,
 				55D6661A1A136616001747B0 /* Rectangle@2x.png in Resources */,
 				55D666181A136616001747B0 /* navigation_bar_background@2x.png in Resources */,
 				55D666151A136616001747B0 /* complaint_icon@2x.png in Resources */,
+				7E4BF9DC1B26FF5700FF5C80 /* AppIcon40x40.png in Resources */,
 				55DF2E331A14C93700C4DDD9 /* baloon_blue@2x.png in Resources */,
+				7E4BF9E31B26FF5700FF5C80 /* iTunesArtwork.png in Resources */,
 				55F73B091A0A6EB900C28B0A /* Main.storyboard in Resources */,
 				55DF2E351A14C93700C4DDD9 /* bot_backgroud.png in Resources */,
 				55D666171A136616001747B0 /* good_icon@2x.png in Resources */,
+				7E4BF9DE1B26FF5700FF5C80 /* AppIcon60x60.png in Resources */,
 				55D6661B1A136616001747B0 /* send_btn@2x.png in Resources */,
 				7EDB52F91B26DA6A005320B4 /* button_online_push@2x.png in Resources */,
+				7E4BF9E21B26FF5700FF5C80 /* AppIcon76x76@2x.png in Resources */,
 				7EDB52F81B26DA6A005320B4 /* button_offline@2x.png in Resources */,
+				7E4BF9E01B26FF5700FF5C80 /* AppIcon60x60@3x.png in Resources */,
+				7E4BF9E11B26FF5700FF5C80 /* AppIcon76x76.png in Resources */,
 				7EDB52F71B26DA6A005320B4 /* button_online@2x.png in Resources */,
+				7E4BF9DF1B26FF5700FF5C80 /* AppIcon60x60@2x.png in Resources */,
+				7E4BF9DA1B26FF5700FF5C80 /* AppIcon29x29.png in Resources */,
 				55D666141A136616001747B0 /* cancel_btn@2x.png in Resources */,
+				7E0EF9621B29AA6A007C7CD4 /* 1376466473_manager1.jpg in Resources */,
+				7E4BF9E41B26FF5700FF5C80 /* iTunesArtwork@2x.png in Resources */,
 				7EDB52F31B26DA63005320B4 /* lt-auth-logo@2x.png in Resources */,
 				55DF2E391A14FA9200C4DDD9 /* ava@2x.jpg in Resources */,
 				55E17BB91A4972B000F503A1 /* chat_msg_double_checked@2x.png in Resources */,
@@ -295,6 +352,7 @@
 				55DF2E341A14C93700C4DDD9 /* baloon_gray@2x.png in Resources */,
 				55DF2E371A14C93700C4DDD9 /* Ваш вопрос 2.png in Resources */,
 				55D666161A136616001747B0 /* dropdown_arrow@2x.png in Resources */,
+				7E4BF9DB1B26FF5700FF5C80 /* AppIcon29x29@2x.png in Resources */,
 				55F73B0B1A0A6EB900C28B0A /* Images.xcassets in Resources */,
 				55D666131A136616001747B0 /* bad_icon@2x.png in Resources */,
 				55DF2E361A14C93700C4DDD9 /* top_background.png in Resources */,
@@ -333,6 +391,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				55F73B081A0A6EB900C28B0A /* Base */,
+				7E4BF9E51B27023C00FF5C80 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -341,6 +400,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				55F73B0D1A0A6EB900C28B0A /* Base */,
+				7E4BF9E61B27023C00FF5C80 /* ru */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -448,6 +508,7 @@
 				PROVISIONING_PROFILE = "37a4dc9e-3cde-416e-82d9-5f8f90e82bf6";
 				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/Livetex_SDK/LTObjcBridging.h;
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = LiveTex_SDK_Demo/Livetex_SDK/LTObjcBridging.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -473,6 +534,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "37a4dc9e-3cde-416e-82d9-5f8f90e82bf6";
 				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/Livetex_SDK/LTObjcBridging.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

@@ -1,0 +1,129 @@
+
+/* Class = "UILabel"; text = "Текст сообщения от оператора. Текст сообщения."; ObjectID = "2Ae-vF-PAk"; */
+"2Ae-vF-PAk.text" = "Текст сообщения от оператора. Текст сообщения.";
+
+/* Class = "UIButton"; normalTitle = "Online"; ObjectID = "5oQ-5p-kol"; */
+"5oQ-5p-kol.normalTitle" = "Online";
+
+/* Class = "UILabel"; text = "Оцените диалог"; ObjectID = "7VM-W1-6k4"; */
+"7VM-W1-6k4.text" = "Оцените диалог";
+
+/* Class = "UILabel"; text = "C параметром messages (список оффлайн сообщений) для оффлайн обращения,\n тип данных одного эле, в противном случае вызывается failure,\n параметром у которого явлется объект типа NSExepti"; ObjectID = "7hL-pz-XG7"; */
+"7hL-pz-XG7.text" = "C параметром messages (список оффлайн сообщений) для оффлайн обращения,\n тип данных одного эле, в противном случае вызывается failure,\n параметром у которого явлется объект типа NSExepti";
+
+/* Class = "UITextField"; placeholder = "Выбирете департамент"; ObjectID = "8bb-5t-xrd"; */
+"8bb-5t-xrd.placeholder" = "Выбирете департамент";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "9TE-gH-CUd"; */
+"9TE-gH-CUd.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Отпр."; ObjectID = "A16-IM-mEy"; */
+"A16-IM-mEy.normalTitle" = "Отпр.";
+
+/* Class = "UILabel"; text = "Текст обращения:"; ObjectID = "Bpd-9F-0up"; */
+"Bpd-9F-0up.text" = "Текст обращения:";
+
+/* Class = "UILabel"; text = "Алёна Иванова"; ObjectID = "Bxd-5Q-KTr"; */
+"Bxd-5Q-KTr.text" = "Алёна Иванова";
+
+/* Class = "UILabel"; text = "Текст сообщения от оператора. Текст сообщения"; ObjectID = "Cdx-Ol-NGv"; */
+"Cdx-Ol-NGv.text" = "Текст сообщения от оператора. Текст сообщения";
+
+/* Class = "UILabel"; text = "печатает..."; ObjectID = "FqK-7W-auh"; */
+"FqK-7W-auh.text" = "печатает...";
+
+/* Class = "UILabel"; text = "Текст сообщения от оператора. Текст сообщения"; ObjectID = "Fzs-hz-z1D"; */
+"Fzs-hz-z1D.text" = "Текст сообщения от оператора. Текст сообщения";
+
+/* Class = "UILabel"; text = "Алёна Иванова"; ObjectID = "Hj7-63-VDO"; */
+"Hj7-63-VDO.text" = "Алёна Иванова";
+
+/* Class = "UILabel"; text = "Мы рады приветствовать Вас! "; ObjectID = "LN1-ld-ASx"; */
+"LN1-ld-ASx.text" = "Мы рады приветствовать Вас! ";
+
+/* Class = "UITextField"; placeholder = "Введите сообщение"; ObjectID = "LfG-oO-bAi"; */
+"LfG-oO-bAi.placeholder" = "Введите сообщение";
+
+/* Class = "UITextField"; placeholder = "Введите телефон"; ObjectID = "OgD-9J-MnZ"; */
+"OgD-9J-MnZ.placeholder" = "Введите телефон";
+
+/* Class = "UITextField"; placeholder = "Укажите причину жалобы"; ObjectID = "Pln-aB-55x"; */
+"Pln-aB-55x.placeholder" = "Укажите причину жалобы";
+
+/* Class = "UIButton"; normalTitle = "Отпр."; ObjectID = "Q9b-2G-E6Z"; */
+"Q9b-2G-E6Z.normalTitle" = "Отпр.";
+
+/* Class = "UINavigationItem"; title = "Создание обращения"; ObjectID = "QTr-K9-lCd"; */
+"QTr-K9-lCd.title" = "Создание обращения";
+
+/* Class = "UILabel"; text = "   "; ObjectID = "Uhw-AF-lU2"; */
+"Uhw-AF-lU2.text" = "   ";
+
+/* Class = "UILabel"; text = "Контактные данные:"; ObjectID = "Uo0-Sb-khA"; */
+"Uo0-Sb-khA.text" = "Контактные данные:";
+
+/* Class = "UILabel"; text = "12:20"; ObjectID = "Ycb-Zl-ujz"; */
+"Ycb-Zl-ujz.text" = "12:20";
+
+/* Class = "UITextField"; placeholder = "Введите Ваше имя"; ObjectID = "aEC-yu-NeH"; */
+"aEC-yu-NeH.placeholder" = "Введите Ваше имя";
+
+/* Class = "UILabel"; text = "Создать жалобу"; ObjectID = "bLh-xl-aG9"; */
+"bLh-xl-aG9.text" = "Создать жалобу";
+
+/* Class = "UILabel"; text = "12:31"; ObjectID = "bl1-7z-GHH"; */
+"bl1-7z-GHH.text" = "12:31";
+
+/* Class = "UITextField"; placeholder = "Введите имя"; ObjectID = "d9w-4F-wCj"; */
+"d9w-4F-wCj.placeholder" = "Введите имя";
+
+/* Class = "UINavigationItem"; title = "Список Обращений"; ObjectID = "ddB-WB-fzp"; */
+"ddB-WB-fzp.title" = "Список Обращений";
+
+/* Class = "UILabel"; text = "Системное сообщение"; ObjectID = "eJL-14-WQJ"; */
+"eJL-14-WQJ.text" = "Системное сообщение";
+
+/* Class = "UILabel"; text = "12:31"; ObjectID = "fBQ-zC-vW3"; */
+"fBQ-zC-vW3.text" = "12:31";
+
+/* Class = "UITextField"; placeholder = "Введите номер телефона"; ObjectID = "g6t-3I-WN0"; */
+"g6t-3I-WN0.placeholder" = "Введите номер телефона";
+
+/* Class = "UIButton"; normalTitle = "Отправить"; ObjectID = "kMR-mU-LPF"; */
+"kMR-mU-LPF.normalTitle" = "Отправить";
+
+/* Class = "UITextField"; placeholder = "Введите возраст"; ObjectID = "kQl-Oh-Gkj"; */
+"kQl-Oh-Gkj.placeholder" = "Введите возраст";
+
+/* Class = "UILabel"; text = "Системное сообщение"; ObjectID = "kdo-YG-TWv"; */
+"kdo-YG-TWv.text" = "Системное сообщение";
+
+/* Class = "UITextField"; placeholder = "Введите возраст"; ObjectID = "mBy-7b-YCo"; */
+"mBy-7b-YCo.placeholder" = "Введите возраст";
+
+/* Class = "UINavigationItem"; title = "Создать обращение"; ObjectID = "poj-md-dhh"; */
+"poj-md-dhh.title" = "Создать обращение";
+
+/* Class = "UILabel"; text = "Текст сообщения от оператора. Текст сообщения."; ObjectID = "q6r-aG-0Sm"; */
+"q6r-aG-0Sm.text" = "Текст сообщения от оператора. Текст сообщения.";
+
+/* Class = "UILabel"; text = "12:20"; ObjectID = "u0k-LF-dCJ"; */
+"u0k-LF-dCJ.text" = "12:20";
+
+/* Class = "UIButton"; normalTitle = "Отмена"; ObjectID = "vJC-P4-6ze"; */
+"vJC-P4-6ze.normalTitle" = "Отмена";
+
+/* Class = "UIButton"; normalTitle = "Offline"; ObjectID = "wdp-x4-tJA"; */
+"wdp-x4-tJA.normalTitle" = "Offline";
+
+/* Class = "UILabel"; text = "Ожидаем оператора..."; ObjectID = "y0i-PR-bhD"; */
+"y0i-PR-bhD.text" = "Ожидаем оператора...";
+
+/* Class = "UIButton"; normalTitle = "Закрыть"; ObjectID = "yWY-Oe-zHG"; */
+"yWY-Oe-zHG.normalTitle" = "Закрыть";
+
+/* Class = "UITextField"; placeholder = "Введите вашу почту"; ObjectID = "yc3-7b-iKb"; */
+"yc3-7b-iKb.placeholder" = "Введите вашу почту";
+
+/* Class = "UIButton"; normalTitle = "Закрыть"; ObjectID = "yiL-yd-W5n"; */
+"yiL-yd-W5n.normalTitle" = "Закрыть";

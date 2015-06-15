@@ -508,13 +508,4 @@
 - (void)messageListForConversationId:(NSString *)conversationId
                              success:(void(^)(NSArray *messages))success
                              failure:(void(^)(NSException *ChatException))failure;
-
-
-
-- (void)uploadFileData:(NSData *)fileData
-              fileName:(NSString *)name
-         fileExtention:(NSString *)ext
-              mimeType:(NSString *)type
-               success:(void(^)())success
-               failure:(void(^)(NSException *ChatException))failure;
 @end

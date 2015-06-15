@@ -8,11 +8,11 @@
 
 import Foundation
 
-var URL:String? = "http://authentication-service.livetex.omnibuild:80/"
+var URL:String? = ""
 
-var key:String? = "dev_key_test"
+var key:String? = ""
 
-var siteId:String? = "10011885"
+var siteId:String? = "" //"10009747"//"10011885"
 
 
 class LTApiManager {

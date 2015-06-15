@@ -68,8 +68,9 @@ class LTChatMessageTableViewCell: UITableViewCell {
                 
                 self.messageText.text = massage.message
                 
-//                let timestamp = (self.message.timestamp as NSString).doubleValue
-//                self.timeText.text = handy.timeFormatter.stringFromDate(NSDate(timeIntervalSince1970: NSTimeInterval(timestamp)))
+                let time:NSString = message.creationTime
+                
+                self.timeText.text = time.substringWithRange(NSRange(location: 10, length: 6))
                 
                 self.messgaeConfirmedIco?.hidden = true
             }
