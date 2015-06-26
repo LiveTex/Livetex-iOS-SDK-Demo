@@ -9,7 +9,7 @@
 import Foundation
 
 
-class LTChatViewController: UIViewController {
+class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var operatorIco: UIImageView!
@@ -26,8 +26,12 @@ class LTChatViewController: UIViewController {
     @IBOutlet weak var voteDownBtn: UIButton!
     @IBOutlet weak var voteUpBtn: UIButton!
     
+    var imagePickerController = UIImagePickerController()
+    
     var activityView:DejalBezelActivityView?
-
+    
+    var currentOperatorId:String?
+    
     var messages:Array<AnyObject>! = []
     
     required init(coder aDecoder: NSCoder) {
@@ -50,12 +54,17 @@ class LTChatViewController: UIViewController {
             
             if state.employeeIsSet() {
                 
-//                let url = NSURL(string: state.employee.avatar)
-//                var err: NSError?
-//                var imageData :NSData = NSData(contentsOfURL:url!, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: &err)!
-//                
-//                var bgImage = UIImage(data:imageData)
-//                self.operatorIco.image = bgImage
+                let url = NSURL(string: state.employee.avatar)
+                
+                if url != nil {
+                    
+                    NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: url!), queue: NSOperationQueue.mainQueue(), completionHandler: { (response, data, error) -> Void in
+                        let httpResponse = response as? NSHTTPURLResponse
+                        if httpResponse?.statusCode == 200 && error == nil {
+                            self.operatorIco.image = UIImage(data: data)
+                        }
+                    })
+                }
             }
             
             LTApiManager.sharedInstance.sdk!.messageHistory(20, offset: 0, success: { (messages:[AnyObject]!) -> Void in
@@ -98,7 +107,7 @@ class LTChatViewController: UIViewController {
                         return (timestamp1 as NSString).doubleValue < (timestamp2 as NSString).doubleValue
                     })
                 }
-
+                
                 self.processDialogState(state)
                 
                 }) { (error:NSException!) -> Void in
@@ -109,12 +118,12 @@ class LTChatViewController: UIViewController {
                     self.loadingErrorProcess(error)
             }
             
-        }, failure: { (error:NSException!) -> Void in
-            
-            self.loadingErrorProcess(error)
+            }, failure: { (error:NSException!) -> Void in
+                
+                self.loadingErrorProcess(error)
         })
     }
-
+    
     func sendVote(vote:LTSVoteType!) {
         
         showActivityIndicator()
@@ -123,9 +132,9 @@ class LTChatViewController: UIViewController {
             
             self.removeActivityIndicator()
             
-        }, failure: { (error:NSException!) -> Void in
+            }, failure: { (error:NSException!) -> Void in
                 
-            self.loadingErrorProcess(error)
+                self.loadingErrorProcess(error)
         })
     }
     
@@ -135,7 +144,7 @@ class LTChatViewController: UIViewController {
             return
         }
         
-       self.showActivityIndicator()
+        self.showActivityIndicator()
         
         LTApiManager.sharedInstance.sdk?.sendMessage(message, success: { (msg:LTSTextMessage!) -> Void in
             
@@ -147,9 +156,45 @@ class LTChatViewController: UIViewController {
                 self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
             }
             
-        }, failure: { (error:NSException!) -> Void in
+            }, failure: { (error:NSException!) -> Void in
                 
-            self.loadingErrorProcess(error)
+                self.loadingErrorProcess(error)
+        })
+    }
+    
+    @IBAction func fileSend(sender: AnyObject) {
+        
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+        imagePickerController.allowsEditing = true
+        self.presentViewController(imagePickerController, animated: true, completion: { imageP in
+            
+        })
+    }
+    
+    /*Image Picker Controller Delegate*/
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        
+        let imgData = UIImageJPEGRepresentation(image, 0.0)
+        
+        LTApiManager.sharedInstance.sdk?.uploadFileData(imgData, fileName: "file", fileExtention: "png", mimeType: "imgage/png", recipientID: currentOperatorId, success: { () -> Void in
+            
+            var systemMessage = LTSHoldMessage(text: "Отправлен файл: " + "file" + ".png", timestamp: "")
+            self.messages.append(systemMessage)
+            
+            self.tableView.reloadData()
+            
+            if (self.messages.count != 0) {
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+            }
+            
+            }, failure: { (exp:NSException!) -> Void in
+                self.loadingErrorProcess(exp)
+        })
+        
+        self.presentedViewController?.dismissViewControllerAnimated(true, completion: { imageP in
+            
         })
     }
     
@@ -161,34 +206,30 @@ class LTChatViewController: UIViewController {
             
             LTApiManager.sharedInstance.isSessionOnlineOpen = false
             
-            if (state.conversationIsSet()) {
+            if (state.conversation != nil) {
                 
-                 LTApiManager.sharedInstance.sdk?.closeWithSuccess({ (state:LTSDialogState!) -> Void in
+                LTApiManager.sharedInstance.sdk?.closeWithSuccess({ (state:LTSDialogState!) -> Void in
                     
                     LTApiManager.sharedInstance.onlineEmployeeId = nil
                     
                     let newstate:LTSDialogState = state
-                    LTApiManager.sharedInstance.sdk?.stop()
                     self.removeActivityIndicator()
-                    LTApiManager.sharedInstance.sdk = nil
                     self.performSegueWithIdentifier("authorizathon", sender: nil)
-
-                 }, failure: { (error:NSException!) -> Void in
-                
-                    self.loadingErrorProcess(error)
-                 })
+                    
+                    }, failure: { (error:NSException!) -> Void in
+                        
+                        self.loadingErrorProcess(error)
+                })
                 
             } else {
                 
-                LTApiManager.sharedInstance.sdk?.stop()
                 self.removeActivityIndicator()
-                LTApiManager.sharedInstance.sdk = nil
                 self.performSegueWithIdentifier("authorizathon", sender: nil)
             }
             
-        }, failure: { (error:NSException!) -> Void in
-            
-            self.loadingErrorProcess(error)
+            }, failure: { (error:NSException!) -> Void in
+                
+                self.loadingErrorProcess(error)
         })
     }
     
@@ -244,7 +285,7 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     func confirmTextMessage(messageId: String!) {
         
         for msg:AnyObject in messages {
-         
+            
             if var message = msg as? LTSWTextMessage {
                 
                 if message.messageId == messageId {
@@ -266,7 +307,7 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
         typingLabel.hidden = false
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-             self.typingLabel.hidden = true
+            self.typingLabel.hidden = true
         })
     }
     
@@ -285,7 +326,6 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     
     func notificationListenerErrorOccured(error: NSException!) {
         
-        //self.loadingErrorProcess(error)
     }
 }
 
@@ -295,6 +335,8 @@ extension LTChatViewController {
     func processDialogState(state:LTSDialogState) {
         
         if state.employeeIsSet() {
+            
+            currentOperatorId = state.employee.employeeId
             
             LTApiManager.sharedInstance.onlineEmployeeId = state.employee.employeeId
             
@@ -358,11 +400,11 @@ extension LTChatViewController {
     
     func loadingErrorProcess(error:NSException) {
         
-        var asd = error.userInfo!
-        var error:NSError = (asd["error"] as? NSError)!
+        var asd = error.userInfo
+        var error:NSError? = asd?["error"] as? NSError
         
         self.removeActivityIndicator()
-        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
+        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
         alert.show()
     }
     
@@ -387,11 +429,11 @@ extension LTChatViewController {
             
             self.view.layoutIfNeeded()
             
-        }, completion:{(complete:Bool) -> Void in
-            
-            if (self.messages.count != 0) {
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
-            }
+            }, completion:{(complete:Bool) -> Void in
+                
+                if (self.messages.count != 0) {
+                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+                }
         })
     }
     
@@ -431,7 +473,7 @@ extension LTChatViewController: UITextFieldDelegate {
         typingMessage.text = textField.text + string
         
         LTApiManager.sharedInstance.sdk!.typingWithTypingMessage(typingMessage, success: nil) { (error:NSException!) -> Void in
-        
+            
             //self.loadingErrorProcess(error)
         }
         return  true
@@ -443,7 +485,7 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messages.count;
     }
-
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         if let currentMessage = messages[indexPath.row] as? LTSWTextMessage {
@@ -467,7 +509,7 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if let currentMessage = messages[indexPath.row] as? LTSWTextMessage {
-
+            
             var cell:LTChatMessageTableViewCell!
             
             if currentMessage.senderIsSet() == true {

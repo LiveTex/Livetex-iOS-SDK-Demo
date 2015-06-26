@@ -88,6 +88,12 @@
  Устанавливает APN deviceId пользователя LiveTex. Опционально. Используется для раоботы с сервисом APN
  */
 
+@property(nonatomic, strong) NSString *customToken;
+
+/*!
+ Опционально. Используется для раоботы с кастомным сервисом сервисом APN
+ */
+
 @property(nonatomic, strong) NSString *APNDeviceId;
 /*!
  Реализуемые возможности чата. Передача фаилов, диалог, и тп.
@@ -476,6 +482,7 @@
  */
 
 - (void)createOfflineConversationForVisitor:(LTSOfllineVisitorContacts *)contacts
+                            forDepartmentId:(NSString *)depId
                                     success:(void(^)(NSString *conversationId))success
                                     failure:(void(^)(NSException *ChatException))failure;
 
@@ -508,4 +515,14 @@
 - (void)messageListForConversationId:(NSString *)conversationId
                              success:(void(^)(NSArray *messages))success
                              failure:(void(^)(NSException *ChatException))failure;
+
+
+
+- (void)uploadFileData:(NSData *)fileData
+              fileName:(NSString *)name
+         fileExtention:(NSString *)ext
+              mimeType:(NSString *)type
+           recipientID:(NSString *)resId
+               success:(void(^)())success
+               failure:(void(^)(NSException *ChatException))failure;
 @end

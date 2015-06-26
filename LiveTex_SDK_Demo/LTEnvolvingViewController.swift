@@ -14,7 +14,7 @@ let actionSheetType = (actionSheetModeSelection:88, actionSheetSubSelection:87)
 let statusType = (online:"online", offline:"offline", all:"all")
 
 class LTEnvolvingViewController: UIViewController {
-
+    
     @IBOutlet weak var messagePlaceHolder: UITextField!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var modeField: UITextField!
@@ -30,7 +30,7 @@ class LTEnvolvingViewController: UIViewController {
     
     var subSelectionitems:Array<AnyObject>!
     var selectedSubSelectionItem:AnyObject?
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -48,16 +48,11 @@ class LTEnvolvingViewController: UIViewController {
         }
     }
     
-    @IBAction func modeSelection(sender: AnyObject) {
-        
-        showModeSelectionSheet()
-    }
-    
     @IBAction func subSelection(sender: AnyObject) {
         
         loadAndShowSubSelectionItems()
     }
-
+    
     @IBAction func dismissKeyBoard(sender: AnyObject) {
         nameField.resignFirstResponder()
         ageField.resignFirstResponder()
@@ -74,61 +69,26 @@ extension LTEnvolvingViewController {
         LTApiManager.sharedInstance.sdk!.setVisitorName(nameField.text, success: { () -> Void in
             
             var attr = LTSDialogAttributes()
-            attr.visible = LTSOptions(dictionary: ["Возраст":self.ageField.text])
+            attr.visible = LTSOptions(dictionary: ["livetex_id":self.ageField.text])
             attr.hidden = LTSOptions(dictionary: ["platform": "ios"])
             self.creatConversationForCurrentModeWithAtributes(attr)
             
-        }) { (error:NSException!) -> Void in
+            }) { (error:NSException!) -> Void in
                 
-            self.loadingErrorProcess(error)
+                self.loadingErrorProcess(error)
         }
     }
     
     func creatConversationForCurrentModeWithAtributes(attributes:LTSDialogAttributes) {
         
-        if currentMode == mods.departmentsMode {
-            createDepartmentConversationWithAttributes(attributes)
-        } else if currentMode == mods.epmloyeesMode {
-            createEmployeeConversationWithAttributes(attributes)
-        } else {
-            createConversationWithAttributes(attributes)
-        }
-    }
-    
-    func createConversationWithAttributes(attributes:LTSDialogAttributes) {
-        
-        LTApiManager.sharedInstance.sdk!.requestWithDialogAttributes(attributes,
-            success: { (dilogState:LTSDialogState!) -> Void in
-           
-            self.instantiateFirstMessage()
-            
-        }, failure: { (error:NSException!) -> Void in
-                
-            self.loadingErrorProcess(error)
-        })
+        createDepartmentConversationWithAttributes(attributes)
     }
     
     func createDepartmentConversationWithAttributes(attributes:LTSDialogAttributes) {
-
+        
         let department = self.selectedSubSelectionItem as! LTSDepartment?
         
         LTApiManager.sharedInstance.sdk!.requestWithDepartment(department?.departmentId,
-            dialodAttributes: attributes,
-            success: { (dilogState:LTSDialogState!) -> Void in
-            
-            self.instantiateFirstMessage()
-            
-        }, failure: { (error:NSException!) -> Void in
-                
-            self.loadingErrorProcess(error)
-        })
-    }
-    
-    func createEmployeeConversationWithAttributes(attributes:LTSDialogAttributes) {
-        
-        let employee = self.selectedSubSelectionItem as! LTSEmployee?
-        
-         LTApiManager.sharedInstance.sdk!.requestWithEmployee(employee?.employeeId,
             dialodAttributes: attributes,
             success: { (dilogState:LTSDialogState!) -> Void in
                 
@@ -137,7 +97,7 @@ extension LTEnvolvingViewController {
             }, failure: { (error:NSException!) -> Void in
                 
                 self.loadingErrorProcess(error)
-         })
+        })
     }
     
     func instantiateFirstMessage() {
@@ -147,9 +107,9 @@ extension LTEnvolvingViewController {
             self.removeActivityIndicator()
             self.performSegueWithIdentifier("showChat", sender: nil)
             
-        }, failure: { (error:NSException!) -> Void in
+            }, failure: { (error:NSException!) -> Void in
                 
-            self.loadingErrorProcess(error)
+                self.loadingErrorProcess(error)
         })
     }
 }
@@ -160,42 +120,20 @@ extension LTEnvolvingViewController {
         
         showActivityIndicator()
         
-        if currentMode == mods.departmentsMode {
+        LTApiManager.sharedInstance.sdk!.getDepartments(statusType.online, success: { (items:[AnyObject]!) -> Void in
             
-            LTApiManager.sharedInstance.sdk!.getDepartments(statusType.online, success: { (items:[AnyObject]!) -> Void in
+            if (items.count == 0) {
+                let alert: UIAlertView = UIAlertView(title: "", message:"Нет департаментов онлайн", delegate: nil, cancelButtonTitle: "ОК")
+                alert.show()
+            } else {
                 
-                if (items.count == 0) {
-                    let alert: UIAlertView = UIAlertView(title: "", message:"Нет департаментов онлайн", delegate: nil, cancelButtonTitle: "ОК")
-                    alert.show()
-                } else {
-                    
-                    self.showSubSelectionItemsSheet(items)
-                }
-                self.removeActivityIndicator()
-                
-            }) { (error:NSException!) -> Void in
-                    
-                self.loadingErrorProcess(error)
+                self.showSubSelectionItemsSheet(items)
             }
+            self.removeActivityIndicator()
             
-        } else {
-            
-            LTApiManager.sharedInstance.sdk!.getEmployees(statusType.online, success: { (items:[AnyObject]!) -> Void in
-                
-                
-                if (items.count == 0) {
-                    let alert: UIAlertView = UIAlertView(title: "", message:"Нет операторов онлайн", delegate: nil, cancelButtonTitle: "ОК")
-                    alert.show()
-                } else {
-                    
-                    self.showSubSelectionItemsSheet(items)
-                }
-                self.removeActivityIndicator()
-                
             }) { (error:NSException!) -> Void in
-                    
+                
                 self.loadingErrorProcess(error)
-            }
         }
     }
     
@@ -211,16 +149,8 @@ extension LTEnvolvingViewController {
         
         for item in self.subSelectionitems {
             
-            if self.currentMode == mods.departmentsMode {
-                
-                let department = item as! LTSDepartment
-                sheetTable.addButtonWithTitle(department.name)
-                
-            } else {
-                
-                let employee = item as! LTSEmployee
-                sheetTable.addButtonWithTitle(employee.firstname)
-            }
+            let department = item as! LTSDepartment
+            sheetTable.addButtonWithTitle(department.name)
         }
         
         let index = sheetTable.addButtonWithTitle("Отмена")
@@ -232,26 +162,6 @@ extension LTEnvolvingViewController {
 
 extension LTEnvolvingViewController {
     
-    func showModeSelectionSheet() {
-        
-        let modes = [mods.siteMode, mods.departmentsMode, mods.epmloyeesMode]
-        
-        let sheetTable:UIActionSheet = UIActionSheet()
-        
-        sheetTable.tag = actionSheetType.actionSheetModeSelection
-        
-        sheetTable.delegate = self
-        
-        for item in modes {
-            
-            sheetTable.addButtonWithTitle(item)
-        }
-        
-        let index = sheetTable.addButtonWithTitle("Отмена")
-        sheetTable.cancelButtonIndex = index;
-        
-        sheetTable.showInView(self.view)
-    }
 }
 
 extension LTEnvolvingViewController: UIActionSheetDelegate {
@@ -259,16 +169,8 @@ extension LTEnvolvingViewController: UIActionSheetDelegate {
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         
         if buttonIndex != actionSheet.cancelButtonIndex {
-
-            if actionSheet.tag == actionSheetType.actionSheetModeSelection {
-            
-                let modes = [mods.siteMode, mods.departmentsMode, mods.epmloyeesMode]
-                currentMode = modes[buttonIndex]
-                setupSubSelection()
-            }
-            
             if actionSheet.tag == actionSheetType.actionSheetSubSelection {
-            
+                
                 self.selectedSubSelectionItem = subSelectionitems[buttonIndex]
                 setupSubSelectionFieldText()
             }
@@ -281,62 +183,19 @@ extension LTEnvolvingViewController {
     func setupSubSelection() {
         
         subSelectionField.text = nil
-        
-        switch currentMode {
-            
-        case mods.siteMode :
-            modeField.text = "По сайту"
-            
-            for item:NSLayoutConstraint in subSelectionHidingConstraints {
-                item.constant = 17
-            }
-            
-        case mods.departmentsMode :
-            
-            modeField.text = "По отделу"
-            subSelectionField.placeholder = "Выберите отдел"
-            
-            for item:NSLayoutConstraint in subSelectionHidingConstraints {
-                item.constant = 65
-            }
-            
-        case mods.epmloyeesMode :
-            
-            modeField.text = "По оператору"
-            subSelectionField.placeholder = "Выберите оператора"
-            
-            for item:NSLayoutConstraint in subSelectionHidingConstraints {
-                item.constant = 65
-            }
-            
-        default:
-            modeField.text = "По сайту"
-        }
-        
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.view.layoutIfNeeded()
-        })
+        subSelectionField.placeholder = "Выберите отдел"
     }
     
     func setupSubSelectionFieldText () {
         
-        if currentMode == mods.departmentsMode {
-            
-            let department = selectedSubSelectionItem as! LTSDepartment
-            subSelectionField.text = department.name
-            
-        } else if currentMode == mods.epmloyeesMode {
-            
-            let employee = selectedSubSelectionItem as! LTSEmployee
-            
-            subSelectionField.text = employee.firstname
-        }
+        let department = selectedSubSelectionItem as! LTSDepartment
+        subSelectionField.text = department.name
     }
     
     func isWhiteSpaceString(str:String) -> Bool {
         
         (str as NSString).stringByReplacingOccurrencesOfString(" ", withString: "")
-       
+        
         if str == "" {
             return true
         }
@@ -347,12 +206,12 @@ extension LTEnvolvingViewController {
     
     func showActivityIndicator() {
         
-         activityView = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
+        activityView = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
     }
     
     func removeActivityIndicator() {
         
-         activityView?.animateRemove()
+        activityView?.animateRemove()
     }
     
     func loadingErrorProcess(error:NSException) {

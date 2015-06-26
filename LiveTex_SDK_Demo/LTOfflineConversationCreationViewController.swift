@@ -9,7 +9,7 @@
 import UIKit
 
 class LTOfflineConversationCreationViewController: UIViewController {
-
+    
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var phone: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -20,12 +20,20 @@ class LTOfflineConversationCreationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     @IBAction func send(sender: AnyObject) {
+        
+        if !isValidEmail(email.text) {
+            
+            self.removeActivityIndicator()
+            let alert: UIAlertView = UIAlertView(title: "Ошибка", message: "Неверный формат эл. почты", delegate: nil, cancelButtonTitle: "ОК")
+            alert.show()
+            return
+        }
         
         let  contacts = LTSOfllineVisitorContacts()
         contacts.name = name.text
@@ -34,7 +42,7 @@ class LTOfflineConversationCreationViewController: UIViewController {
         
         self.showActivityIndicator()
         
-        LTApiManager.sharedInstance.sdk?.createOfflineConversationForVisitor(contacts, success: { (convId:String!) -> Void in
+        LTApiManager.sharedInstance.sdk?.createOfflineConversationForVisitor(contacts, forDepartmentId:offlineDeparmentId, success: { (convId:String!) -> Void in
             
             LTApiManager.sharedInstance.offlineConversationId = convId
             
@@ -43,20 +51,28 @@ class LTOfflineConversationCreationViewController: UIViewController {
                 self.removeActivityIndicator()
                 self.performSegueWithIdentifier("offlineChatStart", sender: nil)
                 
-            }, failure: { (exp:NSException!) -> Void in
+                }, failure: { (exp:NSException!) -> Void in
                     
-                self.loadingErrorProcess(exp)
+                    self.loadingErrorProcess(exp)
             })
             
-        }, failure: { (exp:NSException!) -> Void in
-            
-            self.loadingErrorProcess(exp)
+            }, failure: { (exp:NSException!) -> Void in
+                
+                self.loadingErrorProcess(exp)
         })
     }
 }
 
 
 extension LTOfflineConversationCreationViewController {
+    
+    func isValidEmail(testStr:String) -> Bool {
+        // println("validate calendar: \(testStr)")
+        let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(testStr)
+    }
     
     func showActivityIndicator() {
         
@@ -70,11 +86,11 @@ extension LTOfflineConversationCreationViewController {
     
     func loadingErrorProcess(error:NSException) {
         
-        var asd = error.userInfo!
-        var error:NSError = (asd["error"] as? NSError)!
+        var asd = error.userInfo
+        var error:NSError? = asd?["error"] as? NSError
         
         self.removeActivityIndicator()
-        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
+        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
         alert.show()
     }
 }

@@ -9,36 +9,39 @@
 import UIKit
 
 class LTOfflineConversationTableViewController: UITableViewController {
-
+    
     var activityView:DejalBezelActivityView?
     var convList:[LTSOfflineConversation]?
     
     override func viewDidLoad() {
         
-        convList = []
         super.viewDidLoad()
-        self.clearsSelectionOnViewWillAppear = false
+        self.clearsSelectionOnViewWillAppear = true
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        convList = []
         loadConversationList()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return convList!.count
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("LTOfflineConversationTableViewCell", forIndexPath: indexPath) as! LTOfflineConversationTableViewCell
-
+        
         cell.employeeId = self.convList?[indexPath.row].currentOperatorId
         cell.date.text = self.convList?[indexPath.row].creationTime
         
@@ -65,7 +68,7 @@ class LTOfflineConversationTableViewController: UITableViewController {
         return 0.01
     }
     
-    @IBAction func creationDone(segue:UIStoryboardSegue) {
+    @IBAction func listOffline(segue:UIStoryboardSegue) {
         
     }
 }
@@ -85,9 +88,9 @@ extension LTOfflineConversationTableViewController {
             
             self.tableView.reloadData()
             
-        }, failure: { (exeption) -> Void in
-            
-            self.loadingErrorProcess(exeption)
+            }, failure: { (exeption) -> Void in
+                
+                self.loadingErrorProcess(exeption)
         })
     }
 }
@@ -106,11 +109,11 @@ extension LTOfflineConversationTableViewController {
     
     func loadingErrorProcess(error:NSException) {
         
-        var asd = error.userInfo!
-        var error:NSError = (asd["error"] as? NSError)!
+        var asd = error.userInfo
+        var error:NSError? = asd?["error"] as? NSError
         
         self.removeActivityIndicator()
-        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
+        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
         alert.show()
     }
 }

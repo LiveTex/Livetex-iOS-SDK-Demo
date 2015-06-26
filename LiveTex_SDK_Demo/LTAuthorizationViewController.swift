@@ -16,19 +16,38 @@ class LTAuthorizationViewController: UIViewController {
     @IBOutlet weak var onlineModeButton: UIButton!
     @IBOutlet weak var offlineModeButton: UIButton!
     
+    var dialogState:LTSDialogState?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        if LTApiManager.sharedInstance.apnToken == nil {
+            
+            onlineModeButton.enabled = false
+            offlineModeButton.enabled = false
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "gotToken", name: "LTApiManager_token_got", object: nil)
+            
+        } else {
+            startWelcome()
+        }
+    }
+    
+    func gotToken () {
+        
+        onlineModeButton.enabled = true
+        offlineModeButton.enabled = true
+        
         startWelcome()
     }
-
+    
     func clean() {
         
         NSUserDefaults.standardUserDefaults().removeObjectForKey(kLivetexPersistStorage)
@@ -50,21 +69,33 @@ class LTAuthorizationViewController: UIViewController {
         showActivityIndicator()
         
         LTApiManager.sharedInstance.sdk!.runWithSuccess({ (token:String!) -> Void in
-        
+            
             println(token)
+            
+            LTApiManager.sharedInstance.sdk?.getStateWithSuccess({ (state:LTSDialogState!) -> Void in
+                
+                self.dialogState = state
+                if self.dialogState?.conversation != nil {
+                    self.performSegueWithIdentifier("show_chat", sender: nil)
+                }
+                
+                }, failure: { (exp:NSException!) -> Void in
+                    self.loadingErrorProcess(exp)
+            })
+            
             LTApiManager.sharedInstance.sdk!.getEmployees(statusType.online, success: { (items:[AnyObject]!) -> Void in
                 
                 self.removeActivityIndicator()
                 self.processAbility(items)
                 
-            }, failure:{ (error:NSException!) -> Void in
-                
-                self.loadingErrorProcess(error)
+                }, failure:{ (error:NSException!) -> Void in
+                    
+                    self.loadingErrorProcess(error)
             })
             
-        }, failure: { (error:NSException!) -> Void in
-            
-            self.loadingErrorProcess(error)
+            }, failure: { (error:NSException!) -> Void in
+                
+                self.loadingErrorProcess(error)
         })
     }
     
@@ -81,12 +112,21 @@ class LTAuthorizationViewController: UIViewController {
     @IBAction func startOnlineMode(sender:AnyObject) {
         
         LTApiManager.sharedInstance.isSessionOnlineOpen = true
-        self.performSegueWithIdentifier("showEnvolving", sender: nil)
+        
+        if dialogState?.conversation != nil {
+            self.performSegueWithIdentifier("show_chat", sender: nil)
+        } else {
+            self.performSegueWithIdentifier("showEnvolving", sender: nil)
+        }
     }
     
     @IBAction func startOfflineMode(sender:AnyObject) {
         
         self.performSegueWithIdentifier("showOffline", sender: nil)
+    }
+    
+    @IBAction func unwind(segue:UIStoryboardSegue) {
+        
     }
 }
 

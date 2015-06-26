@@ -17,11 +17,11 @@ class LTChatViewControllerOffline: UIViewController {
     @IBOutlet weak var messageInputField: UITextField!
     @IBOutlet weak var messageInputeView: UIView!
     @IBOutlet weak var tableViewBottomMargin: NSLayoutConstraint!
-
+    
     @IBOutlet weak var operatorView: UIView!
     
     var activityView:DejalBezelActivityView?
-
+    
     var messages:[LTSOfflineMessage] = []
     
     required init(coder aDecoder: NSCoder) {
@@ -49,9 +49,9 @@ class LTChatViewControllerOffline: UIViewController {
             self.messages = items as! [LTSOfflineMessage]
             self.tableView.reloadData()
             
-        }, failure: { (exp:NSException!) -> Void in
-            
-            self.loadingErrorProcess(exp)
+            }, failure: { (exp:NSException!) -> Void in
+                
+                self.loadingErrorProcess(exp)
         })
     }
     
@@ -61,7 +61,7 @@ class LTChatViewControllerOffline: UIViewController {
             return
         }
         
-       self.showActivityIndicator()
+        self.showActivityIndicator()
         
         let currentConversationId = LTApiManager.sharedInstance.offlineConversationId
         
@@ -71,16 +71,16 @@ class LTChatViewControllerOffline: UIViewController {
             self.messageInputField.text = ""
             self.loadMessagesAndShow()
             
-        }, failure: { (exp:NSException!) -> Void in
+            }, failure: { (exp:NSException!) -> Void in
                 
-            self.loadingErrorProcess(exp)
+                self.loadingErrorProcess(exp)
         })
     }
     
     @IBAction func close(sender: AnyObject) {
         
         self.performSegueWithIdentifier("authorizathon2", sender: nil)
-
+        
     }
     
     @IBAction func sendMessageAction(sender: AnyObject) {
@@ -148,7 +148,7 @@ extension LTChatViewControllerOffline: LTMobileSDKNotificationHandlerProtocol {
     }
     
     func receiveTextMessage(message: LTSTextMessage!) {
-
+        
     }
     
     func receiveFileMessage(message: LTSFileMessage!) {
@@ -156,7 +156,7 @@ extension LTChatViewControllerOffline: LTMobileSDKNotificationHandlerProtocol {
     }
     
     func confirmTextMessage(messageId: String!) {
-
+        
     }
     
     func receiveTypingMessage(message: LTSTypingMessage!) {
@@ -193,11 +193,11 @@ extension LTChatViewControllerOffline {
     
     func loadingErrorProcess(error:NSException) {
         
-        var asd = error.userInfo!
-        var error:NSError = (asd["error"] as? NSError)!
+        var asd = error.userInfo
+        var error:NSError? = asd?["error"] as? NSError
         
         self.removeActivityIndicator()
-        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
+        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
         alert.show()
     }
     
@@ -222,11 +222,11 @@ extension LTChatViewControllerOffline {
             
             self.view.layoutIfNeeded()
             
-        }, completion:{(complete:Bool) -> Void in
-            
-            if (self.messages.count != 0) {
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
-            }
+            }, completion:{(complete:Bool) -> Void in
+                
+                if (self.messages.count != 0) {
+                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+                }
         })
     }
     
@@ -258,7 +258,7 @@ extension LTChatViewControllerOffline: UITableViewDelegate, UITableViewDataSourc
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messages.count;
     }
-
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         let currentMessage = messages[indexPath.row]
@@ -268,7 +268,7 @@ extension LTChatViewControllerOffline: UITableViewDelegate, UITableViewDataSourc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let currentMessage = messages[indexPath.row]
-
+        
         var cell:LTChatMessageTableViewCell!
         
         if currentMessage.sender != "0" {
