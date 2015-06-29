@@ -64,10 +64,10 @@ class LTChatViewController: UIViewController {
                 
                 var wrappedMessages:[AnyObject] = []
                 
-                for msg:LTSTextMessage in messages as [LTSTextMessage] {
+                for msg:LTSTextMessage in messages as! [LTSTextMessage] {
                     
                     wrappedMessages.append(LTSWTextMessage(sourceMessage:msg))
-                    (wrappedMessages.last as LTSWTextMessage).isConfirmed = true
+                    (wrappedMessages.last as! LTSWTextMessage).isConfirmed = true
                 }
                 
                 self.messages = wrappedMessages
@@ -80,11 +80,11 @@ class LTChatViewController: UIViewController {
                         var timestamp2:String = ""
                         
                         if let c1 = s1 as? LTSWTextMessage {
-                            timestamp1 = c1.timestamp
+                            timestamp1 = c1.timestamp as String
                         }
                         
                         if let c2 = s2 as? LTSWTextMessage {
-                            timestamp2 = c2.timestamp
+                            timestamp2 = c2.timestamp as String
                         }
                         
                         if let c1 = s1 as? LTSHoldMessage {
@@ -355,7 +355,7 @@ extension LTChatViewController {
     func loadingErrorProcess(error:NSException) {
         
         var asd = error.userInfo!
-        var error:NSError = asd["error"] as NSError
+        var error:NSError = asd["error"] as! NSError
         
         self.removeActivityIndicator()
         let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
@@ -370,7 +370,7 @@ extension LTChatViewController {
         
         self.view.layoutIfNeeded()
         
-        let frame: CGRect = (notification.userInfo![UIKeyboardFrameBeginUserInfoKey] as NSValue).CGRectValue()
+        let frame: CGRect = (notification.userInfo![UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
         let keyboardHeight: CGFloat = self.view.convertRect(frame, fromView: nil).size.height
         
         if notification.name == UIKeyboardWillShowNotification {
@@ -379,7 +379,7 @@ extension LTChatViewController {
             tableViewBottomMargin.constant -= keyboardHeight
         }
         
-        UIView.animateWithDuration((notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as Double), delay: 0, options: UIViewAnimationOptions(UInt((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as NSNumber).integerValue << 16)), animations: { () -> Void in
+        UIView.animateWithDuration((notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double), delay: 0, options: UIViewAnimationOptions(UInt((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16)), animations: { () -> Void in
             
             self.view.layoutIfNeeded()
             
@@ -468,11 +468,11 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
             
             if currentMessage.senderIsSet() == true {
                 
-                cell = self.tableView.dequeueReusableCellWithIdentifier("cellIn") as LTChatMessageTableViewCell
+                cell = self.tableView.dequeueReusableCellWithIdentifier("cellIn") as! LTChatMessageTableViewCell
                 
             } else {
                 
-                cell = self.tableView.dequeueReusableCellWithIdentifier("cellOut") as LTChatMessageTableViewCell
+                cell = self.tableView.dequeueReusableCellWithIdentifier("cellOut") as! LTChatMessageTableViewCell
             }
             
             cell.messageSet = self.messages[indexPath.row]
@@ -483,7 +483,7 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
             
             var cell:LTChatMessageTableViewCell!
             
-            cell = self.tableView.dequeueReusableCellWithIdentifier("cellIn") as LTChatMessageTableViewCell
+            cell = self.tableView.dequeueReusableCellWithIdentifier("cellIn") as! LTChatMessageTableViewCell
             cell.messageSet = self.messages[indexPath.row]
             return cell
         }
@@ -491,7 +491,7 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
         if let currentMessage = messages[indexPath.row] as? LTSHoldMessage {
             
             var cell:LTSystemMessageTableViewCell!
-            cell = self.tableView.dequeueReusableCellWithIdentifier("cellSystem") as LTSystemMessageTableViewCell
+            cell = self.tableView.dequeueReusableCellWithIdentifier("cellSystem") as! LTSystemMessageTableViewCell
             cell.messageTextLabel.text = currentMessage.text
             return cell
         }

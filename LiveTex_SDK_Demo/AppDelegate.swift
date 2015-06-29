@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tokenString.appendFormat("%02.2hhx", tokenChars[i])
         }
         
-        LTApiManager.sharedInstance.apnToken = tokenString
+        LTApiManager.sharedInstance.apnToken = tokenString as String
         
         println("tokenString: \(tokenString)")
     }
@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func reachabilityChanged(note:NSNotification) {
         
-        var curReach:Reachability = note.object as Reachability
+        var curReach:Reachability = note.object as! Reachability
         processReachability(curReach)
     }
     
@@ -130,7 +130,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         println("-----------------------processSDKState------------------")
         isResumingSDKWorkFlow = true
         
-        if LTApiManager.sharedInstance.isSessionOpen? == true {
+        if LTApiManager.sharedInstance.isSessionOpen == true {
             
             println("-----------------------initSDK------------------")
             let initParam  = LTMobileSDKInitializationParams()
@@ -189,7 +189,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if state.conversationIsSet() {
             
-            let rootController = storyboard.instantiateViewControllerWithIdentifier("ChatVC") as UIViewController
+            let rootController = storyboard.instantiateViewControllerWithIdentifier("ChatVC") as! UIViewController
             
             if self.window != nil {
                 self.window!.rootViewController = rootController
@@ -197,10 +197,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         } else if LTApiManager.sharedInstance.employeeId != nil {
             
-            LTApiManager.sharedInstance.sdk!.requestWithEmployee(LTApiManager.sharedInstance.employeeId,
+            LTApiManager.sharedInstance.sdk!.requestWithEmployee(LTApiManager.sharedInstance.employeeId as! String,
                 success: { (dilogState:LTSDialogState!) -> Void in
                     
-                let rootController = storyboard.instantiateViewControllerWithIdentifier("ChatVC") as UIViewController
+                let rootController = storyboard.instantiateViewControllerWithIdentifier("ChatVC") as! UIViewController
                 
                 if self.window != nil {
                     self.window!.rootViewController = rootController
@@ -208,7 +208,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
             }, failure: { (error:NSException!) -> Void in
                     
-                let rootController = storyboard.instantiateViewControllerWithIdentifier("EnvolvingVC") as UIViewController
+                let rootController = storyboard.instantiateViewControllerWithIdentifier("EnvolvingVC") as! UIViewController
                 
                 if self.window != nil {
                     self.window!.rootViewController = rootController
@@ -217,7 +217,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         } else {
             
-            let rootController = storyboard.instantiateViewControllerWithIdentifier("EnvolvingVC") as UIViewController
+            let rootController = storyboard.instantiateViewControllerWithIdentifier("EnvolvingVC") as! UIViewController
             
             if self.window != nil {
                 self.window!.rootViewController = rootController
