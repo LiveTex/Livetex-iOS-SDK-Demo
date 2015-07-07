@@ -9,7 +9,7 @@
 import Foundation
 
 
-class LTChatViewControllerOffline: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class LTChatViewControllerOffliner: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var operatorIco: UIImageView!
@@ -17,7 +17,6 @@ class LTChatViewControllerOffline: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var messageInputField: UITextField!
     @IBOutlet weak var messageInputeView: UIView!
     @IBOutlet weak var tableViewBottomMargin: NSLayoutConstraint!
-    
     @IBOutlet weak var operatorView: UIView!
     
     var imagePickerController = UIImagePickerController()
@@ -41,7 +40,7 @@ class LTChatViewControllerOffline: UIViewController, UIImagePickerControllerDele
 
 //MARK: business Flow
 
-extension LTChatViewControllerOffline {
+extension LTChatViewControllerOffliner {
     
     func presentData() {
         
@@ -150,7 +149,7 @@ extension LTChatViewControllerOffline {
 
 //MARK: UIImagePickerControllerDelegates
 
-extension LTChatViewControllerOffline {
+extension LTChatViewControllerOffliner {
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         
@@ -164,7 +163,7 @@ extension LTChatViewControllerOffline {
 
 //MARK: target-Actions
 
-extension LTChatViewControllerOffline {
+extension LTChatViewControllerOffliner {
     
     @IBAction func close(sender: AnyObject) {
         
@@ -189,7 +188,7 @@ extension LTChatViewControllerOffline {
 
 //MARK: LTMobileSDKNotificationHandlerProtocol
 
-extension LTChatViewControllerOffline: LTMobileSDKNotificationHandlerProtocol {
+extension LTChatViewControllerOffliner: LTMobileSDKNotificationHandlerProtocol {
     
     func ban(message: String!) {
         //
@@ -233,7 +232,7 @@ extension LTChatViewControllerOffline: LTMobileSDKNotificationHandlerProtocol {
 
 //MARK: helpers
 
-extension LTChatViewControllerOffline {
+extension LTChatViewControllerOffliner {
     
     func commonPreparation() {
         
@@ -300,7 +299,7 @@ extension LTChatViewControllerOffline {
 
 //MARK: UITextFieldDelegate
 
-extension LTChatViewControllerOffline: UITextFieldDelegate {
+extension LTChatViewControllerOffliner: UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
@@ -311,7 +310,7 @@ extension LTChatViewControllerOffline: UITextFieldDelegate {
 
 //MARK: UITableViewDelegate
 
-extension LTChatViewControllerOffline: UITableViewDelegate, UITableViewDataSource {
+extension LTChatViewControllerOffliner: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.messages.count;
@@ -327,18 +326,18 @@ extension LTChatViewControllerOffline: UITableViewDelegate, UITableViewDataSourc
         
         let currentMessage = messages[indexPath.row]
         
-        var cell:LTChatMessageTableViewCell!
+        var cell:LTOfflineChatMessageTableViewCell!
         
         if currentMessage.sender != "0" {
             
-            cell = self.tableView.dequeueReusableCellWithIdentifier("cellIn") as! LTChatMessageTableViewCell
+            cell = self.tableView.dequeueReusableCellWithIdentifier("cellIn") as! LTOfflineChatMessageTableViewCell
             
         } else {
             
-            cell = self.tableView.dequeueReusableCellWithIdentifier("cellOut") as! LTChatMessageTableViewCell
+            cell = self.tableView.dequeueReusableCellWithIdentifier("cellOut") as! LTOfflineChatMessageTableViewCell
         }
         
-        cell.offlineMessageSet = self.messages[indexPath.row]
+        cell.messageSet = self.messages[indexPath.row]
         return cell
     }
     

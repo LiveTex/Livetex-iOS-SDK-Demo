@@ -689,9 +689,9 @@
                                         </connections>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMR-mU-LPF" userLabel="send">
-                                        <rect key="frame" x="310" y="237" width="124" height="28"/>
+                                        <rect key="frame" x="310" y="237" width="124" height="32"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="28" id="1OV-i0-osF"/>
+                                            <constraint firstAttribute="height" constant="32" id="1OV-i0-osF"/>
                                             <constraint firstAttribute="width" constant="124" id="T67-LX-Fxd"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -703,10 +703,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJC-P4-6ze" userLabel="send">
-                                        <rect key="frame" x="166" y="237" width="124" height="28"/>
+                                        <rect key="frame" x="166" y="237" width="124" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="124" id="Yqr-Vh-pTV"/>
-                                            <constraint firstAttribute="height" constant="28" id="y24-Sh-rHb"/>
+                                            <constraint firstAttribute="height" constant="32" id="y24-Sh-rHb"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="Отмена" backgroundImage="cancel_btn.png">
@@ -717,14 +717,14 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle.png" translatesAutoresizingMaskIntoConstraints="NO" id="juC-Z6-4SE" userLabel="background1">
-                                        <rect key="frame" x="166" y="89" width="266" height="28"/>
+                                        <rect key="frame" x="166" y="84" width="266" height="33"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="28" id="JDE-4D-HbH"/>
+                                            <constraint firstAttribute="height" constant="33" id="JDE-4D-HbH"/>
                                             <constraint firstAttribute="width" constant="266" id="osN-sc-W7i"/>
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Введите телефон" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OgD-9J-MnZ" userLabel="name">
-                                        <rect key="frame" x="179" y="95" width="240" height="17"/>
+                                        <rect key="frame" x="179" y="92" width="240" height="17"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="DGg-2Z-CPo"/>
                                             <constraint firstAttribute="height" constant="17" id="EB8-zP-f6M"/>
@@ -780,15 +780,15 @@
                                     <constraint firstAttribute="centerX" secondItem="juC-Z6-4SE" secondAttribute="centerX" constant="1" id="3o3-fl-g2V"/>
                                     <constraint firstAttribute="centerY" secondItem="euN-ji-yVw" secondAttribute="centerY" constant="129" id="3oW-KR-R8z"/>
                                     <constraint firstItem="VzU-rW-hLd" firstAttribute="top" secondItem="wjf-cj-U1E" secondAttribute="top" id="9JG-Cv-38D"/>
-                                    <constraint firstAttribute="centerY" secondItem="vJC-P4-6ze" secondAttribute="centerY" constant="49" id="HMd-KK-JwY"/>
-                                    <constraint firstAttribute="centerY" secondItem="OgD-9J-MnZ" secondAttribute="centerY" constant="196.5" id="XXq-06-kqW"/>
+                                    <constraint firstAttribute="centerY" secondItem="vJC-P4-6ze" secondAttribute="centerY" constant="47" id="HMd-KK-JwY"/>
+                                    <constraint firstAttribute="centerY" secondItem="OgD-9J-MnZ" secondAttribute="centerY" constant="199.5" id="XXq-06-kqW"/>
                                     <constraint firstAttribute="centerX" secondItem="Pln-aB-55x" secondAttribute="centerX" constant="28" id="Ycf-0u-wPf"/>
                                     <constraint firstAttribute="centerX" secondItem="PtR-Hz-DLT" secondAttribute="centerX" constant="1" id="bfg-CI-K6M"/>
                                     <constraint firstAttribute="centerX" secondItem="kMR-mU-LPF" secondAttribute="centerX" constant="-72" id="cdp-93-zZM"/>
-                                    <constraint firstAttribute="centerY" secondItem="kMR-mU-LPF" secondAttribute="centerY" constant="49" id="eMC-9N-S4T"/>
+                                    <constraint firstAttribute="centerY" secondItem="kMR-mU-LPF" secondAttribute="centerY" constant="47" id="eMC-9N-S4T"/>
                                     <constraint firstAttribute="centerY" secondItem="Pln-aB-55x" secondAttribute="centerY" constant="145" id="exf-bZ-bEz"/>
                                     <constraint firstAttribute="trailing" secondItem="VzU-rW-hLd" secondAttribute="trailing" id="kaW-Fy-hVr"/>
-                                    <constraint firstAttribute="centerY" secondItem="juC-Z6-4SE" secondAttribute="centerY" constant="197" id="mlR-Ta-u2B"/>
+                                    <constraint firstAttribute="centerY" secondItem="juC-Z6-4SE" secondAttribute="centerY" constant="199.5" id="mlR-Ta-u2B"/>
                                     <constraint firstAttribute="centerX" secondItem="OgD-9J-MnZ" secondAttribute="centerX" constant="1" id="uHs-ct-11f"/>
                                     <constraint firstAttribute="centerY" secondItem="PtR-Hz-DLT" secondAttribute="centerY" constant="128.5" id="xlu-VO-KcS"/>
                                 </constraints>
@@ -816,7 +816,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JHe-nO-ZWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="O73-An-eFA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1743" y="-570"/>
+            <point key="canvasLocation" x="1736" y="-664"/>
         </scene>
         <!--ChatViewController-->
         <scene sceneID="hBe-db-CG4">
@@ -1667,7 +1667,7 @@
         <!--ChatViewController-->
         <scene sceneID="8rU-Pj-Yo4">
             <objects>
-                <viewController storyboardIdentifier="ChatOfflineVC" id="eGr-eO-Xoh" userLabel="ChatViewController" customClass="LTChatViewControllerOffline" customModule="LiveTex_SDK" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatOfflineVC" id="eGr-eO-Xoh" userLabel="ChatViewController" customClass="LTChatViewControllerOffliner" customModule="LiveTex_SDK" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vHe-dl-LmS"/>
                         <viewControllerLayoutGuide type="bottom" id="Xgc-Uu-fot"/>
@@ -1949,7 +1949,7 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="481"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="11" reuseIdentifier="cellOut" rowHeight="65" id="VzQ-aD-Yyp" customClass="LTChatMessageTableViewCell" customModule="LiveTex_SDK" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="11" reuseIdentifier="cellOut" rowHeight="65" id="VzQ-aD-Yyp" customClass="LTOfflineChatMessageTableViewCell" customModule="LiveTex_SDK" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VzQ-aD-Yyp" id="35R-tG-HOw">
@@ -2047,7 +2047,7 @@
                                             <outlet property="timeText" destination="bl1-7z-GHH" id="nkq-wL-TLa"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="11" reuseIdentifier="cellIn" rowHeight="66" id="sSA-E9-izh" customClass="LTChatMessageTableViewCell" customModule="LiveTex_SDK" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="11" reuseIdentifier="cellIn" rowHeight="66" id="sSA-E9-izh" customClass="LTOfflineChatMessageTableViewCell" customModule="LiveTex_SDK" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sSA-E9-izh" id="JzU-Uc-QG9">
@@ -2314,7 +2314,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HbD-0h-xvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="805"/>
+            <point key="canvasLocation" x="1077" y="841"/>
         </scene>
     </scenes>
     <resources>

@@ -37,6 +37,7 @@
 		55F73B0B1A0A6EB900C28B0A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0A1A0A6EB900C28B0A /* Images.xcassets */; };
 		55F73B0E1A0A6EB900C28B0A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */; };
 		7E023E0A1B4BDCD5003E3079 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E023E091B4BDCD5003E3079 /* libLTMobileSDK.a */; };
+		7E023E101B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E023E0F1B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift */; };
 		7E0EF9621B29AA6A007C7CD4 /* 1376466473_manager1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E0EF9611B29AA6A007C7CD4 /* 1376466473_manager1.jpg */; };
 		7E4BF9DA1B26FF5700FF5C80 /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9CF1B26FF5700FF5C80 /* AppIcon29x29.png */; };
 		7E4BF9DB1B26FF5700FF5C80 /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D01B26FF5700FF5C80 /* AppIcon29x29@2x.png */; };
@@ -54,7 +55,7 @@
 		7EDB52EB1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */; };
 		7EDB52ED1B232414005320B4 /* LTOfflineConversationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */; };
 		7EDB52EF1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */; };
-		7EDB52F11B25F673005320B4 /* LTChatViewControllerOffline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52F01B25F673005320B4 /* LTChatViewControllerOffline.swift */; };
+		7EDB52F11B25F673005320B4 /* LTOfflineChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */; };
 		7EDB52F31B26DA63005320B4 /* lt-auth-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB52F21B26DA63005320B4 /* lt-auth-logo@2x.png */; };
 		7EDB52F71B26DA6A005320B4 /* button_online@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB52F41B26DA6A005320B4 /* button_online@2x.png */; };
 		7EDB52F81B26DA6A005320B4 /* button_offline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB52F51B26DA6A005320B4 /* button_offline@2x.png */; };
@@ -99,6 +100,7 @@
 		7E023E071B4BDCD5003E3079 /* LTSDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
 		7E023E081B4BDCD5003E3079 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
 		7E023E091B4BDCD5003E3079 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
+		7E023E0F1B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineChatMessageTableViewCell.swift; sourceTree = "<group>"; };
 		7E0EF9611B29AA6A007C7CD4 /* 1376466473_manager1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1376466473_manager1.jpg; sourceTree = "<group>"; };
 		7E4BF9CF1B26FF5700FF5C80 /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
 		7E4BF9D01B26FF5700FF5C80 /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
@@ -117,7 +119,7 @@
 		7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationTableViewCell.swift; sourceTree = "<group>"; };
 		7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationTableViewController.swift; sourceTree = "<group>"; };
 		7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationCreationViewController.swift; sourceTree = "<group>"; };
-		7EDB52F01B25F673005320B4 /* LTChatViewControllerOffline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTChatViewControllerOffline.swift; sourceTree = "<group>"; };
+		7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineChatViewController.swift; sourceTree = "<group>"; };
 		7EDB52F21B26DA63005320B4 /* lt-auth-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lt-auth-logo@2x.png"; sourceTree = "<group>"; };
 		7EDB52F41B26DA6A005320B4 /* button_online@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_online@2x.png"; sourceTree = "<group>"; };
 		7EDB52F51B26DA6A005320B4 /* button_offline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_offline@2x.png"; sourceTree = "<group>"; };
@@ -289,7 +291,8 @@
 		7EDB52E71B23236A005320B4 /* offlineChanel */ = {
 			isa = PBXGroup;
 			children = (
-				7EDB52F01B25F673005320B4 /* LTChatViewControllerOffline.swift */,
+				7E023E0F1B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift */,
+				7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */,
 				7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */,
 				7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */,
 				7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */,
@@ -404,13 +407,14 @@
 				55D666081A1364CC001747B0 /* LTEnvolvingViewController.swift in Sources */,
 				553859581A13AFCA0067A33F /* LTChatViewController.swift in Sources */,
 				55DEA8EE1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift in Sources */,
+				7E023E101B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift in Sources */,
 				553859561A138E510067A33F /* DejalActivityView.m in Sources */,
 				55CC14FD1A3B2A9400C1456C /* Reachability.m in Sources */,
 				55DEA8EF1A35D7DC006ED45A /* LTClaimingViewController.swift in Sources */,
 				55F73B061A0A6EB900C28B0A /* LTAuthorizationViewController.swift in Sources */,
 				55F73B011A0A6EB800C28B0A /* AppDelegate.swift in Sources */,
 				7EDB52ED1B232414005320B4 /* LTOfflineConversationTableViewController.swift in Sources */,
-				7EDB52F11B25F673005320B4 /* LTChatViewControllerOffline.swift in Sources */,
+				7EDB52F11B25F673005320B4 /* LTOfflineChatViewController.swift in Sources */,
 				55DEA8F21A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift in Sources */,
 				7EDB52EB1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift in Sources */,
 				55D666061A135F2C001747B0 /* LTApiManager.swift in Sources */,

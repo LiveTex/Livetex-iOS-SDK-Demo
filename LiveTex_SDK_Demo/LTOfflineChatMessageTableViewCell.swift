@@ -9,7 +9,7 @@
 import UIKit
 import Darwin
 
-class LTChatMessageTableViewCell: UITableViewCell {
+class LTOfflineChatMessageTableViewCell: UITableViewCell {
 
     @IBOutlet weak var messageText: UILabel!
     @IBOutlet weak var backgoundImage2: UIImageView!
@@ -30,27 +30,22 @@ class LTChatMessageTableViewCell: UITableViewCell {
             self.message = messageNew
             handy.timeFormatter.dateFormat = "hh:mm"
             
-            if let massage = messageNew as? LTSWTextMessage {
+            if let massage = messageNew as? LTSOfflineMessage {
                 
-                self.messageText.text = massage.text
-                let timestamp = (self.message.timestamp as NSString).doubleValue
-                self.timeText.text = handy.timeFormatter.stringFromDate(NSDate(timeIntervalSince1970: NSTimeInterval(timestamp)))
+                if massage.url != nil {
+                    self.messageText.text = "Отправлен файл: " + massage.url
+                } else {
+                    self.messageText.text = massage.message
+                }
                 
-                self.messgaeConfirmedIco?.hidden = !massage.isConfirmed
-            }
-            
-            if let massage = messageNew as? LTSFileMessage {
-                
-                self.messageText.text = massage.url
-                let timestamp = (self.message.timestamp as NSString).doubleValue
-                self.timeText.text = handy.timeFormatter.stringFromDate(NSDate(timeIntervalSince1970: NSTimeInterval(timestamp)))
+                let time:NSString = message.creationTime
+                self.timeText.text = time.substringWithRange(NSRange(location: 10, length: 6))
                 self.messgaeConfirmedIco?.hidden = true
             }
-
+            
             layoutSubviews()
-        }
-        
-        get {
+            
+        } get {
             
             return self.message
         }
@@ -65,7 +60,6 @@ class LTChatMessageTableViewCell: UITableViewCell {
     class func getSizeForText(text:String) -> Double {
         
         var spec:Double = 24.0
-        
         var rect:CGRect = (text as NSString).boundingRectWithSize(CGSize(width: 250, height: DBL_MAX), options: (NSStringDrawingOptions.UsesLineFragmentOrigin), attributes:[NSFontAttributeName : UIFont.systemFontOfSize(17.0)], context:nil)
 
         return Double(rect.size.height) + spec
