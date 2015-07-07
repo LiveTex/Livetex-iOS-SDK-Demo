@@ -9,7 +9,7 @@
 import Foundation
 
 
-class LTChatViewControllerOffline: UIViewController {
+class LTChatViewControllerOffline: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var operatorIco: UIImageView!
@@ -20,6 +20,7 @@ class LTChatViewControllerOffline: UIViewController {
     
     @IBOutlet weak var operatorView: UIView!
     
+    var imagePickerController = UIImagePickerController()
     var activityView:DejalBezelActivityView?
     
     var messages:[LTSOfflineMessage] = []
@@ -32,12 +33,17 @@ class LTChatViewControllerOffline: UIViewController {
     
     override func viewDidLoad() {
         
-        loadMessagesAndShow()
-        loadOperatoeInfo()
         commonPreparation()
+        presentData()
+        loadOperatoeInfo()
     }
+}
+
+//MARK: business Flow
+
+extension LTChatViewControllerOffline {
     
-    func loadMessagesAndShow() {
+    func presentData() {
         
         self.showActivityIndicator()
         
@@ -65,27 +71,34 @@ class LTChatViewControllerOffline: UIViewController {
         
         let currentConversationId = LTApiManager.sharedInstance.offlineConversationId
         
-        LTApiManager.sharedInstance.sdk?.sendOfflineMessageWithText(self.messageInputField.text, conversationId: currentConversationId, success: { () -> Void in
+        LTApiManager.sharedInstance.sdk?.sendOfflineMessageWithText(self.messageInputField.text,
+            conversationId: currentConversationId,
+            success: { () -> Void in
             
             self.removeActivityIndicator()
             self.messageInputField.text = ""
-            self.loadMessagesAndShow()
+            self.presentData()
             
-            }, failure: { (exp:NSException!) -> Void in
+        }, failure: { (exp:NSException!) -> Void in
                 
-                self.loadingErrorProcess(exp)
+            self.loadingErrorProcess(exp)
         })
     }
     
-    @IBAction func close(sender: AnyObject) {
+    func uploadFile(imgData:NSData) {
         
-        self.performSegueWithIdentifier("authorizathon2", sender: nil)
-        
-    }
-    
-    @IBAction func sendMessageAction(sender: AnyObject) {
-        
-        sendMessage(messageInputField.text)
+        LTApiManager.sharedInstance.sdk?.uploadOfflineFileData(imgData,
+            fileName:"file",
+            fileExtention:"png",
+            mimeType:"imgage/png",
+            conversationId:LTApiManager.sharedInstance.offlineConversationId,
+            success: { () -> Void in
+            
+            self.presentData()
+            
+            }, failure: { (exp:NSException!) -> Void in
+                self.loadingErrorProcess(exp)
+        })
     }
     
     func loadOperatoeInfo() {
@@ -95,75 +108,115 @@ class LTChatViewControllerOffline: UIViewController {
         
         LTApiManager.sharedInstance.sdk?.offlineConversationsListWithSuccess({ (array:[AnyObject]!) -> Void in
             
-            let convs = array as! [LTSOfflineConversation]
+            let conversations = array as! [LTSOfflineConversation]
             
-            for conv in convs {
+            for currentConversation in conversations {
                 
-                if conv.conversationId == currentConversationId! {
+                if (currentConversation.conversationId == currentConversationId!) {
                     
-                    currentEmpoyeeId = conv.currentOperatorId
+                    currentEmpoyeeId = currentConversation.currentOperatorId
                     
                     LTApiManager.sharedInstance.sdk?.getEmployees(statusType.all, success: { (items:[AnyObject]!) -> Void in
                         
                         let employees = items as! [LTSEmployee]
                         
-                        for item in employees {
+                        for currentEmployee in employees {
                             
-                            let Employee = item as LTSEmployee
-                            
-                            if (Employee.employeeId == currentEmpoyeeId) {
+                            if (currentEmployee.employeeId == currentEmpoyeeId) {
                                 
-                                let url = NSURL(string: Employee.avatar)
+                                let url = NSURL(string: currentEmployee.avatar)
                                 var err: NSError?
                                 var imageData :NSData = NSData(contentsOfURL:url!, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: &err)!
                                 
                                 var bgImage = UIImage(data:imageData)
                                 self.operatorIco.image = bgImage
-                                self.operatorName.text = Employee.firstname! + "" + Employee.lastname!
+                                self.operatorName.text = currentEmployee.firstname! + "" + currentEmployee.lastname!
                             }
                         }
                         
-                        }, failure: { (exeption) -> Void in
+                    }, failure: { (exeption) -> Void in
                             
-                            self.loadingErrorProcess(exeption)
+                        self.loadingErrorProcess(exeption)
                     })
                 }
             }
             
-            }, failure: { (exeption) -> Void in
+        }, failure: { (exeption) -> Void in
                 
-                self.loadingErrorProcess(exeption)
+            self.loadingErrorProcess(exeption)
         })
     }
 }
 
+//MARK: UIImagePickerControllerDelegates
+
+extension LTChatViewControllerOffline {
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        
+        let imgData = UIImageJPEGRepresentation(image, 0.0)
+        
+        uploadFile(imgData)
+        
+        self.presentedViewController?.dismissViewControllerAnimated(true, completion:nil)
+    }
+}
+
+//MARK: target-Actions
+
+extension LTChatViewControllerOffline {
+    
+    @IBAction func close(sender: AnyObject) {
+        
+        self.performSegueWithIdentifier("authorizathon2", sender: nil)
+    }
+    
+    @IBAction func sendMessageAction(sender: AnyObject) {
+        
+        sendMessage(messageInputField.text)
+    }
+    
+    @IBAction func fileSend(sender: AnyObject) {
+        
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+        imagePickerController.allowsEditing = true
+        self.presentViewController(imagePickerController, animated: true, completion: { imageP in
+            
+        })
+    }
+}
+
+//MARK: LTMobileSDKNotificationHandlerProtocol
+
 extension LTChatViewControllerOffline: LTMobileSDKNotificationHandlerProtocol {
     
     func ban(message: String!) {
-        
+        //
     }
     
     func updateDialogState(state: LTSDialogState!) {
-        
+        //
     }
     
     func receiveTextMessage(message: LTSTextMessage!) {
-        
+        //
     }
     
     func receiveFileMessage(message: LTSFileMessage!) {
-        
+        //
     }
     
     func confirmTextMessage(messageId: String!) {
-        
+        //
     }
     
     func receiveTypingMessage(message: LTSTypingMessage!) {
-        
+        //
     }
     
     func receiveHoldMessage(message: LTSHoldMessage!) {
+        //
     }
     
     func receiveOfflineMessage(conversationId: String!, message: LTSOfflineMessage!) {
@@ -174,12 +227,26 @@ extension LTChatViewControllerOffline: LTMobileSDKNotificationHandlerProtocol {
     
     func notificationListenerErrorOccured(error: NSException!) {
         
-        //self.loadingErrorProcess(error)
+        self.loadingErrorProcess(error)
     }
 }
 
+//MARK: helpers
 
 extension LTChatViewControllerOffline {
+    
+    func commonPreparation() {
+        
+        UIApplication.sharedApplication().keyWindow?.endEditing(true)
+        
+        operatorIco.layer.borderWidth = 2.0
+        operatorIco.layer.borderColor = UIColor.whiteColor().CGColor
+        operatorIco.clipsToBounds = true
+        operatorIco.layer.cornerRadius = 20.0
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillHideNotification, object: nil)
+    }
     
     func showActivityIndicator() {
         
@@ -229,20 +296,9 @@ extension LTChatViewControllerOffline {
                 }
         })
     }
-    
-    func commonPreparation() {
-        
-        UIApplication.sharedApplication().keyWindow?.endEditing(true)
-        
-        operatorIco.layer.borderWidth = 2.0
-        operatorIco.layer.borderColor = UIColor.whiteColor().CGColor
-        operatorIco.clipsToBounds = true
-        operatorIco.layer.cornerRadius = 20.0
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillHideNotification, object: nil)
-    }
 }
+
+//MARK: UITextFieldDelegate
 
 extension LTChatViewControllerOffline: UITextFieldDelegate {
     
@@ -252,6 +308,8 @@ extension LTChatViewControllerOffline: UITextFieldDelegate {
         return true
     }
 }
+
+//MARK: UITableViewDelegate
 
 extension LTChatViewControllerOffline: UITableViewDelegate, UITableViewDataSource {
     

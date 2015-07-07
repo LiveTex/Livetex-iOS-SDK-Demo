@@ -516,13 +516,19 @@
                              success:(void(^)(NSArray *messages))success
                              failure:(void(^)(NSException *ChatException))failure;
 
-
-
 - (void)uploadFileData:(NSData *)fileData
               fileName:(NSString *)name
          fileExtention:(NSString *)ext
               mimeType:(NSString *)type
            recipientID:(NSString *)resId
+               success:(void(^)())success
+               failure:(void(^)(NSException *ChatException))failure;
+
+- (void)uploadOfflineFileData:(NSData *)fileData
+              fileName:(NSString *)name
+         fileExtention:(NSString *)ext
+              mimeType:(NSString *)type
+           conversationId:(NSString *)resId
                success:(void(^)())success
                failure:(void(^)(NSException *ChatException))failure;
 @end

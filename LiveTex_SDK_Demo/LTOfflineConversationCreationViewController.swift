@@ -24,14 +24,17 @@ class LTOfflineConversationCreationViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+}
+
+//MARK: business flow
+
+extension LTOfflineConversationCreationViewController {
     
-    @IBAction func send(sender: AnyObject) {
+    func creatOfflineConversation() {
         
         if !isValidEmail(email.text) {
             
-            self.removeActivityIndicator()
-            let alert: UIAlertView = UIAlertView(title: "Ошибка", message: "Неверный формат эл. почты", delegate: nil, cancelButtonTitle: "ОК")
-            alert.show()
+            UIAlertView(title: "Ошибка", message: "Неверный формат эл. почты", delegate: nil, cancelButtonTitle: "ОК").show()
             return
         }
         
@@ -63,11 +66,20 @@ class LTOfflineConversationCreationViewController: UIViewController {
     }
 }
 
+//MARK: actions
+
+extension LTOfflineConversationCreationViewController {
+    
+    @IBAction func send(sender: AnyObject) {
+        creatOfflineConversation()
+    }
+}
+
+//MARK: helpers
 
 extension LTOfflineConversationCreationViewController {
     
     func isValidEmail(testStr:String) -> Bool {
-        // println("validate calendar: \(testStr)")
         let emailRegEx = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)

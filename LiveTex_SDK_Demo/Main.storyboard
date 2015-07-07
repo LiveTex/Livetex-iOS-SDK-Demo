@@ -47,7 +47,7 @@
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="180" id="qq5-Bo-zkl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wdp-x4-tJA">
@@ -122,7 +122,7 @@
                                                 <constraint firstAttribute="width" constant="207" id="Pdg-tF-Jc2"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -136,7 +136,7 @@
  тип данных одного эле, в противном случае вызывается failure,
  параметром у которого явлется объект типа NSExepti</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -332,7 +332,7 @@
                                     <constraint firstAttribute="width" constant="162" id="zip-iO-wHL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Контактные данные:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uo0-Sb-khA">
@@ -342,7 +342,7 @@
                                     <constraint firstAttribute="width" constant="162" id="kqU-Ew-ybf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Введите Ваше имя" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aEC-yu-NeH" userLabel="subSelection">
@@ -1888,7 +1888,7 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iNJ-e1-kmQ" userLabel="inputeField">
-                                        <rect key="frame" x="8" y="13" width="506" height="30"/>
+                                        <rect key="frame" x="54" y="13" width="460" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="xyN-A0-KBQ"/>
                                         </constraints>
@@ -1898,15 +1898,32 @@
                                             <outlet property="delegate" destination="eGr-eO-Xoh" id="rsl-yV-uxl"/>
                                         </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUg-v9-fX3">
+                                        <rect key="frame" x="8" y="13" width="38" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="38" id="9XG-8w-HOz"/>
+                                            <constraint firstAttribute="height" constant="30" id="BVH-Ik-vLI"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="38" id="aI5-hn-WL9"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="fXd-cH-GfL"/>
+                                        </constraints>
+                                        <state key="normal" image="send_file_icon.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="fileSend:" destination="eGr-eO-Xoh" eventType="touchUpInside" id="vnd-g8-TX0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="A16-IM-mEy" firstAttribute="leading" secondItem="iNJ-e1-kmQ" secondAttribute="trailing" constant="20" id="0W2-x1-8HD"/>
+                                    <constraint firstItem="VUg-v9-fX3" firstAttribute="top" secondItem="lli-pR-jRK" secondAttribute="top" constant="13" id="1CK-zC-QXh"/>
                                     <constraint firstAttribute="centerY" secondItem="iNJ-e1-kmQ" secondAttribute="centerY" id="674-Nc-m6a"/>
-                                    <constraint firstItem="iNJ-e1-kmQ" firstAttribute="leading" secondItem="lli-pR-jRK" secondAttribute="leading" constant="8" id="GKT-L7-bkf"/>
+                                    <constraint firstItem="iNJ-e1-kmQ" firstAttribute="leading" secondItem="lli-pR-jRK" secondAttribute="leading" constant="54" id="GKT-L7-bkf"/>
                                     <constraint firstAttribute="centerY" secondItem="A16-IM-mEy" secondAttribute="centerY" id="J2a-3U-rea"/>
                                     <constraint firstAttribute="height" constant="55" id="XzE-ZC-CVd"/>
                                     <constraint firstItem="vPL-cs-y7v" firstAttribute="leading" secondItem="lli-pR-jRK" secondAttribute="leading" id="aYm-ul-Skc"/>
+                                    <constraint firstItem="VUg-v9-fX3" firstAttribute="leading" secondItem="lli-pR-jRK" secondAttribute="leading" constant="8" id="dbb-QJ-3Kr"/>
                                     <constraint firstAttribute="height" constant="55" placeholder="YES" id="hxj-4Y-qsg"/>
                                     <constraint firstAttribute="bottom" secondItem="vPL-cs-y7v" secondAttribute="bottom" id="uUQ-i4-a8y"/>
                                     <constraint firstAttribute="trailing" secondItem="A16-IM-mEy" secondAttribute="trailing" constant="20" id="vUe-9d-Unf"/>
@@ -2323,6 +2340,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jXv-K2-4Yq"/>
-        <segue reference="e9z-9S-brt"/>
+        <segue reference="Nh1-D7-IMN"/>
     </inferredMetricsTieBreakers>
 </document>

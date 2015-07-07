@@ -28,6 +28,10 @@ class LTAuthorizationViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        commonPreparations()
+    }
+    
+    func commonPreparations() {
         
         if LTApiManager.sharedInstance.apnToken == nil {
             
@@ -39,24 +43,19 @@ class LTAuthorizationViewController: UIViewController {
             startWelcome()
         }
     }
-    
-    func gotToken () {
-        
-        onlineModeButton.enabled = true
-        offlineModeButton.enabled = true
-        
-        startWelcome()
-    }
+}
+
+//MARK: business Flow
+
+extension LTAuthorizationViewController {
     
     func clean() {
         
         NSUserDefaults.standardUserDefaults().removeObjectForKey(kLivetexPersistStorage)
         NSUserDefaults.standardUserDefaults().synchronize()
     }
-    
+
     func startWelcome() {
-        
-        //clean()
         
         let initParam  = LTMobileSDKInitializationParams()
         initParam.sdkKey = key
@@ -71,43 +70,66 @@ class LTAuthorizationViewController: UIViewController {
         LTApiManager.sharedInstance.sdk!.runWithSuccess({ (token:String!) -> Void in
             
             println(token)
+            self.processOnlineConversationState()
+            self.processOnlineConversationAbility()
             
-            LTApiManager.sharedInstance.sdk?.getStateWithSuccess({ (state:LTSDialogState!) -> Void in
+        }, failure: { (error:NSException!) -> Void in
                 
-                self.dialogState = state
-                if self.dialogState?.conversation != nil {
-                    self.performSegueWithIdentifier("show_chat", sender: nil)
-                }
-                
-                }, failure: { (exp:NSException!) -> Void in
-                    self.loadingErrorProcess(exp)
-            })
-            
-            LTApiManager.sharedInstance.sdk!.getEmployees(statusType.online, success: { (items:[AnyObject]!) -> Void in
-                
-                self.removeActivityIndicator()
-                self.processAbility(items)
-                
-                }, failure:{ (error:NSException!) -> Void in
-                    
-                    self.loadingErrorProcess(error)
-            })
-            
-            }, failure: { (error:NSException!) -> Void in
-                
-                self.loadingErrorProcess(error)
+            self.loadingErrorProcess(error)
         })
     }
     
-    func processAbility(items:[AnyObject]!) {
+    func processOnlineConversationState() {
         
-        if (items.count == 0) {
-            suggetionLabel.text = "В данный момент нет операторов онлайн, возможен только режим оффлайн обращения"
-            onlineModeButton.enabled = false
-        } else {
-            suggetionLabel.text =  ""
-        }
+        LTApiManager.sharedInstance.sdk?.getStateWithSuccess({ (state:LTSDialogState!) -> Void in
+        
+            self.dialogState = state
+            if self.dialogState?.conversation != nil {
+                self.performSegueWithIdentifier("show_chat", sender: nil)
+            }
+        
+        }, failure: { (exp:NSException!) -> Void in
+        
+            self.loadingErrorProcess(exp)
+        })
     }
+
+    func processOnlineConversationAbility() {
+        
+        LTApiManager.sharedInstance.sdk!.getEmployees(statusType.online, success: { (items:[AnyObject]!) -> Void in
+            
+            self.removeActivityIndicator()
+            
+            if (items.count == 0) {
+                self.suggetionLabel.text = "В данный момент нет операторов онлайн, возможен только режим оффлайн обращения"
+                self.onlineModeButton.enabled = false
+            } else {
+                self.suggetionLabel.text =  " "
+            }
+            
+        }, failure:{ (error:NSException!) -> Void in
+                
+            self.loadingErrorProcess(error)
+        })
+    }
+}
+
+//MARK: notification listener selectors
+
+extension LTAuthorizationViewController {
+    
+    func gotToken () {
+        
+        onlineModeButton.enabled = true
+        offlineModeButton.enabled = true
+        
+        startWelcome()
+    }
+}
+
+//MARK: target - Action
+
+extension LTAuthorizationViewController {
     
     @IBAction func startOnlineMode(sender:AnyObject) {
         
@@ -129,6 +151,8 @@ class LTAuthorizationViewController: UIViewController {
         
     }
 }
+
+//MARK: helpers
 
 extension LTAuthorizationViewController {
     

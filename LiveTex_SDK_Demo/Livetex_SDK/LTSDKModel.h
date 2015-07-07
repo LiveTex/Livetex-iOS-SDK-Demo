@@ -12,6 +12,7 @@ typedef int LTSVoteType;
 typedef int LTSCapabilityType;
 typedef int LTSOfflineConversationStatus;
 typedef int LTSOfflineDirection;
+typedef int LTSMessageType;
 
 typedef NSString * LTSEmployeeId;
 typedef NSString * LTSUrl;
@@ -59,6 +60,16 @@ typedef NSMutableDictionary * LTSOptions;
 @interface LTSVoteTypes : NSObject
 + (LTSVoteType)GOOD;
 + (LTSVoteType)BAD;
+@end
+
+/*!
+ Тип сообщения офлайн обращения.
+ 
+ */
+
+@interface LTSOfflienMessageTypes : NSObject
++ (LTSVoteType)FILE;
++ (LTSVoteType)TEXT;
 @end
 
 /*!
@@ -380,12 +391,16 @@ hidden: данные недоступные для отображения в п�
 @interface LTSOfflineMessage: NSObject
 
 @property (nonatomic, retain) NSString * messageId;
+@property (nonatomic, retain) NSString * url;
+@property (nonatomic, assign) LTSMessageType type;
 @property (nonatomic, retain) NSString * message;
 @property (nonatomic, retain) NSString * creationTime;
 @property (nonatomic, retain) LTSEmployeeId sender;
 
 - (instancetype) initWithId: (NSString *) messageId
                     message: (NSString *) message
+                       type: (LTSMessageType) type
+                        url: (NSString *) url
                  created_at: (NSString *) creationTime
                      sender: (LTSEmployeeId) sender;
 @end

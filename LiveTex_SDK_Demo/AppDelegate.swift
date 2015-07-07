@@ -18,7 +18,6 @@ func SYSTEM_VERSION_LESS_THAN(v:String) -> Bool {
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    
     var internetReachability:Reachability!
     var reachabilityAlert:UIAlertView?
     

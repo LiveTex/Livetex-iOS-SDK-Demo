@@ -17,32 +17,30 @@ class LTEnvolvingViewController: UIViewController {
     
     @IBOutlet weak var messagePlaceHolder: UITextField!
     @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var modeField: UITextField!
     @IBOutlet weak var ageField: UITextField!
     @IBOutlet weak var messageField: UITextView!
     @IBOutlet weak var subSelectionField: UITextField!
-    @IBOutlet weak var showingKeyBoardAlignmentConstraint: NSLayoutConstraint!
-    @IBOutlet var subSelectionHidingConstraints: [NSLayoutConstraint]!
-    
+
     var activityView:DejalBezelActivityView?
-    
-    var currentMode: String!
-    
+    var currentMode:String!
     var subSelectionitems:Array<AnyObject>!
     var selectedSubSelectionItem:AnyObject?
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        currentMode = mods.0
         setupSubSelection()
     }
+}
+
+//MARK: targetActionsFlow
+
+extension LTEnvolvingViewController {
     
     @IBAction func createConversation(sender: AnyObject) {
         
         if(self.isWhiteSpaceString(self.messageField.text)) {
-            let alert: UIAlertView = UIAlertView(title: "", message: "Введите первое сообщение", delegate: nil, cancelButtonTitle: "ОК")
-            alert.show()
+            UIAlertView(title: "", message: "Введите первое сообщение", delegate: nil, cancelButtonTitle: "ОК").show()
         } else {
             createConversation()
         }
@@ -60,6 +58,8 @@ class LTEnvolvingViewController: UIViewController {
     }
 }
 
+//MARK: createConversationFlow
+
 extension LTEnvolvingViewController {
     
     func createConversation() {
@@ -71,17 +71,12 @@ extension LTEnvolvingViewController {
             var attr = LTSDialogAttributes()
             attr.visible = LTSOptions(dictionary: ["livetex_id":self.ageField.text])
             attr.hidden = LTSOptions(dictionary: ["platform": "ios"])
-            self.creatConversationForCurrentModeWithAtributes(attr)
+            self.createDepartmentConversationWithAttributes(attr)
             
-            }) { (error:NSException!) -> Void in
+        }, failure: { (error:NSException!) -> Void in
                 
-                self.loadingErrorProcess(error)
-        }
-    }
-    
-    func creatConversationForCurrentModeWithAtributes(attributes:LTSDialogAttributes) {
-        
-        createDepartmentConversationWithAttributes(attributes)
+            self.loadingErrorProcess(error)
+        })
     }
     
     func createDepartmentConversationWithAttributes(attributes:LTSDialogAttributes) {
@@ -107,14 +102,22 @@ extension LTEnvolvingViewController {
             self.removeActivityIndicator()
             self.performSegueWithIdentifier("showChat", sender: nil)
             
-            }, failure: { (error:NSException!) -> Void in
+        }, failure: { (error:NSException!) -> Void in
                 
-                self.loadingErrorProcess(error)
+            self.loadingErrorProcess(error)
         })
     }
 }
 
+//MARK: subSelectionFlow
+
 extension LTEnvolvingViewController {
+    
+    func setupSubSelection() {
+        
+        subSelectionField.text = nil
+        subSelectionField.placeholder = "Выберите отдел"
+    }
     
     func loadAndShowSubSelectionItems() {
         
@@ -123,18 +126,17 @@ extension LTEnvolvingViewController {
         LTApiManager.sharedInstance.sdk!.getDepartments(statusType.online, success: { (items:[AnyObject]!) -> Void in
             
             if (items.count == 0) {
-                let alert: UIAlertView = UIAlertView(title: "", message:"Нет департаментов онлайн", delegate: nil, cancelButtonTitle: "ОК")
-                alert.show()
+                UIAlertView(title: "", message:"Нет департаментов онлайн", delegate: nil, cancelButtonTitle: "ОК").show()
             } else {
                 
                 self.showSubSelectionItemsSheet(items)
             }
             self.removeActivityIndicator()
             
-            }) { (error:NSException!) -> Void in
+        }, failure: { (error:NSException!) -> Void in
                 
-                self.loadingErrorProcess(error)
-        }
+            self.loadingErrorProcess(error)
+        })
     }
     
     func showSubSelectionItemsSheet(items:[AnyObject]!) {
@@ -142,9 +144,7 @@ extension LTEnvolvingViewController {
         self.subSelectionitems = items
         
         let sheetTable:UIActionSheet = UIActionSheet()
-        
         sheetTable.tag = actionSheetType.actionSheetSubSelection
-        
         sheetTable.delegate = self
         
         for item in self.subSelectionitems {
@@ -155,14 +155,11 @@ extension LTEnvolvingViewController {
         
         let index = sheetTable.addButtonWithTitle("Отмена")
         sheetTable.cancelButtonIndex = index;
-        
         sheetTable.showInView(self.view)
     }
 }
 
-extension LTEnvolvingViewController {
-    
-}
+//MARK: UIActionSheetDelegate
 
 extension LTEnvolvingViewController: UIActionSheetDelegate {
     
@@ -178,13 +175,9 @@ extension LTEnvolvingViewController: UIActionSheetDelegate {
     }
 }
 
+//MARK: heplers
+
 extension LTEnvolvingViewController {
-    
-    func setupSubSelection() {
-        
-        subSelectionField.text = nil
-        subSelectionField.placeholder = "Выберите отдел"
-    }
     
     func setupSubSelectionFieldText () {
         
@@ -221,6 +214,8 @@ extension LTEnvolvingViewController {
         alert.show()
     }
 }
+
+//MARK: UITextFieldDelegates
 
 extension LTEnvolvingViewController: UITextFieldDelegate, UITextViewDelegate {
     

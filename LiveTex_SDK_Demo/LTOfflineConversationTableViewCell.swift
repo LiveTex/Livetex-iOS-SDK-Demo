@@ -22,9 +22,7 @@ class LTOfflineConversationTableViewCell: UITableViewCell {
                 
                 let employees = items as! [LTSEmployee]
                 
-                for item in employees {
-                    
-                    let Employee = item as LTSEmployee
+                for Employee in employees {
                     
                     if (Employee.employeeId == newValue) {
                         
@@ -38,8 +36,7 @@ class LTOfflineConversationTableViewCell: UITableViewCell {
                 }
                 
             }, failure: { (exeption) -> Void in
-                
-                
+              //
             })
         }
         
@@ -61,8 +58,5 @@ class LTOfflineConversationTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }

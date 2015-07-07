@@ -27,11 +27,8 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var voteUpBtn: UIButton!
     
     var imagePickerController = UIImagePickerController()
-    
     var activityView:DejalBezelActivityView?
-    
     var currentOperatorId:String?
-    
     var messages:Array<AnyObject>! = []
     
     required init(coder aDecoder: NSCoder) {
@@ -42,88 +39,68 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func viewDidLoad() {
         
-        loadMessagesAndShow()
         commonPreparation()
+        presentData()
     }
     
-    func loadMessagesAndShow() {
+    func commonPreparation() {
+        
+        UIApplication.sharedApplication().keyWindow?.endEditing(true)
+        
+        waitngPlaceHolder.hidden = false
+        operatorView.hidden = true
+        typingLabel.hidden = true
+        
+        operatorIco.layer.borderWidth = 2.0
+        operatorIco.layer.borderColor = UIColor.whiteColor().CGColor
+        operatorIco.clipsToBounds = true
+        operatorIco.layer.cornerRadius = 20.0
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillHideNotification, object: nil)
+    }
+}
+
+//MARK: businessFlow
+
+extension LTChatViewController {
+
+    func presentData() {
         
         self.showActivityIndicator()
         
         LTApiManager.sharedInstance.sdk!.getStateWithSuccess({ (state:LTSDialogState!) -> Void in
             
-            if state.employeeIsSet() {
-                
-                let url = NSURL(string: state.employee.avatar)
-                
-                if url != nil {
-                    
-                    NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: url!), queue: NSOperationQueue.mainQueue(), completionHandler: { (response, data, error) -> Void in
-                        let httpResponse = response as? NSHTTPURLResponse
-                        if httpResponse?.statusCode == 200 && error == nil {
-                            self.operatorIco.image = UIImage(data: data)
-                        }
-                    })
-                }
-            }
-            
             LTApiManager.sharedInstance.sdk!.messageHistory(20, offset: 0, success: { (messages:[AnyObject]!) -> Void in
                 
                 self.removeActivityIndicator()
                 
-                var wrappedMessages:[AnyObject] = []
-                
-                for msg:LTSTextMessage in messages as! [LTSTextMessage] {
-                    
-                    wrappedMessages.append(LTSWTextMessage(sourceMessage:msg))
-                    (wrappedMessages.last as! LTSWTextMessage).isConfirmed = true
-                }
-                
-                self.messages = wrappedMessages
+                self.wrapSDKMessages(messages)
                 
                 if self.messages.count > 1 {
                     
-                    self.messages.sort({ (s1:AnyObject, s2:AnyObject) -> Bool in
+                    self.messages.sort({ (message:AnyObject, messageTo:AnyObject) -> Bool in
                         
-                        var timestamp1:String = ""
-                        var timestamp2:String = ""
-                        
-                        if let c1 = s1 as? LTSWTextMessage {
-                            timestamp1 = c1.timestamp as String
-                        }
-                        
-                        if let c2 = s2 as? LTSWTextMessage {
-                            timestamp2 = c2.timestamp as String
-                        }
-                        
-                        if let c1 = s1 as? LTSHoldMessage {
-                            timestamp1 = c1.timestamp
-                        }
-                        
-                        if let c2 = s2 as? LTSHoldMessage {
-                            timestamp2 = c2.timestamp
-                        }
-                        
-                        return (timestamp1 as NSString).doubleValue < (timestamp2 as NSString).doubleValue
+                        return self.compareMessages(message, messageTo)
                     })
                 }
                 
                 self.processDialogState(state)
                 
-                }) { (error:NSException!) -> Void in
-                    
-                    self.messages = []
-                    self.tableView.reloadData()
-                    
-                    self.loadingErrorProcess(error)
-            }
-            
             }, failure: { (error:NSException!) -> Void in
+                    
+                self.messages = []
+                self.tableView.reloadData()
                 
                 self.loadingErrorProcess(error)
+            })
+            
+        }, failure: { (error:NSException!) -> Void in
+                
+            self.loadingErrorProcess(error)
         })
     }
-    
+
     func sendVote(vote:LTSVoteType!) {
         
         showActivityIndicator()
@@ -137,7 +114,7 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
                 self.loadingErrorProcess(error)
         })
     }
-    
+
     func sendMessage(message:String) {
         
         if message == "" {
@@ -161,44 +138,32 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
                 self.loadingErrorProcess(error)
         })
     }
-    
-    @IBAction func fileSend(sender: AnyObject) {
+
+    func uploadFile(imgData:NSData) {
         
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
-        imagePickerController.allowsEditing = true
-        self.presentViewController(imagePickerController, animated: true, completion: { imageP in
-            
-        })
-    }
-    
-    /*Image Picker Controller Delegate*/
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        
-        let imgData = UIImageJPEGRepresentation(image, 0.0)
-        
-        LTApiManager.sharedInstance.sdk?.uploadFileData(imgData, fileName: "file", fileExtention: "png", mimeType: "imgage/png", recipientID: currentOperatorId, success: { () -> Void in
-            
-            var systemMessage = LTSHoldMessage(text: "Отправлен файл: " + "file" + ".png", timestamp: "")
-            self.messages.append(systemMessage)
-            
-            self.tableView.reloadData()
-            
-            if (self.messages.count != 0) {
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
-            }
-            
+        LTApiManager.sharedInstance.sdk?.uploadFileData(imgData,
+            fileName: "file",
+            fileExtention: "png",
+            mimeType: "imgage/png",
+            recipientID: currentOperatorId,
+            success: { () -> Void in
+                
+                var systemMessage = LTSHoldMessage(text: "Отправлен файл: " + "file" + ".png", timestamp: "")
+                self.messages.append(systemMessage)
+                
+                self.tableView.reloadData()
+                
+                if (self.messages.count != 0) {
+                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+                }
+                
             }, failure: { (exp:NSException!) -> Void in
+                
                 self.loadingErrorProcess(exp)
         })
-        
-        self.presentedViewController?.dismissViewControllerAnimated(true, completion: { imageP in
-            
-        })
     }
     
-    @IBAction func close(sender: AnyObject) {
+    func closeConversation() {
         
         self.showActivityIndicator()
         
@@ -227,9 +192,38 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
                 self.performSegueWithIdentifier("authorizathon", sender: nil)
             }
             
-            }, failure: { (error:NSException!) -> Void in
+        }, failure: { (error:NSException!) -> Void in
                 
-                self.loadingErrorProcess(error)
+            self.loadingErrorProcess(error)
+        })
+    }
+}
+
+//MARK: imagePickerDelegate
+
+extension LTChatViewController {
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        
+        let imgData = UIImageJPEGRepresentation(image, 0.0)
+        
+        uploadFile(imgData)
+        
+        self.presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+//MARK: target-Actions
+
+extension LTChatViewController {
+    
+    @IBAction func fileSend(sender: AnyObject) {
+        
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+        imagePickerController.allowsEditing = true
+        self.presentViewController(imagePickerController, animated: true, completion: { imageP in
+            
         })
     }
     
@@ -246,12 +240,23 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         sendMessage(messageInputField.text)
     }
+    
+    @IBAction func close(sender: AnyObject) {
+        
+        closeConversation()
+    }
+    
+    @IBAction func done(segue:UIStoryboardSegue) {
+        
+    }
 }
+
+//MARK: LTMobileSDKNotificationHandlerProtocol
 
 extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     
     func ban(message: String!) {
-        
+        //
     }
     
     func updateDialogState(state: LTSDialogState!) {
@@ -283,19 +288,14 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     }
     
     func confirmTextMessage(messageId: String!) {
-        
         for msg:AnyObject in messages {
-            
             if var message = msg as? LTSWTextMessage {
-                
                 if message.messageId == messageId {
-                    
                     message.isConfirmed = true
                     self.tableView.reloadData()
                     if (self.messages.count != 0) {
                         self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
                     }
-                    
                     break
                 }
             }
@@ -321,71 +321,52 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     }
     
     func receiveOfflineMessage(conversationId: String!, message: LTSOfflineMessage!) {
-        
+        //
     }
     
     func notificationListenerErrorOccured(error: NSException!) {
-        
+       //
     }
 }
 
+//MARK: helpers
 
 extension LTChatViewController {
     
-    func processDialogState(state:LTSDialogState) {
+    func wrapSDKMessages(messages:[AnyObject]!) {
+        var wrappedMessages:[AnyObject] = []
         
-        if state.employeeIsSet() {
+        for msg:LTSTextMessage in messages as! [LTSTextMessage] {
             
-            currentOperatorId = state.employee.employeeId
-            
-            LTApiManager.sharedInstance.onlineEmployeeId = state.employee.employeeId
-            
-            waitngPlaceHolder.hidden = true
-            operatorView.hidden = false
-            operatorName.text = state.employee.firstname
-            
-            messageInputField?.enabled = true
-            
-            voteDownBtn.enabled = true
-            voteUpBtn.enabled = true
-            abuseBtn.enabled = true
-            
-            var systemMessage = LTSHoldMessage(text: "Оператор онлайн", timestamp: "")
-            self.messages.append(systemMessage)
-            
-        } else if state.conversationIsSet() {
-            
-            waitngPlaceHolder.hidden = false
-            operatorView.hidden = true
-            
-            voteDownBtn.enabled = false
-            voteUpBtn.enabled = false
-            abuseBtn.enabled = false
-            
-            var systemMessage = LTSHoldMessage(text: "Оператор не в сети. Диалог в очереди", timestamp: "")
-            self.messages.append(systemMessage)
-            
-        } else {
-            
-            LTApiManager.sharedInstance.onlineEmployeeId = nil
-            
-            waitngPlaceHolder.hidden = true
-            operatorView.hidden = true
-            
-            voteDownBtn.enabled = false
-            voteUpBtn.enabled = false
-            abuseBtn.enabled = false
-            
-            messageInputField?.enabled = false
-            
-            var systemMessage = LTSHoldMessage(text: "Оператор не в сети. Диалог закрыт", timestamp: "")
-            self.messages.append(systemMessage)
+            wrappedMessages.append(LTSWTextMessage(sourceMessage:msg))
+            (wrappedMessages.last as! LTSWTextMessage).isConfirmed = true
         }
         
-        self.tableView.reloadData()
-        if (self.messages.count != 0) {
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+        self.messages = wrappedMessages
+    }
+    
+    func compareMessages(message:AnyObject, _ messageTo:AnyObject) -> Bool {
+        
+        var timestamp:String = ""
+        var timestampTo:String = ""
+        
+        if let c1 = message as? LTSWTextMessage {
+            timestamp = c1.timestamp as String
         }
+        
+        if let c2 = messageTo as? LTSWTextMessage {
+            timestampTo = c2.timestamp as String
+        }
+        
+        if let c1 = message as? LTSHoldMessage {
+            timestamp = c1.timestamp
+        }
+        
+        if let c2 = messageTo as? LTSHoldMessage {
+            timestampTo = c2.timestamp
+        }
+        
+        return (timestamp as NSString).doubleValue < (timestampTo as NSString).doubleValue
     }
     
     func showActivityIndicator() {
@@ -436,28 +417,108 @@ extension LTChatViewController {
                 }
         })
     }
+}
+
+//MARK: processDialogState
+
+extension LTChatViewController {
     
-    @IBAction func done(segue:UIStoryboardSegue) {
+    func processDialogState(state:LTSDialogState) {
         
+        if state.employeeIsSet() {
+            
+            setupActiveDialogState(state)
+            
+        } else if state.conversationIsSet() {
+            
+            setupQueuedDialogState(state)
+            
+        } else {
+            
+            setupOfflineDialogState(state)
+        }
+        
+        self.tableView.reloadData()
+        
+        if (self.messages.count != 0) {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+        }
     }
     
-    func commonPreparation() {
+    func setupActiveDialogState(state:LTSDialogState) {
         
-        UIApplication.sharedApplication().keyWindow?.endEditing(true)
+        currentOperatorId = state.employee.employeeId
         
-        waitngPlaceHolder.hidden = false
+        LTApiManager.sharedInstance.onlineEmployeeId = state.employee.employeeId
+        
+        waitngPlaceHolder.hidden = true
+        operatorView.hidden = false
+        operatorName.text = state.employee.firstname
+        
+        messageInputField?.enabled = true
+        
+        voteDownBtn.enabled = true
+        voteUpBtn.enabled = true
+        abuseBtn.enabled = true
+        
+        var systemMessage = LTSHoldMessage(text: "Оператор онлайн", timestamp: "")
+        self.messages.append(systemMessage)
+        
+        let url = NSURL(string: state.employee.avatar)
+        
+        if (url != nil) {
+            
+            NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: url!),
+                queue: NSOperationQueue.mainQueue(),
+                completionHandler: { (response, data, error) -> Void in
+                    
+                let httpResponse = response as? NSHTTPURLResponse
+                if httpResponse?.statusCode == 200 && error == nil {
+                    self.operatorIco.image = UIImage(data: data)
+                }
+            })
+        }
+    }
+    
+    func setupQueuedDialogState(state:LTSDialogState) {
+        
+        currentOperatorId = state.employee.employeeId
+        
+        LTApiManager.sharedInstance.onlineEmployeeId = state.employee.employeeId
+        
+        waitngPlaceHolder.hidden = true
+        operatorView.hidden = false
+        operatorName.text = state.employee.firstname
+        
+        messageInputField?.enabled = true
+        
+        voteDownBtn.enabled = true
+        voteUpBtn.enabled = true
+        abuseBtn.enabled = true
+        
+        var systemMessage = LTSHoldMessage(text: "Оператор онлайн", timestamp: "")
+        self.messages.append(systemMessage)
+    }
+    
+    func setupOfflineDialogState(state:LTSDialogState) {
+        
+        LTApiManager.sharedInstance.onlineEmployeeId = nil
+        
+        waitngPlaceHolder.hidden = true
         operatorView.hidden = true
-        typingLabel.hidden = true
         
-        operatorIco.layer.borderWidth = 2.0
-        operatorIco.layer.borderColor = UIColor.whiteColor().CGColor
-        operatorIco.clipsToBounds = true
-        operatorIco.layer.cornerRadius = 20.0
+        voteDownBtn.enabled = false
+        voteUpBtn.enabled = false
+        abuseBtn.enabled = false
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillHideNotification, object: nil)
+        messageInputField?.enabled = false
+        
+        var systemMessage = LTSHoldMessage(text: "Оператор не в сети. Диалог закрыт", timestamp: "")
+        self.messages.append(systemMessage)
     }
 }
+
+//MARK: UITextFieldDelegate
 
 extension LTChatViewController: UITextFieldDelegate {
     
@@ -474,11 +535,13 @@ extension LTChatViewController: UITextFieldDelegate {
         
         LTApiManager.sharedInstance.sdk!.typingWithTypingMessage(typingMessage, success: nil) { (error:NSException!) -> Void in
             
-            //self.loadingErrorProcess(error)
+            self.loadingErrorProcess(error)
         }
         return  true
     }
 }
+
+//MARK: UITableViewDelegate, UITableViewDataSource
 
 extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
     

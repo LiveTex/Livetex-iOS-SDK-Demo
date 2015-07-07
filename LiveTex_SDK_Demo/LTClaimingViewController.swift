@@ -18,18 +18,28 @@ class LTClaimingViewController: UIViewController {
         
         super.viewDidLoad()
     }
+}
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+//MARK: target - Actions
+
+extension LTClaimingViewController {
     
     @IBAction func sendClaim(sender: AnyObject) {
+        sendClaimConversation()
+    }
+}
+
+//MARK: business Flow
+
+extension LTClaimingViewController {
+    
+    func sendClaimConversation() {
+        
+        var view = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
         
         let abuse:LTSAbuse = LTSAbuse()
         abuse.contact = self.contact.text
         abuse.message = messageField.text
-        
-        var view = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
         
         LTApiManager.sharedInstance.sdk?.abuseWithAbuse(abuse, success: { () -> Void in
             
@@ -37,14 +47,14 @@ class LTClaimingViewController: UIViewController {
             self.performSegueWithIdentifier("unwind", sender: nil)
             
         }, failure: { (error:NSException!) -> Void in
-            
+                
             view.animateRemove()
-            let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
-            alert.show()
+            UIAlertView(title: "Ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК").show()
         })
     }
 }
 
+//MARK: UITextViewDelegate
 
 extension LTClaimingViewController: UITextViewDelegate {
     

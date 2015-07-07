@@ -11,7 +11,7 @@ import UIKit
 class LTOfflineConversationTableViewController: UITableViewController {
     
     var activityView:DejalBezelActivityView?
-    var convList:[LTSOfflineConversation]?
+    var convList:[LTSOfflineConversation] = []
     
     override func viewDidLoad() {
         
@@ -20,12 +20,7 @@ class LTOfflineConversationTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        convList = []
-        loadConversationList()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        presentData()
     }
     
     // MARK: - Table view data source
@@ -35,20 +30,20 @@ class LTOfflineConversationTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return convList!.count
+        return convList.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("LTOfflineConversationTableViewCell", forIndexPath: indexPath) as! LTOfflineConversationTableViewCell
         
-        cell.employeeId = self.convList?[indexPath.row].currentOperatorId
-        cell.date.text = self.convList?[indexPath.row].creationTime
+        cell.employeeId = self.convList[indexPath.row].currentOperatorId
+        cell.date.text = self.convList[indexPath.row].creationTime
         
         cell.date.text = cell.date.text?.stringByDeletingPathExtension
         
-        if self.convList?[indexPath.row].lastMessage != "" {
-            cell.conversationLabel.text = self.convList?[indexPath.row].lastMessage
+        if self.convList[indexPath.row].lastMessage != "" {
+            cell.conversationLabel.text = self.convList[indexPath.row].lastMessage
         } else {
             cell.conversationLabel.text = "Нет текста сообщения"
         }
@@ -58,7 +53,7 @@ class LTOfflineConversationTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        LTApiManager.sharedInstance.offlineConversationId = convList?[indexPath.row].conversationId
+        LTApiManager.sharedInstance.offlineConversationId = convList[indexPath.row].conversationId
         self.performSegueWithIdentifier("offlineChatStart2", sender: nil)
     }
     
@@ -73,27 +68,26 @@ class LTOfflineConversationTableViewController: UITableViewController {
     }
 }
 
+
+//MARK: business Flow
+
 extension LTOfflineConversationTableViewController {
     
-    func loadConversationList() {
+    func presentData() {
         
         LTApiManager.sharedInstance.sdk?.offlineConversationsListWithSuccess({ (array:[AnyObject]!) -> Void in
             
-            self.convList = array as? [LTSOfflineConversation]
-            
-            for item in self.convList! {
-                
-                println("  convId = " + item.conversationId + "  operId = " + item.currentOperatorId + "\n")
-            }
-            
+            self.convList = (array as? [LTSOfflineConversation])!
             self.tableView.reloadData()
             
-            }, failure: { (exeption) -> Void in
-                
-                self.loadingErrorProcess(exeption)
+        }, failure: { (exeption) -> Void in
+            
+            self.loadingErrorProcess(exeption)
         })
     }
 }
+
+//MARK: helpers
 
 extension LTOfflineConversationTableViewController {
     
@@ -113,7 +107,6 @@ extension LTOfflineConversationTableViewController {
         var error:NSError? = asd?["error"] as? NSError
         
         self.removeActivityIndicator()
-        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
-        alert.show()
+        UIAlertView(title: "Ошибка", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК").show()
     }
 }

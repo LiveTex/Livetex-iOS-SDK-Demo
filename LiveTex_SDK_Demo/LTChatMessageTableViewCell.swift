@@ -66,7 +66,11 @@ class LTChatMessageTableViewCell: UITableViewCell {
             
             if let massage = messageNew as? LTSOfflineMessage {
                 
-                self.messageText.text = massage.message
+                if massage.url != nil {
+                    self.messageText.text = "Отправлен фаил" + massage.url
+                } else {
+                    self.messageText.text = massage.message
+                }
                 
                 let time:NSString = message.creationTime
                 
