@@ -8,9 +8,9 @@
 
 import Foundation
 
-var URL:String? = "http://authentication-service.livetex.omnibuild:80/"
-var key:String? = "dev_key_test"
-var siteId:String? = "10011885" //"10009747"//"10011885"
+var URL:String? = "http://authentication-service-sdk-prerelease.livetex.ru" //"http://authentication-service-sdk-prerelease.livetex.ru" //"http://authentication-service.livetex.omnibuild:80/" //"http://authentication-service-sdk-production-1.livetex.ru"
+var key:String? = "prerelease_key" //"prerelease_key" //"dev_key_test" //"demo"
+var siteId:String? = "92941" //"92941" //"10009747"
 var offlineDeparmentId:String? = ""
 
 class LTApiManager {

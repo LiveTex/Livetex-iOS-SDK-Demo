@@ -482,21 +482,14 @@ extension LTChatViewController {
     
     func setupQueuedDialogState(state:LTSDialogState) {
         
-        currentOperatorId = state.employee.employeeId
+        waitngPlaceHolder.hidden = false
+        operatorView.hidden = true
         
-        LTApiManager.sharedInstance.onlineEmployeeId = state.employee.employeeId
+        voteDownBtn.enabled = false
+        voteUpBtn.enabled = false
+        abuseBtn.enabled = false
         
-        waitngPlaceHolder.hidden = true
-        operatorView.hidden = false
-        operatorName.text = state.employee.firstname
-        
-        messageInputField?.enabled = true
-        
-        voteDownBtn.enabled = true
-        voteUpBtn.enabled = true
-        abuseBtn.enabled = true
-        
-        var systemMessage = LTSHoldMessage(text: "Оператор онлайн", timestamp: "")
+        var systemMessage = LTSHoldMessage(text: "Оператор не в сети. Диалог в очереди", timestamp: "")
         self.messages.append(systemMessage)
     }
     

@@ -404,7 +404,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AAZ-pz-cTi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="336" y="941"/>
+            <point key="canvasLocation" x="418" y="1231"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4B3-oV-0n2">
@@ -447,7 +447,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="guH-CQ-1JE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-436" y="139"/>
+            <point key="canvasLocation" x="59" y="30"/>
         </scene>
         <!--EnvolvingViewController-->
         <scene sceneID="0xx-Sz-vGp">
@@ -642,7 +642,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9IK-zv-EqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="279" y="71"/>
+            <point key="canvasLocation" x="777" y="30"/>
         </scene>
         <!--Claiming View Controller-->
         <scene sceneID="WfH-ls-EL6">
@@ -816,7 +816,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JHe-nO-ZWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="O73-An-eFA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1736" y="-664"/>
+            <point key="canvasLocation" x="2222" y="-712"/>
         </scene>
         <!--ChatViewController-->
         <scene sceneID="hBe-db-CG4">
@@ -1662,7 +1662,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8Q-RQ-xEy" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="b8x-Gi-lyi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="982" y="-664"/>
+            <point key="canvasLocation" x="1496" y="-744"/>
         </scene>
         <!--ChatViewController-->
         <scene sceneID="8rU-Pj-Yo4">
@@ -2314,7 +2314,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HbD-0h-xvm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1077" y="841"/>
+            <point key="canvasLocation" x="1271" y="841"/>
         </scene>
     </scenes>
     <resources>
@@ -2340,6 +2340,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jXv-K2-4Yq"/>
-        <segue reference="Nh1-D7-IMN"/>
+        <segue reference="e9z-9S-brt"/>
     </inferredMetricsTieBreakers>
 </document>
