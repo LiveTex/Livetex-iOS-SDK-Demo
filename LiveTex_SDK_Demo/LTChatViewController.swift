@@ -22,6 +22,7 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var operatorView: UIView!
     @IBOutlet weak var typingLabel: UILabel!
     
+   
     @IBOutlet weak var abuseBtn: UIButton!
     @IBOutlet weak var voteDownBtn: UIButton!
     @IBOutlet weak var voteUpBtn: UIButton!
@@ -33,7 +34,7 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     required init(coder aDecoder: NSCoder) {
         
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
         LTApiManager.sharedInstance.sdk?.delegate = self
     }
     
@@ -41,6 +42,11 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         commonPreparation()
         presentData()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        tableViewBottomMargin.constant = 0
+        self.view.layoutIfNeeded()
     }
     
     func commonPreparation() {
@@ -79,7 +85,7 @@ extension LTChatViewController {
                 
                 if self.messages.count > 1 {
                     
-                    self.messages.sort({ (message:AnyObject, messageTo:AnyObject) -> Bool in
+                    self.messages.sortInPlace({ (message:AnyObject, messageTo:AnyObject) -> Bool in
                         
                         return self.compareMessages(message, messageTo)
                     })
@@ -108,13 +114,16 @@ extension LTChatViewController {
         LTApiManager.sharedInstance.sdk?.voteWithVote(vote, success: { () -> Void in
             
             self.removeActivityIndicator()
+            CommonUtils.showToast("Спасибо за оценку")
+            
             
             }, failure: { (error:NSException!) -> Void in
                 
                 self.loadingErrorProcess(error)
         })
     }
-
+    
+    
     func sendMessage(message:String) {
         
         if message == "" {
@@ -141,26 +150,44 @@ extension LTChatViewController {
 
     func uploadFile(imgData:NSData) {
         
-        LTApiManager.sharedInstance.sdk?.uploadFileData(imgData,
-            fileName: "file",
-            fileExtention: "png",
-            mimeType: "imgage/png",
-            recipientID: currentOperatorId,
-            success: { () -> Void in
-                
-                var systemMessage = LTSHoldMessage(text: "Отправлен файл: " + "file" + ".png", timestamp: "")
-                self.messages.append(systemMessage)
-                
-                self.tableView.reloadData()
-                
-                if (self.messages.count != 0) {
-                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
-                }
-                
+        let file = LTSFile(data: imgData, fileName: "file", fileExtension: "png", mimeType: "image/png")
+        LTApiManager.sharedInstance.sdk?.uploadFileData(file, recipientId: currentOperatorId, success: { () -> Void in
+            
+            let systemMessage = LTSHoldMessage(text: "Отправлен файл: " + "file" + ".png", timestamp: "")
+            self.messages.append(systemMessage)
+            
+            self.tableView.reloadData()
+            
+            if (self.messages.count != 0) {
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+            }
+            
             }, failure: { (exp:NSException!) -> Void in
                 
                 self.loadingErrorProcess(exp)
         })
+        
+        
+//        LTApiManager.sharedInstance.sdk?.uploadFileData(imgData,
+//            fileName: "file",
+//            fileExtention: "png",
+//            mimeType: "image/png",
+//            recipientID: currentOperatorId,
+//            success: { () -> Void in
+//                
+//                var systemMessage = LTSHoldMessage(text: "Отправлен файл: " + "file" + ".png", timestamp: "")
+//                self.messages.append(systemMessage)
+//                
+//                self.tableView.reloadData()
+//                
+//                if (self.messages.count != 0) {
+//                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+//                }
+//                
+//            }, failure: { (exp:NSException!) -> Void in
+//                
+//                self.loadingErrorProcess(exp)
+//        })
     }
     
     func closeConversation() {
@@ -191,6 +218,7 @@ extension LTChatViewController {
                 self.removeActivityIndicator()
                 self.performSegueWithIdentifier("authorizathon", sender: nil)
             }
+            CommonUtils.showToast("Диалог закрыт")
             
         }, failure: { (error:NSException!) -> Void in
                 
@@ -207,7 +235,7 @@ extension LTChatViewController {
         
         let imgData = UIImageJPEGRepresentation(image, 0.0)
         
-        uploadFile(imgData)
+        uploadFile(imgData!)
         
         self.presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -238,7 +266,7 @@ extension LTChatViewController {
     }
     @IBAction func sendMessageAction(sender: AnyObject) {
         
-        sendMessage(messageInputField.text)
+        sendMessage(messageInputField.text!)
     }
     
     @IBAction func close(sender: AnyObject) {
@@ -278,6 +306,9 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     }
     
     func receiveFileMessage(message: LTSFileMessage!) {
+//        if(message.url.containsString("%")) {
+//            message.url = "123.png"
+//        }
         
         self.messages.append(message)
         self.tableView.reloadData()
@@ -385,16 +416,15 @@ extension LTChatViewController {
         var error:NSError? = asd?["error"] as? NSError
         
         self.removeActivityIndicator()
-        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
+        let alert: UIAlertView = UIAlertView(title: "Превышен лимит на отправку файлов", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
         alert.show()
     }
     
     func setInputViewY(notification: NSNotification) {
-        
+        //NSThread.sleepForTimeInterval(NSTimeInterval(0.6))
         if tableViewBottomMargin.constant > 100 && notification.name == UIKeyboardWillShowNotification {
             return
         }
-        
         self.view.layoutIfNeeded()
         
         let frame: CGRect = (notification.userInfo![UIKeyboardFrameBeginUserInfoKey]as! NSValue).CGRectValue()
@@ -403,10 +433,10 @@ extension LTChatViewController {
         if notification.name == UIKeyboardWillShowNotification {
             tableViewBottomMargin.constant += keyboardHeight
         } else {
-            tableViewBottomMargin.constant -= keyboardHeight
+            tableViewBottomMargin.constant = 0
         }
         
-        UIView.animateWithDuration((notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double), delay: 0, options: UIViewAnimationOptions(UInt((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16)), animations: { () -> Void in
+        UIView.animateWithDuration((notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double), delay: 0, options: UIViewAnimationOptions(rawValue: UInt((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16)), animations: { () -> Void in
             
             self.view.layoutIfNeeded()
             
@@ -474,7 +504,7 @@ extension LTChatViewController {
                     
                 let httpResponse = response as? NSHTTPURLResponse
                 if httpResponse?.statusCode == 200 && error == nil {
-                    self.operatorIco.image = UIImage(data: data)
+                    self.operatorIco.image = UIImage(data: data!)
                 }
             })
         }
@@ -524,7 +554,7 @@ extension LTChatViewController: UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
         let typingMessage:LTSTypingMessage = LTSTypingMessage()
-        typingMessage.text = textField.text + string
+        typingMessage.text = textField.text! + string
         
         LTApiManager.sharedInstance.sdk!.typingWithTypingMessage(typingMessage, success: nil) { (error:NSException!) -> Void in
             
@@ -550,7 +580,6 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if let currentMessage = messages[indexPath.row] as? LTSFileMessage {
-            
             return CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.url))
         }
         
@@ -586,7 +615,9 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
             var cell:LTChatMessageTableViewCell!
             
             cell = self.tableView.dequeueReusableCellWithIdentifier("cellIn") as! LTChatMessageTableViewCell
-            cell.messageSet = self.messages[indexPath.row]
+            currentMessage.url = currentMessage.url.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            cell.messageSet = currentMessage
+            tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: false)
             return cell
         }
         
@@ -604,7 +635,8 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if let message = messages[indexPath.row] as? LTSFileMessage {
-            UIApplication.sharedApplication().openURL(NSURL(string: (message.url))!)
+            let url = message.url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            UIApplication.sharedApplication().openURL(NSURL(string: url!)!)
         }
     }
 }

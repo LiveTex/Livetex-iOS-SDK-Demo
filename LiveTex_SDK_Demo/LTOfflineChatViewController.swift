@@ -24,7 +24,7 @@ class LTChatViewControllerOffliner: UIViewController, UIImagePickerControllerDel
     
     var messages:[LTSOfflineMessage] = []
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         
         super.init(coder: aDecoder)
         LTApiManager.sharedInstance.sdk?.delegate = self
@@ -35,6 +35,12 @@ class LTChatViewControllerOffliner: UIViewController, UIImagePickerControllerDel
         commonPreparation()
         presentData()
         loadOperatoeInfo()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        tableViewBottomMargin.constant = 0
+        self.view.layoutIfNeeded()
+        self.scrollToBottom()
     }
 }
 
@@ -51,8 +57,10 @@ extension LTChatViewControllerOffliner {
         LTApiManager.sharedInstance.sdk?.messageListForConversationId(currentConversationId, success: { (items:[AnyObject]!) -> Void in
             
             self.removeActivityIndicator()
-            self.messages = items as! [LTSOfflineMessage]
+            
+            self.messages = (items as! [LTSOfflineMessage]).sort({$0.creationTime < $1.creationTime})
             self.tableView.reloadData()
+            self.scrollToBottom()
             
             }, failure: { (exp:NSException!) -> Void in
                 
@@ -86,18 +94,28 @@ extension LTChatViewControllerOffliner {
     
     func uploadFile(imgData:NSData) {
         
-        LTApiManager.sharedInstance.sdk?.uploadOfflineFileData(imgData,
-            fileName:"file",
-            fileExtention:"png",
-            mimeType:"imgage/png",
-            conversationId:LTApiManager.sharedInstance.offlineConversationId,
-            success: { () -> Void in
+        let file = LTSFile(data: imgData, fileName: "file", fileExtension: "png", mimeType: "image/png");
+        LTApiManager.sharedInstance.sdk?.uploadOfflineFileData(file, conversationId: LTApiManager.sharedInstance.offlineConversationId, success: { () -> Void in
             
             self.presentData()
             
             }, failure: { (exp:NSException!) -> Void in
                 self.loadingErrorProcess(exp)
+                
         })
+        
+    //        LTApiManager.sharedInstance.sdk?.uploadOfflineFileData(imgData,
+//            fileName:"file",
+//            fileExtention:"png",
+//            mimeType:"imgage/png",
+//            conversationId:LTApiManager.sharedInstance.offlineConversationId,
+//            success: { () -> Void in
+//            
+//            self.presentData()
+//            
+//            }, failure: { (exp:NSException!) -> Void in
+//                self.loadingErrorProcess(exp)
+//        })
     }
     
     func loadOperatoeInfo() {
@@ -124,10 +142,10 @@ extension LTChatViewControllerOffliner {
                             if (currentEmployee.employeeId == currentEmpoyeeId) {
                                 
                                 let url = NSURL(string: currentEmployee.avatar)
-                                var err: NSError?
-                                var imageData :NSData = NSData(contentsOfURL:url!, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: &err)!
+                               // var err: NSError?
+                                let imageData :NSData = NSData(contentsOfURL:url!)!
                                 
-                                var bgImage = UIImage(data:imageData)
+                                let bgImage = UIImage(data:imageData)
                                 self.operatorIco.image = bgImage
                                 self.operatorName.text = currentEmployee.firstname! + "" + currentEmployee.lastname!
                             }
@@ -155,7 +173,7 @@ extension LTChatViewControllerOffliner {
         
         let imgData = UIImageJPEGRepresentation(image, 0.0)
         
-        uploadFile(imgData)
+        uploadFile(imgData!)
         
         self.presentedViewController?.dismissViewControllerAnimated(true, completion:nil)
     }
@@ -165,14 +183,9 @@ extension LTChatViewControllerOffliner {
 
 extension LTChatViewControllerOffliner {
     
-    @IBAction func close(sender: AnyObject) {
-        
-        self.performSegueWithIdentifier("authorizathon2", sender: nil)
-    }
-    
     @IBAction func sendMessageAction(sender: AnyObject) {
         
-        sendMessage(messageInputField.text)
+        sendMessage(messageInputField.text!)
     }
     
     @IBAction func fileSend(sender: AnyObject) {
@@ -263,7 +276,7 @@ extension LTChatViewControllerOffliner {
         var error:NSError? = asd?["error"] as? NSError
         
         self.removeActivityIndicator()
-        let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
+        let alert: UIAlertView = UIAlertView(title: "Превышен лимит на отправку файлов", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
         alert.show()
     }
     
@@ -281,19 +294,23 @@ extension LTChatViewControllerOffliner {
         if notification.name == UIKeyboardWillShowNotification {
             tableViewBottomMargin.constant += keyboardHeight
         } else {
-            tableViewBottomMargin.constant -= keyboardHeight
+            tableViewBottomMargin.constant = 0
         }
         
-        UIView.animateWithDuration((notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double), delay: 0, options: UIViewAnimationOptions(UInt((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16)), animations: { () -> Void in
+        UIView.animateWithDuration((notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double), delay: 0, options: UIViewAnimationOptions(rawValue: UInt((notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber).integerValue << 16)), animations: { () -> Void in
             
             self.view.layoutIfNeeded()
             
             }, completion:{(complete:Bool) -> Void in
+                self.scrollToBottom()
                 
-                if (self.messages.count != 0) {
-                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
-                }
         })
+    }
+    
+    func scrollToBottom() {
+        if (self.messages.count != 0) {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+        }
     }
 }
 

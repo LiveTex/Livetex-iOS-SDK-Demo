@@ -39,15 +39,15 @@ extension LTEnvolvingViewController {
     
     @IBAction func createConversation(sender: AnyObject) {
         
-        if(self.isWhiteSpaceString(self.messageField.text)) {
-            UIAlertView(title: "", message: "Введите первое сообщение", delegate: nil, cancelButtonTitle: "ОК").show()
+        if(CommonUtils.isWhiteSpaceString(self.messageField.text)) {
+            UIAlertView(title: "", message: "Введите текст сообщения", delegate: nil, cancelButtonTitle: "ОК").show()
         } else {
             createConversation()
         }
     }
     
     @IBAction func subSelection(sender: AnyObject) {
-        
+        dismissKeyBoard(sender)
         loadAndShowSubSelectionItems()
     }
     
@@ -68,8 +68,8 @@ extension LTEnvolvingViewController {
         
         LTApiManager.sharedInstance.sdk!.setVisitorName(nameField.text, success: { () -> Void in
             
-            var attr = LTSDialogAttributes()
-            attr.visible = LTSOptions(dictionary: ["livetex_id":self.ageField.text])
+            let attr = LTSDialogAttributes()
+            attr.visible = LTSOptions(dictionary: ["livetex_id":self.ageField.text!])
             attr.hidden = LTSOptions(dictionary: ["platform": "ios"])
             self.createDepartmentConversationWithAttributes(attr)
             
@@ -183,18 +183,6 @@ extension LTEnvolvingViewController {
         
         let department = selectedSubSelectionItem as! LTSDepartment
         subSelectionField.text = department.name
-    }
-    
-    func isWhiteSpaceString(str:String) -> Bool {
-        
-        (str as NSString).stringByReplacingOccurrencesOfString(" ", withString: "")
-        
-        if str == "" {
-            return true
-        }
-        else {
-            return false
-        }
     }
     
     func showActivityIndicator() {

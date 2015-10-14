@@ -62,6 +62,7 @@ extension LTAuthorizationViewController {
         initParam.livetexUrl = URL
         initParam.applicationId = siteId
         initParam.APNDeviceId = LTApiManager.sharedInstance.apnToken
+        initParam.capabilities = [0,5,6,7]
         
         LTApiManager.sharedInstance.sdk = LTMobileSDK(params: initParam)
         
@@ -69,7 +70,7 @@ extension LTAuthorizationViewController {
         
         LTApiManager.sharedInstance.sdk!.runWithSuccess({ (token:String!) -> Void in
             
-            println(token)
+            print(token)
             self.processOnlineConversationState()
             self.processOnlineConversationAbility()
             
@@ -96,21 +97,37 @@ extension LTAuthorizationViewController {
 
     func processOnlineConversationAbility() {
         
-        LTApiManager.sharedInstance.sdk!.getEmployees(statusType.online, success: { (items:[AnyObject]!) -> Void in
-            
+        LTApiManager.sharedInstance.sdk!.getDepartments(statusType.online, success: { (items:[AnyObject]!) -> Void in
             self.removeActivityIndicator()
             
-            if (items.count == 0) {
-                self.suggetionLabel.text = "В данный момент нет операторов онлайн, возможен только режим оффлайн обращения"
-                self.onlineModeButton.enabled = false
-            } else {
-                self.suggetionLabel.text =  " "
-            }
-            
-        }, failure:{ (error:NSException!) -> Void in
-                
-            self.loadingErrorProcess(error)
-        })
+                        if (items.count == 0) {
+//                            self.suggetionLabel.text = "В данный момент нет операторов онлайн, возможен только режим оффлайн обращения"
+                            self.onlineModeButton.enabled = false
+                            self.onlineModeButton.imageView?.image = UIImage(contentsOfFile: "button_offline.png");
+                           // self.onlineModeButton.setBackgroundImage(UIImage("button_offline.png")!, forState: UIControlState.Normal)
+                        } else {
+                            //self.suggetionLabel.text =  " "
+                        }
+
+            }) { (error:NSException!) -> Void in
+                self.loadingErrorProcess(error)
+        }
+        
+//        LTApiManager.sharedInstance.sdk!.getEmployees(statusType.online, success: { (items:[AnyObject]!) -> Void in
+//            
+//            self.removeActivityIndicator()
+//            
+//            if (items.count == 0) {
+//                self.suggetionLabel.text = "В данный момент нет операторов онлайн, возможен только режим оффлайн обращения"
+//                self.onlineModeButton.enabled = false
+//            } else {
+//                self.suggetionLabel.text =  " "
+//            }
+//            
+//        }, failure:{ (error:NSException!) -> Void in
+//                
+//            self.loadingErrorProcess(error)
+//        })
     }
 }
 

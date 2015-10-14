@@ -12,6 +12,8 @@ class LTOfflineConversationTableViewController: UITableViewController {
     
     var activityView:DejalBezelActivityView?
     var convList:[LTSOfflineConversation] = []
+   
+    @IBOutlet weak var emptyLabel: UILabel!
     
     override func viewDidLoad() {
         
@@ -30,6 +32,9 @@ class LTOfflineConversationTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(convList.count > 0) {
+            self.emptyLabel.hidden = true
+        }
         return convList.count
     }
     
@@ -38,9 +43,18 @@ class LTOfflineConversationTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("LTOfflineConversationTableViewCell", forIndexPath: indexPath) as! LTOfflineConversationTableViewCell
         
         cell.employeeId = self.convList[indexPath.row].currentOperatorId
-        cell.date.text = self.convList[indexPath.row].creationTime
+        let newDate = (self.convList[indexPath.row].creationTime as String).componentsSeparatedByString(" ")[0]
+        let parts = newDate.componentsSeparatedByString("-")
+        var date1 = ""
+        for index in (1...3).reverse() {
+            date1 += parts[index-1]
+            if(index != 1) {
+                date1 += ".";
+            }
+        }
+        cell.date.text = date1
         
-        cell.date.text = cell.date.text?.stringByDeletingPathExtension
+        //cell.date.text = cell.date.text?.stringByDeletingPathExtension
         
         if self.convList[indexPath.row].lastMessage != "" {
             cell.conversationLabel.text = self.convList[indexPath.row].lastMessage
@@ -80,9 +94,9 @@ extension LTOfflineConversationTableViewController {
             self.convList = (array as? [LTSOfflineConversation])!
             self.tableView.reloadData()
             
-        }, failure: { (exeption) -> Void in
-            
-            self.loadingErrorProcess(exeption)
+            }, failure: { (exeption) -> Void in
+                
+                self.loadingErrorProcess(exeption)
         })
     }
 }

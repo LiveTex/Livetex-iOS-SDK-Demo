@@ -24,16 +24,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reachabilityChanged:"), name: kReachabilityChangedNotification, object: nil)
-        
+
         internetReachability = Reachability.reachabilityForInternetConnection()
         internetReachability.startNotifier();
         
-        if SYSTEM_VERSION_LESS_THAN("8.0") {
-            application.registerForRemoteNotificationTypes(UIRemoteNotificationType.Sound | UIRemoteNotificationType.Alert)
-        } else {
-            let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound | UIUserNotificationType.Alert, categories: nil)
+//        if SYSTEM_VERSION_LESS_THAN("8.0") {
+//            application.registerForRemoteNotificationTypes(UIRemoteNotificationType.Sound | UIRemoteNotificationType.Alert)
+//        } else {
+            let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: /*UIUserNotificationType.Sound | */UIUserNotificationType.Alert, categories: nil)
             application .registerUserNotificationSettings(settings)
-        }
+      //  }
         
         return true
     }
@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             NSNotificationCenter.defaultCenter().postNotificationName("LTApiManager_token_got", object: nil)
             
-            println("tokenString: \(tokenString)")
+            print("tokenString: \(tokenString)")
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {

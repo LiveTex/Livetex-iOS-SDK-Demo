@@ -40,8 +40,9 @@ class LTChatMessageTableViewCell: UITableViewCell {
             }
             
             if let massage = messageNew as? LTSFileMessage {
+                let name = massage.url
+                self.messageText.text = name
                 
-                self.messageText.text = massage.url
                 let timestamp = (self.message.timestamp as NSString).doubleValue
                 self.timeText.text = handy.timeFormatter.stringFromDate(NSDate(timeIntervalSince1970: NSTimeInterval(timestamp)))
                 self.messgaeConfirmedIco?.hidden = true

@@ -27,10 +27,11 @@ class LTOfflineConversationTableViewCell: UITableViewCell {
                     if (Employee.employeeId == newValue) {
                         
                             let url = NSURL(string: Employee.avatar)
-                            var err: NSError?
-                            var imageData :NSData = NSData(contentsOfURL:url!, options: NSDataReadingOptions.DataReadingMappedIfSafe, error: &err)!
-            
-                            var bgImage = UIImage(data:imageData)
+                           // var err: NSError?
+                        
+                            let imageData :NSData = NSData(contentsOfURL:url!)!
+                        
+                            let bgImage = UIImage(data:imageData)
                             self.photo.image = bgImage
                     }
                 }

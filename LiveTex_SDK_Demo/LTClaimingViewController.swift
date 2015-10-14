@@ -24,8 +24,19 @@ class LTClaimingViewController: UIViewController {
 
 extension LTClaimingViewController {
     
+    
+    @IBAction func closeAction(sender: AnyObject) {
+        self.performSegueWithIdentifier("closeClaim", sender: nil)
+    }
+    
     @IBAction func sendClaim(sender: AnyObject) {
-        sendClaimConversation()
+        if(CommonUtils.isWhiteSpaceString(contact.text!) || CommonUtils.isWhiteSpaceString(messageField.text!)) {
+            CommonUtils.showAlert("Заполните обязательные поля")
+        } else if(!CommonUtils.isValidPhone(contact.text!)) {
+            CommonUtils.showAlert("Неверно введен номер телефона")
+        } else {
+            sendClaimConversation()
+        }
     }
 }
 
@@ -44,12 +55,14 @@ extension LTClaimingViewController {
         LTApiManager.sharedInstance.sdk?.abuseWithAbuse(abuse, success: { () -> Void in
             
             view.animateRemove()
-            self.performSegueWithIdentifier("unwind", sender: nil)
+            CommonUtils.showToast("Жалоба отправлена")
+            self.performSegueWithIdentifier("closeClaim", sender: nil)
+            
             
         }, failure: { (error:NSException!) -> Void in
                 
             view.animateRemove()
-            UIAlertView(title: "Ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК").show()
+          //  UIAlertView(title: "Ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК").show()
         })
     }
 }
