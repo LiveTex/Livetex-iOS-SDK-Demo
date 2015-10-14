@@ -36,9 +36,9 @@
 		55F73B061A0A6EB900C28B0A /* LTAuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73B051A0A6EB900C28B0A /* LTAuthorizationViewController.swift */; };
 		55F73B0B1A0A6EB900C28B0A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0A1A0A6EB900C28B0A /* Images.xcassets */; };
 		55F73B0E1A0A6EB900C28B0A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */; };
-		7E023E0A1B4BDCD5003E3079 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E023E091B4BDCD5003E3079 /* libLTMobileSDK.a */; };
 		7E023E101B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E023E0F1B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift */; };
 		7E0EF9621B29AA6A007C7CD4 /* 1376466473_manager1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7E0EF9611B29AA6A007C7CD4 /* 1376466473_manager1.jpg */; };
+		7E3F56F71BAC48ED00DAA04D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E3F56F61BAC48ED00DAA04D /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		7E4BF9DA1B26FF5700FF5C80 /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9CF1B26FF5700FF5C80 /* AppIcon29x29.png */; };
 		7E4BF9DB1B26FF5700FF5C80 /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D01B26FF5700FF5C80 /* AppIcon29x29@2x.png */; };
 		7E4BF9DC1B26FF5700FF5C80 /* AppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D11B26FF5700FF5C80 /* AppIcon40x40.png */; };
@@ -50,8 +50,9 @@
 		7E4BF9E21B26FF5700FF5C80 /* AppIcon76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D71B26FF5700FF5C80 /* AppIcon76x76@2x.png */; };
 		7E4BF9E31B26FF5700FF5C80 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D81B26FF5700FF5C80 /* iTunesArtwork.png */; };
 		7E4BF9E41B26FF5700FF5C80 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D91B26FF5700FF5C80 /* iTunesArtwork@2x.png */; };
+		7E5707261BC53B8D00A6B288 /* bar_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5707251BC53B8D00A6B288 /* bar_back.png */; settings = {ASSET_TAGS = (); }; };
+		7EB06B3D1BCE5771007FC398 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EB06B3B1BCE5771007FC398 /* libLTMobileSDK.a */; settings = {ASSET_TAGS = (); }; };
 		7EC9A77E1B3D8C9B00A60E71 /* send_file_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EC9A77D1B3D8C9B00A60E71 /* send_file_icon@2x.png */; };
-		7EC9A7801B3D8E2500A60E71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7EC9A77F1B3D8E2500A60E71 /* Main.storyboard */; };
 		7EDB52EB1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */; };
 		7EDB52ED1B232414005320B4 /* LTOfflineConversationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */; };
 		7EDB52EF1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */; };
@@ -60,6 +61,7 @@
 		7EDB52F71B26DA6A005320B4 /* button_online@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB52F41B26DA6A005320B4 /* button_online@2x.png */; };
 		7EDB52F81B26DA6A005320B4 /* button_offline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB52F51B26DA6A005320B4 /* button_offline@2x.png */; };
 		7EDB52F91B26DA6A005320B4 /* button_online_push@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EDB52F61B26DA6A005320B4 /* button_online_push@2x.png */; };
+		7EED15261BBD29CC00CEBB11 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,7 +70,6 @@
 		553859571A13AFCA0067A33F /* LTChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTChatViewController.swift; sourceTree = "<group>"; };
 		55CC14FB1A3B2A9400C1456C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		55CC14FC1A3B2A9400C1456C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		55D6657F1A127AA5001747B0 /* LTObjcBridging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
 		55D666051A135F2C001747B0 /* LTApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTApiManager.swift; sourceTree = "<group>"; };
 		55D666071A1364CC001747B0 /* LTEnvolvingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTEnvolvingViewController.swift; sourceTree = "<group>"; };
 		55D6660A1A136616001747B0 /* bad_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bad_icon@2x.png"; sourceTree = "<group>"; };
@@ -97,11 +98,9 @@
 		55F73B051A0A6EB900C28B0A /* LTAuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTAuthorizationViewController.swift; sourceTree = "<group>"; };
 		55F73B0A1A0A6EB900C28B0A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		55F73B0D1A0A6EB900C28B0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		7E023E071B4BDCD5003E3079 /* LTSDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
-		7E023E081B4BDCD5003E3079 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
-		7E023E091B4BDCD5003E3079 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
 		7E023E0F1B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineChatMessageTableViewCell.swift; sourceTree = "<group>"; };
 		7E0EF9611B29AA6A007C7CD4 /* 1376466473_manager1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1376466473_manager1.jpg; sourceTree = "<group>"; };
+		7E3F56F61BAC48ED00DAA04D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7E4BF9CF1B26FF5700FF5C80 /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
 		7E4BF9D01B26FF5700FF5C80 /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
 		7E4BF9D11B26FF5700FF5C80 /* AppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon40x40.png; sourceTree = "<group>"; };
@@ -114,8 +113,12 @@
 		7E4BF9D81B26FF5700FF5C80 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		7E4BF9D91B26FF5700FF5C80 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		7E4BF9E61B27023C00FF5C80 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7E5707251BC53B8D00A6B288 /* bar_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar_back.png; sourceTree = "<group>"; };
+		7E897D731BBA9C9800B9EEB2 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
+		7E897D7E1BBA9F9000B9EEB2 /* LTObjcBridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
+		7EB06B3B1BCE5771007FC398 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
+		7EB06B3C1BCE5771007FC398 /* LTSDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
 		7EC9A77D1B3D8C9B00A60E71 /* send_file_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_file_icon@2x.png"; sourceTree = "<group>"; };
-		7EC9A77F1B3D8E2500A60E71 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationTableViewCell.swift; sourceTree = "<group>"; };
 		7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationTableViewController.swift; sourceTree = "<group>"; };
 		7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationCreationViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +127,7 @@
 		7EDB52F41B26DA6A005320B4 /* button_online@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_online@2x.png"; sourceTree = "<group>"; };
 		7EDB52F51B26DA6A005320B4 /* button_offline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_offline@2x.png"; sourceTree = "<group>"; };
 		7EDB52F61B26DA6A005320B4 /* button_online_push@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_online_push@2x.png"; sourceTree = "<group>"; };
+		7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E023E0A1B4BDCD5003E3079 /* libLTMobileSDK.a in Frameworks */,
+				7EB06B3D1BCE5771007FC398 /* libLTMobileSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,20 +151,10 @@
 			path = DejalActivityView;
 			sourceTree = "<group>";
 		};
-		55D665751A1276FE001747B0 /* Livetex_SDK */ = {
-			isa = PBXGroup;
-			children = (
-				7E023E071B4BDCD5003E3079 /* LTSDKModel.h */,
-				7E023E081B4BDCD5003E3079 /* LTMobileSDK.h */,
-				7E023E091B4BDCD5003E3079 /* libLTMobileSDK.a */,
-				55D6657F1A127AA5001747B0 /* LTObjcBridging.h */,
-			);
-			path = Livetex_SDK;
-			sourceTree = "<group>";
-		};
 		55D666091A13655A001747B0 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				7E5707251BC53B8D00A6B288 /* bar_back.png */,
 				7EC9A77D1B3D8C9B00A60E71 /* send_file_icon@2x.png */,
 				7E0EF9611B29AA6A007C7CD4 /* 1376466473_manager1.jpg */,
 				7E4BF9CE1B26FF5700FF5C80 /* imagesSDK */,
@@ -191,7 +185,7 @@
 		55F73AF21A0A6EB800C28B0A = {
 			isa = PBXGroup;
 			children = (
-				55F73AFD1A0A6EB800C28B0A /* LiveTex_SDK_Demo */,
+				55F73AFD1A0A6EB800C28B0A /* LiveTex_SDK_Mobile */,
 				55F73AFC1A0A6EB800C28B0A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -204,18 +198,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		55F73AFD1A0A6EB800C28B0A /* LiveTex_SDK_Demo */ = {
+		55F73AFD1A0A6EB800C28B0A /* LiveTex_SDK_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				7E897D6F1BBA9C9800B9EEB2 /* LTMobileSDK */,
 				55D666091A13655A001747B0 /* resources */,
 				7E023E0D1B4C2064003E3079 /* thirdParty */,
-				55D665751A1276FE001747B0 /* Livetex_SDK */,
 				7E023E0E1B4C208C003E3079 /* source */,
 				55F73B0A1A0A6EB900C28B0A /* Images.xcassets */,
-				7EC9A77F1B3D8E2500A60E71 /* Main.storyboard */,
 				55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */,
 				55F73AFE1A0A6EB800C28B0A /* Supporting Files */,
+				7E3F56F61BAC48ED00DAA04D /* Main.storyboard */,
 			);
+			name = LiveTex_SDK_Mobile;
 			path = LiveTex_SDK_Demo;
 			sourceTree = "<group>";
 		};
@@ -246,6 +241,7 @@
 				55D666051A135F2C001747B0 /* LTApiManager.swift */,
 				55F73B001A0A6EB800C28B0A /* AppDelegate.swift */,
 				55F73B051A0A6EB900C28B0A /* LTAuthorizationViewController.swift */,
+				7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -288,6 +284,17 @@
 			path = imagesSDK;
 			sourceTree = "<group>";
 		};
+		7E897D6F1BBA9C9800B9EEB2 /* LTMobileSDK */ = {
+			isa = PBXGroup;
+			children = (
+				7EB06B3B1BCE5771007FC398 /* libLTMobileSDK.a */,
+				7EB06B3C1BCE5771007FC398 /* LTSDKModel.h */,
+				7E897D7E1BBA9F9000B9EEB2 /* LTObjcBridging.h */,
+				7E897D731BBA9C9800B9EEB2 /* LTMobileSDK.h */,
+			);
+			path = LTMobileSDK;
+			sourceTree = "<group>";
+		};
 		7EDB52E71B23236A005320B4 /* offlineChanel */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,7 +333,8 @@
 		55F73AF31A0A6EB800C28B0A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = LiveTex;
 				TargetAttributes = {
 					55F73AFA1A0A6EB800C28B0A = {
@@ -373,7 +381,7 @@
 				7EDB52F91B26DA6A005320B4 /* button_online_push@2x.png in Resources */,
 				7E4BF9E21B26FF5700FF5C80 /* AppIcon76x76@2x.png in Resources */,
 				7EDB52F81B26DA6A005320B4 /* button_offline@2x.png in Resources */,
-				7EC9A7801B3D8E2500A60E71 /* Main.storyboard in Resources */,
+				7E3F56F71BAC48ED00DAA04D /* Main.storyboard in Resources */,
 				7E4BF9E01B26FF5700FF5C80 /* AppIcon60x60@3x.png in Resources */,
 				7E4BF9E11B26FF5700FF5C80 /* AppIcon76x76.png in Resources */,
 				7EDB52F71B26DA6A005320B4 /* button_online@2x.png in Resources */,
@@ -392,6 +400,7 @@
 				55D666161A136616001747B0 /* dropdown_arrow@2x.png in Resources */,
 				7E4BF9DB1B26FF5700FF5C80 /* AppIcon29x29@2x.png in Resources */,
 				55F73B0B1A0A6EB900C28B0A /* Images.xcassets in Resources */,
+				7E5707261BC53B8D00A6B288 /* bar_back.png in Resources */,
 				55D666131A136616001747B0 /* bad_icon@2x.png in Resources */,
 				55DF2E361A14C93700C4DDD9 /* top_background.png in Resources */,
 			);
@@ -405,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55D666081A1364CC001747B0 /* LTEnvolvingViewController.swift in Sources */,
+				7EED15261BBD29CC00CEBB11 /* CommonUtils.swift in Sources */,
 				553859581A13AFCA0067A33F /* LTChatViewController.swift in Sources */,
 				55DEA8EE1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift in Sources */,
 				7E023E101B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift in Sources */,
@@ -455,9 +465,11 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LiveTex LLC (FJE97HEJ7P)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: LiveTex LLC (FJE97HEJ7P)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -472,9 +484,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "4536b328-5544-4a28-b780-d87bf6cea477";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -497,7 +510,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LiveTex LLC (FJE97HEJ7P)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LiveTex LLC (FJE97HEJ7P)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -508,8 +522,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "4536b328-5544-4a28-b780-d87bf6cea477";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -520,24 +535,32 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Никита Сидоров (UX8BKNUA9D)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Никита Сидоров (UX8BKNUA9D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: LiveTex LLC (FJE97HEJ7P)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				INFOPLIST_FILE = LiveTex_SDK_Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LiveTex_SDK_Demo/Livetex_SDK",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LTMobileSDK-gobsmgafmedlnthgewbmoplmtqum/Build/Products/Debug-iphoneos",
+					"$(PROJECT_DIR)/LiveTex_SDK_Demo/LTMobileSDK",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8848c4d8-60cd-4201-b8ce-abd369d87525";
-				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/Livetex_SDK/LTObjcBridging.h;
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = LiveTex_SDK_Demo/Livetex_SDK/LTObjcBridging.h;
+				PROVISIONING_PROFILE = "4536b328-5544-4a28-b780-d87bf6cea477";
+				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTMobileSDK/LTObjcBridging.h;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = LiveTex_SDK_Demo/LTMobileSDK/LTObjcBridging.h;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -547,26 +570,103 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Никита Сидоров (UX8BKNUA9D)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Никита Сидоров (UX8BKNUA9D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
 				INFOPLIST_FILE = LiveTex_SDK_Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LiveTex_SDK_Demo/Livetex_SDK",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LTMobileSDK-gobsmgafmedlnthgewbmoplmtqum/Build/Products/Debug-iphoneos",
+					"$(PROJECT_DIR)/LiveTex_SDK_Demo/LTMobileSDK",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8848c4d8-60cd-4201-b8ce-abd369d87525";
-				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/Livetex_SDK/LTObjcBridging.h;
+				PROVISIONING_PROFILE = "4536b328-5544-4a28-b780-d87bf6cea477";
+				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTMobileSDK/LTObjcBridging.h;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
+		};
+		7E5707271BC54DE400A6B288 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LiveTex LLC (FJE97HEJ7P)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LiveTex LLC (FJE97HEJ7P)";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "4536b328-5544-4a28-b780-d87bf6cea477";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		7E5707281BC54DE400A6B288 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				INFOPLIST_FILE = LiveTex_SDK_Demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/LiveTex_SDK_Demo/Livetex_SDK",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LTMobileSDK-gobsmgafmedlnthgewbmoplmtqum/Build/Products/Debug-iphoneos",
+					"$(PROJECT_DIR)/LiveTex_SDK_Demo/LTMobileSDK",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4536b328-5544-4a28-b780-d87bf6cea477";
+				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTMobileSDK/LTObjcBridging.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Distribution;
 		};
 /* End XCBuildConfiguration section */
 
@@ -576,6 +676,7 @@
 			buildConfigurations = (
 				55F73B1B1A0A6EB900C28B0A /* Debug */,
 				55F73B1C1A0A6EB900C28B0A /* Release */,
+				7E5707271BC54DE400A6B288 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -585,6 +686,7 @@
 			buildConfigurations = (
 				55F73B1E1A0A6EB900C28B0A /* Debug */,
 				55F73B1F1A0A6EB900C28B0A /* Release */,
+				7E5707281BC54DE400A6B288 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
