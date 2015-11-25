@@ -46,7 +46,7 @@ extension LTClaimingViewController {
     
     func sendClaimConversation() {
         
-        var view = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
+        let view = DejalBezelActivityView(forView: self.view, withLabel: "Загрузка", width:100)
         
         let abuse:LTSAbuse = LTSAbuse()
         abuse.contact = self.contact.text

@@ -204,7 +204,6 @@ extension LTChatViewController {
                     
                     LTApiManager.sharedInstance.onlineEmployeeId = nil
                     
-                    let newstate:LTSDialogState = state
                     self.removeActivityIndicator()
                     self.performSegueWithIdentifier("authorizathon", sender: nil)
                     
@@ -320,7 +319,7 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
     
     func confirmTextMessage(messageId: String!) {
         for msg:AnyObject in messages {
-            if var message = msg as? LTSWTextMessage {
+            if let message = msg as? LTSWTextMessage {
                 if message.messageId == messageId {
                     message.isConfirmed = true
                     self.tableView.reloadData()
@@ -413,7 +412,7 @@ extension LTChatViewController {
     func loadingErrorProcess(error:NSException) {
         
         var asd = error.userInfo
-        var error:NSError? = asd?["error"] as? NSError
+        let error:NSError? = asd?["error"] as? NSError
         
         self.removeActivityIndicator()
         let alert: UIAlertView = UIAlertView(title: "Превышен лимит на отправку файлов", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
@@ -491,7 +490,7 @@ extension LTChatViewController {
         voteUpBtn.enabled = true
         abuseBtn.enabled = true
         
-        var systemMessage = LTSHoldMessage(text: "Оператор онлайн", timestamp: "")
+        let systemMessage = LTSHoldMessage(text: "Оператор онлайн", timestamp: "")
         self.messages.append(systemMessage)
         
         let url = NSURL(string: state.employee.avatar)
@@ -519,7 +518,7 @@ extension LTChatViewController {
         voteUpBtn.enabled = false
         abuseBtn.enabled = false
         
-        var systemMessage = LTSHoldMessage(text: "Оператор не в сети. Диалог в очереди", timestamp: "")
+        let systemMessage = LTSHoldMessage(text: "Оператор не в сети. Диалог в очереди", timestamp: "")
         self.messages.append(systemMessage)
     }
     
@@ -536,7 +535,7 @@ extension LTChatViewController {
         
         messageInputField?.enabled = false
         
-        var systemMessage = LTSHoldMessage(text: "Оператор не в сети. Диалог закрыт", timestamp: "")
+        let systemMessage = LTSHoldMessage(text: "Оператор не в сети. Диалог закрыт", timestamp: "")
         self.messages.append(systemMessage)
     }
 }
@@ -615,7 +614,7 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
             var cell:LTChatMessageTableViewCell!
             
             cell = self.tableView.dequeueReusableCellWithIdentifier("cellIn") as! LTChatMessageTableViewCell
-            currentMessage.url = currentMessage.url.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            currentMessage.url = currentMessage.url.stringByRemovingPercentEncoding
             cell.messageSet = currentMessage
             tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: false)
             return cell
@@ -635,7 +634,7 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if let message = messages[indexPath.row] as? LTSFileMessage {
-            let url = message.url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            let url = message.url.stringByRemovingPercentEncoding
             UIApplication.sharedApplication().openURL(NSURL(string: url!)!)
         }
     }
