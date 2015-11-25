@@ -126,7 +126,7 @@ extension LTOfflineConversationCreationViewController {
     func loadingErrorProcess(error:NSException) {
         
         var asd = error.userInfo
-        var error:NSError? = asd?["error"] as? NSError
+        let error:NSError? = asd?["error"] as? NSError
         
         self.removeActivityIndicator()
         let alert: UIAlertView = UIAlertView(title: "Ошибка", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")

@@ -59,8 +59,8 @@ class LTOfflineChatMessageTableViewCell: UITableViewCell {
     
     class func getSizeForText(text:String) -> Double {
         
-        var spec:Double = 24.0
-        var rect:CGRect = (text as NSString).boundingRectWithSize(CGSize(width: 250, height: DBL_MAX), options: (NSStringDrawingOptions.UsesLineFragmentOrigin), attributes:[NSFontAttributeName : UIFont.systemFontOfSize(17.0)], context:nil)
+        let spec:Double = 24.0
+        let rect:CGRect = (text as NSString).boundingRectWithSize(CGSize(width: 250, height: DBL_MAX), options: (NSStringDrawingOptions.UsesLineFragmentOrigin), attributes:[NSFontAttributeName : UIFont.systemFontOfSize(17.0)], context:nil)
 
         return Double(rect.size.height) + spec
     }
