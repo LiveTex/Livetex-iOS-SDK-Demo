@@ -158,7 +158,7 @@
                         <outlet property="onlineModeButton" destination="5oQ-5p-kol" id="t6P-Ko-Xzs"/>
                         <outlet property="suggetionLabel" destination="Uhw-AF-lU2" id="WcH-ub-uNS"/>
                         <segue destination="jvZ-fE-KyD" kind="show" identifier="showEnvolving" id="BAH-kh-adT"/>
-                        <segue destination="C8k-7k-ZTW" kind="modal" identifier="show_chat" id="Igg-H3-IQf"/>
+                        <segue destination="C8k-7k-ZTW" kind="presentation" identifier="show_chat" id="Igg-H3-IQf"/>
                         <segue destination="ZBF-Ac-B6J" kind="show" identifier="showOffline" id="Qwg-sx-xv3"/>
                     </connections>
                 </viewController>
@@ -393,7 +393,7 @@
                         <outlet property="message" destination="HPL-DL-vKr" id="2h0-gg-skO"/>
                         <outlet property="name" destination="aEC-yu-NeH" id="u5j-xB-CSJ"/>
                         <outlet property="phone" destination="g6t-3I-WN0" id="g7Y-c2-iWT"/>
-                        <segue destination="eGr-eO-Xoh" kind="presentation" identifier="offlineChatStart" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="e9z-9S-brt"/>
+                        <segue destination="eGr-eO-Xoh" kind="presentation" identifier="offlineChatStart" id="e9z-9S-brt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AAZ-pz-cTi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -435,24 +435,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Мы рады приветствовать Вас! " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN1-ld-ASx" userLabel="invitation">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мы рады приветствовать Вас! " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LN1-ld-ASx" userLabel="invitation">
                                 <rect key="frame" x="175" y="77" width="250" height="47"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="kNl-UZ-wj8"/>
+                                    <constraint firstAttribute="width" constant="250" id="0UE-pU-U3n"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Rectangle.png" translatesAutoresizingMaskIntoConstraints="NO" id="4rH-U7-Fxu" userLabel="background1">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle.png" translatesAutoresizingMaskIntoConstraints="NO" id="4rH-U7-Fxu" userLabel="background1">
                                 <rect key="frame" x="181" y="139" width="238" height="30"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="238" id="oaH-RO-IaR"/>
+                                    <constraint firstAttribute="width" constant="238" id="ebu-gq-8Yw"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Введите имя" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d9w-4F-wCj" userLabel="name">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Введите имя" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d9w-4F-wCj" userLabel="name">
                                 <rect key="frame" x="188" y="139" width="225" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -465,11 +465,11 @@
                                     <outlet property="delegate" destination="bFf-3s-Qds" id="8L9-Xu-bNT"/>
                                 </connections>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Rectangle.png" translatesAutoresizingMaskIntoConstraints="NO" id="oox-dL-93k" userLabel="subSelection">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle.png" translatesAutoresizingMaskIntoConstraints="NO" id="oox-dL-93k" userLabel="subSelection">
                                 <rect key="frame" x="181" y="185" width="238" height="30"/>
                                 <animations/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Введите возраст" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mBy-7b-YCo" userLabel="subSelection">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Введите возраст" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mBy-7b-YCo" userLabel="subSelection">
                                 <rect key="frame" x="187" y="185" width="226" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -481,7 +481,7 @@
                                     <outlet property="delegate" destination="bFf-3s-Qds" id="aRb-xF-euE"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Noj-nn-Rhb" userLabel="subSelection">
+                            <button opaque="NO" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Noj-nn-Rhb" userLabel="subSelection">
                                 <rect key="frame" x="184" y="185" width="232" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -493,11 +493,11 @@
                                     <action selector="subSelection:" destination="bFf-3s-Qds" eventType="touchUpInside" id="Fit-cG-Q0a"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Rectangle.png" translatesAutoresizingMaskIntoConstraints="NO" id="R2S-g9-ThX" userLabel="age">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle.png" translatesAutoresizingMaskIntoConstraints="NO" id="R2S-g9-ThX" userLabel="age">
                                 <rect key="frame" x="181" y="231" width="238" height="30"/>
                                 <animations/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Livetex ID (необязательно)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zDS-cj-QBq">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Livetex ID (необязательно)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zDS-cj-QBq">
                                 <rect key="frame" x="187" y="231" width="226" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -506,11 +506,11 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Ваш вопрос 2.png" translatesAutoresizingMaskIntoConstraints="NO" id="TT9-rM-EbJ" userLabel="background4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ваш вопрос 2.png" translatesAutoresizingMaskIntoConstraints="NO" id="TT9-rM-EbJ" userLabel="background4">
                                 <rect key="frame" x="180" y="277" width="240" height="100"/>
                                 <animations/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Введите сообщение" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LfG-oO-bAi" userLabel="placeholder">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Введите сообщение" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LfG-oO-bAi" userLabel="placeholder">
                                 <rect key="frame" x="186" y="279" width="227" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -519,7 +519,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gfj-zQ-zRl">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfj-zQ-zRl">
                                 <rect key="frame" x="180" y="277" width="240" height="100"/>
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -535,7 +535,7 @@
                                     <outlet property="delegate" destination="bFf-3s-Qds" id="0pi-8z-9RT"/>
                                 </connections>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRa-9Q-tcB">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRa-9Q-tcB">
                                 <rect key="frame" x="181" y="405" width="238" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -548,7 +548,7 @@
                                     <action selector="createConversation:" destination="bFf-3s-Qds" eventType="touchUpInside" id="oqD-DK-mAi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywk-7z-xzI" userLabel="respnderResigner">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywk-7z-xzI" userLabel="respnderResigner">
                                 <rect key="frame" x="289" y="321" width="22" height="22"/>
                                 <animations/>
                                 <constraints>
@@ -567,38 +567,39 @@
                             <constraint firstItem="oox-dL-93k" firstAttribute="centerX" secondItem="TM3-qG-Z1E" secondAttribute="centerX" id="4gd-bo-nlw"/>
                             <constraint firstItem="R2S-g9-ThX" firstAttribute="top" secondItem="zDS-cj-QBq" secondAttribute="top" id="5Bs-WS-nq7"/>
                             <constraint firstItem="TT9-rM-EbJ" firstAttribute="leading" secondItem="gfj-zQ-zRl" secondAttribute="leading" id="5rv-DX-yPJ"/>
-                            <constraint firstItem="d9w-4F-wCj" firstAttribute="bottom" secondItem="4rH-U7-Fxu" secondAttribute="bottom" id="6iD-9N-By6"/>
                             <constraint firstItem="R2S-g9-ThX" firstAttribute="trailing" secondItem="oox-dL-93k" secondAttribute="trailing" id="7fx-oy-1G7"/>
                             <constraint firstItem="zDS-cj-QBq" firstAttribute="centerX" secondItem="LfG-oO-bAi" secondAttribute="centerX" id="ADj-Bx-esg"/>
                             <constraint firstItem="zDS-cj-QBq" firstAttribute="top" secondItem="mBy-7b-YCo" secondAttribute="bottom" constant="16" id="BA4-PH-Rm0"/>
+                            <constraint firstItem="4rH-U7-Fxu" firstAttribute="top" secondItem="d9w-4F-wCj" secondAttribute="top" id="BWV-Qa-YjM"/>
                             <constraint firstItem="LfG-oO-bAi" firstAttribute="top" secondItem="zDS-cj-QBq" secondAttribute="bottom" constant="18" id="F5Y-Qx-A87"/>
-                            <constraint firstItem="4rH-U7-Fxu" firstAttribute="top" secondItem="d9w-4F-wCj" secondAttribute="top" id="Fj6-oY-NX2"/>
-                            <constraint firstItem="Noj-nn-Rhb" firstAttribute="top" secondItem="4rH-U7-Fxu" secondAttribute="bottom" constant="16" id="GM2-Ou-Sa3"/>
+                            <constraint firstItem="d9w-4F-wCj" firstAttribute="top" secondItem="LN1-ld-ASx" secondAttribute="bottom" constant="15" id="Gm8-L2-Qtn"/>
                             <constraint firstItem="d9w-4F-wCj" firstAttribute="trailing" secondItem="mBy-7b-YCo" secondAttribute="trailing" id="Ha6-1A-5nX"/>
                             <constraint firstItem="LfG-oO-bAi" firstAttribute="centerX" secondItem="Ywk-7z-xzI" secondAttribute="centerX" id="LJc-dg-IIZ"/>
-                            <constraint firstItem="4rH-U7-Fxu" firstAttribute="top" secondItem="LN1-ld-ASx" secondAttribute="bottom" constant="15" id="MHY-Qm-fO3"/>
+                            <constraint firstItem="4rH-U7-Fxu" firstAttribute="top" secondItem="TM3-qG-Z1E" secondAttribute="top" constant="139" id="M3o-XC-KMa"/>
                             <constraint firstItem="gfj-zQ-zRl" firstAttribute="centerX" secondItem="LfG-oO-bAi" secondAttribute="centerX" id="QQ5-7w-RmA"/>
                             <constraint firstItem="zDS-cj-QBq" firstAttribute="trailing" secondItem="mBy-7b-YCo" secondAttribute="trailing" id="RrE-em-qRF"/>
                             <constraint firstItem="SRa-9Q-tcB" firstAttribute="trailing" secondItem="R2S-g9-ThX" secondAttribute="trailing" id="Sur-oG-qdE"/>
+                            <constraint firstItem="4rH-U7-Fxu" firstAttribute="bottom" secondItem="d9w-4F-wCj" secondAttribute="bottom" id="T6V-0c-pJm"/>
                             <constraint firstItem="oox-dL-93k" firstAttribute="centerX" secondItem="Noj-nn-Rhb" secondAttribute="centerX" id="Wqm-ta-E1S"/>
                             <constraint firstItem="oox-dL-93k" firstAttribute="bottom" secondItem="Noj-nn-Rhb" secondAttribute="bottom" id="XEQ-va-ffU"/>
+                            <constraint firstItem="4rH-U7-Fxu" firstAttribute="leading" secondItem="oox-dL-93k" secondAttribute="leading" id="Ybh-Ga-0gL"/>
                             <constraint firstItem="LfG-oO-bAi" firstAttribute="trailing" secondItem="zDS-cj-QBq" secondAttribute="trailing" id="ZR4-Tw-l5o"/>
                             <constraint firstItem="mBy-7b-YCo" firstAttribute="centerX" secondItem="Noj-nn-Rhb" secondAttribute="centerX" id="bcr-cP-Oh0"/>
                             <constraint firstItem="SRa-9Q-tcB" firstAttribute="top" secondItem="gfj-zQ-zRl" secondAttribute="bottom" constant="28" id="bpO-bP-nRn"/>
                             <constraint firstItem="gfj-zQ-zRl" firstAttribute="top" secondItem="zDS-cj-QBq" secondAttribute="bottom" constant="16" id="ccL-Qs-vOY"/>
-                            <constraint firstItem="d9w-4F-wCj" firstAttribute="centerX" secondItem="LN1-ld-ASx" secondAttribute="centerX" id="cuI-F7-VTv"/>
-                            <constraint firstItem="d9w-4F-wCj" firstAttribute="centerX" secondItem="4rH-U7-Fxu" secondAttribute="centerX" id="d2c-BC-xbw"/>
                             <constraint firstItem="oox-dL-93k" firstAttribute="top" secondItem="mBy-7b-YCo" secondAttribute="top" id="dJo-Db-4yw"/>
                             <constraint firstItem="Noj-nn-Rhb" firstAttribute="bottom" secondItem="mBy-7b-YCo" secondAttribute="bottom" id="e9u-wT-mHd"/>
                             <constraint firstItem="mBy-7b-YCo" firstAttribute="leading" secondItem="zDS-cj-QBq" secondAttribute="leading" id="gr3-Wd-AxX"/>
                             <constraint firstItem="SRa-9Q-tcB" firstAttribute="top" secondItem="Ywk-7z-xzI" secondAttribute="bottom" constant="62" id="h8Z-g1-MDz"/>
                             <constraint firstItem="gfj-zQ-zRl" firstAttribute="trailing" secondItem="TT9-rM-EbJ" secondAttribute="trailing" id="hvq-ni-xcZ"/>
+                            <constraint firstItem="LN1-ld-ASx" firstAttribute="top" secondItem="YHp-Bl-Iyp" secondAttribute="bottom" constant="13" id="jkj-Te-YHY"/>
                             <constraint firstItem="SRa-9Q-tcB" firstAttribute="leading" secondItem="R2S-g9-ThX" secondAttribute="leading" id="kV0-0Z-1RD"/>
                             <constraint firstItem="R2S-g9-ThX" firstAttribute="leading" secondItem="oox-dL-93k" secondAttribute="leading" id="ngR-MD-dRk"/>
-                            <constraint firstItem="LN1-ld-ASx" firstAttribute="top" secondItem="YHp-Bl-Iyp" secondAttribute="bottom" constant="13" id="pD6-lJ-oKZ"/>
-                            <constraint firstItem="4rH-U7-Fxu" firstAttribute="trailing" secondItem="oox-dL-93k" secondAttribute="trailing" id="sJW-vc-8Ym"/>
+                            <constraint firstItem="4rH-U7-Fxu" firstAttribute="trailing" secondItem="oox-dL-93k" secondAttribute="trailing" id="nwL-4T-wc3"/>
+                            <constraint firstItem="4rH-U7-Fxu" firstAttribute="centerX" secondItem="d9w-4F-wCj" secondAttribute="centerX" id="ppQ-Gu-h6g"/>
+                            <constraint firstItem="LN1-ld-ASx" firstAttribute="centerX" secondItem="4rH-U7-Fxu" secondAttribute="centerX" id="qZR-KI-3wK"/>
+                            <constraint firstItem="Noj-nn-Rhb" firstAttribute="top" secondItem="4rH-U7-Fxu" secondAttribute="bottom" constant="16" id="t8p-Eq-lpW"/>
                             <constraint firstItem="zDS-cj-QBq" firstAttribute="bottom" secondItem="R2S-g9-ThX" secondAttribute="bottom" id="tKe-Ak-JTH"/>
-                            <constraint firstItem="oox-dL-93k" firstAttribute="leading" secondItem="4rH-U7-Fxu" secondAttribute="leading" id="tTT-Gq-LX8"/>
                             <constraint firstItem="TT9-rM-EbJ" firstAttribute="bottom" secondItem="gfj-zQ-zRl" secondAttribute="bottom" id="wuQ-lm-1bh"/>
                             <constraint firstItem="Noj-nn-Rhb" firstAttribute="top" secondItem="mBy-7b-YCo" secondAttribute="top" id="xSt-YO-DF0"/>
                             <constraint firstItem="Ywk-7z-xzI" firstAttribute="top" secondItem="LfG-oO-bAi" secondAttribute="bottom" constant="12" id="yp3-Sr-LKB"/>
@@ -626,7 +627,7 @@
                         <outlet property="messagePlaceHolder" destination="LfG-oO-bAi" id="rdJ-f3-VJ2"/>
                         <outlet property="nameField" destination="d9w-4F-wCj" id="nOp-Qt-7wn"/>
                         <outlet property="subSelectionField" destination="mBy-7b-YCo" id="4OA-fo-9kc"/>
-                        <segue destination="C8k-7k-ZTW" kind="modal" identifier="showChat" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="jXv-K2-4Yq"/>
+                        <segue destination="C8k-7k-ZTW" kind="presentation" identifier="showChat" id="jXv-K2-4Yq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9IK-zv-EqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1354,12 +1355,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="baloon_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="rkp-bt-gch" userLabel="back">
-                                                    <rect key="frame" x="328" y="4" width="264" height="53"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baloon_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="rkp-bt-gch" userLabel="back">
+                                                    <rect key="frame" x="329" y="4" width="263" height="53"/>
                                                     <animations/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Текст сообщения от оператора. Текст сообщения" lineBreakMode="wordWrap" numberOfLines="9999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdx-Ol-NGv" userLabel="messageText">
-                                                    <rect key="frame" x="340" y="6" width="235" height="46"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текст сообщения от оператора. Текст сообщения" lineBreakMode="wordWrap" numberOfLines="9999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdx-Ol-NGv" userLabel="messageText">
+                                                    <rect key="frame" x="341" y="6" width="234" height="46"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -1369,8 +1370,8 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="12:31" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBQ-zC-vW3" userLabel="timeTex">
-                                                    <rect key="frame" x="283" y="42" width="42" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:31" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBQ-zC-vW3" userLabel="timeTex">
+                                                    <rect key="frame" x="284" y="42" width="42" height="15"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="2VP-pu-YbN"/>
@@ -1386,8 +1387,8 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="chat_msg_double_checked.png" translatesAutoresizingMaskIntoConstraints="NO" id="qTK-cJ-RkC">
-                                                    <rect key="frame" x="298" y="31" width="27" height="16"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_msg_double_checked.png" translatesAutoresizingMaskIntoConstraints="NO" id="qTK-cJ-RkC">
+                                                    <rect key="frame" x="299" y="31" width="27" height="16"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="7In-ca-NaM"/>
@@ -1468,12 +1469,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="baloon_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="3ni-OW-t0E" userLabel="back">
-                                                    <rect key="frame" x="8" y="6" width="274" height="56"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baloon_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="3ni-OW-t0E" userLabel="back">
+                                                    <rect key="frame" x="8" y="6" width="273" height="56"/>
                                                     <animations/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Текст сообщения от оператора. Текст сообщения." lineBreakMode="wordWrap" numberOfLines="9999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6r-aG-0Sm" userLabel="messageText">
-                                                    <rect key="frame" x="23" y="13" width="240" height="43"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текст сообщения от оператора. Текст сообщения." lineBreakMode="wordWrap" numberOfLines="9999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q6r-aG-0Sm" userLabel="messageText">
+                                                    <rect key="frame" x="23" y="13" width="239" height="43"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -1496,8 +1497,8 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="12:20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ycb-Zl-ujz" userLabel="timeText">
-                                                    <rect key="frame" x="285" y="39" width="42" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ycb-Zl-ujz" userLabel="timeText">
+                                                    <rect key="frame" x="284" y="39" width="42" height="15"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="Ebx-od-YER"/>
@@ -1585,8 +1586,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Системное сообщение" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="99" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="298" translatesAutoresizingMaskIntoConstraints="NO" id="eJL-14-WQJ" userLabel="messageText">
-                                                    <rect key="frame" x="223" y="20" width="155" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Системное сообщение" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="99" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="298" translatesAutoresizingMaskIntoConstraints="NO" id="eJL-14-WQJ" userLabel="messageText">
+                                                    <rect key="frame" x="222" y="20" width="157" height="17"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -1784,8 +1785,8 @@
                                             </mask>
                                         </variation>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yiL-yd-W5n">
-                                        <rect key="frame" x="524" y="21" width="63" height="24"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yiL-yd-W5n">
+                                        <rect key="frame" x="524" y="26" width="63" height="24"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="Fgf-64-ETO"/>
@@ -2001,12 +2002,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="baloon_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="PKe-wx-8jW" userLabel="back">
-                                                    <rect key="frame" x="328" y="6" width="264" height="54"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baloon_blue.png" translatesAutoresizingMaskIntoConstraints="NO" id="PKe-wx-8jW" userLabel="back">
+                                                    <rect key="frame" x="329" y="6" width="263" height="54"/>
                                                     <animations/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Текст сообщения от оператора. Текст сообщения" lineBreakMode="wordWrap" numberOfLines="9999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fzs-hz-z1D" userLabel="messageText">
-                                                    <rect key="frame" x="340" y="11" width="235" height="41"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текст сообщения от оператора. Текст сообщения" lineBreakMode="wordWrap" numberOfLines="9999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fzs-hz-z1D" userLabel="messageText">
+                                                    <rect key="frame" x="341" y="11" width="234" height="41"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -2016,8 +2017,8 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="12:31" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bl1-7z-GHH" userLabel="timeTex">
-                                                    <rect key="frame" x="283" y="46" width="42" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:31" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bl1-7z-GHH" userLabel="timeTex">
+                                                    <rect key="frame" x="284" y="46" width="42" height="15"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="CHR-bO-hMJ"/>
@@ -2033,8 +2034,8 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="chat_msg_double_checked.png" translatesAutoresizingMaskIntoConstraints="NO" id="E39-TO-b6N">
-                                                    <rect key="frame" x="298" y="31" width="27" height="16"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chat_msg_double_checked.png" translatesAutoresizingMaskIntoConstraints="NO" id="E39-TO-b6N">
+                                                    <rect key="frame" x="299" y="31" width="27" height="16"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="27" id="5qh-wY-vhU"/>
@@ -2106,12 +2107,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="baloon_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="hi7-IQ-WNC" userLabel="back">
-                                                    <rect key="frame" x="8" y="6" width="274" height="56"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baloon_gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="hi7-IQ-WNC" userLabel="back">
+                                                    <rect key="frame" x="8" y="6" width="273" height="56"/>
                                                     <animations/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Текст сообщения от оператора. Текст сообщения." lineBreakMode="wordWrap" numberOfLines="9999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ae-vF-PAk" userLabel="messageText">
-                                                    <rect key="frame" x="23" y="13" width="240" height="43"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текст сообщения от оператора. Текст сообщения." lineBreakMode="wordWrap" numberOfLines="9999" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ae-vF-PAk" userLabel="messageText">
+                                                    <rect key="frame" x="23" y="13" width="239" height="43"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -2134,8 +2135,8 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="12:20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0k-LF-dCJ" userLabel="timeText">
-                                                    <rect key="frame" x="285" y="39" width="42" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0k-LF-dCJ" userLabel="timeText">
+                                                    <rect key="frame" x="284" y="39" width="42" height="15"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="8sN-TL-8lD"/>
@@ -2248,8 +2249,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Системное сообщение" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="99" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="298" translatesAutoresizingMaskIntoConstraints="NO" id="kdo-YG-TWv" userLabel="messageText">
-                                                    <rect key="frame" x="223" y="20" width="155" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Системное сообщение" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="99" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="298" translatesAutoresizingMaskIntoConstraints="NO" id="kdo-YG-TWv" userLabel="messageText">
+                                                    <rect key="frame" x="222" y="20" width="157" height="17"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -2534,7 +2535,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jXv-K2-4Yq"/>
-        <segue reference="e9z-9S-brt"/>
+        <segue reference="YWD-td-fMf"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
