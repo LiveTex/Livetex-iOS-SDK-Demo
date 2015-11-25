@@ -49,9 +49,9 @@ class CommonUtils {
         
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         
-        var emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         
-        var result = emailTest.evaluateWithObject(testStr)
+        let result = emailTest.evaluateWithObject(testStr)
         
         return result
         
@@ -59,7 +59,6 @@ class CommonUtils {
 
     
     private static func checkIfNumber(str: String) -> Bool {
-        (str as NSString).stringByReplacingOccurrencesOfString(" ", withString: "").stringByReplacingOccurrencesOfString("-", withString: "").stringByReplacingOccurrencesOfString("+", withString: "")
         let num: UInt64? = UInt64(str)
         if(num != nil) {
             return true
