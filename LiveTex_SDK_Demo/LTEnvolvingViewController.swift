@@ -29,6 +29,7 @@ class LTEnvolvingViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = false
         setupSubSelection()
     }
 }
@@ -117,6 +118,10 @@ extension LTEnvolvingViewController {
         
         subSelectionField.text = nil
         subSelectionField.placeholder = "Выберите отдел"
+        
+        messageField.layer.borderWidth = 0.4
+        messageField.layer.cornerRadius = 6.0
+        messageField.layer.borderColor = UIColor.lightGrayColor().CGColor
     }
     
     func loadAndShowSubSelectionItems() {
