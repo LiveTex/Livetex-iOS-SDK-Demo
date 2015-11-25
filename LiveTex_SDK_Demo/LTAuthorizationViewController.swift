@@ -32,7 +32,7 @@ class LTAuthorizationViewController: UIViewController {
     }
     
     func commonPreparations() {
-        
+        self.navigationController?.navigationBarHidden = true
         if LTApiManager.sharedInstance.apnToken == nil {
             
             onlineModeButton.enabled = false
