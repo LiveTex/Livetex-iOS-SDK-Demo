@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
             
             let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
-            var tokenString = NSMutableString()
+            let tokenString = NSMutableString()
             
             for var i = 0; i < deviceToken.length; i++ {
                 tokenString.appendFormat("%02.2hhx", tokenChars[i])
@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func reachabilityChanged(note:NSNotification) {
-        var curReach:Reachability = note.object as! Reachability
+        let curReach:Reachability = note.object as! Reachability
         processReachability(curReach)
     }
     
