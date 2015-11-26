@@ -12,12 +12,9 @@ import Foundation
 class LTChatViewControllerOffliner: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var operatorIco: UIImageView!
-    @IBOutlet weak var operatorName: UILabel!
     @IBOutlet weak var messageInputField: UITextField!
     @IBOutlet weak var messageInputeView: UIView!
     @IBOutlet weak var tableViewBottomMargin: NSLayoutConstraint!
-    @IBOutlet weak var operatorView: UIView!
     
     var imagePickerController = UIImagePickerController()
     var activityView:DejalBezelActivityView?
@@ -31,7 +28,7 @@ class LTChatViewControllerOffliner: UIViewController, UIImagePickerControllerDel
     }
     
     override func viewDidLoad() {
-        
+        self.messageInputField.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         commonPreparation()
         presentData()
         loadOperatoeInfo()
@@ -103,19 +100,6 @@ extension LTChatViewControllerOffliner {
                 self.loadingErrorProcess(exp)
                 
         })
-        
-    //        LTApiManager.sharedInstance.sdk?.uploadOfflineFileData(imgData,
-//            fileName:"file",
-//            fileExtention:"png",
-//            mimeType:"imgage/png",
-//            conversationId:LTApiManager.sharedInstance.offlineConversationId,
-//            success: { () -> Void in
-//            
-//            self.presentData()
-//            
-//            }, failure: { (exp:NSException!) -> Void in
-//                self.loadingErrorProcess(exp)
-//        })
     }
     
     func loadOperatoeInfo() {
@@ -134,20 +118,10 @@ extension LTChatViewControllerOffliner {
                     currentEmpoyeeId = currentConversation.currentOperatorId
                     
                     LTApiManager.sharedInstance.sdk?.getEmployees(statusType.all, success: { (items:[AnyObject]!) -> Void in
-                        
                         let employees = items as! [LTSEmployee]
-                        
                         for currentEmployee in employees {
-                            
                             if (currentEmployee.employeeId == currentEmpoyeeId) {
-                                
-                                let url = NSURL(string: currentEmployee.avatar)
-                               // var err: NSError?
-                                let imageData :NSData = NSData(contentsOfURL:url!)!
-                                
-                                let bgImage = UIImage(data:imageData)
-                                self.operatorIco.image = bgImage
-                                self.operatorName.text = currentEmployee.firstname! + "" + currentEmployee.lastname!
+                                self.navigationItem.title = currentEmployee.firstname
                             }
                         }
                         
@@ -250,11 +224,6 @@ extension LTChatViewControllerOffliner {
     func commonPreparation() {
         
         UIApplication.sharedApplication().keyWindow?.endEditing(true)
-        
-        operatorIco.layer.borderWidth = 2.0
-        operatorIco.layer.borderColor = UIColor.whiteColor().CGColor
-        operatorIco.clipsToBounds = true
-        operatorIco.layer.cornerRadius = 20.0
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillHideNotification, object: nil)
