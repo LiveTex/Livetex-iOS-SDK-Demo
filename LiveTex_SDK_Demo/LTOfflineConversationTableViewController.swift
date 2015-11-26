@@ -18,6 +18,7 @@ class LTOfflineConversationTableViewController: UITableViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = false
         self.clearsSelectionOnViewWillAppear = true
     }
     
@@ -40,27 +41,9 @@ class LTOfflineConversationTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("LTOfflineConversationTableViewCell", forIndexPath: indexPath) as! LTOfflineConversationTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("UITableViewCell", forIndexPath: indexPath)
         
-        cell.employeeId = self.convList[indexPath.row].currentOperatorId
-        let newDate = (self.convList[indexPath.row].creationTime as String).componentsSeparatedByString(" ")[0]
-        let parts = newDate.componentsSeparatedByString("-")
-        var date1 = ""
-        for index in (1...3).reverse() {
-            date1 += parts[index-1]
-            if(index != 1) {
-                date1 += ".";
-            }
-        }
-        cell.date.text = date1
-        
-        //cell.date.text = cell.date.text?.stringByDeletingPathExtension
-        
-        if self.convList[indexPath.row].lastMessage != "" {
-            cell.conversationLabel.text = self.convList[indexPath.row].lastMessage
-        } else {
-            cell.conversationLabel.text = "Нет текста сообщения"
-        }
+        self.configure(cell: cell, atIndexPath: indexPath);
         
         return cell
     }
@@ -75,6 +58,51 @@ class LTOfflineConversationTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         
         return 0.01
+    }
+    
+    func configure(cell cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+        LTApiManager.sharedInstance.sdk?.getEmployees(statusType.all, success: { (items:[AnyObject]!) -> Void in
+            
+            let employees = items as! [LTSEmployee]
+            
+            for Employee in employees {
+                
+                if (Employee.employeeId == self.convList[indexPath.row].currentOperatorId) {
+                    
+                    let url = NSURL(string: Employee.avatar)
+                    // var err: NSError?
+                    
+                    let imageData :NSData = NSData(contentsOfURL:url!)!
+                    
+                    let bgImage = UIImage(data:imageData)
+                    cell.imageView?.image = bgImage
+                    cell.setNeedsLayout()
+                }
+            }
+            
+            }, failure: { (exeption) -> Void in
+                //
+        })
+        
+        let newDate = (self.convList[indexPath.row].creationTime as String).componentsSeparatedByString(" ")[0]
+        let parts = newDate.componentsSeparatedByString("-")
+        var date1 = ""
+        for index in (1...3).reverse() {
+            date1 += parts[index-1]
+            if(index != 1) {
+                date1 += ".";
+            }
+        }
+        cell.textLabel!.text = date1
+        
+        //cell.date.text = cell.date.text?.stringByDeletingPathExtension
+        
+        if self.convList[indexPath.row].lastMessage != "" {
+            cell.detailTextLabel!.text = self.convList[indexPath.row].lastMessage
+        } else {
+            cell.detailTextLabel!.text = "Нет текста сообщения"
+        }
+
     }
     
     @IBAction func listOffline(segue:UIStoryboardSegue) {
