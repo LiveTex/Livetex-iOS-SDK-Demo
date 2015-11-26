@@ -12,20 +12,16 @@ import Foundation
 class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var operatorIco: UIImageView!
     @IBOutlet weak var operatorName: UILabel!
     @IBOutlet weak var messageInputField: UITextField!
-    @IBOutlet weak var messageInputeView: UIView!
+    @IBOutlet weak var messageInputeView: UIToolbar!
     @IBOutlet weak var tableViewBottomMargin: NSLayoutConstraint!
     
-    @IBOutlet weak var waitngPlaceHolder: UILabel!
-    @IBOutlet weak var operatorView: UIView!
     @IBOutlet weak var typingLabel: UILabel!
     
-   
-    @IBOutlet weak var abuseBtn: UIButton!
-    @IBOutlet weak var voteDownBtn: UIButton!
-    @IBOutlet weak var voteUpBtn: UIButton!
+    @IBOutlet weak var abuseBtn: UIBarButtonItem!
+    @IBOutlet weak var voteDownBtn: UIBarButtonItem!
+    @IBOutlet weak var voteUpBtn: UIBarButtonItem!
     
     var imagePickerController = UIImagePickerController()
     var activityView:DejalBezelActivityView?
@@ -44,7 +40,12 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
         presentData()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        closeConversation()
+    }
+    
     override func viewDidAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
         tableViewBottomMargin.constant = 0
         self.view.layoutIfNeeded()
     }
@@ -52,18 +53,11 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
     func commonPreparation() {
         
         UIApplication.sharedApplication().keyWindow?.endEditing(true)
-        
-        waitngPlaceHolder.hidden = false
-        operatorView.hidden = true
-        typingLabel.hidden = true
-        
-        operatorIco.layer.borderWidth = 2.0
-        operatorIco.layer.borderColor = UIColor.whiteColor().CGColor
-        operatorIco.clipsToBounds = true
-        operatorIco.layer.cornerRadius = 20.0
-        
+    
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillHideNotification, object: nil)
+        
+        self.messageInputField.autoresizingMask = UIViewAutoresizing.FlexibleWidth;
     }
 }
 
@@ -166,28 +160,6 @@ extension LTChatViewController {
                 
                 self.loadingErrorProcess(exp)
         })
-        
-        
-//        LTApiManager.sharedInstance.sdk?.uploadFileData(imgData,
-//            fileName: "file",
-//            fileExtention: "png",
-//            mimeType: "image/png",
-//            recipientID: currentOperatorId,
-//            success: { () -> Void in
-//                
-//                var systemMessage = LTSHoldMessage(text: "Отправлен файл: " + "file" + ".png", timestamp: "")
-//                self.messages.append(systemMessage)
-//                
-//                self.tableView.reloadData()
-//                
-//                if (self.messages.count != 0) {
-//                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
-//                }
-//                
-//            }, failure: { (exp:NSException!) -> Void in
-//                
-//                self.loadingErrorProcess(exp)
-//        })
     }
     
     func closeConversation() {
@@ -203,10 +175,7 @@ extension LTChatViewController {
                 LTApiManager.sharedInstance.sdk?.closeWithSuccess({ (state:LTSDialogState!) -> Void in
                     
                     LTApiManager.sharedInstance.onlineEmployeeId = nil
-                    
                     self.removeActivityIndicator()
-                    self.performSegueWithIdentifier("authorizathon", sender: nil)
-                    
                     }, failure: { (error:NSException!) -> Void in
                         
                         self.loadingErrorProcess(error)
@@ -215,7 +184,6 @@ extension LTChatViewController {
             } else {
                 
                 self.removeActivityIndicator()
-                self.performSegueWithIdentifier("authorizathon", sender: nil)
             }
             CommonUtils.showToast("Диалог закрыт")
             
@@ -332,14 +300,7 @@ extension LTChatViewController: LTMobileSDKNotificationHandlerProtocol {
         }
     }
     
-    func receiveTypingMessage(message: LTSTypingMessage!) {
-        
-        typingLabel.hidden = false
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC))), dispatch_get_main_queue(), {
-            self.typingLabel.hidden = true
-        })
-    }
+    func receiveTypingMessage(message: LTSTypingMessage!) {}
     
     func receiveHoldMessage(message: LTSHoldMessage!) {
         
@@ -480,9 +441,8 @@ extension LTChatViewController {
         
         LTApiManager.sharedInstance.onlineEmployeeId = state.employee.employeeId
         
-        waitngPlaceHolder.hidden = true
-        operatorView.hidden = false
         operatorName.text = state.employee.firstname
+        self.typingLabel.text = "онлайн"
         
         messageInputField?.enabled = true
         
@@ -492,28 +452,12 @@ extension LTChatViewController {
         
         let systemMessage = LTSHoldMessage(text: "Оператор онлайн", timestamp: "")
         self.messages.append(systemMessage)
-        
-        let url = NSURL(string: state.employee.avatar)
-        
-        if (url != nil) {
-            
-            NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: url!),
-                queue: NSOperationQueue.mainQueue(),
-                completionHandler: { (response, data, error) -> Void in
-                    
-                let httpResponse = response as? NSHTTPURLResponse
-                if httpResponse?.statusCode == 200 && error == nil {
-                    self.operatorIco.image = UIImage(data: data!)
-                }
-            })
-        }
     }
     
     func setupQueuedDialogState(state:LTSDialogState) {
         
-        waitngPlaceHolder.hidden = false
-        operatorView.hidden = true
-        
+        self.operatorName.text = "Оператор"
+        self.typingLabel.text = "оффлайн"
         voteDownBtn.enabled = false
         voteUpBtn.enabled = false
         abuseBtn.enabled = false
@@ -526,9 +470,8 @@ extension LTChatViewController {
         
         LTApiManager.sharedInstance.onlineEmployeeId = nil
         
-        waitngPlaceHolder.hidden = true
-        operatorView.hidden = true
-        
+        self.operatorName.text = "Оператор"
+        self.typingLabel.text = "оффлайн"
         voteDownBtn.enabled = false
         voteUpBtn.enabled = false
         abuseBtn.enabled = false
