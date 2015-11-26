@@ -112,22 +112,6 @@ extension LTAuthorizationViewController {
             }) { (error:NSException!) -> Void in
                 self.loadingErrorProcess(error)
         }
-        
-//        LTApiManager.sharedInstance.sdk!.getEmployees(statusType.online, success: { (items:[AnyObject]!) -> Void in
-//            
-//            self.removeActivityIndicator()
-//            
-//            if (items.count == 0) {
-//                self.suggetionLabel.text = "В данный момент нет операторов онлайн, возможен только режим оффлайн обращения"
-//                self.onlineModeButton.enabled = false
-//            } else {
-//                self.suggetionLabel.text =  " "
-//            }
-//            
-//        }, failure:{ (error:NSException!) -> Void in
-//                
-//            self.loadingErrorProcess(error)
-//        })
     }
 }
 
