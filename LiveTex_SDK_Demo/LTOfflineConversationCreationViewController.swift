@@ -22,31 +22,27 @@ class LTOfflineConversationCreationViewController: UIViewController, UITextField
         self.name.delegate = self
         self.message.delegate = self
         self.email.delegate = self
+        
+        self.message.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.message.layer.borderWidth = 0.4
+        self.message.layer.cornerRadius = 6.0
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        resignResponders()
+        textField.resignFirstResponder()
         return false
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         
         if text.hasSuffix("\n") {
-            resignResponders()
+            textView.resignFirstResponder()
         }
         
         return true;
-    }
-
-    
-    func resignResponders() {
-        name.resignFirstResponder()
-        phone.resignFirstResponder()
-        email.resignFirstResponder()
-        message.resignFirstResponder()
     }
 }
 
