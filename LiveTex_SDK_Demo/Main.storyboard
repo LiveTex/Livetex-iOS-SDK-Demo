@@ -464,17 +464,17 @@
                         <outlet property="messagePlaceHolder" destination="LfG-oO-bAi" id="rdJ-f3-VJ2"/>
                         <outlet property="nameField" destination="d9w-4F-wCj" id="nOp-Qt-7wn"/>
                         <outlet property="subSelectionField" destination="mBy-7b-YCo" id="4OA-fo-9kc"/>
-                        <segue destination="C8k-7k-ZTW" kind="presentation" identifier="showChat" id="jXv-K2-4Yq"/>
+                        <segue destination="C8k-7k-ZTW" kind="show" identifier="showChat" id="jXv-K2-4Yq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9IK-zv-EqP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-144" y="30"/>
         </scene>
-        <!--Claiming View Controller-->
+        <!--Жалоба-->
         <scene sceneID="WfH-ls-EL6">
             <objects>
-                <viewController id="jqA-g0-eiy" customClass="LTClaimingViewController" customModule="LiveTex_SDK" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Жалоба" id="jqA-g0-eiy" customClass="LTClaimingViewController" customModule="LiveTex_SDK" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="R1Q-o4-e8u"/>
                         <viewControllerLayoutGuide type="bottom" id="KXu-rs-xFh"/>
@@ -586,7 +586,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="77" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vNP-m7-c0C" userLabel="messages">
-                                <rect key="frame" x="0.0" y="89" width="600" height="467"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="512"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -870,7 +870,7 @@
                                 </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="is0-eR-NbS">
-                                <rect key="frame" x="0.0" y="45" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <animations/>
                                 <items>
                                     <navigationItem id="5Qk-bM-8jU">
@@ -946,7 +946,7 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="lMD-9b-84y" secondAttribute="trailing" id="2XI-vh-Cup"/>
                             <constraint firstItem="lMD-9b-84y" firstAttribute="leading" secondItem="4u4-nJ-0Us" secondAttribute="leading" id="DhC-fM-HQk"/>
-                            <constraint firstItem="is0-eR-NbS" firstAttribute="centerY" secondItem="4u4-nJ-0Us" secondAttribute="centerY" constant="-233" id="Z0A-gb-ubv"/>
+                            <constraint firstItem="is0-eR-NbS" firstAttribute="top" secondItem="4u4-nJ-0Us" secondAttribute="top" id="Vh1-pb-WCP"/>
                             <constraint firstItem="vNP-m7-c0C" firstAttribute="trailing" secondItem="is0-eR-NbS" secondAttribute="trailing" id="bN3-un-rc0"/>
                             <constraint firstItem="is0-eR-NbS" firstAttribute="leading" secondItem="4u4-nJ-0Us" secondAttribute="leading" id="bsP-d2-TUP"/>
                             <constraint firstAttribute="trailing" secondItem="is0-eR-NbS" secondAttribute="trailing" id="dH0-H3-bav"/>
@@ -1821,24 +1821,6 @@
             </objects>
             <point key="canvasLocation" x="-364" y="918"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Ktj-5Y-iLV">
-            <objects>
-                <viewController id="g6n-eY-nOO" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="wXf-F2-IYU"/>
-                        <viewControllerLayoutGuide type="bottom" id="atS-l2-wQ4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dKR-xq-cOn">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7YH-l9-xiW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="bad_icon.png" width="24" height="24"/>
@@ -1859,7 +1841,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Qfe-xn-TZU"/>
-        <segue reference="Igg-H3-IQf"/>
+        <segue reference="LJv-ec-VSf"/>
         <segue reference="e9z-9S-brt"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
