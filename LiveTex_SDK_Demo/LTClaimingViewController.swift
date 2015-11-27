@@ -17,6 +17,10 @@ class LTClaimingViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        messageField.layer.borderColor = UIColor.lightGrayColor().CGColor
+        messageField.layer.borderWidth = 0.4
+        messageField.layer.cornerRadius = 6.0
     }
 }
 
@@ -53,12 +57,9 @@ extension LTClaimingViewController {
         abuse.message = messageField.text
         
         LTApiManager.sharedInstance.sdk?.abuseWithAbuse(abuse, success: { () -> Void in
-            
             view.animateRemove()
             CommonUtils.showToast("Жалоба отправлена")
-            self.performSegueWithIdentifier("closeClaim", sender: nil)
-            
-            
+            self.navigationController?.popViewControllerAnimated(true)
         }, failure: { (error:NSException!) -> Void in
                 
             view.animateRemove()
