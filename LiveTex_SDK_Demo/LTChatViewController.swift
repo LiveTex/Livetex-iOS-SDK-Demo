@@ -40,6 +40,12 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
         self.view.layoutIfNeeded()
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        if self.navigationController?.topViewController == self.navigationController?.viewControllers.first {
+            closeConversation()
+        }
+    }
+    
     func commonPreparation() {
         UIApplication.sharedApplication().keyWindow?.endEditing(true)
     
@@ -47,7 +53,6 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillHideNotification, object: nil)
         
         self.messageInputField.autoresizingMask = UIViewAutoresizing.FlexibleWidth;
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(title: "Назад", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("closeConversation"))
     }
 }
 
@@ -138,7 +143,6 @@ extension LTChatViewController {
                 self.removeActivityIndicator()
             }
             CommonUtils.showToast("Диалог закрыт")
-            self.navigationController?.popToRootViewControllerAnimated(true)
         }, failure: { (error:NSException!) -> Void in
             self.loadingErrorProcess(error)
         })

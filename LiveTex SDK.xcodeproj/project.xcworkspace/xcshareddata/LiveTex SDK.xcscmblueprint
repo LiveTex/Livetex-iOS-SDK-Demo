@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F986F9A76149959204FCB24A1565B526BB9447D4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F986F9A76149959204FCB24A1565B526BB9447D4" : 0,
+    "E907C86176E0CC1366A49893EEDE2E620C57D637" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1B3889C2-B790-481C-9A77-B5BE155088DD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F986F9A76149959204FCB24A1565B526BB9447D4" : "Livetex-iOS-SDK-Demo\/",
+    "E907C86176E0CC1366A49893EEDE2E620C57D637" : "Livetex-iOS-SDK\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "LiveTex SDK",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "LiveTex SDK.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/LiveTex\/Livetex-iOS-SDK.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E907C86176E0CC1366A49893EEDE2E620C57D637"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/LiveTex\/Livetex-iOS-SDK-Demo",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F986F9A76149959204FCB24A1565B526BB9447D4"
+    }
+  ]
+}

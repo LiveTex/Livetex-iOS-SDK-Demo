@@ -99,12 +99,10 @@ extension LTEnvolvingViewController {
     func instantiateFirstMessage() {
         
         LTApiManager.sharedInstance.sdk!.sendMessage(self.messageField.text, success: { (message:LTSTextMessage!) -> Void in
-            
             self.removeActivityIndicator()
             self.performSegueWithIdentifier("showChat", sender: nil)
-            
+            self.navigationController?.viewControllers.removeAtIndex(self.navigationController!.viewControllers.count - 2)
         }, failure: { (error:NSException!) -> Void in
-                
             self.loadingErrorProcess(error)
         })
     }

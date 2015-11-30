@@ -82,6 +82,7 @@ extension LTOfflineConversationCreationViewController {
                 
                 self.removeActivityIndicator()
                 self.performSegueWithIdentifier("offlineChatStart", sender: nil)
+                self.navigationController?.viewControllers.removeAtIndex(self.navigationController!.viewControllers.count - 2)
                 
                 }, failure: { (exp:NSException!) -> Void in
                     

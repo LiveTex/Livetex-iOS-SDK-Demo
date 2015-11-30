@@ -73,9 +73,13 @@ class LTOfflineConversationTableViewController: UITableViewController {
                     // var err: NSError?
                     
                     let imageData :NSData = NSData(contentsOfURL:url!)!
-                    
-                    let bgImage = UIImage(data:imageData)
+                    let bgImage = self.resizeImage(UIImage(data:imageData)!, toTheSize: CGSizeMake(60, 60))
                     cell.imageView?.image = bgImage
+                    cell.imageView?.layer.cornerRadius = 30.0
+                    cell.imageView?.layer.borderColor = UIColor.blackColor().CGColor
+                    cell.imageView?.layer.borderWidth = 0.5
+                    cell.imageView?.layer.masksToBounds = true
+                    
                     cell.setNeedsLayout()
                 }
             }
@@ -150,5 +154,18 @@ extension LTOfflineConversationTableViewController {
         
         self.removeActivityIndicator()
         UIAlertView(title: "Ошибка", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК").show()
+    }
+    
+    func resizeImage(image:UIImage, toTheSize size:CGSize)->UIImage{
+        let scale = CGFloat(max(size.width / image.size.width, size.height / image.size.height))
+        let width:CGFloat = image.size.width * scale
+        let height:CGFloat = image.size.height * scale;
+        let imageRect:CGRect = CGRectMake(0, 0, width, height);
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0);
+        image.drawInRect(imageRect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext();
+        return newImage
     }
 }
