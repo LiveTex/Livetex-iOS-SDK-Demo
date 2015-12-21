@@ -24,24 +24,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reachabilityChanged:"), name: kReachabilityChangedNotification, object: nil)
-
+        
+        let url = NSUserDefaults.standardUserDefaults().stringForKey("LivetexURL")
+        if url == nil {
+            self.registerDefaultsFromSettingsBundle();
+        }
+        
         internetReachability = Reachability.reachabilityForInternetConnection()
         internetReachability.startNotifier();
-        
-//        if SYSTEM_VERSION_LESS_THAN("8.0") {
-//            application.registerForRemoteNotificationTypes(UIRemoteNotificationType.Sound | UIRemoteNotificationType.Alert)
-//        } else {
-            let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: /*UIUserNotificationType.Sound | */UIUserNotificationType.Alert, categories: nil)
-            application .registerUserNotificationSettings(settings)
-      //  }
-        
+                
         return true
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings
         notificationSettings: UIUserNotificationSettings) {
-            
-            application.registerForRemoteNotifications()
+            if !application.isRegisteredForRemoteNotifications() {
+                NSNotificationCenter.defaultCenter().postNotificationName("LTApiManager_token_got", object: nil)
+            } else {
+                application.registerForRemoteNotifications()
+            }
     }
     
     func application(application: UIApplication,
@@ -74,6 +75,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         LTApiManager.sharedInstance.isSessionOnlineOpen = false
     }
     
+    func registerDefaultsFromSettingsBundle() {
+        // this function writes default settings as settings
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.synchronize()
+        
+        let settingsBundle: NSString = NSBundle.mainBundle().pathForResource("Settings", ofType: "bundle")!
+        if (settingsBundle.containsString("")) {
+            NSLog("Could not find Settings.bundle")
+            return
+        }
+        let settings = NSDictionary(contentsOfFile: settingsBundle.stringByAppendingPathComponent("Root.plist"))!
+        let preferences = settings.objectForKey("PreferenceSpecifiers") as! NSArray
+        var defaultsToRegister = [String: AnyObject](minimumCapacity: preferences.count)
+        
+        for prefSpecification in preferences {
+            if (prefSpecification.objectForKey("Key") != nil) {
+                let key = prefSpecification.objectForKey("Key")! as! String
+                if !key.containsString("") {
+                    let currentObject = defaults.objectForKey(key)
+                    if currentObject == nil {
+                        // not readable: set value from Settings.bundle
+                        let objectToSet = prefSpecification.objectForKey("DefaultValue")
+                        defaultsToRegister[key] = objectToSet!
+                    }
+                }
+            }
+        }
+        defaults.registerDefaults(defaultsToRegister)
+        defaults.synchronize()
+    }
+    
     func processReachability(curReach:Reachability) {
         
         let status:NetworkStatus = curReach.currentReachabilityStatus()
@@ -100,4 +132,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 }
-
