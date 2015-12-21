@@ -33,12 +33,13 @@
 		7E4BF9E21B26FF5700FF5C80 /* AppIcon76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D71B26FF5700FF5C80 /* AppIcon76x76@2x.png */; };
 		7E4BF9E31B26FF5700FF5C80 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D81B26FF5700FF5C80 /* iTunesArtwork.png */; };
 		7E4BF9E41B26FF5700FF5C80 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D91B26FF5700FF5C80 /* iTunesArtwork@2x.png */; };
-		7EB06B3D1BCE5771007FC398 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EB06B3B1BCE5771007FC398 /* libLTMobileSDK.a */; };
 		7EDB52EB1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */; };
 		7EDB52ED1B232414005320B4 /* LTOfflineConversationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */; };
 		7EDB52EF1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */; };
 		7EDB52F11B25F673005320B4 /* LTOfflineChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */; };
 		7EED15261BBD29CC00CEBB11 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */; };
+		D1C956341C24594800535684 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C956301C24594800535684 /* libLTMobileSDK.a */; };
+		D1C956361C2459C100535684 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1C956351C2459C100535684 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,15 +74,16 @@
 		7E4BF9D81B26FF5700FF5C80 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		7E4BF9D91B26FF5700FF5C80 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		7E4BF9E61B27023C00FF5C80 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		7E897D731BBA9C9800B9EEB2 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
-		7E897D7E1BBA9F9000B9EEB2 /* LTObjcBridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
-		7EB06B3B1BCE5771007FC398 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
-		7EB06B3C1BCE5771007FC398 /* LTSDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
 		7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationTableViewCell.swift; sourceTree = "<group>"; };
 		7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationTableViewController.swift; sourceTree = "<group>"; };
 		7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationCreationViewController.swift; sourceTree = "<group>"; };
 		7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineChatViewController.swift; sourceTree = "<group>"; };
 		7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
+		D1C956301C24594800535684 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
+		D1C956311C24594800535684 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
+		D1C956321C24594800535684 /* LTObjcBridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
+		D1C956331C24594800535684 /* LTSDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
+		D1C956351C2459C100535684 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EB06B3D1BCE5771007FC398 /* libLTMobileSDK.a in Frameworks */,
+				D1C956341C24594800535684 /* libLTMobileSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +134,7 @@
 		55F73AFD1A0A6EB800C28B0A /* LiveTex_SDK_Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				7E897D6F1BBA9C9800B9EEB2 /* LTMobileSDK */,
+				D1C9562F1C24594800535684 /* LTMobileSDK */,
 				55D666091A13655A001747B0 /* resources */,
 				7E023E0D1B4C2064003E3079 /* thirdParty */,
 				7E023E0E1B4C208C003E3079 /* source */,
@@ -140,6 +142,7 @@
 				55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */,
 				55F73AFE1A0A6EB800C28B0A /* Supporting Files */,
 				7E3F56F61BAC48ED00DAA04D /* Main.storyboard */,
+				D1C956351C2459C100535684 /* Settings.bundle */,
 			);
 			name = LiveTex_SDK_Mobile;
 			path = LiveTex_SDK_Demo;
@@ -215,17 +218,6 @@
 			path = imagesSDK;
 			sourceTree = "<group>";
 		};
-		7E897D6F1BBA9C9800B9EEB2 /* LTMobileSDK */ = {
-			isa = PBXGroup;
-			children = (
-				7EB06B3B1BCE5771007FC398 /* libLTMobileSDK.a */,
-				7EB06B3C1BCE5771007FC398 /* LTSDKModel.h */,
-				7E897D7E1BBA9F9000B9EEB2 /* LTObjcBridging.h */,
-				7E897D731BBA9C9800B9EEB2 /* LTMobileSDK.h */,
-			);
-			path = LTMobileSDK;
-			sourceTree = "<group>";
-		};
 		7EDB52E71B23236A005320B4 /* offlineChanel */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +228,17 @@
 				7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */,
 			);
 			name = offlineChanel;
+			sourceTree = "<group>";
+		};
+		D1C9562F1C24594800535684 /* LTMobileSDK */ = {
+			isa = PBXGroup;
+			children = (
+				D1C956301C24594800535684 /* libLTMobileSDK.a */,
+				D1C956311C24594800535684 /* LTMobileSDK.h */,
+				D1C956321C24594800535684 /* LTObjcBridging.h */,
+				D1C956331C24594800535684 /* LTSDKModel.h */,
+			);
+			path = LTMobileSDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +307,7 @@
 				7E4BF9E21B26FF5700FF5C80 /* AppIcon76x76@2x.png in Resources */,
 				7E3F56F71BAC48ED00DAA04D /* Main.storyboard in Resources */,
 				7E4BF9E01B26FF5700FF5C80 /* AppIcon60x60@3x.png in Resources */,
+				D1C956361C2459C100535684 /* Settings.bundle in Resources */,
 				7E4BF9E11B26FF5700FF5C80 /* AppIcon76x76.png in Resources */,
 				7E4BF9DF1B26FF5700FF5C80 /* AppIcon60x60@2x.png in Resources */,
 				7E4BF9DA1B26FF5700FF5C80 /* AppIcon29x29.png in Resources */,
