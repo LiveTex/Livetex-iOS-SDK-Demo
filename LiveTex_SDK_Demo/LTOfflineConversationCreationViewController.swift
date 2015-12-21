@@ -74,7 +74,7 @@ extension LTOfflineConversationCreationViewController {
         
         self.showActivityIndicator()
         
-        LTApiManager.sharedInstance.sdk?.createOfflineConversationForVisitor(contacts, forDepartmentId:offlineDeparmentId, success: { (convId:String!) -> Void in
+        LTApiManager.sharedInstance.sdk?.createOfflineConversationForVisitor(contacts, forDepartmentId:offlineDepID, success: { (convId:String!) -> Void in
             
             LTApiManager.sharedInstance.offlineConversationId = convId
             
