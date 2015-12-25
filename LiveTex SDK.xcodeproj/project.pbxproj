@@ -39,6 +39,28 @@
 		7EDB52F11B25F673005320B4 /* LTOfflineChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */; };
 		7EED15261BBD29CC00CEBB11 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */; };
 		D135F7E81C2C3134009ECC59 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D135F7E41C2C3134009ECC59 /* libLTMobileSDK.a */; };
+		D1401A5E1C2D4EEF009B2FCE /* 1376466473_manager1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D1401A481C2D4EEF009B2FCE /* 1376466473_manager1.jpg */; };
+		D1401A5F1C2D4EEF009B2FCE /* Ваш вопрос 2.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A491C2D4EEF009B2FCE /* Ваш вопрос 2.png */; };
+		D1401A601C2D4EEF009B2FCE /* ava@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4A1C2D4EEF009B2FCE /* ava@2x.jpg */; };
+		D1401A611C2D4EEF009B2FCE /* bad_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4B1C2D4EEF009B2FCE /* bad_icon@2x.png */; };
+		D1401A621C2D4EEF009B2FCE /* baloon_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4C1C2D4EEF009B2FCE /* baloon_blue@2x.png */; };
+		D1401A631C2D4EEF009B2FCE /* baloon_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4D1C2D4EEF009B2FCE /* baloon_gray@2x.png */; };
+		D1401A641C2D4EEF009B2FCE /* bot_backgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4E1C2D4EEF009B2FCE /* bot_backgroud.png */; };
+		D1401A651C2D4EEF009B2FCE /* button_offline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4F1C2D4EEF009B2FCE /* button_offline@2x.png */; };
+		D1401A661C2D4EEF009B2FCE /* button_online_push@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A501C2D4EEF009B2FCE /* button_online_push@2x.png */; };
+		D1401A671C2D4EEF009B2FCE /* button_online@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A511C2D4EEF009B2FCE /* button_online@2x.png */; };
+		D1401A681C2D4EEF009B2FCE /* cancel_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A521C2D4EEF009B2FCE /* cancel_btn@2x.png */; };
+		D1401A691C2D4EEF009B2FCE /* chat_msg_double_checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A531C2D4EEF009B2FCE /* chat_msg_double_checked@2x.png */; };
+		D1401A6A1C2D4EEF009B2FCE /* complaint_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A541C2D4EEF009B2FCE /* complaint_icon@2x.png */; };
+		D1401A6B1C2D4EEF009B2FCE /* dropdown_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A551C2D4EEF009B2FCE /* dropdown_arrow@2x.png */; };
+		D1401A6C1C2D4EEF009B2FCE /* good_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A561C2D4EEF009B2FCE /* good_icon@2x.png */; };
+		D1401A6D1C2D4EEF009B2FCE /* lt-auth-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A571C2D4EEF009B2FCE /* lt-auth-logo@2x.png */; };
+		D1401A6E1C2D4EEF009B2FCE /* navigation_bar_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A581C2D4EEF009B2FCE /* navigation_bar_background@2x.png */; };
+		D1401A6F1C2D4EEF009B2FCE /* next_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A591C2D4EEF009B2FCE /* next_arrow@2x.png */; };
+		D1401A701C2D4EEF009B2FCE /* Rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5A1C2D4EEF009B2FCE /* Rectangle@2x.png */; };
+		D1401A711C2D4EEF009B2FCE /* send_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5B1C2D4EEF009B2FCE /* send_btn@2x.png */; };
+		D1401A721C2D4EEF009B2FCE /* send_file_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5C1C2D4EEF009B2FCE /* send_file_icon@2x.png */; };
+		D1401A731C2D4EEF009B2FCE /* top_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5D1C2D4EEF009B2FCE /* top_background.png */; };
 		D1C956361C2459C100535684 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1C956351C2459C100535684 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +105,28 @@
 		D135F7E51C2C3134009ECC59 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
 		D135F7E61C2C3134009ECC59 /* LTObjcBridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
 		D135F7E71C2C3134009ECC59 /* LTSDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
+		D1401A481C2D4EEF009B2FCE /* 1376466473_manager1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1376466473_manager1.jpg; sourceTree = "<group>"; };
+		D1401A491C2D4EEF009B2FCE /* Ваш вопрос 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ваш вопрос 2.png"; sourceTree = "<group>"; };
+		D1401A4A1C2D4EEF009B2FCE /* ava@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ava@2x.jpg"; sourceTree = "<group>"; };
+		D1401A4B1C2D4EEF009B2FCE /* bad_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bad_icon@2x.png"; sourceTree = "<group>"; };
+		D1401A4C1C2D4EEF009B2FCE /* baloon_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baloon_blue@2x.png"; sourceTree = "<group>"; };
+		D1401A4D1C2D4EEF009B2FCE /* baloon_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baloon_gray@2x.png"; sourceTree = "<group>"; };
+		D1401A4E1C2D4EEF009B2FCE /* bot_backgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bot_backgroud.png; sourceTree = "<group>"; };
+		D1401A4F1C2D4EEF009B2FCE /* button_offline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_offline@2x.png"; sourceTree = "<group>"; };
+		D1401A501C2D4EEF009B2FCE /* button_online_push@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_online_push@2x.png"; sourceTree = "<group>"; };
+		D1401A511C2D4EEF009B2FCE /* button_online@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_online@2x.png"; sourceTree = "<group>"; };
+		D1401A521C2D4EEF009B2FCE /* cancel_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_btn@2x.png"; sourceTree = "<group>"; };
+		D1401A531C2D4EEF009B2FCE /* chat_msg_double_checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_msg_double_checked@2x.png"; sourceTree = "<group>"; };
+		D1401A541C2D4EEF009B2FCE /* complaint_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "complaint_icon@2x.png"; sourceTree = "<group>"; };
+		D1401A551C2D4EEF009B2FCE /* dropdown_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown_arrow@2x.png"; sourceTree = "<group>"; };
+		D1401A561C2D4EEF009B2FCE /* good_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "good_icon@2x.png"; sourceTree = "<group>"; };
+		D1401A571C2D4EEF009B2FCE /* lt-auth-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lt-auth-logo@2x.png"; sourceTree = "<group>"; };
+		D1401A581C2D4EEF009B2FCE /* navigation_bar_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation_bar_background@2x.png"; sourceTree = "<group>"; };
+		D1401A591C2D4EEF009B2FCE /* next_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next_arrow@2x.png"; sourceTree = "<group>"; };
+		D1401A5A1C2D4EEF009B2FCE /* Rectangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle@2x.png"; sourceTree = "<group>"; };
+		D1401A5B1C2D4EEF009B2FCE /* send_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_btn@2x.png"; sourceTree = "<group>"; };
+		D1401A5C1C2D4EEF009B2FCE /* send_file_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_file_icon@2x.png"; sourceTree = "<group>"; };
+		D1401A5D1C2D4EEF009B2FCE /* top_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_background.png; sourceTree = "<group>"; };
 		D1C956351C2459C100535684 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +154,28 @@
 		55D666091A13655A001747B0 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				D1401A481C2D4EEF009B2FCE /* 1376466473_manager1.jpg */,
+				D1401A491C2D4EEF009B2FCE /* Ваш вопрос 2.png */,
+				D1401A4A1C2D4EEF009B2FCE /* ava@2x.jpg */,
+				D1401A4B1C2D4EEF009B2FCE /* bad_icon@2x.png */,
+				D1401A4C1C2D4EEF009B2FCE /* baloon_blue@2x.png */,
+				D1401A4D1C2D4EEF009B2FCE /* baloon_gray@2x.png */,
+				D1401A4E1C2D4EEF009B2FCE /* bot_backgroud.png */,
+				D1401A4F1C2D4EEF009B2FCE /* button_offline@2x.png */,
+				D1401A501C2D4EEF009B2FCE /* button_online_push@2x.png */,
+				D1401A511C2D4EEF009B2FCE /* button_online@2x.png */,
+				D1401A521C2D4EEF009B2FCE /* cancel_btn@2x.png */,
+				D1401A531C2D4EEF009B2FCE /* chat_msg_double_checked@2x.png */,
+				D1401A541C2D4EEF009B2FCE /* complaint_icon@2x.png */,
+				D1401A551C2D4EEF009B2FCE /* dropdown_arrow@2x.png */,
+				D1401A561C2D4EEF009B2FCE /* good_icon@2x.png */,
+				D1401A571C2D4EEF009B2FCE /* lt-auth-logo@2x.png */,
+				D1401A581C2D4EEF009B2FCE /* navigation_bar_background@2x.png */,
+				D1401A591C2D4EEF009B2FCE /* next_arrow@2x.png */,
+				D1401A5A1C2D4EEF009B2FCE /* Rectangle@2x.png */,
+				D1401A5B1C2D4EEF009B2FCE /* send_btn@2x.png */,
+				D1401A5C1C2D4EEF009B2FCE /* send_file_icon@2x.png */,
+				D1401A5D1C2D4EEF009B2FCE /* top_background.png */,
 				7E4BF9CE1B26FF5700FF5C80 /* imagesSDK */,
 			);
 			path = resources;
@@ -300,16 +366,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1401A731C2D4EEF009B2FCE /* top_background.png in Resources */,
+				D1401A6E1C2D4EEF009B2FCE /* navigation_bar_background@2x.png in Resources */,
+				D1401A5E1C2D4EEF009B2FCE /* 1376466473_manager1.jpg in Resources */,
 				7E4BF9DD1B26FF5700FF5C80 /* AppIcon40x40@2x.png in Resources */,
+				D1401A721C2D4EEF009B2FCE /* send_file_icon@2x.png in Resources */,
+				D1401A5F1C2D4EEF009B2FCE /* Ваш вопрос 2.png in Resources */,
+				D1401A631C2D4EEF009B2FCE /* baloon_gray@2x.png in Resources */,
+				D1401A6C1C2D4EEF009B2FCE /* good_icon@2x.png in Resources */,
+				D1401A601C2D4EEF009B2FCE /* ava@2x.jpg in Resources */,
 				7E4BF9DC1B26FF5700FF5C80 /* AppIcon40x40.png in Resources */,
 				7E4BF9E31B26FF5700FF5C80 /* iTunesArtwork.png in Resources */,
+				D1401A6B1C2D4EEF009B2FCE /* dropdown_arrow@2x.png in Resources */,
+				D1401A681C2D4EEF009B2FCE /* cancel_btn@2x.png in Resources */,
 				7E4BF9DE1B26FF5700FF5C80 /* AppIcon60x60.png in Resources */,
+				D1401A641C2D4EEF009B2FCE /* bot_backgroud.png in Resources */,
 				7E4BF9E21B26FF5700FF5C80 /* AppIcon76x76@2x.png in Resources */,
 				7E3F56F71BAC48ED00DAA04D /* Main.storyboard in Resources */,
+				D1401A651C2D4EEF009B2FCE /* button_offline@2x.png in Resources */,
+				D1401A6A1C2D4EEF009B2FCE /* complaint_icon@2x.png in Resources */,
+				D1401A621C2D4EEF009B2FCE /* baloon_blue@2x.png in Resources */,
+				D1401A701C2D4EEF009B2FCE /* Rectangle@2x.png in Resources */,
+				D1401A661C2D4EEF009B2FCE /* button_online_push@2x.png in Resources */,
 				7E4BF9E01B26FF5700FF5C80 /* AppIcon60x60@3x.png in Resources */,
 				D1C956361C2459C100535684 /* Settings.bundle in Resources */,
 				7E4BF9E11B26FF5700FF5C80 /* AppIcon76x76.png in Resources */,
+				D1401A671C2D4EEF009B2FCE /* button_online@2x.png in Resources */,
+				D1401A691C2D4EEF009B2FCE /* chat_msg_double_checked@2x.png in Resources */,
+				D1401A6D1C2D4EEF009B2FCE /* lt-auth-logo@2x.png in Resources */,
+				D1401A6F1C2D4EEF009B2FCE /* next_arrow@2x.png in Resources */,
 				7E4BF9DF1B26FF5700FF5C80 /* AppIcon60x60@2x.png in Resources */,
+				D1401A711C2D4EEF009B2FCE /* send_btn@2x.png in Resources */,
+				D1401A611C2D4EEF009B2FCE /* bad_icon@2x.png in Resources */,
 				7E4BF9DA1B26FF5700FF5C80 /* AppIcon29x29.png in Resources */,
 				7E4BF9E41B26FF5700FF5C80 /* iTunesArtwork@2x.png in Resources */,
 				55F73B0E1A0A6EB900C28B0A /* LaunchScreen.xib in Resources */,
