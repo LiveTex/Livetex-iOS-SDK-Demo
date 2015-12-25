@@ -116,14 +116,14 @@ extension LTChatViewController {
     func uploadFile(imgData:NSData) {
         
         let file = LTSFile(data: imgData, fileName: "file", fileExtension: "png", mimeType: "image/png")
-        LTApiManager.sharedInstance.sdk?.uploadFileData(file, recipientId: currentOperatorId, success: { () -> Void in
+        LTApiManager.sharedInstance.sdk?.uploadFileData(file, success: { () -> Void in
             let systemMessage = LTSHoldMessage(text: "Отправлен файл: " + "file" + ".png", timestamp: "")
             self.messages.append(systemMessage)
             self.tableView.reloadData()
             if (self.messages.count != 0) {
                 self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
             }
-            }, failure: { (exp:NSException!) -> Void in
+        }, failure: { (exp:NSException!) -> Void in
                 self.loadingErrorProcess(exp)
         })
     }
