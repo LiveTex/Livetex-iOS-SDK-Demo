@@ -12,7 +12,7 @@
 			<key>Key</key>
 			<string>LivetexURL</string>
 			<key>DefaultValue</key>
-			<string>http://authentication-service-sdk-production-1.livetex.ru</string>
+			<string>https://authentication-service-sdk-production-1.livetex.ru</string>
 			<key>IsSecure</key>
 			<false/>
 			<key>KeyboardType</key>

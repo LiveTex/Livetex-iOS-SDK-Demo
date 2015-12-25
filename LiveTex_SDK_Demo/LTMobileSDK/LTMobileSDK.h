@@ -526,8 +526,7 @@
  
  */
 
-- (void) uploadFileData: (LTSFile *) file
-            recipientId: (NSString *) resId
+- (void)uploadFileData: (LTSFile *) file
                 success: (void(^)()) success
                 failure: (void(^)(NSException *ChatException)) failure;
 
@@ -535,7 +534,6 @@
               fileName:(NSString *)name
          fileExtention:(NSString *)ext
               mimeType:(NSString *)type
-           recipientID:(NSString *)resId
                success:(void(^)())success
                failure:(void(^)(NSException *ChatException))failure;*/
 
