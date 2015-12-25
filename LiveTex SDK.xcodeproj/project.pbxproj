@@ -38,7 +38,7 @@
 		7EDB52EF1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */; };
 		7EDB52F11B25F673005320B4 /* LTOfflineChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */; };
 		7EED15261BBD29CC00CEBB11 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */; };
-		D1C956341C24594800535684 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D1C956301C24594800535684 /* libLTMobileSDK.a */; };
+		D135F7E81C2C3134009ECC59 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D135F7E41C2C3134009ECC59 /* libLTMobileSDK.a */; };
 		D1C956361C2459C100535684 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1C956351C2459C100535684 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
@@ -79,10 +79,10 @@
 		7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationCreationViewController.swift; sourceTree = "<group>"; };
 		7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineChatViewController.swift; sourceTree = "<group>"; };
 		7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
-		D1C956301C24594800535684 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
-		D1C956311C24594800535684 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
-		D1C956321C24594800535684 /* LTObjcBridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
-		D1C956331C24594800535684 /* LTSDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
+		D135F7E41C2C3134009ECC59 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
+		D135F7E51C2C3134009ECC59 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
+		D135F7E61C2C3134009ECC59 /* LTObjcBridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
+		D135F7E71C2C3134009ECC59 /* LTSDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
 		D1C956351C2459C100535684 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,7 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1C956341C24594800535684 /* libLTMobileSDK.a in Frameworks */,
+				D135F7E81C2C3134009ECC59 /* libLTMobileSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +134,7 @@
 		55F73AFD1A0A6EB800C28B0A /* LiveTex_SDK_Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				D1C9562F1C24594800535684 /* LTMobileSDK */,
+				D135F7E31C2C3134009ECC59 /* LTMobileSDK */,
 				55D666091A13655A001747B0 /* resources */,
 				7E023E0D1B4C2064003E3079 /* thirdParty */,
 				7E023E0E1B4C208C003E3079 /* source */,
@@ -230,13 +230,13 @@
 			name = offlineChanel;
 			sourceTree = "<group>";
 		};
-		D1C9562F1C24594800535684 /* LTMobileSDK */ = {
+		D135F7E31C2C3134009ECC59 /* LTMobileSDK */ = {
 			isa = PBXGroup;
 			children = (
-				D1C956301C24594800535684 /* libLTMobileSDK.a */,
-				D1C956311C24594800535684 /* LTMobileSDK.h */,
-				D1C956321C24594800535684 /* LTObjcBridging.h */,
-				D1C956331C24594800535684 /* LTSDKModel.h */,
+				D135F7E41C2C3134009ECC59 /* libLTMobileSDK.a */,
+				D135F7E51C2C3134009ECC59 /* LTMobileSDK.h */,
+				D135F7E61C2C3134009ECC59 /* LTObjcBridging.h */,
+				D135F7E71C2C3134009ECC59 /* LTSDKModel.h */,
 			);
 			path = LTMobileSDK;
 			sourceTree = "<group>";
