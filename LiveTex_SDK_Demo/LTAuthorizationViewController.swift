@@ -36,6 +36,7 @@ class LTAuthorizationViewController: UIViewController {
         self.navigationController?.navigationBarHidden = true
         let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
     }
 }
 

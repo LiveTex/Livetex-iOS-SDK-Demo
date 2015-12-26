@@ -25,10 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reachabilityChanged:"), name: kReachabilityChangedNotification, object: nil)
         
-        let url = NSUserDefaults.standardUserDefaults().stringForKey("LivetexURL")
-        if url == nil {
-            self.registerDefaultsFromSettingsBundle();
-        }
+        self.registerDefaultsFromSettingsBundle();
         
         internetReachability = Reachability.reachabilityForInternetConnection()
         internetReachability.startNotifier();
@@ -40,8 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notificationSettings: UIUserNotificationSettings) {
             if !application.isRegisteredForRemoteNotifications() {
                 NSNotificationCenter.defaultCenter().postNotificationName("LTApiManager_token_got", object: nil)
-            } else {
-                application.registerForRemoteNotifications()
             }
     }
     
