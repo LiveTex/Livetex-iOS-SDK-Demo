@@ -136,8 +136,10 @@ extension LTAuthorizationViewController {
     
     func loadingErrorProcess(error:NSException) {
         self.removeActivityIndicator()
-        let alert: UIAlertView = UIAlertView(title: "ошибка", message: error.description, delegate: nil, cancelButtonTitle: "ОК")
-        alert.show()
+        let alert: UIAlertController = UIAlertController(title: "Ошибка", message: (error.userInfo!["error"] as! NSError).localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
 
