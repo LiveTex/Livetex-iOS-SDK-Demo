@@ -51,6 +51,7 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
     
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("networkNotification:"), name: "LTNetworkNotification", object: nil)
         
         self.messageInputField.autoresizingMask = UIViewAutoresizing.FlexibleWidth;
     }
@@ -289,12 +290,11 @@ extension LTChatViewController {
     }
     
     func loadingErrorProcess(error:NSException) {
-        var asd = error.userInfo
-        let error:NSError? = asd?["error"] as? NSError
-        
         self.removeActivityIndicator()
-        let alert: UIAlertView = UIAlertView(title: "Превышен лимит на отправку файлов", message: error?.localizedDescription, delegate: nil, cancelButtonTitle: "ОК")
-        alert.show()
+        let alert: UIAlertController = UIAlertController(title: "Превышен лимит на отправку файлов", message: (error.userInfo!["error"] as! NSError).localizedDescription, preferredStyle: UIAlertControllerStyle.Alert)
+        let cancelAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func setInputViewY(notification: NSNotification) {
@@ -314,9 +314,22 @@ extension LTChatViewController {
             self.view.layoutIfNeeded()
             }, completion:{(complete:Bool) -> Void in
                 if (self.messages.count != 0) {
-                    self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+                    //self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
+                    self.tableView.setContentOffset(CGPointMake(0, max(self.tableView.contentSize.height - self.tableView.bounds.size.height, 0) ), animated: true)
                 }
         })
+    }
+    
+    func networkNotification(notification: NSNotification) {
+        if ((notification.object as! NSNumber).unsignedIntegerValue <= 0) {
+            self.setupOfflineDialogState(LTSDialogState(conversation: nil, employee: nil))
+        } else {
+            LTApiManager.sharedInstance.sdk?.getStateWithSuccess({ (state:LTSDialogState!) -> Void in
+                    self.updateDialogState(state)
+                }, failure: { (error:NSException!) -> Void in
+                    self.loadingErrorProcess(error)
+            })
+        }
     }
 }
 
@@ -401,19 +414,16 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var heightForRow:CGFloat = 0.0;
         if let currentMessage = messages[indexPath.row] as? LTSWTextMessage {
-            return CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.text))
+            heightForRow = CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.text))
+        } else if let currentMessage = messages[indexPath.row] as? LTSFileMessage {
+            heightForRow = CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.url))
+        } else {
+            heightForRow = 56.0
         }
         
-        if let currentMessage = messages[indexPath.row] as? LTSFileMessage {
-            return CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.url))
-        }
-        
-        if let currentMessage = messages[indexPath.row] as? LTSHoldMessage {
-            return 56
-        }
-        
-        return 0
+        return heightForRow
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
