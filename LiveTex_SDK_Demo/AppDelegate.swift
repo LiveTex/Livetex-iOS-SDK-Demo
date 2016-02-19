@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var internetReachability:Reachability!
-    var reachabilityAlert:UIAlertView?
+    var reachabilityAlert:UIAlertController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -102,28 +102,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func processReachability(curReach:Reachability) {
-        
         let status:NetworkStatus = curReach.currentReachabilityStatus()
-        
         if status == NetworkStatus.NotReachable {
-            
             LTApiManager.sharedInstance.sdk?.stop()
-            
             if LTApiManager.sharedInstance.isSessionOnlineOpen == true {
-                
-                reachabilityAlert = UIAlertView(title: nil,
-                    message: "Интернет соединение потеряно, дождитесь когда система востановит соединение",
-                    delegate: nil,
-                    cancelButtonTitle: "Ok")
-                
-                LTApiManager.sharedInstance.sdk?.delegate?.updateDialogState(LTSDialogState(conversation: nil, employee: nil))
-                
-                reachabilityAlert?.show()
+                reachabilityAlert = UIAlertController(title: "", message: "Интернет соединение потеряно, дождитесь когда система востановит соединение", preferredStyle: UIAlertControllerStyle.Alert)
+                let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
+                reachabilityAlert!.addAction(cancelAction)
+                self.window?.rootViewController?.presentViewController(reachabilityAlert!, animated: true, completion: nil)
             }
-            
         } else {
-            
-            reachabilityAlert?.dismissWithClickedButtonIndex(0, animated: true)
+            reachabilityAlert?.dismissViewControllerAnimated(true, completion: nil)
         }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("LTNetworkNotification", object: NSNumber(unsignedInteger: status.rawValue))
     }
 }
