@@ -25,11 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("reachabilityChanged:"), name: kReachabilityChangedNotification, object: nil)
         
-        self.registerDefaultsFromSettingsBundle();
+        //self.registerDefaultsFromSettingsBundle();
         
         internetReachability = Reachability.reachabilityForInternetConnection()
         internetReachability.startNotifier();
-                
+
         return true
     }
     
