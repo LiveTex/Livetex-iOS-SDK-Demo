@@ -9,7 +9,7 @@
 
 import UIKit
 
-class LTSettingsViewController: UITableViewController {
+class LTSettingsViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var siteField: UITextField!
     @IBOutlet weak var keyField: UITextField!
@@ -60,5 +60,11 @@ class LTSettingsViewController: UITableViewController {
         URL = urlField.text
         key = keyField.text
         siteID = siteField.text
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
     }
 }
