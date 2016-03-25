@@ -332,20 +332,28 @@ message: текст жалобы.
 @end
 
 
-/*!
-Данные сопутствующие диалогу с собеседником.
-
-visible: данные доступные для отображения в пульте оператора.
- 
-hidden: данные недоступные для отображения в пульте оператора.
+/**
+ *  Класс `LTSDialogAttributes` определяет данные, которые будут переданы оператору при создании обращения.
  */
-
 @interface LTSDialogAttributes : NSObject
 
-@property (nonatomic, retain) LTSOptions visible;
-@property (nonatomic, retain) LTSOptions hidden;
+/**
+ *  Данные, доступные для отображения в пульте оператора.
+ */
+@property(nonatomic, retain) LTSOptions visible;
 
-- (instancetype)initWithVisible: (LTSOptions) visible hidden: (LTSOptions) hidden;
+/**
+ *  Данные, недоступные для отображения в пульте оператора.
+ */
+@property(nonatomic, retain) LTSOptions hidden;
+
+/**
+ *  Определяет будут ли переданы оператору по умолчанию системные данные:
+ *  Модель устройства, ОС, Версия приложения, Тип соединения, Оператор связи. По умолчанию `true`.
+ */
+@property(nonatomic, assign) BOOL useDefaultOptions;
+
+- (instancetype)initWithVisible:(LTSOptions)visible hidden:(LTSOptions) hidden;
 
 @end
 
