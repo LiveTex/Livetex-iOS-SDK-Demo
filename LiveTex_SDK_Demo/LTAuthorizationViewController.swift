@@ -32,6 +32,7 @@ class LTAuthorizationViewController: UIViewController {
     }
     
     func commonPreparations() {
+        clean()
         self.navigationController?.navigationBarHidden = true
         let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
