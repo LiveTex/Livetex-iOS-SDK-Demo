@@ -38,6 +38,7 @@
 		7EDB52EF1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */; };
 		7EDB52F11B25F673005320B4 /* LTOfflineChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */; };
 		7EED15261BBD29CC00CEBB11 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */; };
+		D125503A1C8991010057AB8F /* LTSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12550391C8991010057AB8F /* LTSettingsViewController.swift */; };
 		D135F7E81C2C3134009ECC59 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D135F7E41C2C3134009ECC59 /* libLTMobileSDK.a */; };
 		D1401A5E1C2D4EEF009B2FCE /* 1376466473_manager1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D1401A481C2D4EEF009B2FCE /* 1376466473_manager1.jpg */; };
 		D1401A5F1C2D4EEF009B2FCE /* Ваш вопрос 2.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A491C2D4EEF009B2FCE /* Ваш вопрос 2.png */; };
@@ -59,7 +60,6 @@
 		D1401A711C2D4EEF009B2FCE /* send_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5B1C2D4EEF009B2FCE /* send_btn@2x.png */; };
 		D1401A721C2D4EEF009B2FCE /* send_file_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5C1C2D4EEF009B2FCE /* send_file_icon@2x.png */; };
 		D1401A731C2D4EEF009B2FCE /* top_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5D1C2D4EEF009B2FCE /* top_background.png */; };
-		D1C956361C2459C100535684 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D1C956351C2459C100535684 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +99,7 @@
 		7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationCreationViewController.swift; sourceTree = "<group>"; };
 		7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineChatViewController.swift; sourceTree = "<group>"; };
 		7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
+		D12550391C8991010057AB8F /* LTSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSettingsViewController.swift; sourceTree = "<group>"; };
 		D135F7E41C2C3134009ECC59 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
 		D135F7E51C2C3134009ECC59 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
 		D135F7E61C2C3134009ECC59 /* LTObjcBridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
@@ -123,7 +124,6 @@
 		D1401A5B1C2D4EEF009B2FCE /* send_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_btn@2x.png"; sourceTree = "<group>"; };
 		D1401A5C1C2D4EEF009B2FCE /* send_file_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_file_icon@2x.png"; sourceTree = "<group>"; };
 		D1401A5D1C2D4EEF009B2FCE /* top_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_background.png; sourceTree = "<group>"; };
-		D1C956351C2459C100535684 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,7 +202,6 @@
 				55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */,
 				55F73AFE1A0A6EB800C28B0A /* Supporting Files */,
 				7E3F56F61BAC48ED00DAA04D /* Main.storyboard */,
-				D1C956351C2459C100535684 /* Settings.bundle */,
 			);
 			name = LiveTex_SDK_Mobile;
 			path = LiveTex_SDK_Demo;
@@ -236,6 +235,7 @@
 				55F73B001A0A6EB800C28B0A /* AppDelegate.swift */,
 				55F73B051A0A6EB900C28B0A /* LTAuthorizationViewController.swift */,
 				7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */,
+				D12550391C8991010057AB8F /* LTSettingsViewController.swift */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -382,7 +382,6 @@
 				D1401A701C2D4EEF009B2FCE /* Rectangle@2x.png in Resources */,
 				D1401A661C2D4EEF009B2FCE /* button_online_push@2x.png in Resources */,
 				7E4BF9E01B26FF5700FF5C80 /* AppIcon60x60@3x.png in Resources */,
-				D1C956361C2459C100535684 /* Settings.bundle in Resources */,
 				7E4BF9E11B26FF5700FF5C80 /* AppIcon76x76.png in Resources */,
 				D1401A671C2D4EEF009B2FCE /* button_online@2x.png in Resources */,
 				D1401A691C2D4EEF009B2FCE /* chat_msg_double_checked@2x.png in Resources */,
@@ -406,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55D666081A1364CC001747B0 /* LTEnvolvingViewController.swift in Sources */,
+				D125503A1C8991010057AB8F /* LTSettingsViewController.swift in Sources */,
 				7EED15261BBD29CC00CEBB11 /* CommonUtils.swift in Sources */,
 				553859581A13AFCA0067A33F /* LTChatViewController.swift in Sources */,
 				55DEA8EE1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift in Sources */,
@@ -545,8 +545,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/LiveTex_SDK_Demo/Livetex_SDK",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LTMobileSDK-gobsmgafmedlnthgewbmoplmtqum/Build/Products/Debug-iphoneos",
 					"$(PROJECT_DIR)/LiveTex_SDK_Demo/LTMobileSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
@@ -580,8 +578,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/LiveTex_SDK_Demo/Livetex_SDK",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LTMobileSDK-gobsmgafmedlnthgewbmoplmtqum/Build/Products/Debug-iphoneos",
 					"$(PROJECT_DIR)/LiveTex_SDK_Demo/LTMobileSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
@@ -651,8 +647,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/LiveTex_SDK_Demo/Livetex_SDK",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LTMobileSDK-gobsmgafmedlnthgewbmoplmtqum/Build/Products/Debug-iphoneos",
 					"$(PROJECT_DIR)/LiveTex_SDK_Demo/LTMobileSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
