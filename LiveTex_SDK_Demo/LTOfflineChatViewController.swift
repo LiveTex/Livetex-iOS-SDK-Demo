@@ -225,8 +225,8 @@ extension LTChatViewControllerOffliner {
         
         UIApplication.sharedApplication().keyWindow?.endEditing(true)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LTChatViewControllerOffliner.setInputViewY(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LTChatViewControllerOffliner.setInputViewY(_:)), name:UIKeyboardWillHideNotification, object: nil)
     }
     
     func showActivityIndicator() {
