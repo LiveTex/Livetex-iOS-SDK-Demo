@@ -10,10 +10,10 @@
 import UIKit
 
 class LTSettingsViewController: UITableViewController, UITextFieldDelegate {
-
     @IBOutlet weak var siteField: UITextField!
     @IBOutlet weak var keyField: UITextField!
     @IBOutlet weak var urlField: UITextField!
+    
     var indexPathForSelectedRow: NSIndexPath?
     
     override func viewDidLoad() {
@@ -27,32 +27,34 @@ class LTSettingsViewController: UITableViewController, UITextFieldDelegate {
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        if cell?.accessoryType == UITableViewCellAccessoryType.Checkmark {
-            return
-        } else {
-            if indexPathForSelectedRow != nil {
-                let selectedCell = tableView.cellForRowAtIndexPath(indexPathForSelectedRow!)
-                selectedCell?.accessoryType = UITableViewCellAccessoryType.None
-            }
-            cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
-            urlField.text = cell?.detailTextLabel?.text
-            keyField.text = "demo"
-            if indexPath.section == 0 {
-                switch indexPath.row {
-                case 0,
-                     1:
-                    siteField.text = "114744"
-                case 2,
-                     3:
-                    siteField.text = "10019719"
-                    
-                default:
-                    break
+        if indexPath.section == 0 {
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            if cell?.accessoryType == UITableViewCellAccessoryType.Checkmark {
+                return
+            } else {
+                if indexPathForSelectedRow != nil {
+                    let selectedCell = tableView.cellForRowAtIndexPath(indexPathForSelectedRow!)
+                    selectedCell?.accessoryType = UITableViewCellAccessoryType.None
                 }
+                cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+                urlField.text = cell?.detailTextLabel?.text
+                keyField.text = "demo"
+                if indexPath.section == 0 {
+                    switch indexPath.row {
+                    case 0,
+                         1:
+                        siteField.text = "106217"
+                    case 2,
+                         3:
+                        siteField.text = "10019719"
+                        
+                    default:
+                        break
+                    }
+                }
+                
+                indexPathForSelectedRow = indexPath
             }
-            
-            indexPathForSelectedRow = indexPath
         }
     }
     
