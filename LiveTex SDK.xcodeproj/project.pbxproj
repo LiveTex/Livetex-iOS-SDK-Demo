@@ -40,9 +40,7 @@
 		7EED15261BBD29CC00CEBB11 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */; };
 		D125503A1C8991010057AB8F /* LTSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12550391C8991010057AB8F /* LTSettingsViewController.swift */; };
 		D135F7E81C2C3134009ECC59 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D135F7E41C2C3134009ECC59 /* libLTMobileSDK.a */; };
-		D1401A5E1C2D4EEF009B2FCE /* 1376466473_manager1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D1401A481C2D4EEF009B2FCE /* 1376466473_manager1.jpg */; };
 		D1401A5F1C2D4EEF009B2FCE /* Ваш вопрос 2.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A491C2D4EEF009B2FCE /* Ваш вопрос 2.png */; };
-		D1401A601C2D4EEF009B2FCE /* ava@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4A1C2D4EEF009B2FCE /* ava@2x.jpg */; };
 		D1401A621C2D4EEF009B2FCE /* baloon_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4C1C2D4EEF009B2FCE /* baloon_blue@2x.png */; };
 		D1401A631C2D4EEF009B2FCE /* baloon_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4D1C2D4EEF009B2FCE /* baloon_gray@2x.png */; };
 		D1401A641C2D4EEF009B2FCE /* bot_backgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4E1C2D4EEF009B2FCE /* bot_backgroud.png */; };
@@ -60,6 +58,10 @@
 		D1401A711C2D4EEF009B2FCE /* send_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5B1C2D4EEF009B2FCE /* send_btn@2x.png */; };
 		D1401A721C2D4EEF009B2FCE /* send_file_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5C1C2D4EEF009B2FCE /* send_file_icon@2x.png */; };
 		D1401A731C2D4EEF009B2FCE /* top_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5D1C2D4EEF009B2FCE /* top_background.png */; };
+		D157BCDD1CBE75CD000E6271 /* LTConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D157BCDC1CBE75CD000E6271 /* LTConversationViewController.swift */; };
+		D157BCE11CBF7F90000E6271 /* KMPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D157BCE01CBF7F90000E6271 /* KMPlaceholderTextView.swift */; };
+		D157BCE31CBF89E3000E6271 /* Additional.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D157BCE21CBF89E3000E6271 /* Additional.storyboard */; };
+		D157BCE51CBFCB02000E6271 /* LTComplaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D157BCE41CBFCB02000E6271 /* LTComplaintViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,9 +106,7 @@
 		D135F7E51C2C3134009ECC59 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
 		D135F7E61C2C3134009ECC59 /* LTObjcBridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
 		D135F7E71C2C3134009ECC59 /* LTSDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
-		D1401A481C2D4EEF009B2FCE /* 1376466473_manager1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1376466473_manager1.jpg; sourceTree = "<group>"; };
 		D1401A491C2D4EEF009B2FCE /* Ваш вопрос 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ваш вопрос 2.png"; sourceTree = "<group>"; };
-		D1401A4A1C2D4EEF009B2FCE /* ava@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "ava@2x.jpg"; sourceTree = "<group>"; };
 		D1401A4C1C2D4EEF009B2FCE /* baloon_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baloon_blue@2x.png"; sourceTree = "<group>"; };
 		D1401A4D1C2D4EEF009B2FCE /* baloon_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baloon_gray@2x.png"; sourceTree = "<group>"; };
 		D1401A4E1C2D4EEF009B2FCE /* bot_backgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bot_backgroud.png; sourceTree = "<group>"; };
@@ -124,6 +124,10 @@
 		D1401A5B1C2D4EEF009B2FCE /* send_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_btn@2x.png"; sourceTree = "<group>"; };
 		D1401A5C1C2D4EEF009B2FCE /* send_file_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_file_icon@2x.png"; sourceTree = "<group>"; };
 		D1401A5D1C2D4EEF009B2FCE /* top_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_background.png; sourceTree = "<group>"; };
+		D157BCDC1CBE75CD000E6271 /* LTConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTConversationViewController.swift; sourceTree = "<group>"; };
+		D157BCE01CBF7F90000E6271 /* KMPlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPlaceholderTextView.swift; sourceTree = "<group>"; };
+		D157BCE21CBF89E3000E6271 /* Additional.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Additional.storyboard; sourceTree = "<group>"; };
+		D157BCE41CBFCB02000E6271 /* LTComplaintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTComplaintViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,9 +154,7 @@
 		55D666091A13655A001747B0 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				D1401A481C2D4EEF009B2FCE /* 1376466473_manager1.jpg */,
 				D1401A491C2D4EEF009B2FCE /* Ваш вопрос 2.png */,
-				D1401A4A1C2D4EEF009B2FCE /* ava@2x.jpg */,
 				D1401A4C1C2D4EEF009B2FCE /* baloon_blue@2x.png */,
 				D1401A4D1C2D4EEF009B2FCE /* baloon_gray@2x.png */,
 				D1401A4E1C2D4EEF009B2FCE /* bot_backgroud.png */,
@@ -202,6 +204,7 @@
 				55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */,
 				55F73AFE1A0A6EB800C28B0A /* Supporting Files */,
 				7E3F56F61BAC48ED00DAA04D /* Main.storyboard */,
+				D157BCE21CBF89E3000E6271 /* Additional.storyboard */,
 			);
 			name = LiveTex_SDK_Mobile;
 			path = LiveTex_SDK_Demo;
@@ -224,6 +227,8 @@
 				55DEA8F11A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift */,
 				55DEA8EC1A35D7DC006ED45A /* LTClaimingViewController.swift */,
 				55E17BBA1A4974EB00F503A1 /* LTSWTextMessage.swift */,
+				D157BCDC1CBE75CD000E6271 /* LTConversationViewController.swift */,
+				D157BCE41CBFCB02000E6271 /* LTComplaintViewController.swift */,
 			);
 			name = onlineChanel;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 		7E023E0D1B4C2064003E3079 /* thirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				D157BCE01CBF7F90000E6271 /* KMPlaceholderTextView.swift */,
 				553859531A138E510067A33F /* DejalActivityView */,
 				55CC14FB1A3B2A9400C1456C /* Reachability.h */,
 				55CC14FC1A3B2A9400C1456C /* Reachability.m */,
@@ -362,12 +368,10 @@
 			files = (
 				D1401A731C2D4EEF009B2FCE /* top_background.png in Resources */,
 				D1401A6E1C2D4EEF009B2FCE /* navigation_bar_background@2x.png in Resources */,
-				D1401A5E1C2D4EEF009B2FCE /* 1376466473_manager1.jpg in Resources */,
 				7E4BF9DD1B26FF5700FF5C80 /* AppIcon40x40@2x.png in Resources */,
 				D1401A721C2D4EEF009B2FCE /* send_file_icon@2x.png in Resources */,
 				D1401A5F1C2D4EEF009B2FCE /* Ваш вопрос 2.png in Resources */,
 				D1401A631C2D4EEF009B2FCE /* baloon_gray@2x.png in Resources */,
-				D1401A601C2D4EEF009B2FCE /* ava@2x.jpg in Resources */,
 				7E4BF9DC1B26FF5700FF5C80 /* AppIcon40x40.png in Resources */,
 				7E4BF9E31B26FF5700FF5C80 /* iTunesArtwork.png in Resources */,
 				D1401A6B1C2D4EEF009B2FCE /* dropdown_arrow@2x.png in Resources */,
@@ -376,6 +380,7 @@
 				D1401A641C2D4EEF009B2FCE /* bot_backgroud.png in Resources */,
 				7E4BF9E21B26FF5700FF5C80 /* AppIcon76x76@2x.png in Resources */,
 				7E3F56F71BAC48ED00DAA04D /* Main.storyboard in Resources */,
+				D157BCE31CBF89E3000E6271 /* Additional.storyboard in Resources */,
 				D1401A651C2D4EEF009B2FCE /* button_offline@2x.png in Resources */,
 				D1401A6A1C2D4EEF009B2FCE /* complaint_icon@2x.png in Resources */,
 				D1401A621C2D4EEF009B2FCE /* baloon_blue@2x.png in Resources */,
@@ -412,6 +417,7 @@
 				7E023E101B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift in Sources */,
 				553859561A138E510067A33F /* DejalActivityView.m in Sources */,
 				55CC14FD1A3B2A9400C1456C /* Reachability.m in Sources */,
+				D157BCDD1CBE75CD000E6271 /* LTConversationViewController.swift in Sources */,
 				55DEA8EF1A35D7DC006ED45A /* LTClaimingViewController.swift in Sources */,
 				55F73B061A0A6EB900C28B0A /* LTAuthorizationViewController.swift in Sources */,
 				55F73B011A0A6EB800C28B0A /* AppDelegate.swift in Sources */,
@@ -420,6 +426,8 @@
 				55DEA8F21A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift in Sources */,
 				7EDB52EB1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift in Sources */,
 				55D666061A135F2C001747B0 /* LTApiManager.swift in Sources */,
+				D157BCE51CBFCB02000E6271 /* LTComplaintViewController.swift in Sources */,
+				D157BCE11CBF7F90000E6271 /* KMPlaceholderTextView.swift in Sources */,
 				7EDB52EF1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift in Sources */,
 				55E17BBB1A4974EB00F503A1 /* LTSWTextMessage.swift in Sources */,
 			);
@@ -527,9 +535,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Emil Abduselimov (MR8TW98N6T)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Emil Abduselimov (MR8TW98N6T)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Emil Abduselimov (MR8TW98N6T)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -549,7 +557,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "481df68b-d942-401d-85a2-b762ef788d6b";
 				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTMobileSDK/LTObjcBridging.h;
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = LiveTex_SDK_Demo/LTMobileSDK/LTObjcBridging.h;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -561,8 +569,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Emil Abduselimov (MR8TW98N6T)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Emil Abduselimov (MR8TW98N6T)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -582,7 +590,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "481df68b-d942-401d-85a2-b762ef788d6b";
 				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTMobileSDK/LTObjcBridging.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -630,8 +638,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Emil Abduselimov (MR8TW98N6T)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Emil Abduselimov (MR8TW98N6T)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -651,7 +659,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "481df68b-d942-401d-85a2-b762ef788d6b";
 				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTMobileSDK/LTObjcBridging.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
