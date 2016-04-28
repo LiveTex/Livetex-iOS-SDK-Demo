@@ -9,18 +9,18 @@
 import UIKit
 
 class LTAuthorizationViewController: UIViewController {
-    
-    var activityView:DejalBezelActivityView?
-    
     @IBOutlet weak var suggetionLabel: UILabel!
     @IBOutlet weak var onlineModeButton: UIButton!
     @IBOutlet weak var offlineModeButton: UIButton!
     
     var dialogState:LTSDialogState?
+    var activityView:DejalBezelActivityView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "gotToken", name: "LTApiManager_token_got", object: nil)
+        self.navigationController?.navigationBarHidden = true
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LTAuthorizationViewController.gotToken), name: "LTApiManager_token_got", object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,13 +28,11 @@ class LTAuthorizationViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        commonPreparations()
+        self.registerForRemoteNotifications()
     }
     
-    func commonPreparations() {
-        clean()
-        self.navigationController?.navigationBarHidden = true
-        let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType.Alert, categories: nil)
+    func registerForRemoteNotifications() {
+        let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType([.Alert, .Sound]), categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(settings)
         UIApplication.sharedApplication().registerForRemoteNotifications()
     }
@@ -43,11 +41,6 @@ class LTAuthorizationViewController: UIViewController {
 //MARK: business Flow
 
 extension LTAuthorizationViewController {
-    func clean() {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(kLivetexPersistStorage)
-        NSUserDefaults.standardUserDefaults().synchronize()
-    }
-
     func startWelcome() {
         let initParam  = LTMobileSDKInitializationParams()
         initParam.sdkKey = key
@@ -57,7 +50,6 @@ extension LTAuthorizationViewController {
         initParam.capabilities = [0,5,6,7]
         
         LTApiManager.sharedInstance.sdk = LTMobileSDK(params: initParam)
-    
         showActivityIndicator()
         
         LTApiManager.sharedInstance.sdk!.runWithSuccess({ (token:String!) -> Void in
@@ -112,7 +104,7 @@ extension LTAuthorizationViewController {
         if dialogState?.conversation != nil {
             self.performSegueWithIdentifier("show_chat", sender: nil)
         } else {
-            self.performSegueWithIdentifier("showEnvolving", sender: nil)
+            self.performSegueWithIdentifier("showConversation", sender: nil)
         }
     }
     
