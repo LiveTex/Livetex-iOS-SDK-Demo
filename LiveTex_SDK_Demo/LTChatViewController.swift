@@ -23,6 +23,7 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
     var activityView:DejalBezelActivityView?
     var currentOperatorId:String?
     var messages:Array<AnyObject>! = []
+    var images:[String: AnyObject]! = [:]
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -30,12 +31,12 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     override func viewDidLoad() {
+        self.navigationController?.navigationBarHidden = false
         commonPreparation()
         presentData()
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
         tableViewBottomMargin.constant = 0
         self.view.layoutIfNeeded()
     }
@@ -49,9 +50,9 @@ class LTChatViewController: UIViewController, UIImagePickerControllerDelegate, U
     func commonPreparation() {
         UIApplication.sharedApplication().keyWindow?.endEditing(true)
     
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("setInputViewY:"), name:UIKeyboardWillHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("networkNotification:"), name: "LTNetworkNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LTChatViewController.setInputViewY(_:)), name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LTChatViewController.setInputViewY(_:)), name:UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LTChatViewController.networkNotification(_:)), name: "LTNetworkNotification", object: nil)
         
         self.messageInputField.autoresizingMask = UIViewAutoresizing.FlexibleWidth;
     }
@@ -114,12 +115,12 @@ extension LTChatViewController {
         })
     }
 
-    func uploadFile(imgData:NSData) {
-        
-        let file = LTSFile(data: imgData, fileName: "file", fileExtension: "png", mimeType: "image/png")
+    func uploadFile(imagePath:String) {
+        let file = LTSFile(data: NSData(contentsOfFile: imagePath), fileName: "image", fileExtension: "png", mimeType: "image/png")
         LTApiManager.sharedInstance.sdk?.uploadFileData(file, success: { () -> Void in
-            let systemMessage = LTSHoldMessage(text: "Отправлен файл: " + "file" + ".png", timestamp: "")
-            self.messages.append(systemMessage)
+            //let systemMessage = LTSHoldMessage(text: "Отправлен файл: " + "file" + ".png", timestamp: "")
+            let fileMessage = LTSFileMessage(id: nil, text: nil, timestamp: String(NSDate().timeIntervalSince1970), url: imagePath, sender: nil)
+            self.messages.append(fileMessage)
             self.tableView.reloadData()
             if (self.messages.count != 0) {
                 self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: self.messages.count - 1, inSection: 0), atScrollPosition: .Bottom, animated: true)
@@ -153,10 +154,13 @@ extension LTChatViewController {
 //MARK: imagePickerDelegate
 
 extension LTChatViewController {
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        let imgData = UIImageJPEGRepresentation(image, 0.0)
-        uploadFile(imgData!)
-        self.presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let image = info[UIImagePickerControllerEditedImage] as! UIImage
+        let imagePath = NSTemporaryDirectory().stringByAppendingString(NSUUID().UUIDString + ".png")
+        let imageData = UIImagePNGRepresentation(image)
+        imageData?.writeToFile(imagePath, atomically: true)
+        uploadFile(imagePath)
+        imagePickerController.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
@@ -359,6 +363,8 @@ extension LTChatViewController {
         voteUpBtn.enabled = true
         abuseBtn.enabled = true
         
+        messageInputeView.userInteractionEnabled = true
+        
         let systemMessage = LTSHoldMessage(text: "Оператор онлайн", timestamp: "")
         self.messages.append(systemMessage)
     }
@@ -384,6 +390,7 @@ extension LTChatViewController {
         abuseBtn.enabled = false
         
         messageInputField?.enabled = false
+        messageInputeView.userInteractionEnabled = false
         
         let systemMessage = LTSHoldMessage(text: "Оператор не в сети. Диалог закрыт", timestamp: "")
         self.messages.append(systemMessage)
@@ -416,13 +423,19 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var heightForRow:CGFloat = 0.0;
         if let currentMessage = messages[indexPath.row] as? LTSWTextMessage {
-            heightForRow = CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.text))
+             heightForRow = CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.text))
         } else if let currentMessage = messages[indexPath.row] as? LTSFileMessage {
-            heightForRow = CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.url))
+            let pathExtention = (currentMessage.url.stringByRemovingPercentEncoding! as NSString).pathExtension
+            let extentions: Array<String> = ["png", "jpg", "jpeg"]
+            if extentions.contains(pathExtention) {
+                heightForRow = 170.0
+            } else {
+                heightForRow = CGFloat(LTChatMessageTableViewCell.getSizeForText(currentMessage.url))
+            }
         } else {
             heightForRow = 56.0
         }
-        
+              
         return heightForRow
     }
     
@@ -435,16 +448,58 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
                 cell = self.tableView.dequeueReusableCellWithIdentifier("cellOut") as! LTChatMessageTableViewCell
             }
             
-            cell.messageSet = self.messages[indexPath.row]
+            cell.messageSet = currentMessage
+            cell.messageText.text = currentMessage.text
+            cell.backgoundImage2.subviews.forEach{$0.removeFromSuperview()}
+            
             return cell
         }
         
         if let currentMessage = messages[indexPath.row] as? LTSFileMessage {
-            var cell:LTChatMessageTableViewCell!
-            cell = self.tableView.dequeueReusableCellWithIdentifier("cellIn") as! LTChatMessageTableViewCell
-            currentMessage.url = currentMessage.url.stringByRemovingPercentEncoding
+            let fileURL: String = currentMessage.url.stringByRemovingPercentEncoding!
+            let pathExtention = (currentMessage.url.stringByRemovingPercentEncoding! as NSString).pathExtension
+            let paths: Array<String> = ["png", "jpg", "jpeg"]
+            let cell = self.tableView.dequeueReusableCellWithIdentifier(fileURL.containsString("http") ? "cellIn" : "cellOut") as! LTChatMessageTableViewCell
             cell.messageSet = currentMessage
-            tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: false)
+            
+            if paths.contains(pathExtention) {
+                cell.backgoundImage2.subviews.forEach{$0.removeFromSuperview()}
+                let imageView = UIImageView()
+                imageView.clipsToBounds = true
+                imageView.contentMode = UIViewContentMode.ScaleAspectFill
+                
+                let imageViewMask = UIImageView(image: UIImage(named: fileURL.containsString("http") ? "baloon_gray" : "baloon_blue"))
+                if self.images[fileURL] != nil {
+                    imageView.image = images[fileURL] as! UIImage!
+                } else {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+                        let imageData = fileURL.containsString("http") ? NSData(contentsOfURL: NSURL(string: fileURL)!) : NSData(contentsOfFile: fileURL)
+                        dispatch_async(dispatch_get_main_queue(), {
+                            imageView.image = UIImage(data: imageData!)
+                            self.images[fileURL] = imageView.image
+                            cell.setNeedsLayout()
+                        })
+                    })
+                }
+                
+                cell.messageText.text = "";
+                cell.backgoundImage2.image = nil
+                
+                imageViewMask.image = imageViewMask.image!.resizableImageWithCapInsets(UIEdgeInsetsMake(15, 20, 15, 20))
+                imageViewMask.frame = CGRectInset(CGRectMake(0, 0, 210.0, 150.0), 2.0, 2.0)
+                imageView.layer.mask = imageViewMask.layer
+                imageView.layer.masksToBounds = true
+                
+                let views = ["imageView": imageView]
+                imageView.translatesAutoresizingMaskIntoConstraints = false
+                cell.backgoundImage2.addSubview(imageView)
+                cell.backgoundImage2.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView(210)]|", options: NSLayoutFormatOptions.AlignAllBaseline, metrics: nil, views: views))
+                cell.backgoundImage2.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[imageView]|", options: NSLayoutFormatOptions.AlignAllBaseline, metrics: nil, views: views))
+            } else {
+                cell.messageText.text = currentMessage.url
+            }
+            
+            
             return cell
         }
         
@@ -460,8 +515,7 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let message = messages[indexPath.row] as? LTSFileMessage {
-            let url = message.url.stringByRemovingPercentEncoding
-            UIApplication.sharedApplication().openURL(NSURL(string: url!)!)
+            UIApplication.sharedApplication().openURL(NSURL(string: message.url!)!)
         }
     }
 }
