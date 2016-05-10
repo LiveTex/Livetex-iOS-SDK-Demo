@@ -24,27 +24,20 @@ class LTChatMessageTableViewCell: UITableViewCell {
     }
     
     var messageSet:AnyObject! {
-        
         set (messageNew) {
-            
             self.message = messageNew
-            handy.timeFormatter.dateFormat = "hh:mm"
+            handy.timeFormatter.dateFormat = "HH:mm"
+            let timestamp = (self.message.timestamp as NSString).doubleValue
+            self.timeText.text = handy.timeFormatter.stringFromDate(NSDate(timeIntervalSince1970: timestamp))
             
             if let massage = messageNew as? LTSWTextMessage {
-                
                 self.messageText.text = massage.text
-                let timestamp = (self.message.timestamp as NSString).doubleValue
-                self.timeText.text = handy.timeFormatter.stringFromDate(NSDate(timeIntervalSince1970: NSTimeInterval(timestamp)))
-                
                 self.messgaeConfirmedIco?.hidden = !massage.isConfirmed
             }
             
             if let massage = messageNew as? LTSFileMessage {
                 let name = massage.url
                 self.messageText.text = name
-                
-                let timestamp = (self.message.timestamp as NSString).doubleValue
-                self.timeText.text = handy.timeFormatter.stringFromDate(NSDate(timeIntervalSince1970: NSTimeInterval(timestamp)))
                 self.messgaeConfirmedIco?.hidden = true
             }
 
@@ -52,7 +45,6 @@ class LTChatMessageTableViewCell: UITableViewCell {
         }
         
         get {
-            
             return self.message
         }
     }
