@@ -451,6 +451,7 @@ extension LTChatViewController: UITableViewDelegate, UITableViewDataSource {
             cell.messageSet = currentMessage
             cell.messageText.text = currentMessage.text
             cell.backgoundImage2.subviews.forEach{$0.removeFromSuperview()}
+            cell.backgoundImage2.image = UIImage(named: currentMessage.senderIsSet() ? "baloon_gray" : "baloon_blue")
             
             return cell
         }
