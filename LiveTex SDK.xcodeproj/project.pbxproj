@@ -7,127 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		553859561A138E510067A33F /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 553859551A138E510067A33F /* DejalActivityView.m */; };
-		553859581A13AFCA0067A33F /* LTChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553859571A13AFCA0067A33F /* LTChatViewController.swift */; };
 		55CC14FD1A3B2A9400C1456C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 55CC14FC1A3B2A9400C1456C /* Reachability.m */; };
-		55D666061A135F2C001747B0 /* LTApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D666051A135F2C001747B0 /* LTApiManager.swift */; };
-		55D666081A1364CC001747B0 /* LTEnvolvingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D666071A1364CC001747B0 /* LTEnvolvingViewController.swift */; };
-		55DEA8EE1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8EB1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift */; };
-		55DEA8EF1A35D7DC006ED45A /* LTClaimingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8EC1A35D7DC006ED45A /* LTClaimingViewController.swift */; };
-		55DEA8F21A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55DEA8F11A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift */; };
-		55E17BBB1A4974EB00F503A1 /* LTSWTextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E17BBA1A4974EB00F503A1 /* LTSWTextMessage.swift */; };
+		55D666061A135F2C001747B0 /* LivetexCoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D666051A135F2C001747B0 /* LivetexCoreManager.swift */; };
 		55F73B011A0A6EB800C28B0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73B001A0A6EB800C28B0A /* AppDelegate.swift */; };
-		55F73B061A0A6EB900C28B0A /* LTAuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73B051A0A6EB900C28B0A /* LTAuthorizationViewController.swift */; };
+		55F73B061A0A6EB900C28B0A /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F73B051A0A6EB900C28B0A /* AuthorizationViewController.swift */; };
 		55F73B0B1A0A6EB900C28B0A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0A1A0A6EB900C28B0A /* Images.xcassets */; };
 		55F73B0E1A0A6EB900C28B0A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */; };
-		7E023E101B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E023E0F1B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift */; };
-		7E3F56F71BAC48ED00DAA04D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E3F56F61BAC48ED00DAA04D /* Main.storyboard */; };
-		7E4BF9DA1B26FF5700FF5C80 /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9CF1B26FF5700FF5C80 /* AppIcon29x29.png */; };
-		7E4BF9DB1B26FF5700FF5C80 /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D01B26FF5700FF5C80 /* AppIcon29x29@2x.png */; };
-		7E4BF9DC1B26FF5700FF5C80 /* AppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D11B26FF5700FF5C80 /* AppIcon40x40.png */; };
-		7E4BF9DD1B26FF5700FF5C80 /* AppIcon40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D21B26FF5700FF5C80 /* AppIcon40x40@2x.png */; };
-		7E4BF9DE1B26FF5700FF5C80 /* AppIcon60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D31B26FF5700FF5C80 /* AppIcon60x60.png */; };
-		7E4BF9DF1B26FF5700FF5C80 /* AppIcon60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D41B26FF5700FF5C80 /* AppIcon60x60@2x.png */; };
-		7E4BF9E01B26FF5700FF5C80 /* AppIcon60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D51B26FF5700FF5C80 /* AppIcon60x60@3x.png */; };
-		7E4BF9E11B26FF5700FF5C80 /* AppIcon76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D61B26FF5700FF5C80 /* AppIcon76x76.png */; };
-		7E4BF9E21B26FF5700FF5C80 /* AppIcon76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D71B26FF5700FF5C80 /* AppIcon76x76@2x.png */; };
-		7E4BF9E31B26FF5700FF5C80 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D81B26FF5700FF5C80 /* iTunesArtwork.png */; };
-		7E4BF9E41B26FF5700FF5C80 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4BF9D91B26FF5700FF5C80 /* iTunesArtwork@2x.png */; };
-		7EDB52EB1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */; };
-		7EDB52ED1B232414005320B4 /* LTOfflineConversationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */; };
-		7EDB52EF1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */; };
-		7EDB52F11B25F673005320B4 /* LTOfflineChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */; };
-		7EED15261BBD29CC00CEBB11 /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */; };
-		D125503A1C8991010057AB8F /* LTSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12550391C8991010057AB8F /* LTSettingsViewController.swift */; };
-		D135F7E81C2C3134009ECC59 /* libLTMobileSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D135F7E41C2C3134009ECC59 /* libLTMobileSDK.a */; };
-		D1401A5F1C2D4EEF009B2FCE /* Ваш вопрос 2.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A491C2D4EEF009B2FCE /* Ваш вопрос 2.png */; };
-		D1401A621C2D4EEF009B2FCE /* baloon_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4C1C2D4EEF009B2FCE /* baloon_blue@2x.png */; };
-		D1401A631C2D4EEF009B2FCE /* baloon_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4D1C2D4EEF009B2FCE /* baloon_gray@2x.png */; };
-		D1401A641C2D4EEF009B2FCE /* bot_backgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4E1C2D4EEF009B2FCE /* bot_backgroud.png */; };
-		D1401A651C2D4EEF009B2FCE /* button_offline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A4F1C2D4EEF009B2FCE /* button_offline@2x.png */; };
-		D1401A661C2D4EEF009B2FCE /* button_online_push@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A501C2D4EEF009B2FCE /* button_online_push@2x.png */; };
-		D1401A671C2D4EEF009B2FCE /* button_online@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A511C2D4EEF009B2FCE /* button_online@2x.png */; };
-		D1401A681C2D4EEF009B2FCE /* cancel_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A521C2D4EEF009B2FCE /* cancel_btn@2x.png */; };
-		D1401A691C2D4EEF009B2FCE /* chat_msg_double_checked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A531C2D4EEF009B2FCE /* chat_msg_double_checked@2x.png */; };
-		D1401A6A1C2D4EEF009B2FCE /* complaint_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A541C2D4EEF009B2FCE /* complaint_icon@2x.png */; };
-		D1401A6B1C2D4EEF009B2FCE /* dropdown_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A551C2D4EEF009B2FCE /* dropdown_arrow@2x.png */; };
-		D1401A6D1C2D4EEF009B2FCE /* lt-auth-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A571C2D4EEF009B2FCE /* lt-auth-logo@2x.png */; };
-		D1401A6E1C2D4EEF009B2FCE /* navigation_bar_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A581C2D4EEF009B2FCE /* navigation_bar_background@2x.png */; };
-		D1401A6F1C2D4EEF009B2FCE /* next_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A591C2D4EEF009B2FCE /* next_arrow@2x.png */; };
-		D1401A701C2D4EEF009B2FCE /* Rectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5A1C2D4EEF009B2FCE /* Rectangle@2x.png */; };
-		D1401A711C2D4EEF009B2FCE /* send_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5B1C2D4EEF009B2FCE /* send_btn@2x.png */; };
-		D1401A721C2D4EEF009B2FCE /* send_file_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5C1C2D4EEF009B2FCE /* send_file_icon@2x.png */; };
-		D1401A731C2D4EEF009B2FCE /* top_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D1401A5D1C2D4EEF009B2FCE /* top_background.png */; };
-		D157BCDD1CBE75CD000E6271 /* LTConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D157BCDC1CBE75CD000E6271 /* LTConversationViewController.swift */; };
-		D157BCE11CBF7F90000E6271 /* KMPlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D157BCE01CBF7F90000E6271 /* KMPlaceholderTextView.swift */; };
-		D157BCE31CBF89E3000E6271 /* Additional.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D157BCE21CBF89E3000E6271 /* Additional.storyboard */; };
-		D157BCE51CBFCB02000E6271 /* LTComplaintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D157BCE41CBFCB02000E6271 /* LTComplaintViewController.swift */; };
+		6E1D9315C8CFC4CB0F32D646 /* Pods_LiveTex_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A7C12A8BCF80DBB58D78 /* Pods_LiveTex_SDK.framework */; };
+		D125503A1C8991010057AB8F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12550391C8991010057AB8F /* SettingsViewController.swift */; };
+		D1269E4A1D5B23F1000BC3E8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1269E481D5B23F1000BC3E8 /* Fabric.framework */; };
+		D1269E4B1D5B23F1000BC3E8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1269E491D5B23F1000BC3E8 /* Crashlytics.framework */; };
+		D157BCDD1CBE75CD000E6271 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D157BCDC1CBE75CD000E6271 /* ConversationViewController.swift */; };
+		D157BCE31CBF89E3000E6271 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D157BCE21CBF89E3000E6271 /* Main.storyboard */; };
+		D16C2EC61D2FD315004D112C /* LivetexCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D16C2EC51D2FD315004D112C /* LivetexCore.framework */; };
+		D1E91C9C1D5E153100562D0E /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E91C9B1D5E153100562D0E /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		553859541A138E510067A33F /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
-		553859551A138E510067A33F /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
-		553859571A13AFCA0067A33F /* LTChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTChatViewController.swift; sourceTree = "<group>"; };
 		55CC14FB1A3B2A9400C1456C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		55CC14FC1A3B2A9400C1456C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		55D666051A135F2C001747B0 /* LTApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTApiManager.swift; sourceTree = "<group>"; };
-		55D666071A1364CC001747B0 /* LTEnvolvingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTEnvolvingViewController.swift; sourceTree = "<group>"; };
-		55DEA8EB1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTChatMessageTableViewCell.swift; sourceTree = "<group>"; };
-		55DEA8EC1A35D7DC006ED45A /* LTClaimingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTClaimingViewController.swift; sourceTree = "<group>"; };
-		55DEA8F11A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSystemMessageTableViewCell.swift; sourceTree = "<group>"; };
-		55E17BBA1A4974EB00F503A1 /* LTSWTextMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSWTextMessage.swift; sourceTree = "<group>"; };
+		55D666051A135F2C001747B0 /* LivetexCoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LivetexCoreManager.swift; sourceTree = "<group>"; };
 		55F73AFB1A0A6EB800C28B0A /* LiveTex SDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiveTex SDK.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		55F73AFF1A0A6EB800C28B0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55F73B001A0A6EB800C28B0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; };
-		55F73B051A0A6EB900C28B0A /* LTAuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTAuthorizationViewController.swift; sourceTree = "<group>"; };
+		55F73B051A0A6EB900C28B0A /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		55F73B0A1A0A6EB900C28B0A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		55F73B0D1A0A6EB900C28B0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		7E023E0F1B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineChatMessageTableViewCell.swift; sourceTree = "<group>"; };
-		7E3F56F61BAC48ED00DAA04D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		7E4BF9CF1B26FF5700FF5C80 /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
-		7E4BF9D01B26FF5700FF5C80 /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
-		7E4BF9D11B26FF5700FF5C80 /* AppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon40x40.png; sourceTree = "<group>"; };
-		7E4BF9D21B26FF5700FF5C80 /* AppIcon40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon40x40@2x.png"; sourceTree = "<group>"; };
-		7E4BF9D31B26FF5700FF5C80 /* AppIcon60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon60x60.png; sourceTree = "<group>"; };
-		7E4BF9D41B26FF5700FF5C80 /* AppIcon60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@2x.png"; sourceTree = "<group>"; };
-		7E4BF9D51B26FF5700FF5C80 /* AppIcon60x60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@3x.png"; sourceTree = "<group>"; };
-		7E4BF9D61B26FF5700FF5C80 /* AppIcon76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon76x76.png; sourceTree = "<group>"; };
-		7E4BF9D71B26FF5700FF5C80 /* AppIcon76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon76x76@2x.png"; sourceTree = "<group>"; };
-		7E4BF9D81B26FF5700FF5C80 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
-		7E4BF9D91B26FF5700FF5C80 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		71D1A7C12A8BCF80DBB58D78 /* Pods_LiveTex_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveTex_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B9DE94EDD12C7070F2552CC /* Pods-LiveTex SDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveTex SDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiveTex SDK/Pods-LiveTex SDK.release.xcconfig"; sourceTree = "<group>"; };
 		7E4BF9E61B27023C00FF5C80 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationTableViewCell.swift; sourceTree = "<group>"; };
-		7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationTableViewController.swift; sourceTree = "<group>"; };
-		7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineConversationCreationViewController.swift; sourceTree = "<group>"; };
-		7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTOfflineChatViewController.swift; sourceTree = "<group>"; };
-		7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
-		D12550391C8991010057AB8F /* LTSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTSettingsViewController.swift; sourceTree = "<group>"; };
-		D135F7E41C2C3134009ECC59 /* libLTMobileSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libLTMobileSDK.a; sourceTree = "<group>"; };
-		D135F7E51C2C3134009ECC59 /* LTMobileSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTMobileSDK.h; sourceTree = "<group>"; };
-		D135F7E61C2C3134009ECC59 /* LTObjcBridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
-		D135F7E71C2C3134009ECC59 /* LTSDKModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSDKModel.h; sourceTree = "<group>"; };
-		D1401A491C2D4EEF009B2FCE /* Ваш вопрос 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Ваш вопрос 2.png"; sourceTree = "<group>"; };
-		D1401A4C1C2D4EEF009B2FCE /* baloon_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baloon_blue@2x.png"; sourceTree = "<group>"; };
-		D1401A4D1C2D4EEF009B2FCE /* baloon_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "baloon_gray@2x.png"; sourceTree = "<group>"; };
-		D1401A4E1C2D4EEF009B2FCE /* bot_backgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bot_backgroud.png; sourceTree = "<group>"; };
-		D1401A4F1C2D4EEF009B2FCE /* button_offline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_offline@2x.png"; sourceTree = "<group>"; };
-		D1401A501C2D4EEF009B2FCE /* button_online_push@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_online_push@2x.png"; sourceTree = "<group>"; };
-		D1401A511C2D4EEF009B2FCE /* button_online@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_online@2x.png"; sourceTree = "<group>"; };
-		D1401A521C2D4EEF009B2FCE /* cancel_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancel_btn@2x.png"; sourceTree = "<group>"; };
-		D1401A531C2D4EEF009B2FCE /* chat_msg_double_checked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_msg_double_checked@2x.png"; sourceTree = "<group>"; };
-		D1401A541C2D4EEF009B2FCE /* complaint_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "complaint_icon@2x.png"; sourceTree = "<group>"; };
-		D1401A551C2D4EEF009B2FCE /* dropdown_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown_arrow@2x.png"; sourceTree = "<group>"; };
-		D1401A571C2D4EEF009B2FCE /* lt-auth-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lt-auth-logo@2x.png"; sourceTree = "<group>"; };
-		D1401A581C2D4EEF009B2FCE /* navigation_bar_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation_bar_background@2x.png"; sourceTree = "<group>"; };
-		D1401A591C2D4EEF009B2FCE /* next_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next_arrow@2x.png"; sourceTree = "<group>"; };
-		D1401A5A1C2D4EEF009B2FCE /* Rectangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Rectangle@2x.png"; sourceTree = "<group>"; };
-		D1401A5B1C2D4EEF009B2FCE /* send_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_btn@2x.png"; sourceTree = "<group>"; };
-		D1401A5C1C2D4EEF009B2FCE /* send_file_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "send_file_icon@2x.png"; sourceTree = "<group>"; };
-		D1401A5D1C2D4EEF009B2FCE /* top_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_background.png; sourceTree = "<group>"; };
-		D157BCDC1CBE75CD000E6271 /* LTConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTConversationViewController.swift; sourceTree = "<group>"; };
-		D157BCE01CBF7F90000E6271 /* KMPlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KMPlaceholderTextView.swift; sourceTree = "<group>"; };
-		D157BCE21CBF89E3000E6271 /* Additional.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Additional.storyboard; sourceTree = "<group>"; };
-		D157BCE41CBFCB02000E6271 /* LTComplaintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTComplaintViewController.swift; sourceTree = "<group>"; };
+		B30BC51FD66065288E264F80 /* Pods-LiveTex SDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveTex SDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiveTex SDK/Pods-LiveTex SDK.debug.xcconfig"; sourceTree = "<group>"; };
+		D12550391C8991010057AB8F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D1269E481D5B23F1000BC3E8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		D1269E491D5B23F1000BC3E8 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		D157BCDC1CBE75CD000E6271 /* ConversationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		D157BCE21CBF89E3000E6271 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		D16C2EC51D2FD315004D112C /* LivetexCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LivetexCore.framework; sourceTree = "<group>"; };
+		D16FEA9E1D23C500009CAA67 /* LTObjcBridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTObjcBridging.h; sourceTree = "<group>"; };
+		D1E91C9B1D5E153100562D0E /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		FCFDD0332147618047AEEF8B /* Pods-LiveTex SDK.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveTex SDK.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-LiveTex SDK/Pods-LiveTex SDK.distribution.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,53 +53,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D135F7E81C2C3134009ECC59 /* libLTMobileSDK.a in Frameworks */,
+				D16C2EC61D2FD315004D112C /* LivetexCore.framework in Frameworks */,
+				D1269E4B1D5B23F1000BC3E8 /* Crashlytics.framework in Frameworks */,
+				D1269E4A1D5B23F1000BC3E8 /* Fabric.framework in Frameworks */,
+				6E1D9315C8CFC4CB0F32D646 /* Pods_LiveTex_SDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		553859531A138E510067A33F /* DejalActivityView */ = {
+		290AFA51F9E20C341C52D36D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				553859541A138E510067A33F /* DejalActivityView.h */,
-				553859551A138E510067A33F /* DejalActivityView.m */,
+				71D1A7C12A8BCF80DBB58D78 /* Pods_LiveTex_SDK.framework */,
 			);
-			path = DejalActivityView;
-			sourceTree = "<group>";
-		};
-		55D666091A13655A001747B0 /* resources */ = {
-			isa = PBXGroup;
-			children = (
-				D1401A491C2D4EEF009B2FCE /* Ваш вопрос 2.png */,
-				D1401A4C1C2D4EEF009B2FCE /* baloon_blue@2x.png */,
-				D1401A4D1C2D4EEF009B2FCE /* baloon_gray@2x.png */,
-				D1401A4E1C2D4EEF009B2FCE /* bot_backgroud.png */,
-				D1401A4F1C2D4EEF009B2FCE /* button_offline@2x.png */,
-				D1401A501C2D4EEF009B2FCE /* button_online_push@2x.png */,
-				D1401A511C2D4EEF009B2FCE /* button_online@2x.png */,
-				D1401A521C2D4EEF009B2FCE /* cancel_btn@2x.png */,
-				D1401A531C2D4EEF009B2FCE /* chat_msg_double_checked@2x.png */,
-				D1401A541C2D4EEF009B2FCE /* complaint_icon@2x.png */,
-				D1401A551C2D4EEF009B2FCE /* dropdown_arrow@2x.png */,
-				D1401A571C2D4EEF009B2FCE /* lt-auth-logo@2x.png */,
-				D1401A581C2D4EEF009B2FCE /* navigation_bar_background@2x.png */,
-				D1401A591C2D4EEF009B2FCE /* next_arrow@2x.png */,
-				D1401A5A1C2D4EEF009B2FCE /* Rectangle@2x.png */,
-				D1401A5B1C2D4EEF009B2FCE /* send_btn@2x.png */,
-				D1401A5C1C2D4EEF009B2FCE /* send_file_icon@2x.png */,
-				D1401A5D1C2D4EEF009B2FCE /* top_background.png */,
-				7E4BF9CE1B26FF5700FF5C80 /* imagesSDK */,
-			);
-			path = resources;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		55F73AF21A0A6EB800C28B0A = {
 			isa = PBXGroup;
 			children = (
-				55F73AFD1A0A6EB800C28B0A /* LiveTex_SDK_Mobile */,
+				55F73AFD1A0A6EB800C28B0A /* LiveTexSDK */,
 				55F73AFC1A0A6EB800C28B0A /* Products */,
+				C617D66CCF0A71CC3F2C88B3 /* Pods */,
+				290AFA51F9E20C341C52D36D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -193,118 +89,71 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		55F73AFD1A0A6EB800C28B0A /* LiveTex_SDK_Mobile */ = {
+		55F73AFD1A0A6EB800C28B0A /* LiveTexSDK */ = {
 			isa = PBXGroup;
 			children = (
-				D135F7E31C2C3134009ECC59 /* LTMobileSDK */,
-				55D666091A13655A001747B0 /* resources */,
-				7E023E0D1B4C2064003E3079 /* thirdParty */,
-				7E023E0E1B4C208C003E3079 /* source */,
+				55F73B001A0A6EB800C28B0A /* AppDelegate.swift */,
+				55D666051A135F2C001747B0 /* LivetexCoreManager.swift */,
+				D16FEABC1D2A5A9A009CAA67 /* Controllers */,
+				7E023E0D1B4C2064003E3079 /* External */,
 				55F73B0A1A0A6EB900C28B0A /* Images.xcassets */,
 				55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */,
 				55F73AFE1A0A6EB800C28B0A /* Supporting Files */,
-				7E3F56F61BAC48ED00DAA04D /* Main.storyboard */,
-				D157BCE21CBF89E3000E6271 /* Additional.storyboard */,
+				D157BCE21CBF89E3000E6271 /* Main.storyboard */,
+				D16FEABD1D2A5AD2009CAA67 /* Frameworks */,
 			);
-			name = LiveTex_SDK_Mobile;
+			name = LiveTexSDK;
 			path = LiveTex_SDK_Demo;
 			sourceTree = "<group>";
 		};
 		55F73AFE1A0A6EB800C28B0A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D16FEA9E1D23C500009CAA67 /* LTObjcBridging.h */,
 				55F73AFF1A0A6EB800C28B0A /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7E023E0B1B4C203D003E3079 /* onlineChanel */ = {
+		7E023E0D1B4C2064003E3079 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				55D666071A1364CC001747B0 /* LTEnvolvingViewController.swift */,
-				553859571A13AFCA0067A33F /* LTChatViewController.swift */,
-				55DEA8EB1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift */,
-				55DEA8F11A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift */,
-				55DEA8EC1A35D7DC006ED45A /* LTClaimingViewController.swift */,
-				55E17BBA1A4974EB00F503A1 /* LTSWTextMessage.swift */,
-				D157BCDC1CBE75CD000E6271 /* LTConversationViewController.swift */,
-				D157BCE41CBFCB02000E6271 /* LTComplaintViewController.swift */,
-			);
-			name = onlineChanel;
-			sourceTree = "<group>";
-		};
-		7E023E0C1B4C2055003E3079 /* common */ = {
-			isa = PBXGroup;
-			children = (
-				55D666051A135F2C001747B0 /* LTApiManager.swift */,
-				55F73B001A0A6EB800C28B0A /* AppDelegate.swift */,
-				55F73B051A0A6EB900C28B0A /* LTAuthorizationViewController.swift */,
-				7EED15251BBD29CC00CEBB11 /* CommonUtils.swift */,
-				D12550391C8991010057AB8F /* LTSettingsViewController.swift */,
-			);
-			name = common;
-			sourceTree = "<group>";
-		};
-		7E023E0D1B4C2064003E3079 /* thirdParty */ = {
-			isa = PBXGroup;
-			children = (
-				D157BCE01CBF7F90000E6271 /* KMPlaceholderTextView.swift */,
-				553859531A138E510067A33F /* DejalActivityView */,
 				55CC14FB1A3B2A9400C1456C /* Reachability.h */,
 				55CC14FC1A3B2A9400C1456C /* Reachability.m */,
 			);
-			name = thirdParty;
+			name = External;
 			sourceTree = "<group>";
 		};
-		7E023E0E1B4C208C003E3079 /* source */ = {
+		C617D66CCF0A71CC3F2C88B3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7E023E0C1B4C2055003E3079 /* common */,
-				7E023E0B1B4C203D003E3079 /* onlineChanel */,
-				7EDB52E71B23236A005320B4 /* offlineChanel */,
+				B30BC51FD66065288E264F80 /* Pods-LiveTex SDK.debug.xcconfig */,
+				7B9DE94EDD12C7070F2552CC /* Pods-LiveTex SDK.release.xcconfig */,
+				FCFDD0332147618047AEEF8B /* Pods-LiveTex SDK.distribution.xcconfig */,
 			);
-			name = source;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		7E4BF9CE1B26FF5700FF5C80 /* imagesSDK */ = {
+		D16FEABC1D2A5A9A009CAA67 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7E4BF9CF1B26FF5700FF5C80 /* AppIcon29x29.png */,
-				7E4BF9D01B26FF5700FF5C80 /* AppIcon29x29@2x.png */,
-				7E4BF9D11B26FF5700FF5C80 /* AppIcon40x40.png */,
-				7E4BF9D21B26FF5700FF5C80 /* AppIcon40x40@2x.png */,
-				7E4BF9D31B26FF5700FF5C80 /* AppIcon60x60.png */,
-				7E4BF9D41B26FF5700FF5C80 /* AppIcon60x60@2x.png */,
-				7E4BF9D51B26FF5700FF5C80 /* AppIcon60x60@3x.png */,
-				7E4BF9D61B26FF5700FF5C80 /* AppIcon76x76.png */,
-				7E4BF9D71B26FF5700FF5C80 /* AppIcon76x76@2x.png */,
-				7E4BF9D81B26FF5700FF5C80 /* iTunesArtwork.png */,
-				7E4BF9D91B26FF5700FF5C80 /* iTunesArtwork@2x.png */,
+				D1E91C9B1D5E153100562D0E /* ChatViewController.swift */,
+				D12550391C8991010057AB8F /* SettingsViewController.swift */,
+				55F73B051A0A6EB900C28B0A /* AuthorizationViewController.swift */,
+				D157BCDC1CBE75CD000E6271 /* ConversationViewController.swift */,
 			);
-			path = imagesSDK;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
-		7EDB52E71B23236A005320B4 /* offlineChanel */ = {
+		D16FEABD1D2A5AD2009CAA67 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7E023E0F1B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift */,
-				7EDB52F01B25F673005320B4 /* LTOfflineChatViewController.swift */,
-				7EDB52EA1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift */,
-				7EDB52EC1B232414005320B4 /* LTOfflineConversationTableViewController.swift */,
-				7EDB52EE1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift */,
+				D1269E481D5B23F1000BC3E8 /* Fabric.framework */,
+				D1269E491D5B23F1000BC3E8 /* Crashlytics.framework */,
+				D16C2EC51D2FD315004D112C /* LivetexCore.framework */,
 			);
-			name = offlineChanel;
-			sourceTree = "<group>";
-		};
-		D135F7E31C2C3134009ECC59 /* LTMobileSDK */ = {
-			isa = PBXGroup;
-			children = (
-				D135F7E41C2C3134009ECC59 /* libLTMobileSDK.a */,
-				D135F7E51C2C3134009ECC59 /* LTMobileSDK.h */,
-				D135F7E61C2C3134009ECC59 /* LTObjcBridging.h */,
-				D135F7E71C2C3134009ECC59 /* LTSDKModel.h */,
-			);
-			path = LTMobileSDK;
+			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,9 +163,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55F73B1D1A0A6EB900C28B0A /* Build configuration list for PBXNativeTarget "LiveTex SDK" */;
 			buildPhases = (
+				6EA85E584EE81FC85B33F229 /* Check Pods Manifest.lock */,
 				55F73AF71A0A6EB800C28B0A /* Sources */,
 				55F73AF81A0A6EB800C28B0A /* Frameworks */,
 				55F73AF91A0A6EB800C28B0A /* Resources */,
+				D14ADD131D5B225B0004FEBE /* ShellScript */,
+				7364CA7015822A98BA2B6BAC /* Embed Pods Frameworks */,
+				71CD8212EABEBD33361F93A7 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -366,70 +219,87 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1401A731C2D4EEF009B2FCE /* top_background.png in Resources */,
-				D1401A6E1C2D4EEF009B2FCE /* navigation_bar_background@2x.png in Resources */,
-				7E4BF9DD1B26FF5700FF5C80 /* AppIcon40x40@2x.png in Resources */,
-				D1401A721C2D4EEF009B2FCE /* send_file_icon@2x.png in Resources */,
-				D1401A5F1C2D4EEF009B2FCE /* Ваш вопрос 2.png in Resources */,
-				D1401A631C2D4EEF009B2FCE /* baloon_gray@2x.png in Resources */,
-				7E4BF9DC1B26FF5700FF5C80 /* AppIcon40x40.png in Resources */,
-				7E4BF9E31B26FF5700FF5C80 /* iTunesArtwork.png in Resources */,
-				D1401A6B1C2D4EEF009B2FCE /* dropdown_arrow@2x.png in Resources */,
-				D1401A681C2D4EEF009B2FCE /* cancel_btn@2x.png in Resources */,
-				7E4BF9DE1B26FF5700FF5C80 /* AppIcon60x60.png in Resources */,
-				D1401A641C2D4EEF009B2FCE /* bot_backgroud.png in Resources */,
-				7E4BF9E21B26FF5700FF5C80 /* AppIcon76x76@2x.png in Resources */,
-				7E3F56F71BAC48ED00DAA04D /* Main.storyboard in Resources */,
-				D157BCE31CBF89E3000E6271 /* Additional.storyboard in Resources */,
-				D1401A651C2D4EEF009B2FCE /* button_offline@2x.png in Resources */,
-				D1401A6A1C2D4EEF009B2FCE /* complaint_icon@2x.png in Resources */,
-				D1401A621C2D4EEF009B2FCE /* baloon_blue@2x.png in Resources */,
-				D1401A701C2D4EEF009B2FCE /* Rectangle@2x.png in Resources */,
-				D1401A661C2D4EEF009B2FCE /* button_online_push@2x.png in Resources */,
-				7E4BF9E01B26FF5700FF5C80 /* AppIcon60x60@3x.png in Resources */,
-				7E4BF9E11B26FF5700FF5C80 /* AppIcon76x76.png in Resources */,
-				D1401A671C2D4EEF009B2FCE /* button_online@2x.png in Resources */,
-				D1401A691C2D4EEF009B2FCE /* chat_msg_double_checked@2x.png in Resources */,
-				D1401A6D1C2D4EEF009B2FCE /* lt-auth-logo@2x.png in Resources */,
-				D1401A6F1C2D4EEF009B2FCE /* next_arrow@2x.png in Resources */,
-				7E4BF9DF1B26FF5700FF5C80 /* AppIcon60x60@2x.png in Resources */,
-				D1401A711C2D4EEF009B2FCE /* send_btn@2x.png in Resources */,
-				7E4BF9DA1B26FF5700FF5C80 /* AppIcon29x29.png in Resources */,
-				7E4BF9E41B26FF5700FF5C80 /* iTunesArtwork@2x.png in Resources */,
+				D157BCE31CBF89E3000E6271 /* Main.storyboard in Resources */,
 				55F73B0E1A0A6EB900C28B0A /* LaunchScreen.xib in Resources */,
-				7E4BF9DB1B26FF5700FF5C80 /* AppIcon29x29@2x.png in Resources */,
 				55F73B0B1A0A6EB900C28B0A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6EA85E584EE81FC85B33F229 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		71CD8212EABEBD33361F93A7 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiveTex SDK/Pods-LiveTex SDK-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7364CA7015822A98BA2B6BAC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiveTex SDK/Pods-LiveTex SDK-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D14ADD131D5B225B0004FEBE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 68c19c10e67e289fdd94cda4c5a16a5cad46a866 24fccdf34eff0b31d4023ec849d0ee30c6457a3cd068405a528ffec400d7b7b9";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		55F73AF71A0A6EB800C28B0A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55D666081A1364CC001747B0 /* LTEnvolvingViewController.swift in Sources */,
-				D125503A1C8991010057AB8F /* LTSettingsViewController.swift in Sources */,
-				7EED15261BBD29CC00CEBB11 /* CommonUtils.swift in Sources */,
-				553859581A13AFCA0067A33F /* LTChatViewController.swift in Sources */,
-				55DEA8EE1A35D7DC006ED45A /* LTChatMessageTableViewCell.swift in Sources */,
-				7E023E101B4C391D003E3079 /* LTOfflineChatMessageTableViewCell.swift in Sources */,
-				553859561A138E510067A33F /* DejalActivityView.m in Sources */,
+				D125503A1C8991010057AB8F /* SettingsViewController.swift in Sources */,
 				55CC14FD1A3B2A9400C1456C /* Reachability.m in Sources */,
-				D157BCDD1CBE75CD000E6271 /* LTConversationViewController.swift in Sources */,
-				55DEA8EF1A35D7DC006ED45A /* LTClaimingViewController.swift in Sources */,
-				55F73B061A0A6EB900C28B0A /* LTAuthorizationViewController.swift in Sources */,
+				D157BCDD1CBE75CD000E6271 /* ConversationViewController.swift in Sources */,
+				55F73B061A0A6EB900C28B0A /* AuthorizationViewController.swift in Sources */,
 				55F73B011A0A6EB800C28B0A /* AppDelegate.swift in Sources */,
-				7EDB52ED1B232414005320B4 /* LTOfflineConversationTableViewController.swift in Sources */,
-				7EDB52F11B25F673005320B4 /* LTOfflineChatViewController.swift in Sources */,
-				55DEA8F21A35DDF8006ED45A /* LTSystemMessageTableViewCell.swift in Sources */,
-				7EDB52EB1B2323D1005320B4 /* LTOfflineConversationTableViewCell.swift in Sources */,
-				55D666061A135F2C001747B0 /* LTApiManager.swift in Sources */,
-				D157BCE51CBFCB02000E6271 /* LTComplaintViewController.swift in Sources */,
-				D157BCE11CBF7F90000E6271 /* KMPlaceholderTextView.swift in Sources */,
-				7EDB52EF1B232CAD005320B4 /* LTOfflineConversationCreationViewController.swift in Sources */,
-				55E17BBB1A4974EB00F503A1 /* LTSWTextMessage.swift in Sources */,
+				D1E91C9C1D5E153100562D0E /* ChatViewController.swift in Sources */,
+				55D666061A135F2C001747B0 /* LivetexCoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,66 +402,65 @@
 		};
 		55F73B1E1A0A6EB900C28B0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B30BC51FD66065288E264F80 /* Pods-LiveTex SDK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/../../LivetexCore/LivetexCore\"/**",
 				);
 				INFOPLIST_FILE = LiveTex_SDK_Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/LiveTex_SDK_Demo/LTMobileSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "481df68b-d942-401d-85a2-b762ef788d6b";
-				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTMobileSDK/LTObjcBridging.h;
-				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = LiveTex_SDK_Demo/LTMobileSDK/LTObjcBridging.h;
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTObjcBridging.h;
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = LiveTex_SDK_Demo/LTObjcBridging.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		55F73B1F1A0A6EB900C28B0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B9DE94EDD12C7070F2552CC /* Pods-LiveTex SDK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/../../LivetexCore/LivetexCore\"/**",
 				);
 				INFOPLIST_FILE = LiveTex_SDK_Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/LiveTex_SDK_Demo/LTMobileSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "481df68b-d942-401d-85a2-b762ef788d6b";
-				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTMobileSDK/LTObjcBridging.h;
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTObjcBridging.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -635,32 +504,31 @@
 		};
 		7E5707281BC54DE400A6B288 /* Distribution */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCFDD0332147618047AEEF8B /* Pods-LiveTex SDK.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/HockeySDK-iOS/HockeySDK.embeddedframework",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/../../LivetexCore/LivetexCore\"/**",
 				);
 				INFOPLIST_FILE = LiveTex_SDK_Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/LiveTex_SDK_Demo/LTMobileSDK",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "481df68b-d942-401d-85a2-b762ef788d6b";
-				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTMobileSDK/LTObjcBridging.h;
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTObjcBridging.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Distribution;

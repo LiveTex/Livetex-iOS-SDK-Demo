@@ -7,7 +7,9 @@
 //
 
 import UIKit
+import Fabric
 import CoreData
+import Crashlytics
 
 @UIApplicationMain
 
@@ -20,13 +22,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.reachabilityChanged(_:)), name: kReachabilityChangedNotification, object: nil)
         internetReachability = Reachability.reachabilityForInternetConnection()
         internetReachability.startNotifier();
+        Fabric.with([Crashlytics.self])
 
         return true
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
         if !application.isRegisteredForRemoteNotifications() {
-            NSNotificationCenter.defaultCenter().postNotificationName("LTApiManager_token_got", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(kApplicationDidRegisterWithDeviceToken, object: nil)
         }
     }
     
@@ -38,13 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             tokenString.appendFormat("%02.2hhx", tokenChars[i])
         }
         
-        LTApiManager.sharedInstance.apnToken = tokenString as String
-        NSNotificationCenter.defaultCenter().postNotificationName("LTApiManager_token_got", object: nil)
+        LivetexCoreManager.defaultManager.apnToken = tokenString as String
+        NSNotificationCenter.defaultCenter().postNotificationName(kApplicationDidRegisterWithDeviceToken, object: nil)
         print("tokenString: \(tokenString)")
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        NSNotificationCenter.defaultCenter().postNotificationName("LTApiManager_token_got", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(kApplicationDidRegisterWithDeviceToken, object: nil)
     }
     
     func reachabilityChanged(note:NSNotification) {
@@ -53,22 +56,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(application: UIApplication) {
-        LTApiManager.sharedInstance.isSessionOnlineOpen = false
     }
     
     func processReachability(curReach: Reachability) {
         let status:NetworkStatus = curReach.currentReachabilityStatus()
         if status == NetworkStatus.NotReachable {
-            if LTApiManager.sharedInstance.isSessionOnlineOpen == true {
-                reachabilityAlert = UIAlertController(title: "", message: "Интернет соединение потеряно, дождитесь когда система восстановит соединение", preferredStyle: UIAlertControllerStyle.Alert)
-                let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
-                reachabilityAlert!.addAction(cancelAction)
-                self.window?.rootViewController?.presentViewController(reachabilityAlert!, animated: true, completion: nil)
-            }
+            reachabilityAlert = UIAlertController(title: "", message: "Интернет соединение потеряно, дождитесь когда система восстановит соединение", preferredStyle: UIAlertControllerStyle.Alert)
+            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
+            reachabilityAlert!.addAction(cancelAction)
+            self.window?.rootViewController?.presentViewController(reachabilityAlert!, animated: true, completion: nil)
         } else {
             reachabilityAlert?.dismissViewControllerAnimated(true, completion: nil)
         }
         
-        NSNotificationCenter.defaultCenter().postNotificationName("LTNetworkNotification", object: NSNumber(unsignedInteger: status.rawValue))
+        NSNotificationCenter.defaultCenter().postNotificationName(kApplicationDidReceiveNetworkStatus, object: NSNumber(unsignedInteger: status.rawValue))
     }
 }

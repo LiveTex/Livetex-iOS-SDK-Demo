@@ -1,0 +1,6 @@
+framework module Pods_LiveTex_SDK {
+  umbrella header "Pods-LiveTex SDK-umbrella.h"
+
+  export *
+  module * { export * }
+}
