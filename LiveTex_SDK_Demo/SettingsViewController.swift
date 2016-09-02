@@ -44,7 +44,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
                     switch indexPath.row {
                     case 0,
                          1:
-                        siteField.text = "114709"
+                        siteField.text = "106217"
                     case 2,
                          3:
                         siteField.text = "10022460"
@@ -72,7 +72,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func resetCache(sender: UIBarButtonItem) {
-        LCCoreService.resetServiceCache()
+        LCCoreService.resetService()
         NSUserDefaults.standardUserDefaults().removeObjectForKey(kLivetexVisitorName)
     }
 }

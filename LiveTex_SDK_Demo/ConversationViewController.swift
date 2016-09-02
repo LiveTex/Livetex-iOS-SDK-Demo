@@ -26,7 +26,11 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated: Bool) {
         LivetexCoreManager.defaultManager.coreService.destinationsWithCompletionHandler { (destinations: [LCDestination]?, error: NSError?) in
             if error == nil {
-                LivetexCoreManager.defaultManager.coreService.setDestination(destinations!.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), completionHandler: { (success: Bool, error: NSError?) in
+                var result = destinations?.filter({$0.department.departmentId == "42"})
+                if result == nil || result?.count <= 0 {
+                    result = destinations
+                }
+                LivetexCoreManager.defaultManager.coreService.setDestination(result!.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), completionHandler: { (success: Bool, error: NSError?) in
                     if let err = error {
                         print(err.localizedDescription)
                     }
