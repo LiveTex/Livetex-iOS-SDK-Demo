@@ -16,17 +16,17 @@ class AuthorizationViewController: UIViewController {
     @IBOutlet weak var onlineModeButton: UIButton!
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AuthorizationViewController.applicationDidRegisterWithDeviceToken), name: kApplicationDidRegisterWithDeviceToken, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AuthorizationViewController.applicationDidRegisterWithDeviceToken), name: NSNotification.Name(rawValue: kApplicationDidRegisterWithDeviceToken), object: nil)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.registerForRemoteNotifications()
     }
     
@@ -35,30 +35,30 @@ class AuthorizationViewController: UIViewController {
     }
 
     func applicationDidRegisterWithDeviceToken() {
-        onlineModeButton.enabled = true
+        onlineModeButton.isEnabled = true
         
         startService()
     }
     
     func registerForRemoteNotifications() {
-        let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: UIUserNotificationType([.Alert, .Sound]), categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        UIApplication.sharedApplication().registerForRemoteNotifications()
+        let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: UIUserNotificationType([.alert, .sound]), categories: nil)
+        UIApplication.shared.registerUserNotificationSettings(settings)
+        UIApplication.shared.registerForRemoteNotifications()
     }
     
     func startService() {
-        LivetexCoreManager.defaultManager.coreService = LCCoreService(URL: URL!,
+        LivetexCoreManager.defaultManager.coreService = LCCoreService(url: URL!,
                                                                       appID: siteID!,
                                                                       appKey: key!,
                                                                       token: nil,
                                                                       deviceToken: LivetexCoreManager.defaultManager.apnToken,
-                                                                      callbackQueue: NSOperationQueue.mainQueue(),
-                                                                      delegateQueue: NSOperationQueue.mainQueue())
+                                                                      callbackQueue: OperationQueue.main,
+                                                                      delegateQueue: OperationQueue.main)
         
-        LivetexCoreManager.defaultManager.coreService.startServiceWithCompletionHandler { (token: String?, error: NSError?) in
+        LivetexCoreManager.defaultManager.coreService.start { (token: String?, error: Error?) in
             if error != nil {
                 print(error?.localizedDescription)
-                self.onlineModeButton.enabled = false
+                self.onlineModeButton.isEnabled = false
             } else {
                 print(token!)
             }
@@ -66,10 +66,10 @@ class AuthorizationViewController: UIViewController {
     }
     
     @IBAction func startConversation(sender: AnyObject) {
-        if NSUserDefaults.standardUserDefaults().objectForKey(kLivetexVisitorName) != nil {
-            self.navigationController?.showViewController(ChatViewController(), sender: nil)
+        if UserDefaults.standard.object(forKey: kLivetexVisitorName) != nil {
+            self.navigationController?.show(ChatViewController(), sender: nil)
         } else {
-            self.performSegueWithIdentifier("conversation", sender: nil)
+            self.performSegue(withIdentifier: "conversation", sender: nil)
         }
     }
 }

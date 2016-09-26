@@ -18,57 +18,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var internetReachability: Reachability!
     var reachabilityAlert: UIAlertController?
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.reachabilityChanged(_:)), name: kReachabilityChangedNotification, object: nil)
-        internetReachability = Reachability.reachabilityForInternetConnection()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.reachabilityChanged(_:)), name: NSNotification.Name.reachabilityChanged, object: nil)
+        internetReachability = Reachability.forInternetConnection()
         internetReachability.startNotifier();
         Fabric.with([Crashlytics.self])
 
         return true
     }
     
-    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
-        if !application.isRegisteredForRemoteNotifications() {
-            NSNotificationCenter.defaultCenter().postNotificationName(kApplicationDidRegisterWithDeviceToken, object: nil)
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+        if !application.isRegisteredForRemoteNotifications {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kApplicationDidRegisterWithDeviceToken), object: nil)
         }
     }
     
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        let tokenChars = UnsafePointer<CChar>(deviceToken.bytes)
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenChars = (deviceToken as NSData).bytes.bindMemory(to: CChar.self, capacity: deviceToken.count)
         let tokenString = NSMutableString()
         
-        for i in 0 ..< deviceToken.length {
+        for i in 0 ..< deviceToken.count {
             tokenString.appendFormat("%02.2hhx", tokenChars[i])
         }
         
         LivetexCoreManager.defaultManager.apnToken = tokenString as String
-        NSNotificationCenter.defaultCenter().postNotificationName(kApplicationDidRegisterWithDeviceToken, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: kApplicationDidRegisterWithDeviceToken), object: nil)
         print("tokenString: \(tokenString)")
     }
     
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        NSNotificationCenter.defaultCenter().postNotificationName(kApplicationDidRegisterWithDeviceToken, object: nil)
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: kApplicationDidRegisterWithDeviceToken), object: nil)
     }
     
-    func reachabilityChanged(note:NSNotification) {
+    func reachabilityChanged(_ note:Notification) {
         let curReach: Reachability = note.object as! Reachability
         processReachability(curReach)
     }
     
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
     }
     
-    func processReachability(curReach: Reachability) {
+    func processReachability(_ curReach: Reachability) {
         let status:NetworkStatus = curReach.currentReachabilityStatus()
         if status == NetworkStatus.NotReachable {
-            reachabilityAlert = UIAlertController(title: "", message: "Интернет соединение потеряно, дождитесь когда система восстановит соединение", preferredStyle: UIAlertControllerStyle.Alert)
-            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
+            reachabilityAlert = UIAlertController(title: "", message: "Интернет соединение потеряно, дождитесь когда система восстановит соединение", preferredStyle: UIAlertControllerStyle.alert)
+            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
             reachabilityAlert!.addAction(cancelAction)
-            self.window?.rootViewController?.presentViewController(reachabilityAlert!, animated: true, completion: nil)
+            self.window?.rootViewController?.present(reachabilityAlert!, animated: true, completion: nil)
         } else {
-            reachabilityAlert?.dismissViewControllerAnimated(true, completion: nil)
+            reachabilityAlert?.dismiss(animated: true, completion: nil)
         }
         
-        NSNotificationCenter.defaultCenter().postNotificationName(kApplicationDidReceiveNetworkStatus, object: NSNumber(unsignedInteger: status.rawValue))
+        NotificationCenter.default.post(name: Notification.Name(rawValue: kApplicationDidReceiveNetworkStatus), object: NSNumber(value: status.rawValue as UInt))
     }
 }

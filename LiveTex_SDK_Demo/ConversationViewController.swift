@@ -19,18 +19,18 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         let paddleView:UIView = UIView(frame: CGRect(x:0, y:0, width:16, height:20))
         self.nameField.leftView = paddleView
-        self.nameField.leftViewMode = UITextFieldViewMode.Always
-        self.navigationController?.navigationBarHidden = false
+        self.nameField.leftViewMode = UITextFieldViewMode.always
+        self.navigationController?.isNavigationBarHidden = false
     }
     
-    override func viewWillAppear(animated: Bool) {
-        LivetexCoreManager.defaultManager.coreService.destinationsWithCompletionHandler { (destinations: [LCDestination]?, error: NSError?) in
+    override func viewWillAppear(_ animated: Bool) {
+        LivetexCoreManager.defaultManager.coreService.destinations { (destinations: [LCDestination]?, error: Error?) in
             if error == nil {
-                var result = destinations?.filter({$0.department.departmentId == "42"})
-                if result == nil || result?.count <= 0 {
-                    result = destinations
+                var result = destinations!.filter({$0.department.departmentId == "42"})
+                if result.count <= 0 {
+                    result = destinations!
                 }
-                LivetexCoreManager.defaultManager.coreService.setDestination(result!.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), completionHandler: { (success: Bool, error: NSError?) in
+                LivetexCoreManager.defaultManager.coreService.setDestination(result.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), completionHandler: { (success: Bool, error: Error?) in
                     if let err = error {
                         print(err.localizedDescription)
                     }
@@ -53,10 +53,10 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         }
         
         if !errorMessage.isEmpty {
-            let alert: UIAlertController = UIAlertController(title: "Ошибка", message: errorMessage, preferredStyle: UIAlertControllerStyle.Alert)
-            let cancelAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
+            let alert: UIAlertController = UIAlertController(title: "Ошибка", message: errorMessage, preferredStyle: UIAlertControllerStyle.alert)
+            let cancelAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
             alert.addAction(cancelAction)
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
             
             return false
         }
@@ -64,21 +64,21 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
         return true
     }
     
-    @IBAction func createConversation(sender: AnyObject) {
+    @IBAction func createConversation(_ sender: AnyObject) {
         if verifyFields() {
-            LivetexCoreManager.defaultManager.coreService.setVisitor(self.nameField.text!, completionHandler: { (success: Bool, error: NSError?) in
+            LivetexCoreManager.defaultManager.coreService.setVisitor(self.nameField.text!, completionHandler: { (success: Bool, error: Error?) in
                 if error == nil {
-                    NSUserDefaults.standardUserDefaults().setObject(self.nameField.text!, forKey: kLivetexVisitorName)
+                    UserDefaults.standard.set(self.nameField.text!, forKey: kLivetexVisitorName)
                 }
             })
             
-            self.navigationController?.showViewController(ChatViewController(), sender: nil)
+            self.navigationController?.show(ChatViewController(), sender: nil)
         }
     }
 }

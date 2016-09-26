@@ -15,7 +15,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var keyField: UITextField!
     @IBOutlet weak var urlField: UITextField!
     
-    var indexPathForSelectedRow: NSIndexPath?
+    var indexPathForSelectedRow: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,18 +26,18 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            if cell?.accessoryType == UITableViewCellAccessoryType.Checkmark {
+            let cell = tableView.cellForRow(at: indexPath)
+            if cell?.accessoryType == UITableViewCellAccessoryType.checkmark {
                 return
             } else {
                 if indexPathForSelectedRow != nil {
-                    let selectedCell = tableView.cellForRowAtIndexPath(indexPathForSelectedRow!)
-                    selectedCell?.accessoryType = UITableViewCellAccessoryType.None
+                    let selectedCell = tableView.cellForRow(at: indexPathForSelectedRow!)
+                    selectedCell?.accessoryType = UITableViewCellAccessoryType.none
                 }
-                cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+                cell?.accessoryType = UITableViewCellAccessoryType.checkmark
                 urlField.text = cell?.detailTextLabel?.text
                 keyField.text = "demo"
                 if indexPath.section == 0 {
@@ -47,7 +47,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
                         siteField.text = "106217"
                     case 2,
                          3:
-                        siteField.text = "10022460"
+                        siteField.text = "10023868"
                         
                     default:
                         break
@@ -59,20 +59,20 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         URL = urlField.text
         key = keyField.text
         siteID = siteField.text
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
         return true
     }
     
-    @IBAction func resetCache(sender: UIBarButtonItem) {
+    @IBAction func resetCache(_ sender: UIBarButtonItem) {
         LCCoreService.resetService()
-        NSUserDefaults.standardUserDefaults().removeObjectForKey(kLivetexVisitorName)
+        UserDefaults.standard.removeObject(forKey: kLivetexVisitorName)
     }
 }
