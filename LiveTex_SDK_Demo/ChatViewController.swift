@@ -97,8 +97,19 @@ class ChatViewController: JSQMessagesViewController,
             let paths: Array<String> = ["png", "jpg", "jpeg", "gif"]
             if paths.contains(pathExtention) {
                 let media = JSQPhotoMediaItem(maskAsOutgoing: !message.attributes.file.senderIsSet)
-                let mediaData = try? Data(contentsOf: Foundation.URL(string: message.attributes.file.url)!)
-                media?.image = UIImage(data: mediaData!)
+                let url = Foundation.URL(string: message.attributes.file.url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)!
+                URLSession.shared.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
+                    if error != nil {
+                        print(error)
+                    } else {
+                        DispatchQueue.main.async {
+                            media?.image = UIImage(data: data!)
+                            self.collectionView.collectionViewLayout.invalidateLayout(with: JSQMessagesCollectionViewFlowLayoutInvalidationContext())
+                            self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
+                        }
+                    }
+                }).resume()
+                
                 return JSQMessage(senderId: message.attributes.file.senderIsSet ? message.attributes.file.sender : self.senderId, senderDisplayName: "", date: Date(timeIntervalSince1970:timeInterval / 1000), media: media)
             } else {
                 return JSQMessage(senderId: message.attributes.file.senderIsSet ? message.attributes.file.sender : self.senderId, senderDisplayName: "", date: Date(timeIntervalSince1970:timeInterval / 1000), text: message.attributes.file.url)
