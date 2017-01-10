@@ -38,23 +38,23 @@ class ChatViewController: JSQMessagesViewController,
     
     func receiveData() {
         LivetexCoreManager.defaultManager.coreService.state (completionHandler: { (state: LCDialogState?, error: Error?) in
-            if let err = error {
-                print(err.localizedDescription)
+            if let error = error {
+                print(error)
             } else {
                 self.update(state!)
             }
         })
         
         LivetexCoreManager.defaultManager.coreService.messageHistory(20, offset: 0, completionHandler: { (messages: [LCMessage]?, error: Error?) in
-            if let err = error {
-                print(err.localizedDescription)
+            if let error = error {
+                print(error)
             } else {
                 for message in messages!.reversed() {
                     if !message.confirm {
                         if message.attributes.text.senderIsSet || message.attributes.file.senderIsSet {
                             LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId, completionHandler: { (success: Bool, error: Error?) in
-                                if error != nil {
-                                    print(error?.localizedDescription)
+                                if let error = error {
+                                    print(error)
                                 } else {
                                     message.confirm = true
                                 }
@@ -74,12 +74,12 @@ class ChatViewController: JSQMessagesViewController,
             LivetexCoreManager.defaultManager.coreService.destinations(completionHandler: { (destinations: [LCDestination]?, error: Error?) in
                 if error == nil {
                     LivetexCoreManager.defaultManager.coreService.setDestination(destinations!.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), completionHandler: { (success: Bool, error: Error?) in
-                        if let err = error {
-                            print(err.localizedDescription)
+                        if let error = error {
+                            print(error)
                         }
                     })
                 } else {
-                    print(error?.localizedDescription)
+                    print(error!)
                 }
             })
         }
@@ -99,7 +99,7 @@ class ChatViewController: JSQMessagesViewController,
                 let media = JSQPhotoMediaItem(maskAsOutgoing: !message.attributes.file.senderIsSet)
                 let url = Foundation.URL(string: message.attributes.file.url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)!
                 URLSession.shared.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
-                    if error != nil {
+                    if let error = error {
                         print(error)
                     } else {
                         DispatchQueue.main.async {
@@ -123,8 +123,8 @@ class ChatViewController: JSQMessagesViewController,
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
         let imageData = UIImagePNGRepresentation(image)
         LivetexCoreManager.defaultManager.coreService.sendFileMessage(imageData!) { (response: LCSendMessageResponse?, error: Error?) in
-            if error != nil {
-                print(error?.localizedDescription)
+            if let error = error {
+                print(error)
             } else {
                 self.reloadDestinationIfNeeded(response!)
                 let message = LCMessage(messageId: response!.messageId, attributes: response!.attributes, confirm: true)
@@ -152,8 +152,8 @@ class ChatViewController: JSQMessagesViewController,
     
     func receiveTextMessage(_ message: LCMessage) {
         LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId) { (success: Bool, error: Error?) in
-            if error != nil {
-                print(error?.localizedDescription)
+            if let error = error {
+                print(error)
             }
         }
         
@@ -168,8 +168,8 @@ class ChatViewController: JSQMessagesViewController,
     
     func selectDestination(_ destinations: [LCDestination]) {
         LivetexCoreManager.defaultManager.coreService.setDestination(destinations.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), completionHandler: { (success: Bool, error: Error?) in
-            if let err = error {
-                print(err.localizedDescription)
+            if let error = error {
+                print(error)
             }
         })
     }
@@ -177,8 +177,8 @@ class ChatViewController: JSQMessagesViewController,
     // MARK: - JSQMessagesViewController method overrides
     override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
         LivetexCoreManager.defaultManager.coreService.sendTextMessage(text) { (response: LCSendMessageResponse?, error: Error?) in
-            if let err = error {
-                print(err.localizedDescription)
+            if let error = error {
+                print(error)
             } else {
                 self.reloadDestinationIfNeeded(response!)
                 let message = LCMessage(messageId: response!.messageId, attributes: response!.attributes, confirm: false)
