@@ -18,6 +18,21 @@ typedef NSDictionary<NSString *, NSString *> * LCOptions;
 
 typedef NSMutableDictionary<NSString *, NSString *> * LCMutableOptions;
 
+/*!
+ * Опции, описывающие атрибуты обращения, передаваемые по умолчанию
+ *  LCDialogAttributeDeviceModel        - Модель устройства
+ *  LCDialogAttributeDeviceSystem       - ОС устройства
+ *  LCDialogAttributeApplicationVersion - Версия приложения
+ *  LCDialogAttributeConnectionType     - Тип соединения
+ *  LCDialogAttributeCarrierName        - Оператор связи
+ */
+typedef NS_OPTIONS(NSInteger, LCDialogAttributeOptions) {
+    LCDialogAttributeDeviceModel = 1 << 0,
+    LCDialogAttributeDeviceSystem = 1 << 1,
+    LCDialogAttributeApplicationVersion = 1 << 2,
+    LCDialogAttributeConnectionType = 1 << 3,
+    LCDialogAttributeCarrierName = 1 << 4
+};
 
 /*!
  * Текстовое сообщение
@@ -363,12 +378,6 @@ typedef NSMutableDictionary<NSString *, NSString *> * LCMutableOptions;
 
 /*!
  *  @discussion Атрибуты обращения.
- *  По умолчанию передаются следующие опции, которые отобразятся оператору при создании обращения:
- *  1. Модель устройства
- *  2. ОС
- *  3. Версия приложения
- *  4. Тип соединения
- *  5. Оператор связи
  */
 @interface LCDialogAttributes : NSObject <NSCoding, NSCopying>
 

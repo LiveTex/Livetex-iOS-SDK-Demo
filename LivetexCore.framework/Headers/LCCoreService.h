@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion В случае успешного выполнения функции вызовется блок completionHandler с токеном
  *  полученным в системе Livetex, в противном случае с ошибкой
  */
-- (void)startServiceWithCompletionHandler:(void (^)(NSString * __nullable token, NSError * __nullable error))completionHandler;
+- (void)startServiceWithCompletionHandler:(void (^)(NSString * _Nullable token, NSError * _Nullable error))completionHandler;
 
 /*!
  *  @brief Аннулирование сервиса и всех его параметров.
@@ -61,7 +61,7 @@ NS_ASSUME_NONNULL_BEGIN
 /*!
  *  @brief Сброс сервиса.
  *  @discussion Удаление токена последней удачной сессии(startServiceWithCompletionHandler).
- *  Каждый раз при работе в системе Livetex сервис использует токен последней удачной сесссии.
+ *  Каждый раз при работе в системе Livetex сервис использует токен последней удачной сессии.
  */
 + (void)resetService;
 
@@ -73,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion В случае успешного выполнения функции вызовется блок completionHandler с параметром
  *  "success" равным "true", в противном случае с ошибкой
  */
-- (void)stateWithCompletionHandler:(void (^)(LCDialogState * __nullable state, NSError * __nullable error))completionHandler;
+- (void)stateWithCompletionHandler:(void (^)(LCDialogState * _Nullable state, NSError * _Nullable error))completionHandler;
 
 /*!
  *  @brief Подтверждение получения сообщения пользователем.
@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion В случае успешного выполнения функции вызовется блок completionHandler с параметром
  *  "success" равным "true", в противном случае с ошибкой
  */
-- (void)confirmMessageWithID:(NSString *)messageID completionHandler:(void (^)(BOOL success, NSError * __nullable error))completionHandler;
+- (void)confirmMessageWithID:(NSString *)messageID completionHandler:(void (^)(BOOL success, NSError * _Nullable error))completionHandler;
 
 /*!
  *  @brief Получение истории сообщений
@@ -96,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion В случае успешного выполнения функции вызовется блок completionHandler 
  *  с массивом сообщений, в противном случае с ошибкой
  */
-- (void)messageHistory:(NSInteger)limit offset:(NSInteger)offset completionHandler:(void (^)(NSArray<LCMessage *> * __nullable messages, NSError * __nullable error))completionHandler;
+- (void)messageHistory:(NSInteger)limit offset:(NSInteger)offset completionHandler:(void (^)(NSArray<LCMessage *> * _Nullable messages, NSError * _Nullable error))completionHandler;
 
 /*!
  *  @brief Получение списка назначений
@@ -106,19 +106,20 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion В случае успешного выполнения функции вызовется блок completionHandler
  *  с массивом назначений, в противном случае с ошибкой
  */
-- (void)destinationsWithCompletionHandler:(void (^)(NSArray<LCDestination *> * __nullable destinations, NSError * __nullable error))completionHandler;
+- (void)destinationsWithCompletionHandler:(void (^)(NSArray<LCDestination *> * _Nullable destinations, NSError * _Nullable error))completionHandler;
 
 /*!
  *  @brief Устанавливает на кого будет назначаться обращение пользователя(оператор, точка контакта, департамент)
  *
  *  @param destination          Назначение
  *  @param attributes           Атрибуты обращения
+ *  @param opts                 Опции, описывающие атрибуты обращения, передаваемые по умолчанию
  *  @param completionHandler    Блок, который вызывается после выполнения функции
  *
  *  @discussion В случае успешного выполнения функции вызовется блок completionHandler с параметром
  *  "success" равным "true", в противном случае с ошибкой
  */
-- (void)setDestination:(LCDestination *)destination attributes:(LCDialogAttributes * __nullable)attributes completionHandler:(void (^)(BOOL success, NSError * __nullable error))completionHandler;
+- (void)setDestination:(LCDestination *)destination attributes:(LCDialogAttributes * _Nullable)attributes options:(LCDialogAttributeOptions)opts completionHandler:(void (^)(BOOL success, NSError * _Nullable error))completionHandler;
 
 /*!
  *  @brief Оповещает оператора о наборе текста посетителем
@@ -129,7 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion В случае успешного выполнения функции вызовется блок completionHandler с параметром
  *  "success" равным "true", в противном случае с ошибкой
  */
-- (void)setTyping:(NSString *)text completionHandler:(void (^)(BOOL success, NSError * __nullable error))completionHandler;
+- (void)setTyping:(NSString *)text completionHandler:(void (^)(BOOL success, NSError * _Nullable error))completionHandler;
 
 /*!
  *  @brief Устанавливает имя посетителя
@@ -140,7 +141,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion В случае успешного выполнения функции вызовется блок completionHandler с параметром
  *  "success" равным "true", в противном случае с ошибкой
  */
-- (void)setVisitor:(NSString *)name completionHandler:(void (^)(BOOL success, NSError * __nullable error))completionHandler;
+- (void)setVisitor:(NSString *)name completionHandler:(void (^)(BOOL success, NSError * _Nullable error))completionHandler;
 
 /*!
  *  @brief Отправляет файловое сообщение оператору. Оператору сообщение приходит в виде ссылки на объект.
@@ -151,7 +152,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion В случае успешного выполнения функции вызовется блок completionHandler с параметром
  *  "response" отличным от nil, в противном случае с ошибкой
  */
-- (void)sendFileMessage:(NSData *)data completionHandler:(void (^)(LCSendMessageResponse * __nullable response, NSError * __nullable error))completionHandler;
+- (void)sendFileMessage:(NSData *)fileData completionHandler:(void (^)(LCSendMessageResponse * _Nullable response, NSError * _Nullable error))completionHandler;
 
 /*!
  *  @brief Отправляет текстовое сообщение оператору
@@ -162,7 +163,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @discussion В случае успешного выполнения функции вызовется блок completionHandler с параметром
  *  "response" отличным от nil, в противном случае с ошибкой
  */
-- (void)sendTextMessage:(NSString *)text completionHandler:(void (^)(LCSendMessageResponse * __nullable response, NSError * __nullable error))completionHandler;
+- (void)sendTextMessage:(NSString *)text completionHandler:(void (^)(LCSendMessageResponse * _Nullable response, NSError * _Nullable error))completionHandler;
 
 @end
 

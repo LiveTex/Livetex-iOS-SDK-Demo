@@ -56,8 +56,8 @@ class AuthorizationViewController: UIViewController {
                                                                       delegateQueue: OperationQueue.main)
         
         LivetexCoreManager.defaultManager.coreService.start { (token: String?, error: Error?) in
-            if error != nil {
-                print(error?.localizedDescription)
+            if let error = error as? NSError {
+                print(error)
                 self.onlineModeButton.isEnabled = false
             } else {
                 print(token!)

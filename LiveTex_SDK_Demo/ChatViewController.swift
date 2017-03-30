@@ -37,50 +37,54 @@ class ChatViewController: JSQMessagesViewController,
     }
     
     func receiveData() {
+        /* Запрашиваем текущее состояние диалога */
         LivetexCoreManager.defaultManager.coreService.state (completionHandler: { (state: LCDialogState?, error: Error?) in
-            if let error = error {
+            if let error = error as? NSError {
                 print(error)
             } else {
                 self.update(state!)
             }
         })
         
-        LivetexCoreManager.defaultManager.coreService.messageHistory(20, offset: 0, completionHandler: { (messages: [LCMessage]?, error: Error?) in
-            if let error = error {
+        /* Запрашиваем историю переписки */
+        LivetexCoreManager.defaultManager.coreService.messageHistory(20, offset: 0, completionHandler: { (messageList: [LCMessage]?, error: Error?) in
+            if let error = error as? NSError {
                 print(error)
-            } else {
-                for message in messages!.reversed() {
-                    if !message.confirm {
-                        if message.attributes.text.senderIsSet || message.attributes.file.senderIsSet {
-                            LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId, completionHandler: { (success: Bool, error: Error?) in
-                                if let error = error {
-                                    print(error)
-                                } else {
-                                    message.confirm = true
-                                }
-                            })
-                        }
-                    }
-
-                    self.messages.append(self.convertMessage(message))
-                }
-                self.finishReceivingMessage()
+                return
             }
+            
+            let toConfirmList = messageList?.filter{ $0.confirm == false && ($0.attributes.text.senderIsSet || $0.attributes.file.senderIsSet) }
+            toConfirmList?.forEach({ (message: LCMessage) in
+                /* Отправляем подтверждение о получении сообщения */
+                LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId, completionHandler: { (success: Bool, error: Error?) in
+                    if let error = error as? NSError {
+                        print(error)
+                    } else {
+                        message.confirm = true
+                    }
+                })
+             })
+            
+            self.messages.append(contentsOf: messageList!.reversed().map{ self.convertMessage($0) })
+            self.finishReceivingMessage()
         })
     }
     
     func reloadDestinationIfNeeded(_ response: LCSendMessageResponse) {
         if !response.destinationIsSet {
+            /* Получаем список назначений */
             LivetexCoreManager.defaultManager.coreService.destinations(completionHandler: { (destinations: [LCDestination]?, error: Error?) in
-                if error == nil {
-                    LivetexCoreManager.defaultManager.coreService.setDestination(destinations!.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), completionHandler: { (success: Bool, error: Error?) in
-                        if let error = error {
-                            print(error)
-                        }
-                    })
-                } else {
-                    print(error!)
+                if let error = error as? NSError {
+                    print(error)
+                    return
                 }
+                
+                /* Указываем адресат обращения */
+                LivetexCoreManager.defaultManager.coreService.setDestination(destinations!.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), options: [], completionHandler: { (success: Bool, error: Error?) in
+                    if let error = error as? NSError {
+                        print(error)
+                    }
+                })
             })
         }
     }
@@ -94,12 +98,12 @@ class ChatViewController: JSQMessagesViewController,
             timeInterval = (message.attributes.file.created as NSString).doubleValue
             let fileURL: String = message.attributes.file.url.removingPercentEncoding!
             let pathExtention = (fileURL as NSString).pathExtension
-            let paths: Array<String> = ["png", "jpg", "jpeg", "gif"]
+            let paths: [String] = ["png", "jpg", "jpeg", "gif"]
             if paths.contains(pathExtention) {
                 let media = JSQPhotoMediaItem(maskAsOutgoing: !message.attributes.file.senderIsSet)
                 let url = Foundation.URL(string: message.attributes.file.url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)!
                 URLSession.shared.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
-                    if let error = error {
+                    if let error = error as? NSError {
                         print(error)
                     } else {
                         DispatchQueue.main.async {
@@ -122,10 +126,12 @@ class ChatViewController: JSQMessagesViewController,
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerEditedImage] as! UIImage
         let imageData = UIImagePNGRepresentation(image)
+        /* Отправляем файловое сообщение */
         LivetexCoreManager.defaultManager.coreService.sendFileMessage(imageData!) { (response: LCSendMessageResponse?, error: Error?) in
-            if let error = error {
+            if let error = error as? NSError {
                 print(error)
             } else {
+                /* Переназначаем адресат обращения в случае необходимости */
                 self.reloadDestinationIfNeeded(response!)
                 let message = LCMessage(messageId: response!.messageId, attributes: response!.attributes, confirm: true)
                 self.messages.append(self.convertMessage(message))
@@ -151,8 +157,9 @@ class ChatViewController: JSQMessagesViewController,
     }
     
     func receiveTextMessage(_ message: LCMessage) {
+        /* Отправляем подтверждение о получении сообщения */
         LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId) { (success: Bool, error: Error?) in
-            if let error = error {
+            if let error = error as? NSError {
                 print(error)
             }
         }
@@ -167,8 +174,9 @@ class ChatViewController: JSQMessagesViewController,
     }
     
     func selectDestination(_ destinations: [LCDestination]) {
-        LivetexCoreManager.defaultManager.coreService.setDestination(destinations.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), completionHandler: { (success: Bool, error: Error?) in
-            if let error = error {
+        /* Указываем адресат обращения */
+        LivetexCoreManager.defaultManager.coreService.setDestination(destinations.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), options: [], completionHandler: { (success: Bool, error: Error?) in
+            if let error = error as? NSError {
                 print(error)
             }
         })
@@ -176,10 +184,12 @@ class ChatViewController: JSQMessagesViewController,
     
     // MARK: - JSQMessagesViewController method overrides
     override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
+        /* Отправляем текстовое сообщение */
         LivetexCoreManager.defaultManager.coreService.sendTextMessage(text) { (response: LCSendMessageResponse?, error: Error?) in
-            if let error = error {
+            if let error = error as? NSError {
                 print(error)
             } else {
+                /* Переназначаем адресат обращения в случае необходимости */
                 self.reloadDestinationIfNeeded(response!)
                 let message = LCMessage(messageId: response!.messageId, attributes: response!.attributes, confirm: false)
                 self.messages.append(self.convertMessage(message))

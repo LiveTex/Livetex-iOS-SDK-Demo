@@ -17,7 +17,7 @@ FOUNDATION_EXPORT double LivetexCoreVersionNumber;
 //! Project version string for LivetexCore.
 FOUNDATION_EXPORT const unsigned char LivetexCoreVersionString[];
 
-#define LivetexCoreVersion  @"2.0.1"
+#define LivetexCoreVersion  @"2.1.0"
 
 // In this header, you should import all the public headers of your framework using statements like #import <LivetexCore/PublicHeader.h>
 

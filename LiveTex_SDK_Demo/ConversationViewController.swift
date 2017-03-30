@@ -24,20 +24,29 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        /* Получаем список назначений */
         LivetexCoreManager.defaultManager.coreService.destinations { (destinations: [LCDestination]?, error: Error?) in
-            if error == nil {
-                var result = destinations!.filter({$0.department.departmentId == "42"})
-                if result.count <= 0 {
-                    result = destinations!
-                }
-                LivetexCoreManager.defaultManager.coreService.setDestination(result.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), completionHandler: { (success: Bool, error: Error?) in
-                    if let err = error {
-                        print(err.localizedDescription)
-                    }
-                })
-            } else {
-                print(error?.localizedDescription)
+            if let error = error as? NSError {
+                print(error)
+                return
             }
+            
+            /* Из списка выбираем необходимый нам */
+            var result = destinations!.filter({$0.department.departmentId == "42"})
+            if result.count <= 0 {
+                result = destinations!
+            }
+            
+            /* Указываем пользовательские атрибуты обращения, которые отобразятся оператору */
+            let attributes = LCDialogAttributes()
+            attributes.visible = ["Field": "Test"]
+            
+            /* Указываем адресата обращения и дополнительно к пользовательским атрибутам укажем, чтобы передавались тип устройства и тип соединения */
+            LivetexCoreManager.defaultManager.coreService.setDestination(result.first!, attributes: attributes, options: [.deviceModel, .connectionType], completionHandler: { (success: Bool, error: Error?) in
+                if let error = error as? NSError {
+                    print(error)
+                }
+            })
         }
     }
 
@@ -72,6 +81,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func createConversation(_ sender: AnyObject) {
         if verifyFields() {
+            /* Указываем имя собеседника */
             LivetexCoreManager.defaultManager.coreService.setVisitor(self.nameField.text!, completionHandler: { (success: Bool, error: Error?) in
                 if error == nil {
                     UserDefaults.standard.set(self.nameField.text!, forKey: kLivetexVisitorName)
