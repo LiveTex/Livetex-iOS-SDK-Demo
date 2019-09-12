@@ -30,14 +30,14 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
             let cell = tableView.cellForRow(at: indexPath)
-            if cell?.accessoryType == UITableViewCellAccessoryType.checkmark {
+            if cell?.accessoryType == UITableViewCell.AccessoryType.checkmark {
                 return
             } else {
                 if indexPathForSelectedRow != nil {
                     let selectedCell = tableView.cellForRow(at: indexPathForSelectedRow!)
-                    selectedCell?.accessoryType = UITableViewCellAccessoryType.none
+                    selectedCell?.accessoryType = UITableViewCell.AccessoryType.none
                 }
-                cell?.accessoryType = UITableViewCellAccessoryType.checkmark
+                cell?.accessoryType = UITableViewCell.AccessoryType.checkmark
                 urlField.text = cell?.detailTextLabel?.text
                 keyField.text = "demo"
                 if indexPath.section == 0 {

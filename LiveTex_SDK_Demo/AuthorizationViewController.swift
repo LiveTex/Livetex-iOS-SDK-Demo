@@ -34,7 +34,7 @@ class AuthorizationViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-    func applicationDidRegisterWithDeviceToken() {
+    @objc func applicationDidRegisterWithDeviceToken() {
         onlineModeButton.isEnabled = true
         
         startService()

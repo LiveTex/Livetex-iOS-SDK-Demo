@@ -123,9 +123,12 @@ class ChatViewController: JSQMessagesViewController,
     
     // MARK: - UIImagePickerController
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerEditedImage] as! UIImage
-        let imageData = UIImagePNGRepresentation(image)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as! UIImage
+        let imageData = image.pngData()
         /* Отправляем файловое сообщение */
         LivetexCoreManager.defaultManager.coreService.sendFileMessage(imageData!) { (response: LCSendMessageResponse?, error: Error?) in
             if let error = error as? NSError {
@@ -202,7 +205,7 @@ class ChatViewController: JSQMessagesViewController,
         self.inputToolbar.contentView!.textView!.resignFirstResponder()
         let imagePickerController: UIImagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
+        imagePickerController.sourceType = UIImagePickerController.SourceType.savedPhotosAlbum
         imagePickerController.allowsEditing = true
         self.present(imagePickerController, animated: true, completion: nil)
     }
@@ -248,7 +251,7 @@ class ChatViewController: JSQMessagesViewController,
             }
             
             cell.textView.textColor = tintColor
-            cell.textView.linkTextAttributes = [NSForegroundColorAttributeName: tintColor]
+            cell.textView.linkTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([NSAttributedString.Key.foregroundColor.rawValue: tintColor])
         }
     
         return cell
@@ -286,4 +289,20 @@ class ChatViewController: JSQMessagesViewController,
         
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }
