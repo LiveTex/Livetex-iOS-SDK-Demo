@@ -189,7 +189,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
         /* Отправляем текстовое сообщение */
         LivetexCoreManager.defaultManager.coreService.sendTextMessage(text) { (response: LCSendMessageResponse?, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
             } else {
                 /* Переназначаем адресат обращения в случае необходимости */
