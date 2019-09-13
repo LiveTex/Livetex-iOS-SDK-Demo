@@ -48,6 +48,10 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
                     case 2,
                          3:
                         siteField.text = "10023868"
+                    case 4:
+                        urlField.text  = "http://192.168.4.141:4430"
+                        keyField.text  = "statistics-dev-demo-app"
+                        siteField.text = "10023868"
                         
                     default:
                         break

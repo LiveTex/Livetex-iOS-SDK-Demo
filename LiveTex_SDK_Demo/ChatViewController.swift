@@ -39,7 +39,7 @@ class ChatViewController: JSQMessagesViewController,
     func receiveData() {
         /* Запрашиваем текущее состояние диалога */
         LivetexCoreManager.defaultManager.coreService.state (completionHandler: { (state: LCDialogState?, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
             } else {
                 self.update(state!)
@@ -48,7 +48,7 @@ class ChatViewController: JSQMessagesViewController,
         
         /* Запрашиваем историю переписки */
         LivetexCoreManager.defaultManager.coreService.messageHistory(20, offset: 0, completionHandler: { (messageList: [LCMessage]?, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
                 return
             }
@@ -57,7 +57,7 @@ class ChatViewController: JSQMessagesViewController,
             toConfirmList?.forEach({ (message: LCMessage) in
                 /* Отправляем подтверждение о получении сообщения */
                 LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId, completionHandler: { (success: Bool, error: Error?) in
-                    if let error = error as? NSError {
+                    if let error = error as NSError? {
                         print(error)
                     } else {
                         message.confirm = true
@@ -74,14 +74,14 @@ class ChatViewController: JSQMessagesViewController,
         if !response.destinationIsSet {
             /* Получаем список назначений */
             LivetexCoreManager.defaultManager.coreService.destinations(completionHandler: { (destinations: [LCDestination]?, error: Error?) in
-                if let error = error as? NSError {
+                if let error = error as NSError? {
                     print(error)
                     return
                 }
                 
                 /* Указываем адресат обращения */
                 LivetexCoreManager.defaultManager.coreService.setDestination(destinations!.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), options: [], completionHandler: { (success: Bool, error: Error?) in
-                    if let error = error as? NSError {
+                    if let error = error as NSError? {
                         print(error)
                     }
                 })
@@ -103,7 +103,7 @@ class ChatViewController: JSQMessagesViewController,
                 let media = JSQPhotoMediaItem(maskAsOutgoing: !message.attributes.file.senderIsSet)
                 let url = Foundation.URL(string: message.attributes.file.url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)!
                 URLSession.shared.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
-                    if let error = error as? NSError {
+                    if let error = error as NSError? {
                         print(error)
                     } else {
                         DispatchQueue.main.async {
@@ -131,7 +131,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         let imageData = image.pngData()
         /* Отправляем файловое сообщение */
         LivetexCoreManager.defaultManager.coreService.sendFileMessage(imageData!) { (response: LCSendMessageResponse?, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
             } else {
                 /* Переназначаем адресат обращения в случае необходимости */
@@ -162,7 +162,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     func receiveTextMessage(_ message: LCMessage) {
         /* Отправляем подтверждение о получении сообщения */
         LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId) { (success: Bool, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
             }
         }
@@ -179,7 +179,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     func selectDestination(_ destinations: [LCDestination]) {
         /* Указываем адресат обращения */
         LivetexCoreManager.defaultManager.coreService.setDestination(destinations.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), options: [], completionHandler: { (success: Bool, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
             }
         })

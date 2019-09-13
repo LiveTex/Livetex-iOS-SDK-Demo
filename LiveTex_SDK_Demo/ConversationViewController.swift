@@ -26,7 +26,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         /* Получаем список назначений */
         LivetexCoreManager.defaultManager.coreService.destinations { (destinations: [LCDestination]?, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
                 return
             }
@@ -43,7 +43,7 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
             
             /* Указываем адресата обращения и дополнительно к пользовательским атрибутам укажем, чтобы передавались тип устройства и тип соединения */
             LivetexCoreManager.defaultManager.coreService.setDestination(result.first!, attributes: attributes, options: [.deviceModel, .connectionType], completionHandler: { (success: Bool, error: Error?) in
-                if let error = error as? NSError {
+                if let error = error as NSError? {
                     print(error)
                 }
             })
