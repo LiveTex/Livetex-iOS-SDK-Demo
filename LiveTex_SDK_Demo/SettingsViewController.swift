@@ -39,15 +39,17 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
                 }
                 cell?.accessoryType = UITableViewCell.AccessoryType.checkmark
                 urlField.text = cell?.detailTextLabel?.text
-                keyField.text = "demo"
+                keyField.text = "demo-prod"
                 if indexPath.section == 0 {
                     switch indexPath.row {
                     case 0,
                          1:
                         siteField.text = "123280"
-                    case 2,
-                         3:
+                    case 2:
                         siteField.text = "10023868"
+                    case 3:
+                        keyField.text  = "sdkkey161872"
+                        siteField.text = "123280"
                     case 4:
                         urlField.text  = "http://192.168.4.141:4430"
                         keyField.text  = "statistics-dev-demo-app"
