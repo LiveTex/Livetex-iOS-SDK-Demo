@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var internetReachability: Reachability!
     var reachabilityAlert: UIAlertController?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.reachabilityChanged(_:)), name: NSNotification.Name.reachabilityChanged, object: nil)
         internetReachability = Reachability.forInternetConnection()
         internetReachability.startNotifier();
@@ -50,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.post(name: Notification.Name(rawValue: kApplicationDidRegisterWithDeviceToken), object: nil)
     }
     
-    func reachabilityChanged(_ note:Notification) {
+    @objc func reachabilityChanged(_ note:Notification) {
         let curReach: Reachability = note.object as! Reachability
         processReachability(curReach)
     }
@@ -61,8 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func processReachability(_ curReach: Reachability) {
         let status:NetworkStatus = curReach.currentReachabilityStatus()
         if status == NetworkStatus.NotReachable {
-            reachabilityAlert = UIAlertController(title: "", message: "Интернет соединение потеряно, дождитесь когда система восстановит соединение", preferredStyle: UIAlertControllerStyle.alert)
-            let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+            reachabilityAlert = UIAlertController(title: "", message: "Интернет соединение потеряно, дождитесь когда система восстановит соединение", preferredStyle: UIAlertController.Style.alert)
+            let cancelAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
             reachabilityAlert!.addAction(cancelAction)
             self.window?.rootViewController?.present(reachabilityAlert!, animated: true, completion: nil)
         } else {

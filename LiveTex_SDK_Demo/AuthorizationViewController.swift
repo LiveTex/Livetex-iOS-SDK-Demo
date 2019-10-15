@@ -34,7 +34,7 @@ class AuthorizationViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-    func applicationDidRegisterWithDeviceToken() {
+    @objc func applicationDidRegisterWithDeviceToken() {
         onlineModeButton.isEnabled = true
         
         startService()
@@ -56,7 +56,7 @@ class AuthorizationViewController: UIViewController {
                                                                       delegateQueue: OperationQueue.main)
         
         LivetexCoreManager.defaultManager.coreService.start { (token: String?, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
                 self.onlineModeButton.isEnabled = false
             } else {

@@ -39,7 +39,7 @@ class ChatViewController: JSQMessagesViewController,
     func receiveData() {
         /* Запрашиваем текущее состояние диалога */
         LivetexCoreManager.defaultManager.coreService.state (completionHandler: { (state: LCDialogState?, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
             } else {
                 self.update(state!)
@@ -48,7 +48,7 @@ class ChatViewController: JSQMessagesViewController,
         
         /* Запрашиваем историю переписки */
         LivetexCoreManager.defaultManager.coreService.messageHistory(20, offset: 0, completionHandler: { (messageList: [LCMessage]?, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
                 return
             }
@@ -57,7 +57,7 @@ class ChatViewController: JSQMessagesViewController,
             toConfirmList?.forEach({ (message: LCMessage) in
                 /* Отправляем подтверждение о получении сообщения */
                 LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId, completionHandler: { (success: Bool, error: Error?) in
-                    if let error = error as? NSError {
+                    if let error = error as NSError? {
                         print(error)
                     } else {
                         message.confirm = true
@@ -74,14 +74,14 @@ class ChatViewController: JSQMessagesViewController,
         if !response.destinationIsSet {
             /* Получаем список назначений */
             LivetexCoreManager.defaultManager.coreService.destinations(completionHandler: { (destinations: [LCDestination]?, error: Error?) in
-                if let error = error as? NSError {
+                if let error = error as NSError? {
                     print(error)
                     return
                 }
                 
                 /* Указываем адресат обращения */
                 LivetexCoreManager.defaultManager.coreService.setDestination(destinations!.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), options: [], completionHandler: { (success: Bool, error: Error?) in
-                    if let error = error as? NSError {
+                    if let error = error as NSError? {
                         print(error)
                     }
                 })
@@ -103,7 +103,7 @@ class ChatViewController: JSQMessagesViewController,
                 let media = JSQPhotoMediaItem(maskAsOutgoing: !message.attributes.file.senderIsSet)
                 let url = Foundation.URL(string: message.attributes.file.url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)!
                 URLSession.shared.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
-                    if let error = error as? NSError {
+                    if let error = error as NSError? {
                         print(error)
                     } else {
                         DispatchQueue.main.async {
@@ -123,12 +123,15 @@ class ChatViewController: JSQMessagesViewController,
     
     // MARK: - UIImagePickerController
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerEditedImage] as! UIImage
-        let imageData = UIImagePNGRepresentation(image)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as! UIImage
+        let imageData = image.pngData()
         /* Отправляем файловое сообщение */
         LivetexCoreManager.defaultManager.coreService.sendFileMessage(imageData!) { (response: LCSendMessageResponse?, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
             } else {
                 /* Переназначаем адресат обращения в случае необходимости */
@@ -159,7 +162,7 @@ class ChatViewController: JSQMessagesViewController,
     func receiveTextMessage(_ message: LCMessage) {
         /* Отправляем подтверждение о получении сообщения */
         LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId) { (success: Bool, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
             }
         }
@@ -176,7 +179,7 @@ class ChatViewController: JSQMessagesViewController,
     func selectDestination(_ destinations: [LCDestination]) {
         /* Указываем адресат обращения */
         LivetexCoreManager.defaultManager.coreService.setDestination(destinations.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), options: [], completionHandler: { (success: Bool, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
             }
         })
@@ -186,7 +189,7 @@ class ChatViewController: JSQMessagesViewController,
     override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
         /* Отправляем текстовое сообщение */
         LivetexCoreManager.defaultManager.coreService.sendTextMessage(text) { (response: LCSendMessageResponse?, error: Error?) in
-            if let error = error as? NSError {
+            if let error = error as NSError? {
                 print(error)
             } else {
                 /* Переназначаем адресат обращения в случае необходимости */
@@ -202,7 +205,7 @@ class ChatViewController: JSQMessagesViewController,
         self.inputToolbar.contentView!.textView!.resignFirstResponder()
         let imagePickerController: UIImagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
+        imagePickerController.sourceType = UIImagePickerController.SourceType.savedPhotosAlbum
         imagePickerController.allowsEditing = true
         self.present(imagePickerController, animated: true, completion: nil)
     }
@@ -248,7 +251,7 @@ class ChatViewController: JSQMessagesViewController,
             }
             
             cell.textView.textColor = tintColor
-            cell.textView.linkTextAttributes = [NSForegroundColorAttributeName: tintColor]
+            cell.textView.linkTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([NSAttributedString.Key.foregroundColor.rawValue: tintColor])
         }
     
         return cell
@@ -286,4 +289,20 @@ class ChatViewController: JSQMessagesViewController,
         
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }
