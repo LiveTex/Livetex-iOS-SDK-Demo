@@ -34,19 +34,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let tokenChars = (deviceToken as NSData).bytes.bindMemory(to: CChar.self, capacity: deviceToken.count)
-        let tokenString = NSMutableString()
-        
-        for i in 0 ..< deviceToken.count {
-            tokenString.appendFormat("%02.2hhx", tokenChars[i])
-        }
-        
+        let tokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print("token registration: \(tokenString)")
         LivetexCoreManager.defaultManager.apnToken = tokenString as String
         NotificationCenter.default.post(name: Notification.Name(rawValue: kApplicationDidRegisterWithDeviceToken), object: nil)
-        print("tokenString: \(tokenString)")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("token registration failed: \(error)")
         NotificationCenter.default.post(name: Notification.Name(rawValue: kApplicationDidRegisterWithDeviceToken), object: nil)
     }
     

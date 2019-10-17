@@ -39,7 +39,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
                 }
                 cell?.accessoryType = UITableViewCell.AccessoryType.checkmark
                 urlField.text = cell?.detailTextLabel?.text
-                keyField.text = "demo"
+                keyField.text = "demo-dev"
                 if indexPath.section == 0 {
                     switch indexPath.row {
                     case 0,

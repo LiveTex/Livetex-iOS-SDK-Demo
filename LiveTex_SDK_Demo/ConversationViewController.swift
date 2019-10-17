@@ -81,6 +81,8 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func createConversation(_ sender: AnyObject) {
         if verifyFields() {
+            print("createConversation nameField verified because text is \(self.nameField.text!)")
+            
             /* Указываем имя собеседника */
             LivetexCoreManager.defaultManager.coreService.setVisitor(self.nameField.text!, completionHandler: { (success: Bool, error: Error?) in
                 if error == nil {
@@ -89,6 +91,8 @@ class ConversationViewController: UIViewController, UITextFieldDelegate {
             })
             
             self.navigationController?.show(ChatViewController(), sender: nil)
+        } else {
+            print("createConversation nameField not verified because text is \(self.nameField.text!)")
         }
     }
 }

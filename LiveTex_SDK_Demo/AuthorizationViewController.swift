@@ -36,7 +36,6 @@ class AuthorizationViewController: UIViewController {
 
     @objc func applicationDidRegisterWithDeviceToken() {
         onlineModeButton.isEnabled = true
-        
         startService()
     }
     
@@ -47,6 +46,7 @@ class AuthorizationViewController: UIViewController {
     }
     
     func startService() {
+        print("startService URL \(URL!) siteID \(siteID!) key \(key!)")
         LivetexCoreManager.defaultManager.coreService = LCCoreService(url: URL!,
                                                                       appID: siteID!,
                                                                       appKey: key!,

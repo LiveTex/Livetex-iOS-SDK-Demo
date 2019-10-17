@@ -196,7 +196,7 @@
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = FJE97HEJ7P;
 						LastSwiftMigration = 1010;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -425,12 +425,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
 				CODE_SIGN_ENTITLEMENTS = "LiveTex SDK.entitlements";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FJE97HEJ7P;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -449,7 +450,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE[arch=*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Livetex SDK Demo Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTObjcBridging.h;
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = LiveTex_SDK_Demo/LTObjcBridging.h;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -467,8 +469,9 @@
 				CODE_SIGN_ENTITLEMENTS = "LiveTex SDK.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FJE97HEJ7P;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -487,7 +490,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Livetex SDK Demo Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTObjcBridging.h;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
@@ -545,8 +548,9 @@
 				CODE_SIGN_ENTITLEMENTS = "LiveTex SDK.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FJE97HEJ7P;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -564,7 +568,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Livetex SDK Demo Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTObjcBridging.h;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
