@@ -13,28 +13,32 @@ let kApplicationDidReceiveNetworkStatus = "kApplicationDidReceiveNetworkStatus"
 let kApplicationDidRegisterWithDeviceToken = "kApplicationDidRegisterWithDeviceToken"
 
 class AuthorizationViewController: UIViewController {
-    @IBOutlet weak var onlineModeButton: UIButton!
+
+    @IBOutlet private weak var onlineModeButton: UIButton!
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
+
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
 
-        NotificationCenter.default.addObserver(self, selector: #selector(AuthorizationViewController.applicationDidRegisterWithDeviceToken), name: NSNotification.Name(rawValue: kApplicationDidRegisterWithDeviceToken), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidRegisterWithDeviceToken),
+                                               name: NSNotification.Name(rawValue: kApplicationDidRegisterWithDeviceToken),
+                                               object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.registerForRemoteNotifications()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        super.viewWillAppear(animated)
+        registerForRemoteNotifications()
     }
 
-    func applicationDidRegisterWithDeviceToken() {
+    // MARK: - Notification
+
+    @objc private func applicationDidRegisterWithDeviceToken() {
         onlineModeButton.isEnabled = true
         
         startService()
@@ -47,29 +51,31 @@ class AuthorizationViewController: UIViewController {
     }
     
     func startService() {
-        LivetexCoreManager.defaultManager.coreService = LCCoreService(url: URL!,
+        LivetexCoreManager.defaultManager.coreService = LCCoreService(url: url!,
                                                                       appID: siteID!,
                                                                       appKey: key!,
                                                                       token: nil,
                                                                       deviceToken: LivetexCoreManager.defaultManager.apnToken,
-                                                                      callbackQueue: OperationQueue.main,
-                                                                      delegateQueue: OperationQueue.main)
+                                                                      callbackQueue: .main,
+                                                                      delegateQueue: .main)
         
-        LivetexCoreManager.defaultManager.coreService.start { (token: String?, error: Error?) in
-            if let error = error as? NSError {
-                print(error)
+        LivetexCoreManager.defaultManager.coreService.start { token, error in
+            if let err = error {
+                print(err)
                 self.onlineModeButton.isEnabled = false
             } else {
-                print(token!)
+                print(token)
             }
         }
     }
+
+    // MARK: - Action
     
-    @IBAction func startConversation(sender: AnyObject) {
+    @IBAction private func startConversation(sender: UIButton) {
         if UserDefaults.standard.object(forKey: kLivetexVisitorName) != nil {
-            self.navigationController?.show(ChatViewController(), sender: nil)
+            navigationController?.show(ChatViewController(), sender: nil)
         } else {
-            self.performSegue(withIdentifier: "conversation", sender: nil)
+            performSegue(withIdentifier: "conversation", sender: nil)
         }
     }
 }

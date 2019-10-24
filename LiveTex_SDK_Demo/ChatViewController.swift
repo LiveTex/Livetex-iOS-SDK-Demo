@@ -14,19 +14,19 @@ class ChatViewController: JSQMessagesViewController,
                           LCCoreServiceDelegate,
                           UIImagePickerControllerDelegate,
                           UINavigationControllerDelegate {
-    var messages = [JSQMessage]()
-    var incomingBubble: JSQMessagesBubbleImage!
-    var outgoingBubble: JSQMessagesBubbleImage!
-    
+
+    private var messages: [JSQMessage] = []
+
+    private let incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: .jsq_messageBubbleLightGray())
+    private let outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: .jsq_messageBubbleBlue())
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.senderId = ""
-        self.senderDisplayName = ""
-        self.navigationController?.isNavigationBarHidden = false
+        senderId = ""
+        senderDisplayName = ""
+        navigationController?.isNavigationBarHidden = false
         LivetexCoreManager.defaultManager.coreService.delegate = self
-        incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleLightGray())
-        outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
-        
+
         collectionView?.collectionViewLayout.incomingAvatarViewSize = .zero
         collectionView?.collectionViewLayout.outgoingAvatarViewSize = .zero
         
@@ -38,59 +38,62 @@ class ChatViewController: JSQMessagesViewController,
     
     func receiveData() {
         /* Запрашиваем текущее состояние диалога */
-        LivetexCoreManager.defaultManager.coreService.state (completionHandler: { (state: LCDialogState?, error: Error?) in
-            if let error = error as? NSError {
-                print(error)
-            } else {
-                self.update(state!)
-            }
-        })
-        
-        /* Запрашиваем историю переписки */
-        LivetexCoreManager.defaultManager.coreService.messageHistory(20, offset: 0, completionHandler: { (messageList: [LCMessage]?, error: Error?) in
-            if let error = error as? NSError {
+        LivetexCoreManager.defaultManager.coreService.state { state, error in
+            guard let state = state else {
                 print(error)
                 return
             }
+
+            self.update(state)
+        }
+        
+        /* Запрашиваем историю переписки */
+        LivetexCoreManager.defaultManager.coreService.messageHistory(20, offset: 0) { messageList, error in
+            if let err = error {
+                print(err)
+                return
+            }
             
-            let toConfirmList = messageList?.filter{ $0.confirm == false && ($0.attributes.text.senderIsSet || $0.attributes.file.senderIsSet) }
-            toConfirmList?.forEach({ (message: LCMessage) in
+            let toConfirmList = messageList?.filter { $0.confirm == false && ($0.attributes.text.senderIsSet || $0.attributes.file.senderIsSet) }
+
+            toConfirmList?.forEach { message in
                 /* Отправляем подтверждение о получении сообщения */
-                LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId, completionHandler: { (success: Bool, error: Error?) in
-                    if let error = error as? NSError {
-                        print(error)
+                LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId) { success, error in
+                    if let err = error {
+                        print(err)
                     } else {
                         message.confirm = true
                     }
-                })
-             })
-            
-            self.messages.append(contentsOf: messageList!.reversed().map{ self.convertMessage($0) })
+                }
+             }
+
+            let convertedMessages = messageList?.reversed().map { self.convertMessage($0) } ?? []
+            self.messages.append(contentsOf: convertedMessages)
             self.finishReceivingMessage()
-        })
+        }
     }
     
     func reloadDestinationIfNeeded(_ response: LCSendMessageResponse) {
         if !response.destinationIsSet {
             /* Получаем список назначений */
-            LivetexCoreManager.defaultManager.coreService.destinations(completionHandler: { (destinations: [LCDestination]?, error: Error?) in
-                if let error = error as? NSError {
-                    print(error)
+            LivetexCoreManager.defaultManager.coreService.destinations { destinations, error in
+                if let err = error {
+                    print(err)
                     return
                 }
                 
                 /* Указываем адресат обращения */
-                LivetexCoreManager.defaultManager.coreService.setDestination(destinations!.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), options: [], completionHandler: { (success: Bool, error: Error?) in
-                    if let error = error as? NSError {
-                        print(error)
+                LivetexCoreManager.defaultManager.coreService.setDestination(destinations!.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), options: []) { success, error in
+                    if let err = error {
+                        print(err)
                     }
-                })
-            })
+                }
+            }
         }
     }
     
     func convertMessage(_ message: LCMessage) -> JSQMessage {
-        var timeInterval: TimeInterval = 0.0
+        var timeInterval: TimeInterval = 0
         if message.attributes.textIsSet {
             timeInterval = (message.attributes.text.created as NSString).doubleValue
             return JSQMessage(senderId: message.attributes.text.senderIsSet ? message.attributes.text.sender : self.senderId, senderDisplayName: "", date: Date(timeIntervalSince1970:timeInterval / 1000), text: message.attributes.text.text)
@@ -101,10 +104,10 @@ class ChatViewController: JSQMessagesViewController,
             let paths: [String] = ["png", "jpg", "jpeg", "gif"]
             if paths.contains(pathExtention) {
                 let media = JSQPhotoMediaItem(maskAsOutgoing: !message.attributes.file.senderIsSet)
-                let url = Foundation.URL(string: message.attributes.file.url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)!
+                let url = URL(string: message.attributes.file.url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)!
                 URLSession.shared.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
-                    if let error = error as? NSError {
-                        print(error)
+                    if let err = error {
+                        print(err)
                     } else {
                         DispatchQueue.main.async {
                             media?.image = UIImage(data: data!)
@@ -123,13 +126,16 @@ class ChatViewController: JSQMessagesViewController,
     
     // MARK: - UIImagePickerController
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerEditedImage] as! UIImage
-        let imageData = UIImagePNGRepresentation(image)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        guard let image = info[.editedImage] as? UIImage, let imageData = image.pngData() else {
+            return
+        }
+
         /* Отправляем файловое сообщение */
-        LivetexCoreManager.defaultManager.coreService.sendFileMessage(imageData!) { (response: LCSendMessageResponse?, error: Error?) in
-            if let error = error as? NSError {
-                print(error)
+        LivetexCoreManager.defaultManager.coreService.sendFileMessage(imageData) { response, error in
+            if let err = error {
+                print(err)
             } else {
                 /* Переназначаем адресат обращения в случае необходимости */
                 self.reloadDestinationIfNeeded(response!)
@@ -139,16 +145,16 @@ class ChatViewController: JSQMessagesViewController,
             }
         }
         
-        picker.dismiss(animated: true, completion: nil)
+        picker.dismiss(animated: true)
     }
     
     // MARK: - LCCoreServiceDelegate
     
     func update(_ dialogState: LCDialogState) {
         if dialogState.employee != nil {
-            self.navigationItem.title = "\(dialogState.employee!.firstname) \(dialogState.employee!.lastname)"
+            navigationItem.title = "\(dialogState.employee!.firstname) \(dialogState.employee!.lastname)"
         } else {
-            self.navigationItem.title = "Оператор"
+            navigationItem.title = "Оператор"
         }
     }
     
@@ -159,35 +165,38 @@ class ChatViewController: JSQMessagesViewController,
     func receiveTextMessage(_ message: LCMessage) {
         /* Отправляем подтверждение о получении сообщения */
         LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId) { (success: Bool, error: Error?) in
-            if let error = error as? NSError {
-                print(error)
+            if let err = error {
+                print(err)
             }
         }
         
-        self.messages.append(self.convertMessage(message))
+        messages.append(convertMessage(message))
         finishReceivingMessage(animated: true)
     }
     
     func receiveFileMessage(_ message: LCMessage) {
-        self.messages.append(self.convertMessage(message))
+        messages.append(convertMessage(message))
         finishReceivingMessage(animated: true)
     }
     
     func selectDestination(_ destinations: [LCDestination]) {
         /* Указываем адресат обращения */
-        LivetexCoreManager.defaultManager.coreService.setDestination(destinations.first!, attributes: LCDialogAttributes(visible: [:], hidden: [:]), options: [], completionHandler: { (success: Bool, error: Error?) in
-            if let error = error as? NSError {
-                print(error)
+        LivetexCoreManager.defaultManager.coreService.setDestination(destinations.first!,
+                                                                     attributes: LCDialogAttributes(visible: [:],
+                                                                                                    hidden: [:]),
+                                                                     options: []) { success, error in
+            if let err = error {
+                print(err)
             }
-        })
+        }
     }
     
     // MARK: - JSQMessagesViewController method overrides
     override func didPressSend(_ button: UIButton, withMessageText text: String, senderId: String, senderDisplayName: String, date: Date) {
         /* Отправляем текстовое сообщение */
-        LivetexCoreManager.defaultManager.coreService.sendTextMessage(text) { (response: LCSendMessageResponse?, error: Error?) in
-            if let error = error as? NSError {
-                print(error)
+        LivetexCoreManager.defaultManager.coreService.sendTextMessage(text) { response, error in
+            if let err = error {
+                print(err)
             } else {
                 /* Переназначаем адресат обращения в случае необходимости */
                 self.reloadDestinationIfNeeded(response!)
@@ -199,15 +208,15 @@ class ChatViewController: JSQMessagesViewController,
     }
     
     override func didPressAccessoryButton(_ sender: UIButton) {
-        self.inputToolbar.contentView!.textView!.resignFirstResponder()
-        let imagePickerController: UIImagePickerController = UIImagePickerController()
+        inputToolbar.contentView?.textView?.resignFirstResponder()
+        let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
+        imagePickerController.sourceType = .savedPhotosAlbum
         imagePickerController.allowsEditing = true
-        self.present(imagePickerController, animated: true, completion: nil)
+        present(imagePickerController, animated: true)
     }
     
-    //MARK: - JSQMessages CollectionView DataSource
+    // MARK: - JSQMessages CollectionView DataSource
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
@@ -218,7 +227,8 @@ class ChatViewController: JSQMessagesViewController,
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, messageBubbleImageDataForItemAt indexPath: IndexPath) -> JSQMessageBubbleImageDataSource {
-        return messages[indexPath.item].senderId == self.senderId ? outgoingBubble : incomingBubble
+        let image = messages[indexPath.item].senderId == senderId ? outgoingBubble : incomingBubble
+        return image ?? JSQMessagesBubbleImage(messageBubble: UIImage(), highlightedImage: UIImage())
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, avatarImageDataForItemAt indexPath: IndexPath) -> JSQMessageAvatarImageDataSource? {
@@ -227,7 +237,7 @@ class ChatViewController: JSQMessagesViewController,
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, attributedTextForCellTopLabelAt indexPath: IndexPath) -> NSAttributedString? {
         if (indexPath.item % 3 == 0) {
-            let message = self.messages[indexPath.item]
+            let message = messages[indexPath.item]
             
             return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
         }
@@ -237,18 +247,12 @@ class ChatViewController: JSQMessagesViewController,
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = super.collectionView(collectionView, cellForItemAt: indexPath) as! JSQMessagesCollectionViewCell
-        let message = self.messages[indexPath.item]
+        let message = messages[indexPath.item]
         
         if !message.isMediaMessage {
-            var tintColor: UIColor = UIColor()
-            if message.senderId == self.senderId {
-                tintColor = UIColor.white
-            } else {
-                tintColor = UIColor.black
-            }
-            
+            let tintColor: UIColor = message.senderId == senderId ? .white : .black
             cell.textView.textColor = tintColor
-            cell.textView.linkTextAttributes = [NSForegroundColorAttributeName: tintColor]
+            cell.textView.linkTextAttributes = [.foregroundColor: tintColor]
         }
     
         return cell
@@ -256,7 +260,7 @@ class ChatViewController: JSQMessagesViewController,
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath) -> NSAttributedString? {
         let message = messages[indexPath.item]
-        if message.senderId == self.senderId {
+        if message.senderId == senderId {
             return nil
         }
         
@@ -268,19 +272,19 @@ class ChatViewController: JSQMessagesViewController,
             return kJSQMessagesCollectionViewCellLabelHeightDefault
         }
         
-        return 0.0
+        return 0
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout, heightForMessageBubbleTopLabelAt indexPath: IndexPath) -> CGFloat {
-        let currentMessage = self.messages[indexPath.item]
-        if currentMessage.senderId == self.senderId {
-            return 0.0
+        let currentMessage = messages[indexPath.item]
+        if currentMessage.senderId == senderId {
+            return 0
         }
         
         if indexPath.item - 1 > 0 {
-            let previousMessage = self.messages[indexPath.item - 1]
+            let previousMessage = messages[indexPath.item - 1]
             if previousMessage.senderId == currentMessage.senderId {
-                return 0.0
+                return 0
             }
         }
         
