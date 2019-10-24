@@ -24,7 +24,7 @@ class AuthorizationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidRegisterWithDeviceToken),
                                                name: NSNotification.Name(rawValue: kApplicationDidRegisterWithDeviceToken),
@@ -51,9 +51,9 @@ class AuthorizationViewController: UIViewController {
     }
     
     func startService() {
-        LivetexCoreManager.defaultManager.coreService = LCCoreService(url: url!,
-                                                                      appID: siteID!,
-                                                                      appKey: key!,
+        LivetexCoreManager.defaultManager.coreService = LCCoreService(url: url,
+                                                                      appID: siteID,
+                                                                      appKey: key,
                                                                       token: nil,
                                                                       deviceToken: LivetexCoreManager.defaultManager.apnToken,
                                                                       callbackQueue: .main,

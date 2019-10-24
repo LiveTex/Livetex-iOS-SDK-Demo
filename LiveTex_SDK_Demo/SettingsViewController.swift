@@ -61,9 +61,9 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        url = urlField.text
-        key = keyField.text
-        siteID = siteField.text
+        url = urlField.text ?? ""
+        key = keyField.text ?? ""
+        siteID = siteField.text ?? ""
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

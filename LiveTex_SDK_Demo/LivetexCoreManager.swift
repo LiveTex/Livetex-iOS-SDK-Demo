@@ -9,9 +9,9 @@
 import Foundation
 import LivetexCore
 
-var url: String? = "https://authentication-service-sdk-production-1.livetex.ru"
-var key: String? =  "demo"
-var siteID: String? = "123280"
+var url = "https://authentication-service-sdk-production-1.livetex.ru"
+var key = "demo"
+var siteID = "123280"
 
 class LivetexCoreManager {
     static let defaultManager: LivetexCoreManager = LivetexCoreManager()
