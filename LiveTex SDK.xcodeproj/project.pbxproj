@@ -14,6 +14,10 @@
 		55F73B0B1A0A6EB900C28B0A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0A1A0A6EB900C28B0A /* Images.xcassets */; };
 		55F73B0E1A0A6EB900C28B0A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */; };
 		6E1D9315C8CFC4CB0F32D646 /* Pods_LiveTex_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A7C12A8BCF80DBB58D78 /* Pods_LiveTex_SDK.framework */; };
+		86ADED3D2364CBFE00938941 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADED3C2364CBFE00938941 /* Message.swift */; };
+		86ADED412364D99400938941 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADED402364D99400938941 /* Sender.swift */; };
+		86ADED432364DE6F00938941 /* MediaMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADED422364DE6F00938941 /* MediaMessage.swift */; };
+		86ADED472366313E00938941 /* UIImage+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADED462366313E00938941 /* UIImage+Factory.swift */; };
 		D125503A1C8991010057AB8F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12550391C8991010057AB8F /* SettingsViewController.swift */; };
 		D1269E4A1D5B23F1000BC3E8 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1269E481D5B23F1000BC3E8 /* Fabric.framework */; };
 		D1269E4B1D5B23F1000BC3E8 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1269E491D5B23F1000BC3E8 /* Crashlytics.framework */; };
@@ -36,6 +40,10 @@
 		71D1A7C12A8BCF80DBB58D78 /* Pods_LiveTex_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveTex_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9DE94EDD12C7070F2552CC /* Pods-LiveTex SDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveTex SDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiveTex SDK/Pods-LiveTex SDK.release.xcconfig"; sourceTree = "<group>"; };
 		7E4BF9E61B27023C00FF5C80 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		86ADED3C2364CBFE00938941 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		86ADED402364D99400938941 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		86ADED422364DE6F00938941 /* MediaMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMessage.swift; sourceTree = "<group>"; };
+		86ADED462366313E00938941 /* UIImage+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Factory.swift"; sourceTree = "<group>"; };
 		B30BC51FD66065288E264F80 /* Pods-LiveTex SDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveTex SDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiveTex SDK/Pods-LiveTex SDK.debug.xcconfig"; sourceTree = "<group>"; };
 		D12550391C8991010057AB8F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D1269E481D5B23F1000BC3E8 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
@@ -94,15 +102,15 @@
 		55F73AFD1A0A6EB800C28B0A /* LiveTexSDK */ = {
 			isa = PBXGroup;
 			children = (
-				55F73B001A0A6EB800C28B0A /* AppDelegate.swift */,
-				55D666051A135F2C001747B0 /* LivetexCoreManager.swift */,
-				D16FEABC1D2A5A9A009CAA67 /* Controllers */,
+				86ADED392364CA2E00938941 /* AppDelegate */,
+				86ADED442366305800938941 /* Extensions */,
 				7E023E0D1B4C2064003E3079 /* External */,
-				55F73B0A1A0A6EB900C28B0A /* Images.xcassets */,
-				55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */,
-				55F73AFE1A0A6EB800C28B0A /* Supporting Files */,
-				D157BCE21CBF89E3000E6271 /* Main.storyboard */,
 				D16FEABD1D2A5AD2009CAA67 /* Frameworks */,
+				55D666051A135F2C001747B0 /* LivetexCoreManager.swift */,
+				86ADED3B2364CBE400938941 /* Models */,
+				86ADED3F2364D95400938941 /* Resources */,
+				55F73AFE1A0A6EB800C28B0A /* Supporting Files */,
+				86ADED3E2364CC0500938941 /* ViewControllers */,
 			);
 			name = LiveTexSDK;
 			path = LiveTex_SDK_Demo;
@@ -126,6 +134,61 @@
 			name = External;
 			sourceTree = "<group>";
 		};
+		86ADED392364CA2E00938941 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				55F73B001A0A6EB800C28B0A /* AppDelegate.swift */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		86ADED3B2364CBE400938941 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				86ADED422364DE6F00938941 /* MediaMessage.swift */,
+				86ADED3C2364CBFE00938941 /* Message.swift */,
+				86ADED402364D99400938941 /* Sender.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		86ADED3E2364CC0500938941 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				55F73B051A0A6EB900C28B0A /* AuthorizationViewController.swift */,
+				D1E91C9B1D5E153100562D0E /* ChatViewController.swift */,
+				D157BCDC1CBE75CD000E6271 /* ConversationViewController.swift */,
+				D12550391C8991010057AB8F /* SettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		86ADED3F2364D95400938941 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				55F73B0A1A0A6EB900C28B0A /* Images.xcassets */,
+				55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */,
+				D157BCE21CBF89E3000E6271 /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		86ADED442366305800938941 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				86ADED452366312800938941 /* UIImage */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		86ADED452366312800938941 /* UIImage */ = {
+			isa = PBXGroup;
+			children = (
+				86ADED462366313E00938941 /* UIImage+Factory.swift */,
+			);
+			path = UIImage;
+			sourceTree = "<group>";
+		};
 		C617D66CCF0A71CC3F2C88B3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,17 +197,6 @@
 				FCFDD0332147618047AEEF8B /* Pods-LiveTex SDK.distribution.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		D16FEABC1D2A5A9A009CAA67 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				D1E91C9B1D5E153100562D0E /* ChatViewController.swift */,
-				D12550391C8991010057AB8F /* SettingsViewController.swift */,
-				55F73B051A0A6EB900C28B0A /* AuthorizationViewController.swift */,
-				D157BCDC1CBE75CD000E6271 /* ConversationViewController.swift */,
-			);
-			name = Controllers;
 			sourceTree = "<group>";
 		};
 		D16FEABD1D2A5AD2009CAA67 /* Frameworks */ = {
@@ -165,13 +217,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 55F73B1D1A0A6EB900C28B0A /* Build configuration list for PBXNativeTarget "LiveTex SDK" */;
 			buildPhases = (
+				F38366001A0D141704E8D85D /* [CP] Check Pods Manifest.lock */,
 				6EA85E584EE81FC85B33F229 /* Check Pods Manifest.lock */,
 				55F73AF71A0A6EB800C28B0A /* Sources */,
 				55F73AF81A0A6EB800C28B0A /* Frameworks */,
 				55F73AF91A0A6EB800C28B0A /* Resources */,
 				D14ADD131D5B225B0004FEBE /* ShellScript */,
 				7364CA7015822A98BA2B6BAC /* Embed Pods Frameworks */,
-				71CD8212EABEBD33361F93A7 /* Copy Pods Resources */,
+				98BB7BBB0DDC4A44DDB7EC95 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -194,7 +247,6 @@
 				TargetAttributes = {
 					55F73AFA1A0A6EB800C28B0A = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = FJE97HEJ7P;
 						LastSwiftMigration = 1110;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -254,21 +306,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		71CD8212EABEBD33361F93A7 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiveTex SDK/Pods-LiveTex SDK-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		7364CA7015822A98BA2B6BAC /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -284,6 +321,26 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiveTex SDK/Pods-LiveTex SDK-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		98BB7BBB0DDC4A44DDB7EC95 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LiveTex SDK/Pods-LiveTex SDK-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/InputBarAccessoryView/InputBarAccessoryView.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputBarAccessoryView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LiveTex SDK/Pods-LiveTex SDK-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D14ADD131D5B225B0004FEBE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -297,6 +354,28 @@
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run 68c19c10e67e289fdd94cda4c5a16a5cad46a866 24fccdf34eff0b31d4023ec849d0ee30c6457a3cd068405a528ffec400d7b7b9\n\nIFS=$'\\n'\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nversionNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nPATH=${PATH}:/usr/local/bin\n\nfunction generateIcon () {\n    BASE_IMAGE_NAME=$1\n    \n    TARGET_PATH=\"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/${BASE_IMAGE_NAME}\"\n    echo $TARGET_PATH\n    echo $SRCROOT\n    echo $(find ${SRCROOT} -name \"AppIcon60x60@2x.png\")\n    BASE_IMAGE_PATH=$(find ${SRCROOT} -name ${BASE_IMAGE_NAME})\n    WIDTH=$(identify -format %w ${BASE_IMAGE_PATH})\n    FONT_SIZE=$(echo \"$WIDTH * .16\" | bc -l)\n    echo \"font size $FONT_SIZE\"\n    \n    if [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n    convert debugRibbon.png -resize ${WIDTH}x${WIDTH} resizedRibbon.png\n    convert ${BASE_IMAGE_PATH} -fill Red -font Courier-Bold -pointsize ${FONT_SIZE} -gravity south -annotate 0 \"$versionNumber\" - | composite resizedRibbon.png - ${TARGET_PATH}\n    fi\n    \n    if [ \"${CONFIGURATION}\" == \"Beta\" ]; then\n    convert betaRibbon.png -resize ${WIDTH}x${WIDTH} resizedRibbon.png\n    convert ${BASE_IMAGE_PATH} -fill white -font Times-Boldr -pointsize ${FONT_SIZE} -gravity south -annotate 0 \"$versionNumber\" - | composite resizedRibbon.png - ${TARGET_PATH}\n    fi\n}\n\ngenerateIcon \"AppIcon60x60@2x.png\"\ngenerateIcon \"AppIcon60x60@3x.png\"\ngenerateIcon \"AppIcon76x76~ipad.png\"\ngenerateIcon \"AppIcon76x76@2x~ipad.png\"";
 		};
+		F38366001A0D141704E8D85D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LiveTex SDK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -308,8 +387,12 @@
 				55CC14FD1A3B2A9400C1456C /* Reachability.m in Sources */,
 				D157BCDD1CBE75CD000E6271 /* ConversationViewController.swift in Sources */,
 				55F73B061A0A6EB900C28B0A /* AuthorizationViewController.swift in Sources */,
+				86ADED412364D99400938941 /* Sender.swift in Sources */,
 				55F73B011A0A6EB800C28B0A /* AppDelegate.swift in Sources */,
+				86ADED472366313E00938941 /* UIImage+Factory.swift in Sources */,
+				86ADED3D2364CBFE00938941 /* Message.swift in Sources */,
 				D1E91C9C1D5E153100562D0E /* ChatViewController.swift in Sources */,
+				86ADED432364DE6F00938941 /* MediaMessage.swift in Sources */,
 				55D666061A135F2C001747B0 /* LivetexCoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,7 +460,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "4536b328-5544-4a28-b780-d87bf6cea477";
@@ -427,7 +510,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "4536b328-5544-4a28-b780-d87bf6cea477";
 				SDKROOT = iphoneos;
@@ -441,11 +524,12 @@
 			baseConfigurationReference = B30BC51FD66065288E264F80 /* Pods-LiveTex SDK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_ENTITLEMENTS = "LiveTex SDK.entitlements";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
@@ -460,7 +544,7 @@
 					"\"$(SRCROOT)/../../LivetexCore/LivetexCore\"/**",
 				);
 				INFOPLIST_FILE = LiveTex_SDK_Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "";
@@ -480,10 +564,11 @@
 			baseConfigurationReference = 7B9DE94EDD12C7070F2552CC /* Pods-LiveTex SDK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_ENTITLEMENTS = "LiveTex SDK.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
@@ -497,7 +582,7 @@
 					"\"$(SRCROOT)/../../LivetexCore/LivetexCore\"/**",
 				);
 				INFOPLIST_FILE = LiveTex_SDK_Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "";
@@ -552,7 +637,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "4536b328-5544-4a28-b780-d87bf6cea477";
 				SDKROOT = iphoneos;
@@ -565,10 +650,11 @@
 			baseConfigurationReference = FCFDD0332147618047AEEF8B /* Pods-LiveTex SDK.distribution.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-2";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_ENTITLEMENTS = "LiveTex SDK.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
@@ -582,7 +668,7 @@
 					"\"$(SRCROOT)/../../LivetexCore/LivetexCore\"/**",
 				);
 				INFOPLIST_FILE = LiveTex_SDK_Demo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.livetex.sdk.mobile;
