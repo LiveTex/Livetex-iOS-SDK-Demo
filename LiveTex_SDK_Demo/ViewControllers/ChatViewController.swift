@@ -19,6 +19,7 @@ class ChatViewController: MessagesViewController,
     private var messages: [MessageType] = []
     private let sender = Sender(senderId: "", displayName: "")
     private var employee = Sender(senderId: "1", displayName: "Operator")
+    private lazy var reachability = Reachability.forInternetConnection()
 
     private lazy var attachmentButtonItem: InputBarButtonItem = {
         return InputBarButtonItem()
@@ -36,13 +37,29 @@ class ChatViewController: MessagesViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.hidesBackButton = true
         navigationController?.isNavigationBarHidden = false
-        LivetexCoreManager.defaultManager.coreService.delegate = self
+        Livetex.shared.coreService.delegate = self
 
         configureInputBar()
         configureCollectionView()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(_:)),
+                                               name: .reachabilityChanged,
+                                               object: nil)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationwillEnterForeground),
+                                               name: UIApplication.willEnterForegroundNotification, object: nil)
+
+        reachability?.startNotifier()
         receiveData()
+    }
+
+    // MARK: - Notifications
+
+    @objc private func applicationwillEnterForeground() {
+        receiveMessages()
     }
 
     // MARK: - Configuration
@@ -63,6 +80,7 @@ class ChatViewController: MessagesViewController,
     private func configureInputBar() {
         messageInputBar.delegate = self
         messageInputBar.inputTextView.tintColor = .blue
+        messageInputBar.inputTextView.placeholder = "Message..."
         messageInputBar.setLeftStackViewWidthConstant(to: 30, animated: false)
         messageInputBar.setStackViewItems([attachmentButtonItem], forStack: .left, animated: false)
     }
@@ -76,7 +94,7 @@ class ChatViewController: MessagesViewController,
 
     private func receiveState() {
         /* Запрашиваем текущее состояние диалога */
-        LivetexCoreManager.defaultManager.coreService.state { state, error in
+        Livetex.shared.coreService.state { state, error in
             guard let state = state else {
                 return
             }
@@ -94,7 +112,7 @@ class ChatViewController: MessagesViewController,
 
     private func receiveMessages() {
         /* Запрашиваем историю переписки */
-        LivetexCoreManager.defaultManager.coreService.messageHistory(20, offset: 0) { messageList, error in
+        Livetex.shared.coreService.messageHistory(20, offset: 0) { messageList, error in
             if let err = error {
                 print(err)
                 return
@@ -104,7 +122,7 @@ class ChatViewController: MessagesViewController,
 
             toConfirmList?.forEach { message in
                 /* Отправляем подтверждение о получении сообщения */
-                LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId) { success, error in
+                Livetex.shared.coreService.confirmMessage(withID: message.messageId) { success, error in
                     if let err = error {
                         print(err)
                     } else {
@@ -121,15 +139,15 @@ class ChatViewController: MessagesViewController,
     func reloadDestinationIfNeeded(_ response: LCSendMessageResponse) {
         if !response.destinationIsSet {
             /* Получаем список назначений */
-            LivetexCoreManager.defaultManager.coreService.destinations { destinations, error in
+            Livetex.shared.coreService.destinations { destinations, error in
                 guard let destination = destinations?.first else {
                     return
                 }
 
                 /* Указываем адресат обращения */
-                LivetexCoreManager.defaultManager.coreService.setDestination(destination,
-                                                                             attributes: LCDialogAttributes(visible: [:], hidden: [:]),
-                                                                             options: []) { success, error in
+                Livetex.shared.coreService.setDestination(destination,
+                                                          attributes: LCDialogAttributes(visible: [:], hidden: [:]),
+                                                          options: []) { success, error in
                     if let err = error {
                         print(err)
                     }
@@ -139,21 +157,38 @@ class ChatViewController: MessagesViewController,
     }
     
     func convertMessage(_ message: LCMessage) -> MessageType {
+        let numberFormatter = NumberFormatter()
         if message.attributes.textIsSet {
-            let timeInterval: TimeInterval = NumberFormatter().number(from: message.attributes.text.created)?.doubleValue ?? 0
+            let timeInterval: TimeInterval = numberFormatter.number(from: message.attributes.text.created)?.doubleValue ?? 0
             let newMessage = Message(sender: message.attributes.text.senderIsSet ? employee : sender,
                                      messageId: message.messageId,
                                      sentDate: Date(timeIntervalSince1970: timeInterval / 1000),
                                      kind: .text(message.attributes.text.text))
             return newMessage
         } else {
-            let timeInterval: TimeInterval = NumberFormatter().number(from: message.attributes.file.created)?.doubleValue ?? 0
+            let timeInterval: TimeInterval = numberFormatter.number(from: message.attributes.file.created)?.doubleValue ?? 0
             let mediaItem = MediaMessage(url: nil)
             let newMessage = Message(sender: message.attributes.file.senderIsSet ? employee : sender,
                                   messageId: message.messageId,
                                   sentDate: Date(timeIntervalSince1970: timeInterval / 1000),
                                   kind: .photo(mediaItem))
             return newMessage
+        }
+    }
+
+    // MARK: - Reachability
+
+    @objc private func reachabilityChanged(_ reachability: Reachability) {
+        let status: NetworkStatus = reachability.currentReachabilityStatus()
+        if status == .NotReachable {
+            let alertController = UIAlertController(title: nil,
+                                                    message: "Интернет соединение потеряно, дождитесь когда система восстановит соединение",
+                                                    preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "OK", style: .cancel)
+            alertController.addAction(cancel)
+            present(alertController, animated: true)
+        } else {
+            
         }
     }
     
@@ -166,7 +201,7 @@ class ChatViewController: MessagesViewController,
         }
 
         /* Отправляем файловое сообщение */
-        LivetexCoreManager.defaultManager.coreService.sendFileMessage(imageData) { response, error in
+        Livetex.shared.coreService.sendFileMessage(imageData) { response, error in
             guard let result = response else {
                 return
             }
@@ -206,7 +241,12 @@ class ChatViewController: MessagesViewController,
 
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         /* Отправляем текстовое сообщение */
-        LivetexCoreManager.defaultManager.coreService.sendTextMessage(text) { response, error in
+
+        messageInputBar.inputTextView.text = ""
+        messageInputBar.invalidatePlugins()
+        messageInputBar.sendButton.startAnimating()
+        messageInputBar.inputTextView.placeholder = "Sending..."
+        Livetex.shared.coreService.sendTextMessage(text) { response, error in
             if let err = error {
                 print(err)
             } else {
@@ -216,6 +256,9 @@ class ChatViewController: MessagesViewController,
                 let newMessage = self.convertMessage(message)
                 self.insertMessage(newMessage)
             }
+
+            self.messageInputBar.inputTextView.placeholder = "Message..."
+            self.messageInputBar.sendButton.stopAnimating()
         }
     }
 }
@@ -238,7 +281,7 @@ extension ChatViewController: LCCoreServiceDelegate {
 
     func receiveTextMessage(_ message: LCMessage) {
         /* Отправляем подтверждение о получении сообщения */
-        LivetexCoreManager.defaultManager.coreService.confirmMessage(withID: message.messageId) { success, error in
+        Livetex.shared.coreService.confirmMessage(withID: message.messageId) { success, error in
             if let err = error {
                 print(err)
             }
@@ -255,7 +298,7 @@ extension ChatViewController: LCCoreServiceDelegate {
     func selectDestination(_ destinations: [LCDestination]) {
         /* Указываем адресат обращения */
         let attributes = LCDialogAttributes(visible: [:], hidden: [:])
-        LivetexCoreManager.defaultManager.coreService.setDestination(destinations.first!,
+        Livetex.shared.coreService.setDestination(destinations.first!,
                                                                      attributes: attributes,
                                                                      options: []) { success, error in
             if let err = error {

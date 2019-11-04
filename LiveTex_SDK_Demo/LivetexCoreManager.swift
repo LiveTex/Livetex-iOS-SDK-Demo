@@ -9,12 +9,8 @@
 import Foundation
 import LivetexCore
 
-var url = "https://authentication-service-sdk-production-1.livetex.ru"
-var key = "demo"
-var siteID = "123280"
-
-class LivetexCoreManager {
-    static let defaultManager: LivetexCoreManager = LivetexCoreManager()
+class Livetex {
+    static let shared: Livetex = Livetex()
     
     var coreService: LCCoreService!
     var apnToken: String?

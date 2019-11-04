@@ -9,12 +9,11 @@
 import UIKit
 import LivetexCore
 
-let kApplicationDidReceiveNetworkStatus = "kApplicationDidReceiveNetworkStatus"
-let kApplicationDidRegisterWithDeviceToken = "kApplicationDidRegisterWithDeviceToken"
-
 class AuthorizationViewController: UIViewController {
 
     @IBOutlet private weak var onlineModeButton: UIButton!
+
+    private let settings = Settings()
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -27,7 +26,7 @@ class AuthorizationViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(applicationDidRegisterWithDeviceToken),
-                                               name: NSNotification.Name(rawValue: kApplicationDidRegisterWithDeviceToken),
+                                               name: .applicationDidRegisterWithDeviceToken,
                                                object: nil)
     }
     
@@ -51,15 +50,15 @@ class AuthorizationViewController: UIViewController {
     }
     
     func startService() {
-        LivetexCoreManager.defaultManager.coreService = LCCoreService(url: url,
-                                                                      appID: siteID,
-                                                                      appKey: key,
-                                                                      token: nil,
-                                                                      deviceToken: LivetexCoreManager.defaultManager.apnToken,
-                                                                      callbackQueue: .main,
-                                                                      delegateQueue: .main)
-        
-        LivetexCoreManager.defaultManager.coreService.start { token, error in
+        Livetex.shared.coreService = LCCoreService(url: settings.path,
+                                                   appID: settings.siteID,
+                                                   appKey: settings.key,
+                                                   token: nil,
+                                                   deviceToken: Livetex.shared.apnToken,
+                                                   callbackQueue: .main,
+                                                   delegateQueue: .main)
+
+        Livetex.shared.coreService.start { token, error in
             if let err = error {
                 print(err)
                 self.onlineModeButton.isEnabled = false
@@ -72,7 +71,7 @@ class AuthorizationViewController: UIViewController {
     // MARK: - Action
     
     @IBAction private func startConversation(sender: UIButton) {
-        if UserDefaults.standard.object(forKey: kLivetexVisitorName) != nil {
+        if settings.visitor != nil {
             navigationController?.show(ChatViewController(), sender: nil)
         } else {
             performSegue(withIdentifier: "conversation", sender: nil)
