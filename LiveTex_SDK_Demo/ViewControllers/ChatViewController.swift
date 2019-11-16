@@ -157,23 +157,15 @@ class ChatViewController: MessagesViewController,
     }
     
     func convertMessage(_ message: LCMessage) -> MessageType {
-        let numberFormatter = NumberFormatter()
-        if message.attributes.textIsSet {
-            let timeInterval: TimeInterval = numberFormatter.number(from: message.attributes.text.created)?.doubleValue ?? 0
-            let newMessage = Message(sender: message.attributes.text.senderIsSet ? employee : sender,
-                                     messageId: message.messageId,
-                                     sentDate: Date(timeIntervalSince1970: timeInterval / 1000),
-                                     kind: .text(message.attributes.text.text))
-            return newMessage
-        } else {
-            let timeInterval: TimeInterval = numberFormatter.number(from: message.attributes.file.created)?.doubleValue ?? 0
-            let mediaItem = MediaMessage(url: nil)
-            let newMessage = Message(sender: message.attributes.file.senderIsSet ? employee : sender,
-                                  messageId: message.messageId,
-                                  sentDate: Date(timeIntervalSince1970: timeInterval / 1000),
-                                  kind: .photo(mediaItem))
-            return newMessage
-        }
+        let isTextMessage = message.attributes.textIsSet
+        let kind: MessageKind = isTextMessage ? .text(message.attributes.text.text) : .photo(MediaMessage(url: nil))
+        let timeInterval = message.attributes.text.created.doubleValue ?? 0
+        let newMessage = Message(sender: message.attributes.text.senderIsSet ? employee : sender,
+                                 messageId: message.messageId,
+                                 sentDate: Date(timeIntervalSince1970: timeInterval / 1000),
+                                 kind: kind)
+
+        return newMessage
     }
 
     // MARK: - Reachability
@@ -187,8 +179,6 @@ class ChatViewController: MessagesViewController,
             let cancel = UIAlertAction(title: "OK", style: .cancel)
             alertController.addAction(cancel)
             present(alertController, animated: true)
-        } else {
-            
         }
     }
     
@@ -209,7 +199,7 @@ class ChatViewController: MessagesViewController,
             /* Переназначаем адресат обращения в случае необходимости */
             self.reloadDestinationIfNeeded(result)
             let message = LCMessage(messageId: result.messageId, attributes: result.attributes, confirm: true)
-            let timeInterval: TimeInterval = NumberFormatter().number(from: message.attributes.file.created)?.doubleValue ?? 0
+            let timeInterval: TimeInterval = message.attributes.file.created.doubleValue ?? 0
             let mediaItem = MediaMessage(image: image)
             let newMessage = Message(sender: self.sender,
                                      messageId: message.messageId,
@@ -226,7 +216,6 @@ class ChatViewController: MessagesViewController,
 
     func insertMessage(_ message: MessageType) {
         messages.append(message)
-        // Reload last section to update header/footer labels and insert a new one
         messagesCollectionView.performBatchUpdates({
             messagesCollectionView.insertSections([messages.count - 1])
             if messages.count >= 2 {
@@ -242,21 +231,21 @@ class ChatViewController: MessagesViewController,
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         /* Отправляем текстовое сообщение */
 
+        let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
         messageInputBar.inputTextView.text = ""
         messageInputBar.invalidatePlugins()
         messageInputBar.sendButton.startAnimating()
         messageInputBar.inputTextView.placeholder = "Sending..."
-        Livetex.shared.coreService.sendTextMessage(text) { response, error in
-            if let err = error {
-                print(err)
-            } else {
-                /* Переназначаем адресат обращения в случае необходимости */
-                self.reloadDestinationIfNeeded(response!)
-                let message = LCMessage(messageId: response!.messageId, attributes: response!.attributes, confirm: false)
-                let newMessage = self.convertMessage(message)
-                self.insertMessage(newMessage)
+        Livetex.shared.coreService.sendTextMessage(trimmedText) { response, error in
+            guard let result = response else {
+                return
             }
 
+            /* Переназначаем адресат обращения в случае необходимости */
+            self.reloadDestinationIfNeeded(result)
+            let message = LCMessage(messageId: result.messageId, attributes: result.attributes, confirm: false)
+            let newMessage = self.convertMessage(message)
+            self.insertMessage(newMessage)
             self.messageInputBar.inputTextView.placeholder = "Message..."
             self.messageInputBar.sendButton.stopAnimating()
         }
@@ -324,13 +313,26 @@ extension ChatViewController: MessagesDataSource {
     }
 
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        return NSAttributedString(string: MessageKitDateFormatter.shared.string(from: message.sentDate),
-                                  attributes: [.font: UIFont.boldSystemFont(ofSize: 10),
-                                               .foregroundColor: UIColor.darkGray])
+        if indexPath.section % 3 == 0 {
+            return NSAttributedString(string: MessageKitDateFormatter.shared.string(from: message.sentDate),
+                                      attributes: [.font: UIFont.boldSystemFont(ofSize: 10),
+                                                   .foregroundColor: UIColor.darkGray])
+        }
+
+        return nil
     }
 
 }
 
 extension ChatViewController: MessagesDisplayDelegate, MessagesLayoutDelegate {
+
+    func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 18
+    }
+
+    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+        let tail: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
+        return .bubbleTail(tail, .curved)
+    }
 
 }

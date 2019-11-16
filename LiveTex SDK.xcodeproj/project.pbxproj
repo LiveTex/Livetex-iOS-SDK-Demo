@@ -18,6 +18,7 @@
 		86ADED412364D99400938941 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADED402364D99400938941 /* Sender.swift */; };
 		86ADED432364DE6F00938941 /* MediaMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADED422364DE6F00938941 /* MediaMessage.swift */; };
 		86ADED472366313E00938941 /* UIImage+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADED462366313E00938941 /* UIImage+Factory.swift */; };
+		86D3C5C323804CDD00EB2030 /* String+Convertation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D3C5C223804CDD00EB2030 /* String+Convertation.swift */; };
 		86EBC6D32370365000A60E4B /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBC6D02370365000A60E4B /* Data+Hex.swift */; };
 		86EBC6D42370365000A60E4B /* NSNotification+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBC6D22370365000A60E4B /* NSNotification+Factory.swift */; };
 		86EBC6D72370368E00A60E4B /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EBC6D62370368E00A60E4B /* Settings.swift */; };
@@ -47,6 +48,7 @@
 		86ADED402364D99400938941 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		86ADED422364DE6F00938941 /* MediaMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMessage.swift; sourceTree = "<group>"; };
 		86ADED462366313E00938941 /* UIImage+Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Factory.swift"; sourceTree = "<group>"; };
+		86D3C5C223804CDD00EB2030 /* String+Convertation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Convertation.swift"; sourceTree = "<group>"; };
 		86EBC6D02370365000A60E4B /* Data+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Hex.swift"; sourceTree = "<group>"; };
 		86EBC6D22370365000A60E4B /* NSNotification+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Factory.swift"; sourceTree = "<group>"; };
 		86EBC6D62370368E00A60E4B /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				86EBC6CF2370365000A60E4B /* Data */,
 				86EBC6D12370365000A60E4B /* NSNotification */,
+				86D3C5C123804CBD00EB2030 /* String */,
 				86ADED452366312800938941 /* UIImage */,
 			);
 			path = Extensions;
@@ -196,6 +199,14 @@
 				86ADED462366313E00938941 /* UIImage+Factory.swift */,
 			);
 			path = UIImage;
+			sourceTree = "<group>";
+		};
+		86D3C5C123804CBD00EB2030 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				86D3C5C223804CDD00EB2030 /* String+Convertation.swift */,
+			);
+			path = String;
 			sourceTree = "<group>";
 		};
 		86EBC6CF2370365000A60E4B /* Data */ = {
@@ -417,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86D3C5C323804CDD00EB2030 /* String+Convertation.swift in Sources */,
 				D125503A1C8991010057AB8F /* SettingsViewController.swift in Sources */,
 				55CC14FD1A3B2A9400C1456C /* Reachability.m in Sources */,
 				D157BCDD1CBE75CD000E6271 /* ConversationViewController.swift in Sources */,
