@@ -52,6 +52,6 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction private func resetCache(_ sender: UIBarButtonItem) {
         LCCoreService.resetService()
-        settings.visitor = nil
+        settings.visitor = ""
     }
 }

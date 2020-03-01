@@ -8,45 +8,19 @@
 
 import UIKit
 
-class Settings {
+final class Settings {
 
-    private let userDefaults = UserDefaults.standard
+    @UserDefault(key: Key.key, defaultValue: "demo")
+    var key: String
 
-    var key: String {
-        get {
-            return userDefaults.string(forKey: Key.key) ?? "demo"
-        }
-        set {
-            userDefaults.set(newValue, forKey: Key.key)
-        }
-    }
+    @UserDefault(key: Key.siteID, defaultValue: "123280")
+    var siteID: String
 
-    var siteID: String {
-        get {
-            return userDefaults.string(forKey: Key.siteID) ?? "123280"
-        }
-        set {
-            userDefaults.set(newValue, forKey: Key.siteID)
-        }
-    }
+    @UserDefault(key: Key.path, defaultValue: "https://authentication-service-sdk-production-1.livetex.ru")
+    var path: String
 
-    var path: String {
-        get {
-            return userDefaults.string(forKey: Key.path) ?? "https://authentication-service-sdk-production-1.livetex.ru"
-        }
-        set {
-            userDefaults.set(newValue, forKey: Key.path)
-        }
-    }
-
-    var visitor: String? {
-        get {
-            return userDefaults.string(forKey: Key.visitor)
-        }
-        set {
-            userDefaults.set(newValue, forKey: Key.visitor)
-        }
-    }
+    @UserDefault(key: Key.visitor, defaultValue: "")
+    var visitor: String
 
 }
 

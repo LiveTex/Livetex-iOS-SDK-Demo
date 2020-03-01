@@ -14,6 +14,8 @@
 		55F73B0B1A0A6EB900C28B0A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0A1A0A6EB900C28B0A /* Images.xcassets */; };
 		55F73B0E1A0A6EB900C28B0A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F73B0C1A0A6EB900C28B0A /* LaunchScreen.xib */; };
 		6E1D9315C8CFC4CB0F32D646 /* Pods_LiveTex_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71D1A7C12A8BCF80DBB58D78 /* Pods_LiveTex_SDK.framework */; };
+		86697F752403DCB500131EA5 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86697F742403DCB500131EA5 /* UserDefault.swift */; };
+		86746CD8240BCEDF005489E0 /* DebouncedFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86746CD7240BCEDF005489E0 /* DebouncedFunction.swift */; };
 		86ADED3D2364CBFE00938941 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADED3C2364CBFE00938941 /* Message.swift */; };
 		86ADED412364D99400938941 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADED402364D99400938941 /* Sender.swift */; };
 		86ADED432364DE6F00938941 /* MediaMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADED422364DE6F00938941 /* MediaMessage.swift */; };
@@ -44,6 +46,8 @@
 		71D1A7C12A8BCF80DBB58D78 /* Pods_LiveTex_SDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiveTex_SDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9DE94EDD12C7070F2552CC /* Pods-LiveTex SDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiveTex SDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiveTex SDK/Pods-LiveTex SDK.release.xcconfig"; sourceTree = "<group>"; };
 		7E4BF9E61B27023C00FF5C80 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		86697F742403DCB500131EA5 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		86746CD7240BCEDF005489E0 /* DebouncedFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebouncedFunction.swift; sourceTree = "<group>"; };
 		86ADED3C2364CBFE00938941 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		86ADED402364D99400938941 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		86ADED422364DE6F00938941 /* MediaMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMessage.swift; sourceTree = "<group>"; };
@@ -228,7 +232,9 @@
 		86EBC6D52370368E00A60E4B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				86746CD7240BCEDF005489E0 /* DebouncedFunction.swift */,
 				86EBC6D62370368E00A60E4B /* Settings.swift */,
+				86697F742403DCB500131EA5 /* UserDefault.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -292,7 +298,7 @@
 					55F73AFA1A0A6EB800C28B0A = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = FJE97HEJ7P;
-						LastSwiftMigration = 1110;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Push = {
@@ -428,11 +434,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86697F752403DCB500131EA5 /* UserDefault.swift in Sources */,
 				86D3C5C323804CDD00EB2030 /* String+Convertation.swift in Sources */,
 				D125503A1C8991010057AB8F /* SettingsViewController.swift in Sources */,
 				55CC14FD1A3B2A9400C1456C /* Reachability.m in Sources */,
 				D157BCDD1CBE75CD000E6271 /* ConversationViewController.swift in Sources */,
 				86EBC6D32370365000A60E4B /* Data+Hex.swift in Sources */,
+				86746CD8240BCEDF005489E0 /* DebouncedFunction.swift in Sources */,
 				86EBC6D72370368E00A60E4B /* Settings.swift in Sources */,
 				55F73B061A0A6EB900C28B0A /* AuthorizationViewController.swift in Sources */,
 				86ADED412364D99400938941 /* Sender.swift in Sources */,
@@ -603,7 +611,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "Livetex SDK Demo Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTObjcBridging.h;
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = LiveTex_SDK_Demo/LTObjcBridging.h;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -640,7 +648,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "Livetex SDK Demo Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTObjcBridging.h;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -725,7 +733,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "Livetex SDK Demo Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = LiveTex_SDK_Demo/LTObjcBridging.h;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Distribution;

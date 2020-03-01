@@ -29,8 +29,14 @@ class ChatViewController: MessagesViewController,
                 $0.title = nil
             }.onTouchUpInside { _ in
                 self.showImagePickerController()
+            }.onTextViewDidChange { item, textView in
+                self.sendTyping(text: textView.text)
             }
     }()
+
+    private lazy var typingFunction = DebouncedFunction(timeInterval: 2) {
+        self.setTypingIndicatorViewHidden(true, animated: true)
+    }
 
     // MARK: - Lifecycle
 
@@ -250,6 +256,16 @@ class ChatViewController: MessagesViewController,
             self.messageInputBar.sendButton.stopAnimating()
         }
     }
+
+    private func sendTyping(text: String) {
+        guard !text.isEmpty else {
+            return
+        }
+
+        Livetex.shared.coreService.setTyping(text) { success, error in
+
+        }
+    }
 }
 
 extension ChatViewController: LCCoreServiceDelegate {
@@ -294,6 +310,11 @@ extension ChatViewController: LCCoreServiceDelegate {
                 print(err)
             }
         }
+    }
+
+    func receiveTypingMessage(_ message: String) {
+        typingFunction.call()
+        setTypingIndicatorViewHidden(false, animated: true)
     }
 
 }
